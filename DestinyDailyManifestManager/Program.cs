@@ -145,6 +145,7 @@ namespace DestinyDailyManifestManager
                     }
                 }
             }
+            Console.WriteLine($"{added} Added & {existing} Updated");
         }
 
         private static void ProcessManifestActivities(SQLiteConnection dbConnection, DestinySqlEntities db)
