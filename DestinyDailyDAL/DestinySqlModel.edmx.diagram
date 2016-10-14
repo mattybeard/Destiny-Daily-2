@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ea03452e088e4bf8904cd12089414cbf" Name="Diagram1" ZoomLevel="58">
+        <EntityTypeShape EntityType="DestinySqlModel.BountyDay" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.ChallengeOfElder" Width="1.5" PointX="2.75" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.ChallengeOfEldersModifier" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.ChallengeOfEldersRound" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.ChallengeOfEldersScoreModifier" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.Combatant" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.CrucibleDailyDay" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.HeroicDailyDay" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.InventoryItem" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.ManifestActivity" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.ManifestReward" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.ManifestSkull" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.Modifier" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.Nightfall" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.NightfallMissionModifier" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.NightfallMissionReward" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.PrisonOfElder" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.PrisonOfEldersModifier" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.PrisonOfEldersRace" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.PrisonOfEldersRound" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.Race" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.ScoreModifier" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.WeeklyHeroic" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.WeeklyHeroicMissionReward" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.WeeklyHeroicModifier" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.XurDay" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="DestinySqlModel.FK_BountyDay_ManAct" />
+        <AssociationConnector Association="DestinySqlModel.FK_COE_COER" />
+        <AssociationConnector Association="DestinySqlModel.FK_COEM_Mod" />
+        <AssociationConnector Association="DestinySqlModel.FK_COEMission_Activity" />
+        <AssociationConnector Association="DestinySqlModel.FK_COESM_ScoreM" />
+        <AssociationConnector Association="DestinySqlModel.FK_COEM_COEId" />
+        <AssociationConnector Association="DestinySqlModel.FK_C_COER" />
+        <AssociationConnector Association="DestinySqlModel.FK_COESM_COEId" />
+        <AssociationConnector Association="DestinySqlModel.activityid_manifestactivities" />
+        <AssociationConnector Association="DestinySqlModel.FK_InventoryItemId" />
+        <AssociationConnector Association="DestinySqlModel.FK_weeklyheroicereward_reward" />
+        <AssociationConnector Association="DestinySqlModel.n_rewardFK" />
+        <AssociationConnector Association="DestinySqlModel.Act_Nightfall" />
+        <AssociationConnector Association="DestinySqlModel.FK_ManifestReward" />
+        <AssociationConnector Association="DestinySqlModel.FK_ManifestSkull" />
+        <AssociationConnector Association="DestinySqlModel.FK_POE_Activity" />
+        <AssociationConnector Association="DestinySqlModel.FK_POEM_Modifiers" />
+        <AssociationConnector Association="DestinySqlModel.FK_weeklyheroic_modifier" />
+        <AssociationConnector Association="DestinySqlModel.n_modifierIX" />
+        <AssociationConnector Association="DestinySqlModel.n_missionFK" />
+        <AssociationConnector Association="DestinySqlModel.n_missionIX" />
+        <AssociationConnector Association="DestinySqlModel.FK_POE_POER" />
+        <AssociationConnector Association="DestinySqlModel.FK_POEM_Round" />
+        <AssociationConnector Association="DestinySqlModel.FK_POER_Race" />
+        <AssociationConnector Association="DestinySqlModel.FK_POER_Rounds" />
+        <AssociationConnector Association="DestinySqlModel.FK_weeklyheroic_mission" />
+        <AssociationConnector Association="DestinySqlModel.FK_weeklyheroicreward_mission" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

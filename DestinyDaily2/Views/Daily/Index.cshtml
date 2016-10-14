@@ -1,0 +1,105 @@
+﻿@model DestinyDaily2.Models.HeroicDailyModel
+
+@{
+    ViewBag.Title = "Daily Heroic & Crucible";
+}
+
+<div style="text-align: center; width: 100%;">
+    <h1>Daily Heroic for @Model.VisibleDate</h1>
+    <br/>
+    @if (ViewBag.NoticeMessage != null)
+    {
+        <div class="alert alert-box notice"><span>NOTICE: </span>@Html.Raw(ViewBag.NoticeMessage)</div>
+        <br/>
+    }
+    <h2 style="margin-top: 0px;">@Model.DailyMission.manifestactivity.name</h2>
+    <div style="width: 70%; margin: 0 auto;">
+        @if (!String.IsNullOrEmpty(Model.DailyMission.manifestactivity.icon))
+        {
+            <img src="@($"http://www.bungie.net{Model.DailyMission.manifestactivity.pgcricon}")" alt="DailyImage" style="width: 100%"/>
+        }
+        <br/>
+        <h4 style="width: 100%;">
+            @Model.DailyMission.manifestactivity.desc
+        </h4>
+    </div>
+
+    @if (Model.DailyModifiers.Any())
+    {
+        <h3>Modifiers</h3>
+        <table class="table table-striped table-hover table-bordered" style="width: 80%; margin: 0 auto;">
+            <thead></thead>
+            <tbody>
+            @foreach (var missionMod in Model.DailyModifiers)
+            {
+                <tr>
+                    @*<td><img src="@String.Format("/Content/Images/Modifiers/{0}.png", missionMod.name)" /></td>*@
+                    <td class="vert-align">@missionMod.name</td>
+                    <td class="vert-align">@missionMod.description</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    @if (Model.DailyRewards.Any())
+    {
+        <h3>Rewards</h3>
+        <div class="accordion" style="width: 80%; margin: 0 auto;">
+            <div class="accordion-section">                
+                <div class="accordion-section-content open" style="display:block">
+                    <table class="table table-striped table-hover table-bordered" @*style="width: 80%; margin: 0 auto;"*@>
+                        <thead></thead>
+                        <tbody>
+                            @foreach (var reward in Model.DailyRewards)
+                            {
+                                <tr>
+                                    <td><img src="@($"http://www.bungie.net{reward.Item.icon}")" /></td>
+                                    <td class="vert-align">@($"{reward.Item.name} ({reward.Quantity})")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>                
+            </div>
+        </div>
+    }
+
+    @if (Model.DailyCrucible != null)
+    {
+        <br />
+        <br />
+        <h2>Daily Crucible for @Model.VisibleDate</h2>
+        <br />
+        <table class="table table-striped table-hover table-bordered" style="width: 70%; margin: 0 auto;">
+            <tr>
+                <td style="width: 50px; background-color: #999;"><img src="@($"http://www.bungie.net{Model.DailyCrucible.manifestactivity.icon}")" class="bountyicon" /></td>
+                <td style="text-align: center; width: 150px; font-size: 36px;">@Model.DailyCrucible.manifestactivity.name</td>
+                <td>@Model.DailyCrucible.manifestactivity.desc</td>
+            </tr>
+        </table>
+
+        <div style="width: 100%; text-align: center;">
+            <div class="accordion" style="width: 70%; margin: 0 auto;">
+                <div class="accordion-section">
+                    <a class="accordion-section-title active" href="#accordion-cruc240">Rewards</a>
+                    <div id="accordion-cruc240" class="accordion-section-content open" style="display: block">
+                        <table class="table table-striped table-hover table-bordered" style="width: 80%; margin: 0 auto;">
+                            <thead></thead>
+                            <tbody>
+                                @foreach (var reward in Model.DailyCrucibleRewards)
+                                {
+                                    <tr>
+                                        <td><img src="@($"http://www.bungie.net{reward.Item.icon}")" /></td>
+                                        <td class="vert-align">@($"{reward.Item.name} ({reward.Quantity})")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>

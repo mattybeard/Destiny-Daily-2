@@ -1,0 +1,271 @@
+﻿@using DestinyDailyDAL
+@model List<XurDay>
+@{
+    ViewBag.Title = "Xur";
+}
+
+@functions {
+    private string DisplayItem(XurDay item)
+    {
+        var divBuilder = "<div class='col-sm-3' align='center'>";
+        divBuilder += $"<img src='http://www.bungie.net/{item.inventoryitem.icon}' alt='{item.inventoryitem.name}'/>";
+        divBuilder += $"<p>{item.inventoryitem.name}</p></div>";
+        return divBuilder;
+    }
+
+}
+
+<h1  align="center">Xur</h1>
+<h2 align="center">Where is Xur and what does he have for the weekend starting @ViewBag.VisibleDate?</h2>
+<table class="table table-striped table-hovertd table-bordered" style="width: 100%">
+    <tr>
+        <td style="width: 33%">
+            @if (Model.Count(g => g.group == 1) >= 1)
+            {
+                <div align="center">
+                    <img src="@String.Format("http://www.bungie.net/{0}", Model.Where(g => g.group == 1).Skip(0).Take(1).First().inventoryitem.icon)"/>
+                    <br/>
+                    <p>@Model.Where(g => g.group == 1).Skip(0).Take(1).First().inventoryitem.name</p>
+                </div>
+            }
+        </td>
+        <td style="width: 33%">
+            @if (Model.Count(g => g.group == 1) >= 2)
+            {
+                <div align="center">
+                    <img src="@String.Format("http://www.bungie.net/{0}", Model.Where(g => g.group == 1).Skip(1).Take(1).First().inventoryitem.icon)"/>
+                    <br/>
+                    <p>@Model.Where(g => g.group == 1).Skip(1).Take(1).First().inventoryitem.name</p>
+                </div>
+            }
+        </td>
+        <td style="width: 33%">
+            @if (Model.Count(g => g.group == 1) >= 3)
+            {
+                <div align="center">
+                    <img src="@String.Format("http://www.bungie.net/{0}", Model.Where(g => g.group == 1).Skip(2).Take(1).First().inventoryitem.icon)"/>
+                    <br/>
+                    <p>@Model.Where(g => g.group == 1).Skip(2).Take(1).First().inventoryitem.name</p>
+                </div>
+            }
+        </td>
+    </tr>
+    <tr>
+        <td style="width: 33%">
+            @if (Model.Count(g => g.group == 1) >= 4)
+            {
+                <div align="center">
+                    <img src="@String.Format("http://www.bungie.net/{0}", Model.Where(g => g.group == 1).Skip(3).Take(1).First().inventoryitem.icon)" />
+                    <br />
+                    <p>@Model.Where(g => g.group == 1).Skip(3).Take(1).First().inventoryitem.name</p>
+                </div>
+            }
+        </td>
+        <td style="width: 33%">
+            @if (Model.Count(g => g.group == 1) >= 5)
+            {
+                <div align="center">
+                    <img src="@String.Format("http://www.bungie.net/{0}", Model.Where(g => g.group == 1).Skip(4).Take(1).First().inventoryitem.icon)" />
+                    <br />
+                    <p>@Model.Where(g => g.group == 1).Skip(4).Take(1).First().inventoryitem.name</p>
+                </div>
+            }
+        </td>
+        <td style="width: 33%">
+            @if (Model.Count(g => g.group == 1) >= 6)
+            {
+                <div align="center">
+                    <img src="@String.Format("http://www.bungie.net/{0}", Model.Where(g => g.group == 1).Skip(5).Take(1).First().inventoryitem.icon)" />
+                    <br />
+                    <p>@Model.Where(g => g.group == 1).Skip(5).Take(1).First().inventoryitem.name</p>
+                </div>
+            }
+        </td>
+    </tr>
+</table>
+<br/>
+<table class="table table-striped table-hovertd table-bordered" style="width: 100%">
+    <tr>
+        <td style="width: 33%">
+            @if (Model.Count(g => g.group == 2) >= 1)
+            {
+                <div align="center">
+                    <img src="@String.Format("http://www.bungie.net/{0}", Model.Where(g => g.group == 2).Skip(0).Take(1).First().inventoryitem.icon)"/>
+                    <br/>
+                    <p>@Model.Where(g => g.group == 2).Skip(0).Take(1).First().inventoryitem.name</p>
+                </div>
+            }
+        </td>
+        <td style="width: 33%">
+            @if (Model.Count(g => g.group == 2) >= 2)
+            {
+                <div align="center">
+                    <img src="@String.Format("http://www.bungie.net/{0}", Model.Where(g => g.group == 2).Skip(1).Take(1).First().inventoryitem.icon)"/>
+                    <br/>
+                    <p>@Model.Where(g => g.group == 2).Skip(1).Take(1).First().inventoryitem.name</p>
+                </div>
+            }
+        </td>
+        <td style="width: 33%">
+            @if (Model.Count(g => g.group == 2) >= 3)
+            {
+                <div align="center">
+                    <img src="@String.Format("http://www.bungie.net/{0}", Model.Where(g => g.group == 2).Skip(2).Take(1).First().inventoryitem.icon)"/>
+                    <br/>
+                    <p>@Model.Where(g => g.group == 2).Skip(2).Take(1).First().inventoryitem.name</p>
+                </div>
+            }
+        </td>
+    </tr>
+    @if (Model.Count(g => g.group == 2) >= 4)
+    { 
+    <tr>
+        <td style="width: 33%">
+            @if (Model.Count(g => g.group == 2) >= 4)
+            {
+                <div align="center">
+                    <img src="@String.Format("http://www.bungie.net/{0}", Model.Where(g => g.group == 2).Skip(3).Take(1).First().inventoryitem.icon)"/>
+                    <br/>
+                    <p>@Model.Where(g => g.group == 2).Skip(3).Take(1).First().inventoryitem.name</p>
+                </div>
+            }
+        </td>
+        <td style="width: 33%">
+            @if (Model.Count(g => g.group == 2) >= 5)
+            {
+                <div align="center">
+                    <img src="@String.Format("http://www.bungie.net/{0}", Model.Where(g => g.group == 2).Skip(4).Take(1).First().inventoryitem.icon)"/>
+                    <br/>
+                    <p>@Model.Where(g => g.group == 2).Skip(4).Take(1).First().inventoryitem.name</p>
+                </div>
+            }
+        </td>
+        <td style="width: 33%">
+            @if (Model.Count(g => g.group == 2) >= 6)
+            {
+                <div align="center">
+                    <img src="@String.Format("http://www.bungie.net/{0}", Model.Where(g => g.group == 2).Skip(5).Take(1).First().inventoryitem.icon)"/>
+                    <br/>
+                    <p>@Model.Where(g => g.group == 2).Skip(5).Take(1).First().inventoryitem.name</p>
+                </div>
+            }
+        </td>
+    </tr>
+}
+</table>
+<br />
+<table class="table table-striped table-hovertd table-bordered" style="width: 100%">
+    <tr>
+        <td style="width: 33%">
+            @if (Model.Count(g => g.group == 3) >= 1)
+            {
+                <div align="center">
+                    <img src="@String.Format("http://www.bungie.net/{0}", Model.Where(g => g.group == 3).Skip(0).Take(1).First().inventoryitem.icon)" />
+                    <br />
+                    <p>@Model.Where(g => g.group == 3).Skip(0).Take(1).First().inventoryitem.name</p>
+                </div>
+            }
+        </td>
+        <td style="width: 33%">
+            @if (Model.Count(g => g.group == 3) >= 2)
+            {
+                <div align="center">
+                    <img src="@String.Format("http://www.bungie.net/{0}", Model.Where(g => g.group == 3).Skip(1).Take(1).First().inventoryitem.icon)" />
+                    <br />
+                    <p>@Model.Where(g => g.group == 3).Skip(1).Take(1).First().inventoryitem.name</p>
+                </div>
+            }
+        </td>
+        <td style="width: 33%">
+            @if (Model.Count(g => g.group == 3) >= 3)
+            {
+                <div align="center">
+                    <img src="@String.Format("http://www.bungie.net/{0}", Model.Where(g => g.group == 3).Skip(2).Take(1).First().inventoryitem.icon)" />
+                    <br />
+                    <p>@Model.Where(g => g.group == 3).Skip(2).Take(1).First().inventoryitem.name</p>
+                </div>
+            }
+        </td>
+    </tr>
+    <tr>
+        <td style="width: 33%">
+            @if (Model.Count(g => g.group == 3) >= 4)
+            {
+                <div align="center">
+                    <img src="@String.Format("http://www.bungie.net/{0}", Model.Where(g => g.group == 3).Skip(3).Take(1).First().inventoryitem.icon)" />
+                    <br />
+                    <p>@Model.Where(g => g.group == 3).Skip(3).Take(1).First().inventoryitem.name</p>
+                </div>
+            }
+        </td>
+        <td style="width: 33%">
+            @if (Model.Count(g => g.group == 3) >= 5)
+            {
+                <div align="center">
+                    <img src="@String.Format("http://www.bungie.net/{0}", Model.Where(g => g.group == 3).Skip(4).Take(1).First().inventoryitem.icon)" />
+                    <br />
+                    <p>@Model.Where(g => g.group == 3).Skip(4).Take(1).First().inventoryitem.name</p>
+                </div>
+            }
+        </td>
+        <td style="width: 33%">
+            @if (Model.Count(g => g.group == 3) >= 6)
+            {
+                <div align="center">
+                    <img src="@String.Format("http://www.bungie.net/{0}", Model.Where(g => g.group == 3).Skip(5).Take(1).First().inventoryitem.icon)" />
+                    <br />
+                    <p>@Model.Where(g => g.group == 3).Skip(5).Take(1).First().inventoryitem.name</p>
+                </div>
+            }
+        </td>
+    </tr>
+</table>
+
+
+
+@*@{ var i = 1; }
+@foreach (var item in Model.Where(g => g.group == 1))
+{
+    if (i == 1 || i == 5)
+    {
+        @:<div class="row">
+    }
+    @Html.Raw(DisplayItem(item))    
+    if (i == 4 || i == Model.Count(g => g.group == 1))
+    {
+        @:</div>
+    }
+        i++;
+}
+<br/>
+
+@{ i = 1; }
+@foreach (var item in Model.Where(g => g.group == 2))
+{
+    if (i == 1 || i == 5)
+    {
+        @:<div class="row">
+    }
+    @Html.Raw(DisplayItem(item))
+    if (i == 4 || i == Model.Count(g => g.group == 2))
+    {
+        @:</div>
+    }
+    i++;
+}
+<br />
+
+@{ i = 1; }
+@foreach (var item in Model.Where(g => g.group == 3))
+{
+    if (i == 1 || i == 5)
+    {
+        @:<div class="row">
+    }
+    @Html.Raw(DisplayItem(item))
+    if (i == 4 || i == Model.Count(g => g.group == 3))
+    {
+        @:</div>
+    }
+    i++;
+}*@

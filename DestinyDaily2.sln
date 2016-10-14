@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyDaily2", "DestinyDaily2\DestinyDaily2.csproj", "{899CA463-64BF-448D-BA1F-3512C4471467}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyDailyDAL", "DestinyDailyDAL\DestinyDailyDAL.csproj", "{4694C979-8A41-4894-89D1-DEB88B8716CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyDailyApiManager", "DestinyDailyApiManager\DestinyDailyApiManager.csproj", "{DD876116-83F7-44E4-A60D-4BC1AA73E83F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DestinyDailyManifestManager", "DestinyDailyManifestManager\DestinyDailyManifestManager.csproj", "{C230B11F-7587-4BA3-9184-D1DA25B1B85E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{899CA463-64BF-448D-BA1F-3512C4471467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{899CA463-64BF-448D-BA1F-3512C4471467}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{899CA463-64BF-448D-BA1F-3512C4471467}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{899CA463-64BF-448D-BA1F-3512C4471467}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4694C979-8A41-4894-89D1-DEB88B8716CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4694C979-8A41-4894-89D1-DEB88B8716CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4694C979-8A41-4894-89D1-DEB88B8716CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4694C979-8A41-4894-89D1-DEB88B8716CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD876116-83F7-44E4-A60D-4BC1AA73E83F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD876116-83F7-44E4-A60D-4BC1AA73E83F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD876116-83F7-44E4-A60D-4BC1AA73E83F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD876116-83F7-44E4-A60D-4BC1AA73E83F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C230B11F-7587-4BA3-9184-D1DA25B1B85E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C230B11F-7587-4BA3-9184-D1DA25B1B85E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C230B11F-7587-4BA3-9184-D1DA25B1B85E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C230B11F-7587-4BA3-9184-D1DA25B1B85E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
