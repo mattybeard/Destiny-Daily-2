@@ -9,11 +9,11 @@ namespace DestinyDailyDAL
 {
     public class DailyManager
     {
-        private DestinyEntities db { get; set; }
+        private DestinySqlEntities db { get; set; }
 
         public DailyManager()
         {
-            db = new DestinyEntities();
+            db = new DestinySqlEntities();
         }
 
         public HeroicDailyDay GetDaily(DateTime standardDate)

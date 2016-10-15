@@ -114,8 +114,11 @@ namespace DestinyDailyManifestManager
                     db.InventoryItems.Add(mappedItem);
                     added++;
 
-                    if (added%100 == 0)
+                    if (added % 500 == 0)
+                    {
+                        Console.WriteLine($"Saving first {added} records");
                         db.SaveChanges();
+                    }
                 }
                 else
                 {
