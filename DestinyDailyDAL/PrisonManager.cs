@@ -8,13 +8,13 @@ namespace DestinyDailyDAL
 {
     public class PrisonManager
     {
-        private DestinyEntities db { get; set; }
+        private DestinySqlEntities db { get; set; }
         public PrisonManager()
         {
-            db = new DestinyEntities();
+            db = new DestinySqlEntities();
         }
 
-        public List<PrisonOfElders> GetLegacyPrison(DateTime standardDate)
+        public List<PrisonOfElder> GetLegacyPrison(DateTime standardDate)
         {
             var legacyPoE = db.PrisonOfElders.Where(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year).ToList();
             if (!legacyPoE.Any())
@@ -27,7 +27,7 @@ namespace DestinyDailyDAL
             return legacyPoE;          
         }
 
-        public List<ChallengeOfElders> GetChallengePrison(DateTime standardDate)
+        public List<ChallengeOfElder> GetChallengePrison(DateTime standardDate)
         {
             var newPoE = db.ChallengeOfElders.Where(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year).ToList();
             if (!newPoE.Any())
@@ -49,7 +49,7 @@ namespace DestinyDailyDAL
             int missionId = 0;
             foreach (var tier in vendorInformation.Response.data.activities.elderchallenge.activityTiers)
             {
-                var newMission = new ChallengeOfElders()
+                var newMission = new ChallengeOfElder()
                 {
                     missionid = tier.activityHash,
                     day = weeklyDate.Day,
@@ -119,7 +119,7 @@ namespace DestinyDailyDAL
 
             foreach (var tier in vendorInformation.Response.data.activities.prisonofelders.activityTiers.OrderBy(c => c.activityData.displayLevel))
             {
-                var newMission = new PrisonOfElders()
+                var newMission = new PrisonOfElder()
                 {
                     missionid = tier.activityHash,
                     day = weeklyDate.Day,

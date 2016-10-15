@@ -8,11 +8,11 @@ namespace DestinyDailyDAL
 {
     public class NightFallManager
     {
-        private DestinyEntities db { get; set; }
+        private DestinySqlEntities db { get; set; }
 
         public NightFallManager()
         {
-            db = new DestinyEntities();
+            db = new DestinySqlEntities();
         }
 
         public Nightfall GetNightFall(DateTime standardDate)

@@ -41,7 +41,7 @@ namespace DestinyDaily2.Controllers
         [HttpPost]
         public ActionResult Edit(BountyEditModel model)
         {
-            var db = new DestinyEntities();
+            var db = new DestinySqlEntities();
             if(model.Shaxx1 > 0)
                 BountyManager.CreateVendorBounties(new []{ model.Shaxx1, model.Shaxx2, model.Shaxx3, model.Shaxx4, model.Shaxx5, model.Shaxx6 }, StandardDate, Vendors.Shaxx);
 

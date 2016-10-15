@@ -9,11 +9,11 @@ namespace DestinyDailyDAL
 {
     public class BountyManager
     {
-        private DestinyEntities db { get; set; }
+        private DestinySqlEntities db { get; set; }
 
         public BountyManager()
         {
-            db = new DestinyEntities();
+            db = new DestinySqlEntities();
         }
         public List<BountyDay> GetBounties(DateTime date, int tryCount)
         {

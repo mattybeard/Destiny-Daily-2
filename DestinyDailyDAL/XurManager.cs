@@ -8,11 +8,11 @@ namespace DestinyDailyDAL
 {
     public class XurManager
     {
-        private DestinyEntities db { get; set; }
+        private DestinySqlEntities db { get; set; }
 
         public XurManager()
         {
-            db = new DestinyEntities();
+            db = new DestinySqlEntities();
         }
 
         public List<XurDay> GetItems(DateTime standardDate)
