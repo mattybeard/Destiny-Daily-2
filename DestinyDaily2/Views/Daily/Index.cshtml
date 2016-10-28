@@ -12,15 +12,15 @@
         <div class="alert alert-box notice"><span>NOTICE: </span>@Html.Raw(ViewBag.NoticeMessage)</div>
         <br/>
     }
-    <h2 style="margin-top: 0px;">@Model.DailyMission.manifestactivity.name</h2>
+    <h2 style="margin-top: 0px;">@Model.DailyMission.ManifestActivity.name</h2>
     <div style="width: 70%; margin: 0 auto;">
-        @if (!String.IsNullOrEmpty(Model.DailyMission.manifestactivity.icon))
+        @if (!String.IsNullOrEmpty(Model.DailyMission.ManifestActivity.icon))
         {
-            <img src="@($"http://www.bungie.net{Model.DailyMission.manifestactivity.pgcricon}")" alt="DailyImage" style="width: 100%"/>
+            <img src="@($"http://www.bungie.net{Model.DailyMission.ManifestActivity.pgcricon}")" alt="DailyImage" style="width: 100%"/>
         }
         <br/>
         <h4 style="width: 100%;">
-            @Model.DailyMission.manifestactivity.desc
+            @Model.DailyMission.ManifestActivity.desc
         </h4>
     </div>
 

@@ -43,7 +43,7 @@ namespace DestinyDaily2.Controllers
 
     public class PrisonModel
     {
-        public List<PrisonOfElders> Legacy { get; set; }
-        public List<ChallengeOfElders> Challenge { get; set; }
+        public List<PrisonOfElder> Legacy { get; set; }
+        public List<ChallengeOfElder> Challenge { get; set; }
     }
 }

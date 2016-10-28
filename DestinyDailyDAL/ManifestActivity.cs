@@ -23,6 +23,7 @@ namespace DestinyDailyDAL
             this.manifestrewards = new HashSet<ManifestReward>();
             this.manifestskulls = new HashSet<ManifestSkull>();
             this.prisonofelders = new HashSet<PrisonOfElder>();
+            this.heroicdailydays = new HashSet<HeroicDailyDay>();
         }
     
         public long id { get; set; }
@@ -43,5 +44,7 @@ namespace DestinyDailyDAL
         public virtual ICollection<ManifestSkull> manifestskulls { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PrisonOfElder> prisonofelders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HeroicDailyDay> heroicdailydays { get; set; }
     }
 }

@@ -19,5 +19,7 @@ namespace DestinyDailyDAL
         public Nullable<int> day { get; set; }
         public Nullable<int> month { get; set; }
         public Nullable<int> year { get; set; }
+    
+        public virtual ManifestActivity ManifestActivity { get; set; }
     }
 }

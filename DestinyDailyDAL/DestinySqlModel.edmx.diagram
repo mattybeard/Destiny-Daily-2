@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ea03452e088e4bf8904cd12089414cbf" Name="Diagram1" ZoomLevel="58">
-        <EntityTypeShape EntityType="DestinySqlModel.BountyDay" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="ea03452e088e4bf8904cd12089414cbf" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="DestinySqlModel.BountyDay" Width="1.5" PointX="23.875" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.ChallengeOfElder" Width="1.5" PointX="2.75" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.ChallengeOfEldersModifier" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.ChallengeOfEldersRound" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.ChallengeOfEldersScoreModifier" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.Combatant" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.CrucibleDailyDay" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinySqlModel.HeroicDailyDay" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinySqlModel.InventoryItem" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinySqlModel.ManifestActivity" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.HeroicDailyDay" Width="1.5" PointX="22" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.InventoryItem" Width="1.5" PointX="25.125" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.ManifestActivity" Width="1.5" PointX="18.375" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.ManifestReward" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.ManifestSkull" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.Modifier" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
@@ -27,8 +27,8 @@
         <EntityTypeShape EntityType="DestinySqlModel.PrisonOfEldersRound" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.Race" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.ScoreModifier" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinySqlModel.WeeklyHeroic" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinySqlModel.WeeklyHeroicMissionReward" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.WeeklyHeroic" Width="1.5" PointX="13.875" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.WeeklyHeroicMissionReward" Width="1.5" PointX="20.375" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.WeeklyHeroicModifier" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.XurDay" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="DestinySqlModel.FK_BountyDay_ManAct" />
@@ -58,6 +58,7 @@
         <AssociationConnector Association="DestinySqlModel.FK_POER_Rounds" />
         <AssociationConnector Association="DestinySqlModel.FK_weeklyheroic_mission" />
         <AssociationConnector Association="DestinySqlModel.FK_weeklyheroicreward_mission" />
+        <AssociationConnector Association="DestinySqlModel.FK_HeroicDaily_ManAct" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

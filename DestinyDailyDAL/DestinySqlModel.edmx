@@ -365,6 +365,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HeroicDaily_ManAct">
+          <End Role="manifestactivities" Type="Self.manifestactivities" Multiplicity="0..1" />
+          <End Role="heroicdailyday" Type="Self.heroicdailyday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manifestactivities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="heroicdailyday">
+              <PropertyRef Name="missionid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_InventoryItemId">
           <End Role="inventoryitem" Type="Self.inventoryitem" Multiplicity="1" />
           <End Role="xurday" Type="Self.xurday" Multiplicity="*" />
@@ -636,6 +648,10 @@
             <End Role="challengeofelders" EntitySet="challengeofelders" />
             <End Role="challengeofeldersscoremodifiers" EntitySet="challengeofeldersscoremodifiers" />
           </AssociationSet>
+          <AssociationSet Name="FK_HeroicDaily_ManAct" Association="Self.FK_HeroicDaily_ManAct">
+            <End Role="manifestactivities" EntitySet="manifestactivities" />
+            <End Role="heroicdailyday" EntitySet="heroicdailyday" />
+          </AssociationSet>
           <AssociationSet Name="FK_InventoryItemId" Association="Self.FK_InventoryItemId">
             <End Role="inventoryitem" EntitySet="inventoryitem" />
             <End Role="xurday" EntitySet="xurday" />
@@ -719,7 +735,7 @@
           <Property Name="month" Type="Int32" Nullable="false" />
           <Property Name="year" Type="Int32" Nullable="false" />
           <Property Name="vendor" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="inventoryitem" Relationship="DestinySqlModel.FK_BountyDay_ManAct" FromRole="BountyDay" ToRole="InventoryItem" />
+          <NavigationProperty Name="InventoryItem" Relationship="DestinySqlModel.FK_BountyDay_ManAct" FromRole="BountyDay" ToRole="InventoryItem" />
         </EntityType>
         <EntityType Name="ChallengeOfElder">
           <Key>
@@ -796,6 +812,7 @@
           <Property Name="day" Type="Int32" />
           <Property Name="month" Type="Int32" />
           <Property Name="year" Type="Int32" />
+          <NavigationProperty Name="ManifestActivity" Relationship="DestinySqlModel.FK_HeroicDaily_ManAct" FromRole="HeroicDailyDay" ToRole="ManifestActivity" />
         </EntityType>
         <EntityType Name="InventoryItem">
           <Key>
@@ -831,6 +848,7 @@
           <NavigationProperty Name="manifestrewards" Relationship="DestinySqlModel.FK_ManifestReward" FromRole="ManifestActivity" ToRole="ManifestReward" />
           <NavigationProperty Name="manifestskulls" Relationship="DestinySqlModel.FK_ManifestSkull" FromRole="ManifestActivity" ToRole="ManifestSkull" />
           <NavigationProperty Name="prisonofelders" Relationship="DestinySqlModel.FK_POE_Activity" FromRole="ManifestActivity" ToRole="PrisonOfElder" />
+          <NavigationProperty Name="heroicdailydays" Relationship="DestinySqlModel.FK_HeroicDaily_ManAct" FromRole="ManifestActivity" ToRole="HeroicDailyDay" />
         </EntityType>
         <EntityType Name="ManifestReward">
           <Key>
@@ -1137,6 +1155,10 @@
           <AssociationSet Name="FK_weeklyheroicreward_mission" Association="DestinySqlModel.FK_weeklyheroicreward_mission">
             <End Role="WeeklyHeroic" EntitySet="WeeklyHeroics" />
             <End Role="WeeklyHeroicMissionReward" EntitySet="WeeklyHeroicMissionRewards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HeroicDaily_ManAct" Association="DestinySqlModel.FK_HeroicDaily_ManAct">
+            <End Role="ManifestActivity" EntitySet="ManifestActivities" />
+            <End Role="HeroicDailyDay" EntitySet="HeroicDailyDays" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="FK_BountyDay_ManAct">
@@ -1460,6 +1482,18 @@
             </Principal>
             <Dependent Role="WeeklyHeroicMissionReward">
               <PropertyRef Name="weeklyheroicid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HeroicDaily_ManAct">
+          <End Type="DestinySqlModel.ManifestActivity" Role="ManifestActivity" Multiplicity="0..1" />
+          <End Type="DestinySqlModel.HeroicDailyDay" Role="HeroicDailyDay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManifestActivity">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HeroicDailyDay">
+              <PropertyRef Name="missionid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
