@@ -18,7 +18,7 @@ namespace DestinyDailyDAL
         public Nullable<int> eldersid { get; set; }
         public Nullable<long> combatantid { get; set; }
     
-        public virtual ChallengeOfElder challengeofelder { get; set; }
-        public virtual Combatant combatant { get; set; }
+        public virtual ChallengeOfElder CoE { get; set; }
+        public virtual Combatant Combatant { get; set; }
     }
 }

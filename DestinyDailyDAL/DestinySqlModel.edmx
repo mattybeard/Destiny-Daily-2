@@ -365,6 +365,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HeroicDaily_ManAct">
+          <End Role="manifestactivities" Type="Self.manifestactivities" Multiplicity="0..1" />
+          <End Role="heroicdailyday" Type="Self.heroicdailyday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manifestactivities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="heroicdailyday">
+              <PropertyRef Name="missionid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_InventoryItemId">
           <End Role="inventoryitem" Type="Self.inventoryitem" Multiplicity="1" />
           <End Role="xurday" Type="Self.xurday" Multiplicity="*" />
@@ -470,6 +482,18 @@
             </Principal>
             <Dependent Role="prisonofeldersrace">
               <PropertyRef Name="levelid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WeeklyHeroic_ManAct">
+          <End Role="manifestactivities" Type="Self.manifestactivities" Multiplicity="0..1" />
+          <End Role="weeklyheroic" Type="Self.weeklyheroic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manifestactivities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="weeklyheroic">
+              <PropertyRef Name="missionid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -636,6 +660,10 @@
             <End Role="challengeofelders" EntitySet="challengeofelders" />
             <End Role="challengeofeldersscoremodifiers" EntitySet="challengeofeldersscoremodifiers" />
           </AssociationSet>
+          <AssociationSet Name="FK_HeroicDaily_ManAct" Association="Self.FK_HeroicDaily_ManAct">
+            <End Role="manifestactivities" EntitySet="manifestactivities" />
+            <End Role="heroicdailyday" EntitySet="heroicdailyday" />
+          </AssociationSet>
           <AssociationSet Name="FK_InventoryItemId" Association="Self.FK_InventoryItemId">
             <End Role="inventoryitem" EntitySet="inventoryitem" />
             <End Role="xurday" EntitySet="xurday" />
@@ -671,6 +699,10 @@
           <AssociationSet Name="FK_POER_Rounds" Association="Self.FK_POER_Rounds">
             <End Role="prisonofeldersrounds" EntitySet="prisonofeldersrounds" />
             <End Role="prisonofeldersrace" EntitySet="prisonofeldersrace" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WeeklyHeroic_ManAct" Association="Self.FK_WeeklyHeroic_ManAct">
+            <End Role="manifestactivities" EntitySet="manifestactivities" />
+            <End Role="weeklyheroic" EntitySet="weeklyheroic" />
           </AssociationSet>
           <AssociationSet Name="FK_weeklyheroic_mission" Association="Self.FK_weeklyheroic_mission">
             <End Role="weeklyheroic" EntitySet="weeklyheroic" />
@@ -719,7 +751,7 @@
           <Property Name="month" Type="Int32" Nullable="false" />
           <Property Name="year" Type="Int32" Nullable="false" />
           <Property Name="vendor" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="inventoryitem" Relationship="DestinySqlModel.FK_BountyDay_ManAct" FromRole="BountyDay" ToRole="InventoryItem" />
+          <NavigationProperty Name="InventoryItem" Relationship="DestinySqlModel.FK_BountyDay_ManAct" FromRole="BountyDay" ToRole="InventoryItem" />
         </EntityType>
         <EntityType Name="ChallengeOfElder">
           <Key>
@@ -730,10 +762,10 @@
           <Property Name="day" Type="Int32" />
           <Property Name="month" Type="Int32" />
           <Property Name="year" Type="Int32" />
-          <NavigationProperty Name="challengeofeldersrounds" Relationship="DestinySqlModel.FK_COE_COER" FromRole="ChallengeOfElder" ToRole="ChallengeOfEldersRound" />
-          <NavigationProperty Name="challengeofeldersmodifiers" Relationship="DestinySqlModel.FK_COEM_Mod" FromRole="ChallengeOfElder" ToRole="ChallengeOfEldersModifier" />
-          <NavigationProperty Name="manifestactivity" Relationship="DestinySqlModel.FK_COEMission_Activity" FromRole="ChallengeOfElder" ToRole="ManifestActivity" />
-          <NavigationProperty Name="challengeofeldersscoremodifiers" Relationship="DestinySqlModel.FK_COESM_ScoreM" FromRole="ChallengeOfElder" ToRole="ChallengeOfEldersScoreModifier" />
+          <NavigationProperty Name="Rounds" Relationship="DestinySqlModel.FK_COE_COER" FromRole="ChallengeOfElder" ToRole="ChallengeOfEldersRound" />
+          <NavigationProperty Name="Modifiers" Relationship="DestinySqlModel.FK_COEM_Mod" FromRole="ChallengeOfElder" ToRole="ChallengeOfEldersModifier" />
+          <NavigationProperty Name="ManifestActivity" Relationship="DestinySqlModel.FK_COEMission_Activity" FromRole="ChallengeOfElder" ToRole="ManifestActivity" />
+          <NavigationProperty Name="ScoreModifiers" Relationship="DestinySqlModel.FK_COESM_ScoreM" FromRole="ChallengeOfElder" ToRole="ChallengeOfEldersScoreModifier" />
         </EntityType>
         <EntityType Name="ChallengeOfEldersModifier">
           <Key>
@@ -742,8 +774,8 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="challengeofeldersid" Type="Int32" />
           <Property Name="modifierid" Type="Int32" />
-          <NavigationProperty Name="challengeofelder" Relationship="DestinySqlModel.FK_COEM_Mod" FromRole="ChallengeOfEldersModifier" ToRole="ChallengeOfElder" />
-          <NavigationProperty Name="modifier" Relationship="DestinySqlModel.FK_COEM_COEId" FromRole="ChallengeOfEldersModifier" ToRole="Modifier" />
+          <NavigationProperty Name="CoE" Relationship="DestinySqlModel.FK_COEM_Mod" FromRole="ChallengeOfEldersModifier" ToRole="ChallengeOfElder" />
+          <NavigationProperty Name="Modifier" Relationship="DestinySqlModel.FK_COEM_COEId" FromRole="ChallengeOfEldersModifier" ToRole="Modifier" />
         </EntityType>
         <EntityType Name="ChallengeOfEldersRound">
           <Key>
@@ -752,8 +784,8 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="eldersid" Type="Int32" />
           <Property Name="combatantid" Type="Int64" />
-          <NavigationProperty Name="challengeofelder" Relationship="DestinySqlModel.FK_COE_COER" FromRole="ChallengeOfEldersRound" ToRole="ChallengeOfElder" />
-          <NavigationProperty Name="combatant" Relationship="DestinySqlModel.FK_C_COER" FromRole="ChallengeOfEldersRound" ToRole="Combatant" />
+          <NavigationProperty Name="CoE" Relationship="DestinySqlModel.FK_COE_COER" FromRole="ChallengeOfEldersRound" ToRole="ChallengeOfElder" />
+          <NavigationProperty Name="Combatant" Relationship="DestinySqlModel.FK_C_COER" FromRole="ChallengeOfEldersRound" ToRole="Combatant" />
         </EntityType>
         <EntityType Name="ChallengeOfEldersScoreModifier">
           <Key>
@@ -762,8 +794,8 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="challengeofeldersid" Type="Int32" />
           <Property Name="scoremodifierid" Type="Int32" />
-          <NavigationProperty Name="challengeofelder" Relationship="DestinySqlModel.FK_COESM_ScoreM" FromRole="ChallengeOfEldersScoreModifier" ToRole="ChallengeOfElder" />
-          <NavigationProperty Name="scoremodifier" Relationship="DestinySqlModel.FK_COESM_COEId" FromRole="ChallengeOfEldersScoreModifier" ToRole="ScoreModifier" />
+          <NavigationProperty Name="CoE" Relationship="DestinySqlModel.FK_COESM_ScoreM" FromRole="ChallengeOfEldersScoreModifier" ToRole="ChallengeOfElder" />
+          <NavigationProperty Name="ScoreModifier" Relationship="DestinySqlModel.FK_COESM_COEId" FromRole="ChallengeOfEldersScoreModifier" ToRole="ScoreModifier" />
         </EntityType>
         <EntityType Name="Combatant">
           <Key>
@@ -774,7 +806,7 @@
           <Property Name="desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="icon" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="challengeofeldersrounds" Relationship="DestinySqlModel.FK_C_COER" FromRole="Combatant" ToRole="ChallengeOfEldersRound" />
+          <NavigationProperty Name="Rounds" Relationship="DestinySqlModel.FK_C_COER" FromRole="Combatant" ToRole="ChallengeOfEldersRound" />
         </EntityType>
         <EntityType Name="CrucibleDailyDay">
           <Key>
@@ -785,7 +817,7 @@
           <Property Name="day" Type="Int32" />
           <Property Name="month" Type="Int32" />
           <Property Name="year" Type="Int32" />
-          <NavigationProperty Name="manifestactivity" Relationship="DestinySqlModel.activityid_manifestactivities" FromRole="CrucibleDailyDay" ToRole="ManifestActivity" />
+          <NavigationProperty Name="ManifestActivity" Relationship="DestinySqlModel.activityid_manifestactivities" FromRole="CrucibleDailyDay" ToRole="ManifestActivity" />
         </EntityType>
         <EntityType Name="HeroicDailyDay">
           <Key>
@@ -796,6 +828,7 @@
           <Property Name="day" Type="Int32" />
           <Property Name="month" Type="Int32" />
           <Property Name="year" Type="Int32" />
+          <NavigationProperty Name="ManifestActivity" Relationship="DestinySqlModel.FK_HeroicDaily_ManAct" FromRole="HeroicDailyDay" ToRole="ManifestActivity" />
         </EntityType>
         <EntityType Name="InventoryItem">
           <Key>
@@ -831,6 +864,8 @@
           <NavigationProperty Name="manifestrewards" Relationship="DestinySqlModel.FK_ManifestReward" FromRole="ManifestActivity" ToRole="ManifestReward" />
           <NavigationProperty Name="manifestskulls" Relationship="DestinySqlModel.FK_ManifestSkull" FromRole="ManifestActivity" ToRole="ManifestSkull" />
           <NavigationProperty Name="prisonofelders" Relationship="DestinySqlModel.FK_POE_Activity" FromRole="ManifestActivity" ToRole="PrisonOfElder" />
+          <NavigationProperty Name="heroicdailydays" Relationship="DestinySqlModel.FK_HeroicDaily_ManAct" FromRole="ManifestActivity" ToRole="HeroicDailyDay" />
+          <NavigationProperty Name="weeklyheroics" Relationship="DestinySqlModel.FK_WeeklyHeroic_ManAct" FromRole="ManifestActivity" ToRole="WeeklyHeroic" />
         </EntityType>
         <EntityType Name="ManifestReward">
           <Key>
@@ -873,9 +908,9 @@
           <Property Name="day" Type="Int32" />
           <Property Name="month" Type="Int32" />
           <Property Name="year" Type="Int32" />
-          <NavigationProperty Name="manifestactivity" Relationship="DestinySqlModel.Act_Nightfall" FromRole="Nightfall" ToRole="ManifestActivity" />
-          <NavigationProperty Name="nightfallmissionrewards" Relationship="DestinySqlModel.n_missionFK" FromRole="Nightfall" ToRole="NightfallMissionReward" />
-          <NavigationProperty Name="nightfallmissionmodifiers" Relationship="DestinySqlModel.n_missionIX" FromRole="Nightfall" ToRole="NightfallMissionModifier" />
+          <NavigationProperty Name="ManifestActivity" Relationship="DestinySqlModel.Act_Nightfall" FromRole="Nightfall" ToRole="ManifestActivity" />
+          <NavigationProperty Name="Rewards" Relationship="DestinySqlModel.n_missionFK" FromRole="Nightfall" ToRole="NightfallMissionReward" />
+          <NavigationProperty Name="Modifiers" Relationship="DestinySqlModel.n_missionIX" FromRole="Nightfall" ToRole="NightfallMissionModifier" />
         </EntityType>
         <EntityType Name="NightfallMissionModifier">
           <Key>
@@ -926,8 +961,8 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="levelid" Type="Int32" />
           <Property Name="raceid" Type="Int32" />
-          <NavigationProperty Name="race" Relationship="DestinySqlModel.FK_POER_Race" FromRole="PrisonOfEldersRace" ToRole="Race" />
-          <NavigationProperty Name="prisonofeldersround" Relationship="DestinySqlModel.FK_POER_Rounds" FromRole="PrisonOfEldersRace" ToRole="PrisonOfEldersRound" />
+          <NavigationProperty Name="Race" Relationship="DestinySqlModel.FK_POER_Race" FromRole="PrisonOfEldersRace" ToRole="Race" />
+          <NavigationProperty Name="Round" Relationship="DestinySqlModel.FK_POER_Rounds" FromRole="PrisonOfEldersRace" ToRole="PrisonOfEldersRound" />
         </EntityType>
         <EntityType Name="PrisonOfEldersRound">
           <Key>
@@ -947,7 +982,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="manifestId" Type="Int64" />
-          <NavigationProperty Name="prisonofeldersraces" Relationship="DestinySqlModel.FK_POER_Race" FromRole="Race" ToRole="PrisonOfEldersRace" />
+          <NavigationProperty Name="Races" Relationship="DestinySqlModel.FK_POER_Race" FromRole="Race" ToRole="PrisonOfEldersRace" />
         </EntityType>
         <EntityType Name="ScoreModifier">
           <Key>
@@ -968,8 +1003,9 @@
           <Property Name="day" Type="Int32" />
           <Property Name="month" Type="Int32" />
           <Property Name="year" Type="Int32" />
-          <NavigationProperty Name="weeklyheroicmodifiers" Relationship="DestinySqlModel.FK_weeklyheroic_mission" FromRole="WeeklyHeroic" ToRole="WeeklyHeroicModifier" />
-          <NavigationProperty Name="weeklyheroicmissionrewards" Relationship="DestinySqlModel.FK_weeklyheroicreward_mission" FromRole="WeeklyHeroic" ToRole="WeeklyHeroicMissionReward" />
+          <NavigationProperty Name="Modifiers" Relationship="DestinySqlModel.FK_weeklyheroic_mission" FromRole="WeeklyHeroic" ToRole="WeeklyHeroicModifier" />
+          <NavigationProperty Name="Rewards" Relationship="DestinySqlModel.FK_weeklyheroicreward_mission" FromRole="WeeklyHeroic" ToRole="WeeklyHeroicMissionReward" />
+          <NavigationProperty Name="ManifestActivity" Relationship="DestinySqlModel.FK_WeeklyHeroic_ManAct" FromRole="WeeklyHeroic" ToRole="ManifestActivity" />
         </EntityType>
         <EntityType Name="WeeklyHeroicMissionReward">
           <Key>
@@ -1001,7 +1037,7 @@
           <Property Name="day" Type="Int32" Nullable="false" />
           <Property Name="month" Type="Int32" Nullable="false" />
           <Property Name="year" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="inventoryitem" Relationship="DestinySqlModel.FK_InventoryItemId" FromRole="XurDay" ToRole="InventoryItem" />
+          <NavigationProperty Name="InventoryItem" Relationship="DestinySqlModel.FK_InventoryItemId" FromRole="XurDay" ToRole="InventoryItem" />
         </EntityType>
         <EntityContainer Name="DestinySqlEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BountyDays" EntityType="DestinySqlModel.BountyDay" />
@@ -1137,6 +1173,14 @@
           <AssociationSet Name="FK_weeklyheroicreward_mission" Association="DestinySqlModel.FK_weeklyheroicreward_mission">
             <End Role="WeeklyHeroic" EntitySet="WeeklyHeroics" />
             <End Role="WeeklyHeroicMissionReward" EntitySet="WeeklyHeroicMissionRewards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HeroicDaily_ManAct" Association="DestinySqlModel.FK_HeroicDaily_ManAct">
+            <End Role="ManifestActivity" EntitySet="ManifestActivities" />
+            <End Role="HeroicDailyDay" EntitySet="HeroicDailyDays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WeeklyHeroic_ManAct" Association="DestinySqlModel.FK_WeeklyHeroic_ManAct">
+            <End Role="ManifestActivity" EntitySet="ManifestActivities" />
+            <End Role="WeeklyHeroic" EntitySet="WeeklyHeroics" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="FK_BountyDay_ManAct">
@@ -1460,6 +1504,30 @@
             </Principal>
             <Dependent Role="WeeklyHeroicMissionReward">
               <PropertyRef Name="weeklyheroicid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HeroicDaily_ManAct">
+          <End Type="DestinySqlModel.ManifestActivity" Role="ManifestActivity" Multiplicity="0..1" />
+          <End Type="DestinySqlModel.HeroicDailyDay" Role="HeroicDailyDay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManifestActivity">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="HeroicDailyDay">
+              <PropertyRef Name="missionid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WeeklyHeroic_ManAct">
+          <End Type="DestinySqlModel.ManifestActivity" Role="ManifestActivity" Multiplicity="0..1" />
+          <End Type="DestinySqlModel.WeeklyHeroic" Role="WeeklyHeroic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManifestActivity">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="WeeklyHeroic">
+              <PropertyRef Name="missionid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

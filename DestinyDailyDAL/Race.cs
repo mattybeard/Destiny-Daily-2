@@ -17,7 +17,7 @@ namespace DestinyDailyDAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Race()
         {
-            this.prisonofeldersraces = new HashSet<PrisonOfEldersRace>();
+            this.Races = new HashSet<PrisonOfEldersRace>();
         }
     
         public int id { get; set; }
@@ -25,6 +25,6 @@ namespace DestinyDailyDAL
         public Nullable<long> manifestId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PrisonOfEldersRace> prisonofeldersraces { get; set; }
+        public virtual ICollection<PrisonOfEldersRace> Races { get; set; }
     }
 }

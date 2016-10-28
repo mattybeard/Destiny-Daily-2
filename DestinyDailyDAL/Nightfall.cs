@@ -17,8 +17,8 @@ namespace DestinyDailyDAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Nightfall()
         {
-            this.nightfallmissionrewards = new HashSet<NightfallMissionReward>();
-            this.nightfallmissionmodifiers = new HashSet<NightfallMissionModifier>();
+            this.Rewards = new HashSet<NightfallMissionReward>();
+            this.Modifiers = new HashSet<NightfallMissionModifier>();
         }
     
         public int id { get; set; }
@@ -27,10 +27,10 @@ namespace DestinyDailyDAL
         public Nullable<int> month { get; set; }
         public Nullable<int> year { get; set; }
     
-        public virtual ManifestActivity manifestactivity { get; set; }
+        public virtual ManifestActivity ManifestActivity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NightfallMissionReward> nightfallmissionrewards { get; set; }
+        public virtual ICollection<NightfallMissionReward> Rewards { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NightfallMissionModifier> nightfallmissionmodifiers { get; set; }
+        public virtual ICollection<NightfallMissionModifier> Modifiers { get; set; }
     }
 }

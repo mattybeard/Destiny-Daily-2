@@ -21,6 +21,6 @@ namespace DestinyDailyDAL
         public int month { get; set; }
         public int year { get; set; }
     
-        public virtual InventoryItem inventoryitem { get; set; }
+        public virtual InventoryItem InventoryItem { get; set; }
     }
 }

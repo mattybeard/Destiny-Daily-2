@@ -952,7 +952,7 @@ namespace DestinyDailyApiManager.Models.Advisors
         public string identifier { get; set; }
         public Status13 status { get; set; }
         public Display14 display { get; set; }
-        public int vendorHash { get; set; }
+        public long vendorHash { get; set; }
         public long progressionHash { get; set; }
         public List<object> bountyHashes { get; set; }
         public List<object> questHashes { get; set; }
