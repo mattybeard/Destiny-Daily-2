@@ -18,7 +18,7 @@ namespace DestinyDailyDAL
         public Nullable<int> challengeofeldersid { get; set; }
         public Nullable<int> modifierid { get; set; }
     
-        public virtual ChallengeOfElder challengeofelder { get; set; }
-        public virtual Modifier modifier { get; set; }
+        public virtual ChallengeOfElder CoE { get; set; }
+        public virtual Modifier Modifier { get; set; }
     }
 }

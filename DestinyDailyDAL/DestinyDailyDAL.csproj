@@ -38,14 +38,6 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\Connector.NET 6.9\Assemblies\v4.5\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\Connector.NET 6.9\Assemblies\v4.5\MySql.Data.Entity.EF6.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -66,9 +58,6 @@
     <Compile Include="ChallengeOfElder.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ChallengeOfElders.cs">
-      <DependentUpon>DestinyModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="ChallengeOfEldersModifier.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
     </Compile>
@@ -85,21 +74,6 @@
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DailyManager.cs" />
-    <Compile Include="DestinyModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DestinyModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DestinyModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DestinyModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DestinyModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DestinyModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="DestinySqlModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -148,9 +122,6 @@
     <Compile Include="PrisonOfElder.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PrisonOfElders.cs">
-      <DependentUpon>DestinyModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="PrisonOfEldersModifier.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
     </Compile>
@@ -185,13 +156,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="DestinyModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DestinyModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="DestinyModel.edmx.diagram">
-      <DependentUpon>DestinyModel.edmx</DependentUpon>
-    </None>
     <EntityDeploy Include="DestinySqlModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DestinySqlModel.Designer.cs</LastGenOutput>
@@ -202,16 +166,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DestinyModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DestinyModel.edmx</DependentUpon>
-      <LastGenOutput>DestinyModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DestinyModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DestinyModel.edmx</DependentUpon>
-      <LastGenOutput>DestinyModel.cs</LastGenOutput>
-    </Content>
     <Content Include="DestinySqlModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DestinySqlModel.edmx</DependentUpon>

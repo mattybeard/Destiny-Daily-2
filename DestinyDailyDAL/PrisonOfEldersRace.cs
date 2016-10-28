@@ -18,7 +18,7 @@ namespace DestinyDailyDAL
         public Nullable<int> levelid { get; set; }
         public Nullable<int> raceid { get; set; }
     
-        public virtual Race race { get; set; }
-        public virtual PrisonOfEldersRound prisonofeldersround { get; set; }
+        public virtual Race Race { get; set; }
+        public virtual PrisonOfEldersRound Round { get; set; }
     }
 }

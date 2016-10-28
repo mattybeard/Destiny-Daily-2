@@ -17,8 +17,8 @@ namespace DestinyDailyDAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public WeeklyHeroic()
         {
-            this.weeklyheroicmodifiers = new HashSet<WeeklyHeroicModifier>();
-            this.weeklyheroicmissionrewards = new HashSet<WeeklyHeroicMissionReward>();
+            this.Modifiers = new HashSet<WeeklyHeroicModifier>();
+            this.Rewards = new HashSet<WeeklyHeroicMissionReward>();
         }
     
         public int id { get; set; }
@@ -28,8 +28,9 @@ namespace DestinyDailyDAL
         public Nullable<int> year { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WeeklyHeroicModifier> weeklyheroicmodifiers { get; set; }
+        public virtual ICollection<WeeklyHeroicModifier> Modifiers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WeeklyHeroicMissionReward> weeklyheroicmissionrewards { get; set; }
+        public virtual ICollection<WeeklyHeroicMissionReward> Rewards { get; set; }
+        public virtual ManifestActivity ManifestActivity { get; set; }
     }
 }

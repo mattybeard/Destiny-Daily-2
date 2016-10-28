@@ -17,9 +17,9 @@ namespace DestinyDailyDAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ChallengeOfElder()
         {
-            this.challengeofeldersrounds = new HashSet<ChallengeOfEldersRound>();
-            this.challengeofeldersmodifiers = new HashSet<ChallengeOfEldersModifier>();
-            this.challengeofeldersscoremodifiers = new HashSet<ChallengeOfEldersScoreModifier>();
+            this.Rounds = new HashSet<ChallengeOfEldersRound>();
+            this.Modifiers = new HashSet<ChallengeOfEldersModifier>();
+            this.ScoreModifiers = new HashSet<ChallengeOfEldersScoreModifier>();
         }
     
         public int id { get; set; }
@@ -29,11 +29,11 @@ namespace DestinyDailyDAL
         public Nullable<int> year { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChallengeOfEldersRound> challengeofeldersrounds { get; set; }
+        public virtual ICollection<ChallengeOfEldersRound> Rounds { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChallengeOfEldersModifier> challengeofeldersmodifiers { get; set; }
-        public virtual ManifestActivity manifestactivity { get; set; }
+        public virtual ICollection<ChallengeOfEldersModifier> Modifiers { get; set; }
+        public virtual ManifestActivity ManifestActivity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChallengeOfEldersScoreModifier> challengeofeldersscoremodifiers { get; set; }
+        public virtual ICollection<ChallengeOfEldersScoreModifier> ScoreModifiers { get; set; }
     }
 }
