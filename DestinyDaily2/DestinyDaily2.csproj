@@ -167,6 +167,7 @@
     <Compile Include="Controllers\DailyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NightfallController.cs" />
+    <Compile Include="Controllers\OtherController.cs" />
     <Compile Include="Controllers\PrisonController.cs" />
     <Compile Include="Controllers\XurController.cs" />
     <Compile Include="Global.asax.cs">
@@ -230,6 +231,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Other\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

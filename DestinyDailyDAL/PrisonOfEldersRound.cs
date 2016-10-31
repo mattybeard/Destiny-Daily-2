@@ -17,18 +17,18 @@ namespace DestinyDailyDAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PrisonOfEldersRound()
         {
-            this.prisonofeldersmodifiers = new HashSet<PrisonOfEldersModifier>();
-            this.prisonofeldersraces = new HashSet<PrisonOfEldersRace>();
+            this.Modifiers = new HashSet<PrisonOfEldersModifier>();
+            this.Races = new HashSet<PrisonOfEldersRace>();
         }
     
         public int id { get; set; }
         public Nullable<int> prisonofeldersid { get; set; }
         public Nullable<int> round { get; set; }
     
-        public virtual PrisonOfElder prisonofelder { get; set; }
+        public virtual PrisonOfElder PrisonOfElder { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PrisonOfEldersModifier> prisonofeldersmodifiers { get; set; }
+        public virtual ICollection<PrisonOfEldersModifier> Modifiers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PrisonOfEldersRace> prisonofeldersraces { get; set; }
+        public virtual ICollection<PrisonOfEldersRace> Races { get; set; }
     }
 }

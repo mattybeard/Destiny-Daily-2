@@ -18,7 +18,7 @@ namespace DestinyDailyDAL
         public Nullable<int> levelid { get; set; }
         public Nullable<int> modifierid { get; set; }
     
-        public virtual Modifier modifier { get; set; }
-        public virtual PrisonOfEldersRound prisonofeldersround { get; set; }
+        public virtual Modifier Modifier { get; set; }
+        public virtual PrisonOfEldersRound Round { get; set; }
     }
 }

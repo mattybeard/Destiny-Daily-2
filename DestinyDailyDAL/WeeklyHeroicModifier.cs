@@ -18,7 +18,7 @@ namespace DestinyDailyDAL
         public Nullable<int> weeklyheroicid { get; set; }
         public Nullable<int> modifierid { get; set; }
     
-        public virtual Modifier modifier { get; set; }
-        public virtual WeeklyHeroic weeklyheroic { get; set; }
+        public virtual Modifier Modifier { get; set; }
+        public virtual WeeklyHeroic WeeklyHeroic { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace DestinyDailyDAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ScoreModifier()
         {
-            this.challengeofeldersscoremodifiers = new HashSet<ChallengeOfEldersScoreModifier>();
+            this.ChallengeOfEldersScoreModifiers = new HashSet<ChallengeOfEldersScoreModifier>();
         }
     
         public int id { get; set; }
@@ -26,6 +26,6 @@ namespace DestinyDailyDAL
         public string icon { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChallengeOfEldersScoreModifier> challengeofeldersscoremodifiers { get; set; }
+        public virtual ICollection<ChallengeOfEldersScoreModifier> ChallengeOfEldersScoreModifiers { get; set; }
     }
 }

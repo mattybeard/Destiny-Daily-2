@@ -34,8 +34,8 @@
             {
                 <tr>
                     @*<td><img src="@String.Format("/Content/Images/Modifiers/{0}.png", missionMod.name)" /></td>*@
-                    <td class="vert-align">@missionMod.modifier.name</td>
-                    <td class="vert-align">@missionMod.modifier.description</td>
+                    <td class="vert-align">@missionMod.Modifier.name</td>
+                    <td class="vert-align">@missionMod.Modifier.description</td>
                 </tr>
             }
             </tbody>
@@ -53,8 +53,8 @@
                         @foreach (var reward in Model.ThisNightfall.Rewards)
                         {
                             <tr>
-                                <td><img src="@($"http://www.bungie.net{reward.inventoryitem.icon}")" width="20" height="20"/></td>
-                                <td class="vert-align">@($"{reward.inventoryitem.name}")</td>
+                                <td><img src="@($"http://www.bungie.net{reward.InventoryItem.icon}")" width="20" height="20"/></td>
+                                <td class="vert-align">@($"{reward.InventoryItem.name}")</td>
                             </tr>
                         }
                         </tbody>
@@ -93,8 +93,8 @@
                 {
                     <tr>
                         @*<td><img src="@String.Format("/Content/Images/Modifiers/{0}.png", missionMod.name)" /></td>*@
-                        <td class="vert-align">@missionMod.modifier.name</td>
-                        <td class="vert-align">@missionMod.modifier.description</td>
+                        <td class="vert-align">@missionMod.Modifier.name</td>
+                        <td class="vert-align">@missionMod.Modifier.description</td>
                     </tr>
                 }
             </tbody>
@@ -112,8 +112,8 @@
                             @foreach (var reward in Model.ThisWeekly.Rewards)
                             {
                                 <tr>
-                                    <td><img src="@($"http://www.bungie.net{reward.inventoryitem.icon}")" width="20" height="20" /></td>
-                                    <td class="vert-align">@($"{reward.inventoryitem.name}")</td>
+                                    <td><img src="@($"http://www.bungie.net{reward.InventoryItem.icon}")" width="20" height="20" /></td>
+                                    <td class="vert-align">@($"{reward.InventoryItem.name}")</td>
                                 </tr>
                             }
                         </tbody>

@@ -18,7 +18,7 @@ namespace DestinyDailyDAL
         public Nullable<int> nightfallmissionid { get; set; }
         public Nullable<int> modifierid { get; set; }
     
-        public virtual Modifier modifier { get; set; }
-        public virtual Nightfall nightfall { get; set; }
+        public virtual Modifier Modifier { get; set; }
+        public virtual Nightfall Nightfall { get; set; }
     }
 }

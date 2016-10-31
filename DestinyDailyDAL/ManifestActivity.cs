@@ -17,14 +17,14 @@ namespace DestinyDailyDAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ManifestActivity()
         {
-            this.challengeofelders = new HashSet<ChallengeOfElder>();
-            this.crucibledailydays = new HashSet<CrucibleDailyDay>();
-            this.nightfalls = new HashSet<Nightfall>();
-            this.manifestrewards = new HashSet<ManifestReward>();
-            this.manifestskulls = new HashSet<ManifestSkull>();
-            this.prisonofelders = new HashSet<PrisonOfElder>();
-            this.heroicdailydays = new HashSet<HeroicDailyDay>();
-            this.weeklyheroics = new HashSet<WeeklyHeroic>();
+            this.ChallengeOfElders = new HashSet<ChallengeOfElder>();
+            this.CrucibleDailyDays = new HashSet<CrucibleDailyDay>();
+            this.Nightfalls = new HashSet<Nightfall>();
+            this.ManifestRewards = new HashSet<ManifestReward>();
+            this.ManifestSkulls = new HashSet<ManifestSkull>();
+            this.PrisonOfElders = new HashSet<PrisonOfElder>();
+            this.HeroicDailyDays = new HashSet<HeroicDailyDay>();
+            this.WeeklyHeroics = new HashSet<WeeklyHeroic>();
         }
     
         public long id { get; set; }
@@ -34,20 +34,20 @@ namespace DestinyDailyDAL
         public string pgcricon { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChallengeOfElder> challengeofelders { get; set; }
+        public virtual ICollection<ChallengeOfElder> ChallengeOfElders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CrucibleDailyDay> crucibledailydays { get; set; }
+        public virtual ICollection<CrucibleDailyDay> CrucibleDailyDays { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Nightfall> nightfalls { get; set; }
+        public virtual ICollection<Nightfall> Nightfalls { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ManifestReward> manifestrewards { get; set; }
+        public virtual ICollection<ManifestReward> ManifestRewards { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ManifestSkull> manifestskulls { get; set; }
+        public virtual ICollection<ManifestSkull> ManifestSkulls { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PrisonOfElder> prisonofelders { get; set; }
+        public virtual ICollection<PrisonOfElder> PrisonOfElders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HeroicDailyDay> heroicdailydays { get; set; }
+        public virtual ICollection<HeroicDailyDay> HeroicDailyDays { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WeeklyHeroic> weeklyheroics { get; set; }
+        public virtual ICollection<WeeklyHeroic> WeeklyHeroics { get; set; }
     }
 }

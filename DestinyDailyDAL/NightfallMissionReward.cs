@@ -18,7 +18,7 @@ namespace DestinyDailyDAL
         public Nullable<int> nightfallmissionid { get; set; }
         public Nullable<long> rewardid { get; set; }
     
-        public virtual InventoryItem inventoryitem { get; set; }
-        public virtual Nightfall nightfall { get; set; }
+        public virtual InventoryItem InventoryItem { get; set; }
+        public virtual Nightfall Nightfall { get; set; }
     }
 }

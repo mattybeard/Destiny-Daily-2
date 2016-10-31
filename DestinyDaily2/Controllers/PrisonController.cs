@@ -34,8 +34,11 @@ namespace DestinyDaily2.Controllers
             var model = new PrisonModel()
             {
                 Legacy = PrisonManager.GetLegacyPrison(StandardDate).ToList(),
-                Challenge = PrisonManager.GetChallengePrison(StandardDate).ToList()
+                Challenge = PrisonManager.GetChallengePrison(StandardDate)
             };
+
+            var rounds = model.Challenge.Rounds.ToList();
+            var combatents = rounds.Select(c => c.Combatant).ToList();
 
             return View(model);
         }
@@ -44,6 +47,6 @@ namespace DestinyDaily2.Controllers
     public class PrisonModel
     {
         public List<PrisonOfElder> Legacy { get; set; }
-        public List<ChallengeOfElder> Challenge { get; set; }
+        public ChallengeOfElder Challenge { get; set; }
     }
 }
