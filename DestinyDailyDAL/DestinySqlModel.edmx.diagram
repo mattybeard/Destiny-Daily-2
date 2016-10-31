@@ -60,6 +60,7 @@
         <AssociationConnector Association="DestinySqlModel.FK_weeklyheroicreward_mission" />
         <AssociationConnector Association="DestinySqlModel.FK_HeroicDaily_ManAct" />
         <AssociationConnector Association="DestinySqlModel.FK_WeeklyHeroic_ManAct" />
+        <EntityTypeShape EntityType="DestinySqlModel.MaterialExchange" Width="1.5" PointX="0.75" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

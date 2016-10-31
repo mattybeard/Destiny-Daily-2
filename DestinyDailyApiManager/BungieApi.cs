@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DestinyDailyApiManager.Models.Advisors;
 using DestinyDailyApiManager.Models.Manifest;
+using DestinyDailyApiManager.Models.OldAdvisors;
 using Newtonsoft.Json;
 
 namespace DestinyDailyApiManager
@@ -31,6 +32,13 @@ namespace DestinyDailyApiManager
             var manifestText =  MakeBungieRequest("Manifest/");
             return JsonConvert.DeserializeObject<Manifest>(manifestText);
         }
+
+        public static OlderAdvisorsEndpoint GetVendorMetaData(string vendorId)
+        {
+            var vendorResponse = MakeBungieRequest($"Vendors/{vendorId}/Metadata/");
+            return JsonConvert.DeserializeObject<OlderAdvisorsEndpoint>(vendorResponse);
+        }
+
         private static string MakeBungieRequest(string url)
         {
             HttpWebRequest request = (HttpWebRequest) WebRequest.Create(String.Format("https://www.bungie.net/Platform/Destiny/{0}", url.Trim()));

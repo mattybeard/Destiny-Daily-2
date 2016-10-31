@@ -122,6 +122,17 @@
           <Property Name="activityhash" Type="bigint" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
+        <EntityType Name="MaterialExchange">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="day" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+          <Property Name="vendor" Type="nvarchar" MaxLength="45" />
+          <Property Name="material" Type="nvarchar" MaxLength="45" />
+        </EntityType>
         <EntityType Name="modifier">
           <Key>
             <PropertyRef Name="id" />
@@ -606,6 +617,7 @@
           <EntitySet Name="manifestactivities" EntityType="Self.manifestactivities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="manifestrewards" EntityType="Self.manifestrewards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="manifestskulls" EntityType="Self.manifestskulls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaterialExchange" EntityType="Self.MaterialExchange" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="modifier" EntityType="Self.modifier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="nightfall" EntityType="Self.nightfall" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="nightfallmissionmodifiers" EntityType="Self.nightfallmissionmodifiers" Schema="dbo" store:Type="Tables" />
@@ -1182,6 +1194,7 @@
             <End Role="ManifestActivity" EntitySet="ManifestActivities" />
             <End Role="WeeklyHeroic" EntitySet="WeeklyHeroics" />
           </AssociationSet>
+          <EntitySet Name="MaterialExchanges" EntityType="DestinySqlModel.MaterialExchange" />
         </EntityContainer>
         <Association Name="FK_BountyDay_ManAct">
           <End Type="DestinySqlModel.InventoryItem" Role="InventoryItem" Multiplicity="1" />
@@ -1531,6 +1544,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="MaterialExchange">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="day" Type="Int32" Nullable="false" />
+          <Property Name="month" Type="Int32" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <Property Name="vendor" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="material" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1800,6 +1824,18 @@
                 <ScalarProperty Name="day" ColumnName="day" />
                 <ScalarProperty Name="month" ColumnName="month" />
                 <ScalarProperty Name="year" ColumnName="year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaterialExchanges">
+            <EntityTypeMapping TypeName="DestinySqlModel.MaterialExchange">
+              <MappingFragment StoreEntitySet="MaterialExchange">
+                <ScalarProperty Name="material" ColumnName="material" />
+                <ScalarProperty Name="vendor" ColumnName="vendor" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

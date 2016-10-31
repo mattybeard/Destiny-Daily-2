@@ -50,6 +50,7 @@
     <Compile Include="Models\Manifest\Combatant\Combatant.cs" />
     <Compile Include="Models\Manifest\InventoryItem\InventoryItem.cs" />
     <Compile Include="Models\Manifest\Manifest.cs" />
+    <Compile Include="Models\Manifest\Vendor\VendorInformation.cs" />
     <Compile Include="Models\OldAdvisors\OlderAdvisorsEndpoint.cs" />
     <Compile Include="Models\Vendors.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

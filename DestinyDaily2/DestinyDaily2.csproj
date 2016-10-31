@@ -175,6 +175,7 @@
     </Compile>
     <Compile Include="Models\BountyEditModel.cs" />
     <Compile Include="Models\HeroicDailyModel.cs" />
+    <Compile Include="Models\MiscModel.cs" />
     <Compile Include="Models\NightfallWeeklyModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -192,6 +193,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\DestinyDailyBeta.pubxml" />
     <None Include="Properties\PublishProfiles\FTP Beta.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -227,11 +229,11 @@
     <Content Include="Views\Nightfall\Index.cshtml" />
     <Content Include="Views\Xur\NotHere.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <None Include="Views\Other\Index.cshtml" />
     <None Include="Views\Prison\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Other\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

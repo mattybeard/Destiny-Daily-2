@@ -1,0 +1,23 @@
+﻿@model DestinyDaily2.Models.MiscModel
+
+@{
+    ViewBag.Title = "Prison Of Elders";
+}
+
+@if (Model.MaterialExchanges != null && Model.MaterialExchanges.Any())
+{
+    <h3 style="margin-top: 0px;">Material Exchange</h3>
+    <table class="table table-striped table-hover table-bordered" style="width: 70%; margin: 0 auto;">
+        <thead></thead>
+        <tbody>
+            @foreach (var exchange in Model.MaterialExchanges)
+            {
+                <tr>
+                    <td>@exchange.vendor</td>
+                    <td>@exchange.material</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+}
