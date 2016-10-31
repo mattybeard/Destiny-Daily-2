@@ -9,7 +9,6 @@ namespace DestinyDaily2.Controllers
     {
         private DailyManager DailyManager { get; set; }
         private DateTime StandardDate => DateTime.Now.AddHours(-10.0);
-
         public DailyController()
         {
             DailyManager = new DailyManager();

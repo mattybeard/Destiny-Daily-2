@@ -12,13 +12,13 @@ namespace DestinyDailyDAL
     using System;
     using System.Collections.Generic;
     
-    public partial class PrisonOfEldersModifier
+    public partial class MaterialExchange
     {
         public int id { get; set; }
-        public Nullable<int> levelid { get; set; }
-        public Nullable<int> modifierid { get; set; }
-    
-        public virtual Modifier Modifier { get; set; }
-        public virtual PrisonOfEldersRound Round { get; set; }
+        public int day { get; set; }
+        public int month { get; set; }
+        public int year { get; set; }
+        public string vendor { get; set; }
+        public string material { get; set; }
     }
 }

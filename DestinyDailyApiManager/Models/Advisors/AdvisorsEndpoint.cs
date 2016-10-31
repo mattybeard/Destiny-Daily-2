@@ -384,7 +384,7 @@ namespace DestinyDailyApiManager.Models.Advisors
 
     public class RewardItem3
     {
-        public int itemHash { get; set; }
+        public long itemHash { get; set; }
         public int value { get; set; }
     }
 

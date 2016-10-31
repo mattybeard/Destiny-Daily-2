@@ -104,6 +104,9 @@
     <Compile Include="ManifestSkull.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MaterialExchange.cs">
+      <DependentUpon>DestinySqlModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManifestRewardModel.cs" />
     <Compile Include="Modifier.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
@@ -138,6 +141,7 @@
     <Compile Include="ScoreModifier.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="VendorManager.cs" />
     <Compile Include="WeeklyHeroic.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
     </Compile>

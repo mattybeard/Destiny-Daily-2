@@ -17,7 +17,7 @@ namespace DestinyDailyDAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PrisonOfElder()
         {
-            this.prisonofeldersrounds = new HashSet<PrisonOfEldersRound>();
+            this.Rounds = new HashSet<PrisonOfEldersRound>();
         }
     
         public int id { get; set; }
@@ -26,8 +26,8 @@ namespace DestinyDailyDAL
         public Nullable<int> month { get; set; }
         public Nullable<int> year { get; set; }
     
-        public virtual ManifestActivity manifestactivity { get; set; }
+        public virtual ManifestActivity ManifestActivity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PrisonOfEldersRound> prisonofeldersrounds { get; set; }
+        public virtual ICollection<PrisonOfEldersRound> Rounds { get; set; }
     }
 }

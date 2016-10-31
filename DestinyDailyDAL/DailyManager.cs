@@ -54,7 +54,7 @@ namespace DestinyDailyDAL
         public List<Modifier> GetModifiers(long? missionId)
         {
             var mission = db.ManifestActivities.FirstOrDefault(d => d.id == missionId);
-            return mission?.manifestskulls.Select(modifer => db.Modifiers.FirstOrDefault(m => m.name == modifer.name)).Where(matchingMod => matchingMod != null).ToList();
+            return mission?.ManifestSkulls.Select(modifer => db.Modifiers.FirstOrDefault(m => m.name == modifer.name)).Where(matchingMod => matchingMod != null).ToList();
         }
 
         public List<ManifestRewardModel> GetRewards(long? missionId)
@@ -64,7 +64,7 @@ namespace DestinyDailyDAL
                 return null;
             
             var manifestRewards = new List<ManifestRewardModel>();
-            foreach (var potentialReward in mission.manifestrewards)
+            foreach (var potentialReward in mission.ManifestRewards)
             {
                 var matchingItem = db.InventoryItems.FirstOrDefault(i => i.id == potentialReward.rewardHash);
                 if (matchingItem != null)

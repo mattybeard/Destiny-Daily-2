@@ -17,10 +17,10 @@ namespace DestinyDailyDAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Modifier()
         {
-            this.challengeofeldersmodifiers = new HashSet<ChallengeOfEldersModifier>();
-            this.prisonofeldersmodifiers = new HashSet<PrisonOfEldersModifier>();
-            this.weeklyheroicmodifiers = new HashSet<WeeklyHeroicModifier>();
-            this.nightfallmissionmodifiers = new HashSet<NightfallMissionModifier>();
+            this.Modifiers = new HashSet<ChallengeOfEldersModifier>();
+            this.PrisonOfEldersModifiers = new HashSet<PrisonOfEldersModifier>();
+            this.WeeklyHeroicModifiers = new HashSet<WeeklyHeroicModifier>();
+            this.NightfallMissionModifiers = new HashSet<NightfallMissionModifier>();
         }
     
         public int id { get; set; }
@@ -29,12 +29,12 @@ namespace DestinyDailyDAL
         public string icon { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ChallengeOfEldersModifier> challengeofeldersmodifiers { get; set; }
+        public virtual ICollection<ChallengeOfEldersModifier> Modifiers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PrisonOfEldersModifier> prisonofeldersmodifiers { get; set; }
+        public virtual ICollection<PrisonOfEldersModifier> PrisonOfEldersModifiers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WeeklyHeroicModifier> weeklyheroicmodifiers { get; set; }
+        public virtual ICollection<WeeklyHeroicModifier> WeeklyHeroicModifiers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NightfallMissionModifier> nightfallmissionmodifiers { get; set; }
+        public virtual ICollection<NightfallMissionModifier> NightfallMissionModifiers { get; set; }
     }
 }

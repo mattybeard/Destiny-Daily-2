@@ -167,6 +167,7 @@
     <Compile Include="Controllers\DailyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NightfallController.cs" />
+    <Compile Include="Controllers\OtherController.cs" />
     <Compile Include="Controllers\PrisonController.cs" />
     <Compile Include="Controllers\XurController.cs" />
     <Compile Include="Global.asax.cs">
@@ -174,6 +175,7 @@
     </Compile>
     <Compile Include="Models\BountyEditModel.cs" />
     <Compile Include="Models\HeroicDailyModel.cs" />
+    <Compile Include="Models\MiscModel.cs" />
     <Compile Include="Models\NightfallWeeklyModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -191,6 +193,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\DestinyDailyBeta.pubxml" />
     <None Include="Properties\PublishProfiles\FTP Beta.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -226,6 +229,7 @@
     <Content Include="Views\Nightfall\Index.cshtml" />
     <Content Include="Views\Xur\NotHere.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <Content Include="Views\Other\Index.cshtml" />
     <None Include="Views\Prison\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

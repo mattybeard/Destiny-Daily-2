@@ -27,13 +27,13 @@ namespace DestinyDailyDAL
             return legacyPoE;          
         }
 
-        public List<ChallengeOfElder> GetChallengePrison(DateTime standardDate)
+        public ChallengeOfElder GetChallengePrison(DateTime standardDate)
         {
-            var newPoE = db.ChallengeOfElders.Where(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year).ToList();
-            if (!newPoE.Any())
+            var newPoE = db.ChallengeOfElders.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+            if (newPoE == null)
             {
                 CreateChallengePrison(standardDate);
-                var updatedNewPoE = db.ChallengeOfElders.Where(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year).ToList();
+                var updatedNewPoE = db.ChallengeOfElders.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
                 return updatedNewPoE;
             }
 

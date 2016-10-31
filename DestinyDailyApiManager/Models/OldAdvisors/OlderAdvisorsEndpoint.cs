@@ -59,7 +59,7 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
         public int step { get; set; }
         public int progressToNextLevel { get; set; }
         public int nextLevelAt { get; set; }
-        public int progressionHash { get; set; }
+        public long progressionHash { get; set; }
     }
 
     public class Item
@@ -99,7 +99,7 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
 
     public class Cost
     {
-        public int itemHash { get; set; }
+        public long itemHash { get; set; }
         public int value { get; set; }
     }
 
@@ -114,7 +114,7 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
 
     public class SaleItemCategory
     {
-        public int categoryIndex { get; set; }
+        public long categoryIndex { get; set; }
         public string categoryTitle { get; set; }
         public List<SaleItem> saleItems { get; set; }
     }
@@ -296,7 +296,7 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
         public int step { get; set; }
         public int progressToNextLevel { get; set; }
         public int nextLevelAt { get; set; }
-        public int progressionHash { get; set; }
+        public long progressionHash { get; set; }
     }
 
     public class Node
@@ -480,6 +480,7 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
         public ArmsDay armsDay { get; set; }
         public List<WeeklyCrucible> weeklyCrucible { get; set; }
         public AvailableBounties availableBounties { get; set; }
+        public Vendor vendor { get; set; }
     }
 
     public class Response

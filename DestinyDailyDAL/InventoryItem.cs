@@ -17,10 +17,10 @@ namespace DestinyDailyDAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public InventoryItem()
         {
-            this.bountydays = new HashSet<BountyDay>();
-            this.xurdays = new HashSet<XurDay>();
-            this.weeklyheroicmissionrewards = new HashSet<WeeklyHeroicMissionReward>();
-            this.nightfallmissionrewards = new HashSet<NightfallMissionReward>();
+            this.BountyDays = new HashSet<BountyDay>();
+            this.XurDays = new HashSet<XurDay>();
+            this.WeeklyHeroicMissionRewards = new HashSet<WeeklyHeroicMissionReward>();
+            this.NightfallMissionRewards = new HashSet<NightfallMissionReward>();
         }
     
         public long id { get; set; }
@@ -35,12 +35,12 @@ namespace DestinyDailyDAL
         public string friendlyname { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BountyDay> bountydays { get; set; }
+        public virtual ICollection<BountyDay> BountyDays { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<XurDay> xurdays { get; set; }
+        public virtual ICollection<XurDay> XurDays { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WeeklyHeroicMissionReward> weeklyheroicmissionrewards { get; set; }
+        public virtual ICollection<WeeklyHeroicMissionReward> WeeklyHeroicMissionRewards { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NightfallMissionReward> nightfallmissionrewards { get; set; }
+        public virtual ICollection<NightfallMissionReward> NightfallMissionRewards { get; set; }
     }
 }

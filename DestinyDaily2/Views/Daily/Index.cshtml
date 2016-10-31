@@ -72,18 +72,19 @@
         <br />
         <table class="table table-striped table-hover table-bordered" style="width: 70%; margin: 0 auto;">
             <tr>
-                <td style="width: 50px; background-color: #999;"><img src="@($"http://www.bungie.net{Model.DailyCrucible.ManifestActivity.icon}")" class="bountyicon" /></td>
+                <td style="width: 50px; background-color: #999;"><img src="@($"http://www.bungie.net{Model.DailyCrucible.ManifestActivity.icon}")" class="bountyicon"/></td>
                 <td style="text-align: center; width: 150px; font-size: 36px;">@Model.DailyCrucible.ManifestActivity.name</td>
                 <td>@Model.DailyCrucible.ManifestActivity.desc</td>
             </tr>
         </table>
 
-        <div style="width: 100%; text-align: center;">
-            <div class="accordion" style="width: 70%; margin: 0 auto;">
+        if (Model.DailyCrucibleRewards.Any())
+        {
+            <h3>Rewards</h3>
+            <div class="accordion" style="width: 80%; margin: 0 auto;">
                 <div class="accordion-section">
-                    <a class="accordion-section-title active" href="#accordion-cruc240">Rewards</a>
-                    <div id="accordion-cruc240" class="accordion-section-content open" style="display: block">
-                        <table class="table table-striped table-hover table-bordered" style="width: 80%; margin: 0 auto;">
+                    <div class="accordion-section-content open" style="display:block">
+                        <table class="table table-striped table-hover table-bordered">
                             <thead></thead>
                             <tbody>
                                 @foreach (var reward in Model.DailyCrucibleRewards)
@@ -98,7 +99,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        }
     }
 
 

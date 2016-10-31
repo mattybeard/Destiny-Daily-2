@@ -18,6 +18,6 @@ namespace DestinyDailyDAL
         public long activityhash { get; set; }
         public string name { get; set; }
     
-        public virtual ManifestActivity manifestactivity { get; set; }
+        public virtual ManifestActivity ManifestActivity { get; set; }
     }
 }

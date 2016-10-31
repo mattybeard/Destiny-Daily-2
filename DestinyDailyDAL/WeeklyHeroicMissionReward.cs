@@ -18,7 +18,7 @@ namespace DestinyDailyDAL
         public Nullable<int> weeklyheroicid { get; set; }
         public Nullable<long> rewardid { get; set; }
     
-        public virtual InventoryItem inventoryitem { get; set; }
-        public virtual WeeklyHeroic weeklyheroic { get; set; }
+        public virtual InventoryItem InventoryItem { get; set; }
+        public virtual WeeklyHeroic WeeklyHeroic { get; set; }
     }
 }

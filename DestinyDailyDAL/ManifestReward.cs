@@ -19,6 +19,6 @@ namespace DestinyDailyDAL
         public long rewardHash { get; set; }
         public int value { get; set; }
     
-        public virtual ManifestActivity manifestactivity { get; set; }
+        public virtual ManifestActivity ManifestActivity { get; set; }
     }
 }
