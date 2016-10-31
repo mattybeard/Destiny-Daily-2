@@ -229,7 +229,7 @@
     <Content Include="Views\Nightfall\Index.cshtml" />
     <Content Include="Views\Xur\NotHere.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
-    <None Include="Views\Other\Index.cshtml" />
+    <Content Include="Views\Other\Index.cshtml" />
     <None Include="Views\Prison\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
