@@ -282,11 +282,19 @@ namespace DestinyDailyApiManager.Models.Advisors
     public class Armsday
     {
         public string identifier { get; set; }
-        public Status3 status { get; set; }
-        public Display4 display { get; set; }
+        public Status status { get; set; }
+        public Display display { get; set; }
         public int vendorHash { get; set; }
         public long progressionHash { get; set; }
-        public Extended5 extended { get; set; }
+        public Extended extended { get; set; }
+    }
+
+    public class Wrathofthemachine
+    {
+        public string identifier { get; set; }
+        public Status status { get; set; }
+        public Display display { get; set; }
+        public List<ActivityTier> activityTiers { get; set; }
     }
 
     public class Status4
@@ -1023,6 +1031,7 @@ namespace DestinyDailyApiManager.Models.Advisors
         public Trials trials { get; set; }
         public Armsday armsday { get; set; }
         public Weeklycrucible weeklycrucible { get; set; }
+        public Wrathofthemachine wrathofthemachine { get; set; }   
         public Kingsfall kingsfall { get; set; }
         public Vaultofglass vaultofglass { get; set; }
         public Crota crota { get; set; }
@@ -1035,37 +1044,6 @@ namespace DestinyDailyApiManager.Models.Advisors
         public Xur xur { get; set; }
         public Srl srl { get; set; }
     }
-
-
-//public class __invalid_type__767430688
-//{
-//    public int categoryHash { get; set; }
-//}
-
-//public class __invalid_type__3582600593
-//{
-//    public long categoryHash { get; set; }
-//}
-
-//public class __invalid_type__299173589
-//{
-//    public int categoryHash { get; set; }
-//}
-
-//public class __invalid_type__1986932861
-//{
-//    public int categoryHash { get; set; }
-//}
-
-//public class __invalid_type__2902063273
-//{
-//    public long categoryHash { get; set; }
-//}
-
-//public class __invalid_type__1025694749
-//{
-//    public int categoryHash { get; set; }
-//}
 
 
     public class Data

@@ -89,5 +89,25 @@ namespace DestinyDailyDAL
 
             db.MaterialExchanges.Add(materialExchange);
         }
+
+        public List<RaidChallengeDay> GetRaidChallenges(DateTime standardDate)
+        {
+            var challenges = db.RaidChallengeDays.Where(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+            if (!challenges.Any())
+            {
+                CreateRaidChallenges(standardDate);
+                var updatedChallenges = db.RaidChallengeDays.Where(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+                return updatedChallenges.ToList();
+            }
+
+            return challenges.ToList();
+        }
+
+        private void CreateRaidChallenges(DateTime standardDate)
+        {
+            var vendorInformation = DestinyDailyApiManager.BungieApi.GetAdvisors();
+            if (vendorInformation.ErrorCode > 1)
+                return;
+        }
     }
 }

@@ -138,6 +138,12 @@
     <Compile Include="Race.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="RaidChallenge.cs">
+      <DependentUpon>DestinySqlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RaidChallengeDay.cs">
+      <DependentUpon>DestinySqlModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ScoreModifier.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
     </Compile>

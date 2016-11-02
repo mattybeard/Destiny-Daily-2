@@ -35,7 +35,9 @@ namespace DestinyDaily2.Controllers
         {
             var model = new MiscModel()
             {
-                MaterialExchanges = vendorManager.GetMaterialExchange(WeeklyDate)
+                MaterialExchanges = vendorManager.GetMaterialExchange(WeeklyDate),
+                RaidChallenges = vendorManager.GetRaidChallenges(WeeklyDate)
+
             };
 
             return View(model);
