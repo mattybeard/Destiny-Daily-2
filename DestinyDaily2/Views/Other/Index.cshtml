@@ -21,3 +21,21 @@
     </table>
     <br />
 }
+
+@if (Model.RaidChallenges != null && Model.RaidChallenges.Any())
+{
+    <h3 style="margin-top: 0px;">Raid Challenges</h3>
+    <table class="table table-striped table-hover table-bordered" style="width: 70%; margin: 0 auto;">
+        <thead></thead>
+        <tbody>
+            @foreach (var challenge in Model.RaidChallenges)
+            {
+                <tr>
+                    <td>@challenge.Challenge.raidname</td>
+                    <td>@challenge.Challenge.name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+}

@@ -9,5 +9,6 @@ namespace DestinyDaily2.Models
     public class MiscModel
     {
         public List<MaterialExchange> MaterialExchanges { get; set; } 
+        public List<RaidChallengeDay> RaidChallenges { get; set; } 
     }
 }
