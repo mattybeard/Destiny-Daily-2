@@ -230,7 +230,7 @@
     <Content Include="Views\Xur\NotHere.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Other\Index.cshtml" />
-    <None Include="Views\Prison\Index.cshtml" />
+    <Content Include="Views\Prison\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
