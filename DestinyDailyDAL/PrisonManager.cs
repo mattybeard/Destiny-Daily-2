@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DestinyDailyDAL.Models;
 
 namespace DestinyDailyDAL
 {
     public class PrisonManager
     {
         private DestinySqlEntities db { get; set; }
+        private BountyManager bountyManager { get; }
         public PrisonManager()
         {
             db = new DestinySqlEntities();
+            bountyManager = new BountyManager();
         }
 
         public List<PrisonOfElder> GetLegacyPrison(DateTime standardDate)
@@ -25,6 +28,23 @@ namespace DestinyDailyDAL
             }
 
             return legacyPoE;          
+        }
+
+        public DetailedChallengeOfElders GetDetailedChallenge(DateTime standardDate)
+        {
+            var model = new DetailedChallengeOfElders()
+            {
+                Challenge = GetChallengePrison(standardDate),
+                Bounties = GetChallengeBounties(standardDate)
+            };
+
+            return model;
+        }
+
+        private List<BountyDay> GetChallengeBounties(DateTime standardDate)
+        {
+            return bountyManager.GetBounties(standardDate, 1, "Variks");
+
         }
 
         public ChallengeOfElder GetChallengePrison(DateTime standardDate)

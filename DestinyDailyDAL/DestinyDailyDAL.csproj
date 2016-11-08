@@ -73,6 +73,9 @@
     <Compile Include="CrucibleDailyDay.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CrucibleWeeklyDay.cs">
+      <DependentUpon>DestinySqlModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DailyManager.cs" />
     <Compile Include="DestinySqlModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -107,6 +110,8 @@
     <Compile Include="MaterialExchange.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DetailedChallengeOfElders.cs" />
+    <Compile Include="Models\DetailedWeeklyCrucible.cs" />
     <Compile Include="Models\ManifestRewardModel.cs" />
     <Compile Include="Modifier.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>

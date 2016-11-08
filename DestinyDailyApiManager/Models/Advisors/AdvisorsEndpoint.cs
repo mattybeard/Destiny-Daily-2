@@ -194,7 +194,7 @@ namespace DestinyDailyApiManager.Models.Advisors
         public Display2 display { get; set; }
         public int vendorHash { get; set; }
         public long progressionHash { get; set; }
-        public List<object> bountyHashes { get; set; }
+        public List<long> bountyHashes { get; set; }
         public List<ActivityTier2> activityTiers { get; set; }
         public Extended3 extended { get; set; }
     }

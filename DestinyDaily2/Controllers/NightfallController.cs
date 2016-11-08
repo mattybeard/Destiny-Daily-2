@@ -10,11 +10,15 @@ namespace DestinyDaily2.Controllers
 {
     public class NightfallController : Controller
     {
+        private VendorManager vendorManager { get; set; }
+        private PrisonManager prisonManager { get; }
+        private DateTime TodayDate => DateTime.Now.AddHours(-9.0);
+
         private DateTime StandardDate
         {
             get
             {
-                var today = DateTime.Now.AddHours(-10.0);
+                var today = DateTime.Now.AddHours(-9.0);
                 while (today.DayOfWeek != DayOfWeek.Tuesday)
                 {
                     today = today.AddDays(-1);
@@ -29,21 +33,53 @@ namespace DestinyDaily2.Controllers
         public NightfallController()
         {
             NfManager = new NightFallManager();
+            vendorManager = new VendorManager();
+            prisonManager = new PrisonManager();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(bool noLayout = false)
         {
             var nf = NfManager.GetNightFall(StandardDate);
             var weekly = NfManager.GetWeekly(StandardDate);
 
-            var model = new NightfallWeeklyModel()
+            var model = new NightfallDataModel()
             {
                 ThisDate = StandardDate,
-                ThisNightfall = nf,
-                ThisWeekly = weekly
+                ThisNightfall = nf
             };
 
-            return View(model);
+            //ViewBag.HtmlTagOverride = @"data-redirect=""/#nightfall""";
+
+            if (noLayout)
+                return View("Index", model);
+            else
+                return View("Details", model);
+        }
+
+        public ActionResult WeeklyIndex(bool noLayout = false)
+        {
+            var nf = NfManager.GetNightFall(StandardDate);
+            var weekly = NfManager.GetWeekly(StandardDate);
+            var materialExchanges = vendorManager.GetMaterialExchange(StandardDate);
+            var raidChallenges = vendorManager.GetRaidChallenges(StandardDate);
+            var challengeElders = prisonManager.GetDetailedChallenge(StandardDate);
+            var weeklyCrucible = NfManager.GetDetailedCrucibleWeekly(StandardDate);
+
+            var model = new WeeklyDataModel()
+            {
+                ThisDate = StandardDate,
+                ThisWeekly = weekly,
+                RaidChallenges = raidChallenges,
+                EldersChallenge = challengeElders,
+                WeeklyCrucible = weeklyCrucible
+            };
+
+            //ViewBag.HtmlTagOverride = @"data-redirect=""/#nightfall""";
+
+            if (noLayout)
+                return View("WeeklyIndex", model);
+            else
+                return View("WeeklyDetails", model);
         }
     }
 }

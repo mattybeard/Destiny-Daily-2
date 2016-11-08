@@ -164,6 +164,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BountyController.cs" />
     <Compile Include="Controllers\DailyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NightfallController.cs" />
@@ -176,12 +177,35 @@
     <Compile Include="Models\BountyEditModel.cs" />
     <Compile Include="Models\HeroicDailyModel.cs" />
     <Compile Include="Models\MiscModel.cs" />
-    <Compile Include="Models\NightfallWeeklyModel.cs" />
+    <Compile Include="Models\NightfallDataModel.cs" />
+    <Compile Include="Models\WeeklyDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\img\meta\apple-touch-icon-precomposed-120x120.png" />
+    <Content Include="Assets\img\meta\apple-touch-icon-precomposed-152x152.png" />
+    <Content Include="Assets\img\meta\apple-touch-icon-precomposed-180x180.png" />
+    <Content Include="Assets\img\meta\apple-touch-icon-precomposed-76x76.png" />
+    <Content Include="Assets\img\meta\favicon-16.png" />
+    <Content Include="Assets\img\meta\favicon-32.png" />
+    <Content Include="Assets\img\meta\favicon.ico" />
+    <Content Include="Assets\img\meta\meta-icon-1000x1000.jpg" />
+    <Content Include="Assets\img\meta\microsoft-pinned-tile-image-144x144.png" />
+    <Content Include="Assets\img\sprite\generated\icon-sprite.png" />
+    <Content Include="Assets\img\sprite\generated\icon-sprite.svg" />
+    <Content Include="Assets\img\structure\activity\prison-of-elders.jpg" />
+    <Content Include="Assets\img\structure\activity\weekly-crucible.jpg" />
+    <Content Include="Assets\img\structure\activity\weekly-strike.jpg" />
+    <Content Include="Assets\img\structure\logo--full.png" />
+    <Content Include="Assets\img\structure\logo--full.svg" />
+    <Content Include="Assets\img\structure\logo.png" />
+    <Content Include="Assets\img\structure\logo.svg" />
+    <Content Include="Assets\img\structure\activity\vendor--bounty-tracker.jpg" />
+    <Content Include="Assets\img\structure\activity\raid.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\index.css" />
+    <Content Include="Assets\img\structure\main-header.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -196,6 +220,7 @@
     <None Include="Properties\PublishProfiles\DestinyDailyBeta.pubxml" />
     <None Include="Properties\PublishProfiles\FTP Beta.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Custom\custom.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -220,10 +245,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Views\Bounty\Edit.cshtml" />
     <Content Include="Views\Daily\Index.cshtml" />
     <Content Include="Views\Xur\Index.cshtml" />
     <Content Include="Views\Nightfall\Index.cshtml" />
@@ -231,6 +254,11 @@
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Other\Index.cshtml" />
     <Content Include="Views\Prison\Index.cshtml" />
+    <Content Include="Views\Bounty\Index.cshtml" />
+    <Content Include="Views\Nightfall\Details.cshtml" />
+    <Content Include="Views\Daily\Details.cshtml" />
+    <Content Include="Views\Nightfall\WeeklyIndex.cshtml" />
+    <Content Include="Views\Nightfall\WeeklyDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

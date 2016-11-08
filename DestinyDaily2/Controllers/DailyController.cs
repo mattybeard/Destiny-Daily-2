@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Net.Configuration;
 using System.Web.Mvc;
 using DestinyDaily2.Models;
 using DestinyDailyDAL;
@@ -8,12 +10,15 @@ namespace DestinyDaily2.Controllers
     public class DailyController : Controller
     {
         private DailyManager DailyManager { get; set; }
-        private DateTime StandardDate => DateTime.Now.AddHours(-10.0);
+        private BountyManager BountyManager { get; set; }
+        private DateTime StandardDate => DateTime.Now.AddHours(-9.0);
         public DailyController()
         {
             DailyManager = new DailyManager();
+            BountyManager = new BountyManager();
         }
-        public ActionResult Index()
+
+        public ActionResult Index(bool noLayout = false)
         {
             var daily = DailyManager.GetDaily(StandardDate);
             var dailyStructure = new HeroicDailyModel() {DailyMission = daily};
@@ -29,9 +34,16 @@ namespace DestinyDaily2.Controllers
                 dailyStructure.DailyCrucible = dailyCruc;
                 dailyStructure.DailyCrucibleRewards = DailyManager.GetRewards(dailyCruc.activityid);
             }
+            var bounties = BountyManager.GetBounties(StandardDate, 1);
+            if (bounties != null && bounties.Any())
+                dailyStructure.DailyBounties = bounties;
 
             dailyStructure.DisplayDate = StandardDate;
-            return View(dailyStructure);
+
+            if(noLayout)
+                return View("Index", dailyStructure);
+            else
+                return View("Details",dailyStructure);
         }
     }
 } 

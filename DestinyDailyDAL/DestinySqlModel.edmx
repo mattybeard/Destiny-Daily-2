@@ -70,6 +70,16 @@
           <Property Name="month" Type="int" />
           <Property Name="year" Type="int" />
         </EntityType>
+        <EntityType Name="crucibleweeklyday">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="activityid" Type="bigint" />
+          <Property Name="day" Type="int" />
+          <Property Name="month" Type="int" />
+          <Property Name="year" Type="int" />
+        </EntityType>
         <EntityType Name="heroicdailyday">
           <Key>
             <PropertyRef Name="id" />
@@ -635,6 +645,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="weeklyactivityid_manifestactivities">
+          <End Role="manifestactivities" Type="Self.manifestactivities" Multiplicity="0..1" />
+          <End Role="crucibleweeklyday" Type="Self.crucibleweeklyday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manifestactivities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="crucibleweeklyday">
+              <PropertyRef Name="activityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DestinySqlModelStoreContainer">
           <EntitySet Name="bountyday" EntityType="Self.bountyday" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="challengeofelders" EntityType="Self.challengeofelders" Schema="dbo" store:Type="Tables" />
@@ -643,6 +665,7 @@
           <EntitySet Name="challengeofeldersscoremodifiers" EntityType="Self.challengeofeldersscoremodifiers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="combatant" EntityType="Self.combatant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="crucibledailyday" EntityType="Self.crucibledailyday" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="crucibleweeklyday" EntityType="Self.crucibleweeklyday" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="heroicdailyday" EntityType="Self.heroicdailyday" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="inventoryitem" EntityType="Self.inventoryitem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="manifestactivities" EntityType="Self.manifestactivities" Schema="dbo" store:Type="Tables" />
@@ -785,6 +808,10 @@
             <End Role="inventoryitem" EntitySet="inventoryitem" />
             <End Role="nightfallmissionrewards" EntitySet="nightfallmissionrewards" />
           </AssociationSet>
+          <AssociationSet Name="weeklyactivityid_manifestactivities" Association="Self.weeklyactivityid_manifestactivities">
+            <End Role="manifestactivities" EntitySet="manifestactivities" />
+            <End Role="crucibleweeklyday" EntitySet="crucibleweeklyday" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -915,6 +942,7 @@
           <NavigationProperty Name="PrisonOfElders" Relationship="DestinySqlModel.FK_POE_Activity" FromRole="ManifestActivity" ToRole="PrisonOfElder" />
           <NavigationProperty Name="HeroicDailyDays" Relationship="DestinySqlModel.FK_HeroicDaily_ManAct" FromRole="ManifestActivity" ToRole="HeroicDailyDay" />
           <NavigationProperty Name="WeeklyHeroics" Relationship="DestinySqlModel.FK_WeeklyHeroic_ManAct" FromRole="ManifestActivity" ToRole="WeeklyHeroic" />
+          <NavigationProperty Name="crucibleweeklydays" Relationship="DestinySqlModel.weeklyactivityid_manifestactivities" FromRole="ManifestActivity" ToRole="crucibleweeklyday" />
         </EntityType>
         <EntityType Name="ManifestReward">
           <Key>
@@ -1237,6 +1265,11 @@
           <AssociationSet Name="FK_RaidChallengeDay_RaidChal" Association="DestinySqlModel.FK_RaidChallengeDay_RaidChal">
             <End Role="raidchallenge" EntitySet="RaidChallenges" />
             <End Role="raidchallengeday" EntitySet="RaidChallengeDays" />
+          </AssociationSet>
+          <EntitySet Name="CrucibleWeeklyDays" EntityType="DestinySqlModel.CrucibleWeeklyDay" />
+          <AssociationSet Name="weeklyactivityid_manifestactivities" Association="DestinySqlModel.weeklyactivityid_manifestactivities">
+            <End Role="ManifestActivity" EntitySet="ManifestActivities" />
+            <End Role="crucibleweeklyday" EntitySet="CrucibleWeeklyDays" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="FK_BountyDay_ManAct">
@@ -1631,6 +1664,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CrucibleWeeklyDay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="activityid" Type="Int64" />
+          <Property Name="day" Type="Int32" />
+          <Property Name="month" Type="Int32" />
+          <Property Name="year" Type="Int32" />
+          <NavigationProperty Name="ManifestActivity" Relationship="DestinySqlModel.weeklyactivityid_manifestactivities" FromRole="crucibleweeklyday" ToRole="ManifestActivity" />
+        </EntityType>
+        <Association Name="weeklyactivityid_manifestactivities">
+          <End Type="DestinySqlModel.ManifestActivity" Role="ManifestActivity" Multiplicity="0..1" />
+          <End Type="DestinySqlModel.CrucibleWeeklyDay" Role="crucibleweeklyday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManifestActivity">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="crucibleweeklyday">
+              <PropertyRef Name="activityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1932,6 +1988,17 @@
                 <ScalarProperty Name="month" ColumnName="month" />
                 <ScalarProperty Name="day" ColumnName="day" />
                 <ScalarProperty Name="raidchallengeid" ColumnName="raidchallengeid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CrucibleWeeklyDays">
+            <EntityTypeMapping TypeName="DestinySqlModel.CrucibleWeeklyDay">
+              <MappingFragment StoreEntitySet="crucibleweeklyday">
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="activityid" ColumnName="activityid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
