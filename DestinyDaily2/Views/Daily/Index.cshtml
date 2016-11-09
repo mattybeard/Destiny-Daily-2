@@ -16,7 +16,7 @@
         <div class="heading">
             <h1 class="heading__title">Today's events</h1>
         </div>
-        <div class="activity">
+        <div class="activity activity--daily-story">
             <div class="activity__header">
                 <div class="content-center content-center--gutter">
                     <div class="activity__icon">
@@ -35,27 +35,27 @@
                     <div class="grid grid--gutterless">
                         <div class="grid__item tablet-one-half">
                             <div class="activity__extra">
-                                <p class="is-vhidden">Modifiers</p>
-                                <ul class="activity__list">
-                                    <li title="Heroic" class="skull">
-                                        <div class="skull__icon">
-                                            <div class="icon icon--skull icon--skull--heroic"></div>
-                                        </div>
-                                        @foreach (var missionMod in Model.DailyModifiers)
-                                        {
+                                <p class="activity__subheading is-vhidden">Modifiers</p>
+                                <ul>
+                                    @foreach (var missionMod in Model.DailyModifiers)
+                                    {
+                                        <li title="@missionMod.name" class="skull">
+                                            <div class="skull__icon">
+                                                <div class="icon icon--skull @($"icon--skull--{missionMod.name.Replace(" ","-").ToLower()}")"></div>
+                                            </div>
                                             <div class="skull__details">
                                                 <div class="skull__title">@missionMod.name</div>
                                                 <div class="skull__description">@missionMod.description</div>
                                             </div>
-                                        }
-                                    </li>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </div>
                         <div class="grid__item tablet-one-half">
                             <div class="activity__extra">
                                 <p class="activity__subheading">Rewards</p>
-                                <ul class="activity__list">
+                                <ul>
                                     @foreach (var reward in Model.DailyRewards)
                                     {
                                         <li title="@($"{reward.Item.name} ({reward.Quantity})")" class="reward">
@@ -76,7 +76,7 @@
 
         @if (Model.DailyCrucible != null)
         {
-            <div class="activity">
+            <div class="activity activity--daily-crucible">
                 <div class="activity__header">
                     <div class="content-center content-center--gutter">
                         <div class="activity__icon">
@@ -88,14 +88,14 @@
                         </div>
                     </div>
                 </div>
-                <div data-external-background-image="data-external-background-image" data-external-src="https://www.bungie.net/img/theme/destiny/bgs/pgcrs/daily_crucible.jpg" class="activity__image"></div>
+                <div class="activity__image"></div>
                 <div class="activity__extras">
                     <div class="content-center content-center--gutter">
                         <div class="grid grid--gutterless">
                             <div class="grid__item tablet-one-half">
                                 <div class="activity__extra">
                                     <p class="activity__subheading">Rewards</p>
-                                    <ul class="activity__list">
+                                    <ul>
                                         @if (Model.DailyCrucibleRewards.Any())
                                         {
                                             foreach (var reward in Model.DailyCrucibleRewards)
@@ -132,18 +132,18 @@
                         </div>
                     </div>
                 </div>
-                <div data-external-src="https://www.bungie.netnull" class="activity__image"></div>
+                <div class="activity__image"></div>
                 <div class="activity__extras">
                     <div class="content-center content-center--gutter">
-                        <div class="grid">
-                            <div class="grid__item one-half tablet-one-half">
+                        <div class="grid grid--gutterless">
+                            <div class="grid__item fablet-one-half tablet-one-half">
                                 <div class="activity__extra">
                                     <h3 class="activity__subheading">Vanguard</h3>
-                                    <ul class="activity__list">
+                                    <ul>
                                         @foreach (var bounty in Model.DailyBounties.Where(c => c.vendor == "Vanguard"))
                                         {
                                             <li class="bounty">
-                                                <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="" class="bounty__image"/>
+                                                <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="" class="bounty__image" />
                                                 <div class="bounty__details">
                                                     <div class="bounty__title">@bounty.InventoryItem.name</div>
                                                     <div class="bounty__description">@bounty.InventoryItem.desc</div>
@@ -156,11 +156,11 @@
                             <div class="grid__item one-half tablet-one-half">
                                 <div class="activity__extra">
                                     <h3 class="activity__subheading">Crucible</h3>
-                                    <ul class="activity__list">
+                                    <ul>
                                         @foreach (var bounty in Model.DailyBounties.Where(c => c.vendor == "Crucible"))
                                         {
                                             <li class="bounty">
-                                                <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="" class="bounty__image"/>
+                                                <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="" class="bounty__image" />
                                                 <div class="bounty__details">
                                                     <div class="bounty__title">@bounty.InventoryItem.name</div>
                                                     <div class="bounty__description">@bounty.InventoryItem.desc</div>

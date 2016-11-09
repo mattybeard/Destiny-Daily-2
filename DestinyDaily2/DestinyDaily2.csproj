@@ -164,13 +164,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\BountyController.cs" />
     <Compile Include="Controllers\DailyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NightfallController.cs" />
     <Compile Include="Controllers\OtherController.cs" />
-    <Compile Include="Controllers\PrisonController.cs" />
-    <Compile Include="Controllers\XurController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,6 +179,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\font\pavanam\regular.svg" />
     <Content Include="Assets\img\meta\apple-touch-icon-precomposed-120x120.png" />
     <Content Include="Assets\img\meta\apple-touch-icon-precomposed-152x152.png" />
     <Content Include="Assets\img\meta\apple-touch-icon-precomposed-180x180.png" />
@@ -193,6 +191,8 @@
     <Content Include="Assets\img\meta\microsoft-pinned-tile-image-144x144.png" />
     <Content Include="Assets\img\sprite\generated\icon-sprite.png" />
     <Content Include="Assets\img\sprite\generated\icon-sprite.svg" />
+    <Content Include="Assets\img\structure\activity\challenge-of-elders.jpg" />
+    <Content Include="Assets\img\structure\activity\daily-crucible.jpg" />
     <Content Include="Assets\img\structure\activity\prison-of-elders.jpg" />
     <Content Include="Assets\img\structure\activity\weekly-crucible.jpg" />
     <Content Include="Assets\img\structure\activity\weekly-strike.jpg" />
@@ -217,10 +217,16 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\font\pavanam\regular.eot" />
+    <Content Include="Assets\font\pavanam\regular.ttf" />
+    <Content Include="Assets\font\pavanam\regular.woff" />
+    <Content Include="Assets\font\pavanam\regular.woff2" />
     <None Include="Properties\PublishProfiles\DestinyDailyBeta.pubxml" />
     <None Include="Properties\PublishProfiles\FTP Beta.pubxml" />
+    <Content Include="Scripts\index.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\custom.js" />
+    <Content Include="Scripts\index.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -229,6 +235,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\modernizr.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -246,15 +253,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Bounty\Edit.cshtml" />
     <Content Include="Views\Daily\Index.cshtml" />
-    <Content Include="Views\Xur\Index.cshtml" />
     <Content Include="Views\Nightfall\Index.cshtml" />
-    <Content Include="Views\Xur\NotHere.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Other\Index.cshtml" />
-    <Content Include="Views\Prison\Index.cshtml" />
-    <Content Include="Views\Bounty\Index.cshtml" />
     <Content Include="Views\Nightfall\Details.cshtml" />
     <Content Include="Views\Daily\Details.cshtml" />
     <Content Include="Views\Nightfall\WeeklyIndex.cshtml" />

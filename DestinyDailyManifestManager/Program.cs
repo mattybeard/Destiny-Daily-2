@@ -34,7 +34,7 @@ namespace DestinyDailyManifestManager
             ProcessInventoryItems(dbConnection, db);
 
             Console.WriteLine("Finished");
-        }
+       }
 
         private static void ProcessCombantants(SQLiteConnection dbConnection, DestinySqlEntities db)
         {

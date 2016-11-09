@@ -12,12 +12,11 @@
             <h2 class="heading__title">This week's Nightfall</h2>
         </a>
     </div>
-
     <template class="js-homepage-section-template">
         <div class="heading">
             <h1 class="heading__title">This week's Nightfall</h1>
         </div>
-        <div class="activity">
+        <div class="activity activity--nightfall">
             <div class="activity__header">
                 <div class="content-center content-center--gutter">
                     <div class="activity__icon">
@@ -36,13 +35,13 @@
                     <div class="grid grid--gutterless">
                         <div class="grid__item tablet-one-half">
                             <div class="activity__extra">
-                                <p class="is-vhidden">Modifiers</p>
-                                <ul class="activity__list">
+                                <p class="activity__subheading is-vhidden">Modifiers</p>
+                                <ul>
                                     @foreach (var missionMod in Model.ThisNightfall.Modifiers)
                                     {
                                         <li title="@missionMod.Modifier.name" class="skull">
                                             <div class="skull__icon">
-                                                <div class="@($"icon icon--skull icon--skull--{missionMod.Modifier.name.ToLower()}")"></div>
+                                                <div class="@($"icon icon--skull icon--skull--{missionMod.Modifier.name.Replace(" ","-").ToLower()}")"></div>
                                             </div>
                                             <div class="skull__details">
                                                 <div class="skull__title">@missionMod.Modifier.name</div>
@@ -56,11 +55,11 @@
                         <div class="grid__item tablet-one-half">
                             <div class="activity__extra">
                                 <p class="activity__subheading">Rewards</p>
-                                <ul class="activity__list">
+                                <ul>
                                     @foreach (var missionReward in Model.ThisNightfall.Rewards)
                                     {
                                         <li title="@missionReward.InventoryItem.name" class="reward">
-                                            <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net{missionReward.InventoryItem.icon}")" alt="" class="reward__image"/>
+                                            <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net{missionReward.InventoryItem.icon}")" alt="" class="reward__image" />
                                             <div class="reward__details">
                                                 <div class="reward__title">@missionReward.InventoryItem.name</div>
                                             </div>
