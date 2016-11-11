@@ -8,7 +8,7 @@ using DestinyDailyDAL;
 
 namespace DestinyDaily2.Controllers
 {
-    public class NightfallController : Controller
+    public class WeeklyController : Controller
     {
         private VendorManager vendorManager { get; set; }
         private PrisonManager prisonManager { get; }
@@ -30,14 +30,14 @@ namespace DestinyDaily2.Controllers
 
         private NightFallManager NfManager { get; set; }
 
-        public NightfallController()
+        public WeeklyController()
         {
             NfManager = new NightFallManager();
             vendorManager = new VendorManager();
             prisonManager = new PrisonManager();
         }
 
-        public ActionResult Index(bool noLayout = false)
+        public ActionResult Nightfall(bool noLayout = false)
         {
             var nf = NfManager.GetNightFall(StandardDate);
             var weekly = NfManager.GetWeekly(StandardDate);
@@ -51,12 +51,12 @@ namespace DestinyDaily2.Controllers
             //ViewBag.HtmlTagOverride = @"data-redirect=""/#nightfall""";
 
             if (noLayout)
-                return View("Index", model);
+                return View("NightfallIndex", model);
             else
-                return View("Details", model);
+                return View("NightfallDetails", model);
         }
 
-        public ActionResult WeeklyIndex(bool noLayout = false)
+        public ActionResult Weekly(bool noLayout = false)
         {
             var nf = NfManager.GetNightFall(StandardDate);
             var weekly = NfManager.GetWeekly(StandardDate);

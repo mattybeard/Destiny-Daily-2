@@ -165,8 +165,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DailyController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NightfallController.cs" />
+    <Compile Include="Controllers\WeeklyController.cs" />
     <Compile Include="Controllers\OtherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -179,6 +180,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\css\index-ie8.css" />
+    <Content Include="Assets\css\index.css" />
     <Content Include="Assets\font\pavanam\regular.svg" />
     <Content Include="Assets\img\meta\apple-touch-icon-precomposed-120x120.png" />
     <Content Include="Assets\img\meta\apple-touch-icon-precomposed-152x152.png" />
@@ -193,15 +196,20 @@
     <Content Include="Assets\img\sprite\generated\icon-sprite.svg" />
     <Content Include="Assets\img\structure\activity\challenge-of-elders.jpg" />
     <Content Include="Assets\img\structure\activity\daily-crucible.jpg" />
+    <Content Include="Assets\img\structure\activity\iron-banner.jpg" />
     <Content Include="Assets\img\structure\activity\prison-of-elders.jpg" />
     <Content Include="Assets\img\structure\activity\weekly-crucible.jpg" />
     <Content Include="Assets\img\structure\activity\weekly-strike.jpg" />
+    <Content Include="Assets\img\structure\darkness.png" />
     <Content Include="Assets\img\structure\logo--full.png" />
     <Content Include="Assets\img\structure\logo--full.svg" />
     <Content Include="Assets\img\structure\logo.png" />
     <Content Include="Assets\img\structure\logo.svg" />
     <Content Include="Assets\img\structure\activity\vendor--bounty-tracker.jpg" />
     <Content Include="Assets\img\structure\activity\raid.jpg" />
+    <Content Include="Assets\js\build\index.js" />
+    <Content Include="Assets\js\build\modernizr.js" />
+    <Content Include="Assets\js\lib\vendor\html5shiv.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\index.css" />
@@ -221,11 +229,11 @@
     <Content Include="Assets\font\pavanam\regular.ttf" />
     <Content Include="Assets\font\pavanam\regular.woff" />
     <Content Include="Assets\font\pavanam\regular.woff2" />
+    <Content Include="Assets\js\build\index.js.map" />
     <None Include="Properties\PublishProfiles\DestinyDailyBeta.pubxml" />
     <None Include="Properties\PublishProfiles\FTP Beta.pubxml" />
     <Content Include="Scripts\index.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\Custom\custom.js" />
     <Content Include="Scripts\index.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -234,6 +242,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\microModernizer.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr.js" />
     <Content Include="Scripts\respond.js" />
@@ -250,20 +259,23 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Daily\Index.cshtml" />
-    <Content Include="Views\Nightfall\Index.cshtml" />
+    <Content Include="Views\Weekly\NightfallIndex.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Other\Index.cshtml" />
-    <Content Include="Views\Nightfall\Details.cshtml" />
+    <Content Include="Views\Weekly\NightfallDetails.cshtml" />
     <Content Include="Views\Daily\Details.cshtml" />
-    <Content Include="Views\Nightfall\WeeklyIndex.cshtml" />
-    <Content Include="Views\Nightfall\WeeklyDetails.cshtml" />
+    <Content Include="Views\Weekly\WeeklyIndex.cshtml" />
+    <Content Include="Views\Weekly\WeeklyDetails.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Error\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
