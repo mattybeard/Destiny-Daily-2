@@ -64,6 +64,8 @@
         <EntityTypeShape EntityType="DestinySqlModel.RaidChallenge" Width="1.5" PointX="6.375" PointY="14" />
         <EntityTypeShape EntityType="DestinySqlModel.RaidChallengeDay" Width="1.5" PointX="8.625" PointY="13.875" />
         <AssociationConnector Association="DestinySqlModel.FK_RaidChallengeDay_RaidChal" />
+        <EntityTypeShape EntityType="DestinySqlModel.CrucibleWeeklyDay" Width="1.5" PointX="21.125" PointY="13" />
+        <AssociationConnector Association="DestinySqlModel.weeklyactivityid_manifestactivities" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

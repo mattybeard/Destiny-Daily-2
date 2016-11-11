@@ -25,6 +25,7 @@ namespace DestinyDailyDAL
             this.PrisonOfElders = new HashSet<PrisonOfElder>();
             this.HeroicDailyDays = new HashSet<HeroicDailyDay>();
             this.WeeklyHeroics = new HashSet<WeeklyHeroic>();
+            this.crucibleweeklydays = new HashSet<CrucibleWeeklyDay>();
         }
     
         public long id { get; set; }
@@ -49,5 +50,7 @@ namespace DestinyDailyDAL
         public virtual ICollection<HeroicDailyDay> HeroicDailyDays { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WeeklyHeroic> WeeklyHeroics { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CrucibleWeeklyDay> crucibleweeklydays { get; set; }
     }
 }

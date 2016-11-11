@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DestinyDailyDAL.Models;
 
 namespace DestinyDailyDAL
 {
@@ -13,6 +14,29 @@ namespace DestinyDailyDAL
         public NightFallManager()
         {
             db = new DestinySqlEntities();
+        }
+
+        public DetailedWeeklyCrucible GetDetailedCrucibleWeekly(DateTime standardDate)
+        {
+            var model = new DetailedWeeklyCrucible()
+            {
+                Weekly = GetCrucibleWeekly(standardDate),
+                Bounties = new BountyManager().GetBounties(standardDate, 1, "Shaxx")
+            };
+
+            return model;
+        }
+
+        public CrucibleWeeklyDay GetCrucibleWeekly(DateTime standardDate)
+        {
+            var weekly = db.CrucibleWeeklyDays.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+            if (weekly == null)
+            {
+                CreateWeeklyCrucible(standardDate);
+                return GetCrucibleWeekly(standardDate);
+            }
+
+            return weekly;
         }
 
         public Nightfall GetNightFall(DateTime standardDate)
@@ -95,6 +119,28 @@ namespace DestinyDailyDAL
                     }
                     db.SaveChanges();
                 }
+            }
+        }
+
+        private void CreateWeeklyCrucible(DateTime date)
+        {
+            var vendorInformation = DestinyDailyApiManager.BungieApi.GetAdvisors();
+            if (vendorInformation.ErrorCode > 1)
+                return;
+
+            var activityHash = vendorInformation.Response.data.activities.weeklycrucible.activityTiers[0].activityHash;
+            var activity = db.ManifestActivities.FirstOrDefault(m => m.id == activityHash);
+            if (activity != null)
+            {
+                var newEntry = new CrucibleWeeklyDay()
+                {
+                    activityid = activityHash,
+                    day = date.Day,
+                    month = date.Month,
+                    year = date.Year
+                };
+                db.CrucibleWeeklyDays.Add(newEntry);
+                db.SaveChanges();
             }
         }
 

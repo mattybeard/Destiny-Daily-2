@@ -1,0 +1,83 @@
+﻿@model DestinyDaily2.Models.NightfallDataModel
+
+@{
+    Layout = null;
+    ViewBag.Title = "Nightfall";
+}
+
+<a id="nightfall"><span class="is-vhidden">This week's Nightfall</span></a>
+<section class="js-homepage-section">
+    <div class="content-center content-center--gutter">
+        <a href="/nightfall" class="heading">
+            <h2 class="heading__title">This week's Nightfall</h2>
+        </a>
+    </div>
+    <template class="js-homepage-section-template">
+        <div class="heading">
+            <h1 class="heading__title">This week's Nightfall</h1>
+        </div>
+        <div class="activity activity--nightfall">
+            <div class="activity__header">
+                <div class="content-center content-center--gutter">
+                    <div aria-hidden="true" class="activity__icon">
+                        <div class="icon icon--nightfall"></div>
+                    </div>
+                    <div class="activity__details">
+                        <h2 class="activity__type">Weekly Nightfall Strike</h2>
+                        <p class="activity__name">@Model.ThisNightfall.ManifestActivity.name</p>
+                        <p class="is-vhidden">@Model.ThisNightfall.ManifestActivity.desc</p>
+                    </div>
+                </div>
+            </div>
+            <div data-external-background-image="data-external-background-image" data-external-src="@($"https://www.bungie.net{Model.ThisNightfall.ManifestActivity.pgcricon}")" class="activity__image"></div>
+            <div class="activity__extras">
+                <div class="content-center content-center--gutter">
+                    <div class="grid grid--gutterless">
+                        <div class="grid__item tablet-one-half">
+                            <div class="activity__extra">
+                                <h3 class="activity__subheading is-vhidden">Modifiers</h3>
+                                <ul>
+                                    @foreach (var missionMod in Model.ThisNightfall.Modifiers)
+                                    {
+                                        <li title="@missionMod.Modifier.name" class="skull">
+                                            <div class="skull__icon">
+                                                <div aria-hidden="true" class="@($"icon icon--skull icon--skull--{missionMod.Modifier.name.Replace(" ","-").ToLower()}")"></div>
+                                            </div>
+                                            <div class="skull__details">
+                                                <div class="skull__title">@missionMod.Modifier.name</div>
+                                                <div class="skull__description">@missionMod.Modifier.description</div>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="grid__item tablet-one-half">
+                            <div class="activity__extra">
+                                <h3 class="activity__subheading">Rewards</h3>
+                                <ul>
+                                    @foreach (var missionReward in Model.ThisNightfall.Rewards)
+                                    {
+                                        <li title="@missionReward.InventoryItem.name" class="reward">
+                                            <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net{missionReward.InventoryItem.icon}")" alt="" class="reward__image" />
+                                            <div class="reward__details">
+                                                <div class="reward__title">@missionReward.InventoryItem.name</div>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="advert js-advert">
+            <div class="content-center content-center--gutter"><ins data-ad-client="ca-pub-5655051109573002" data-ad-slot="2916154772" data-ad-format="auto" class="adsbygoogle"></ins></div>
+        </div>
+        <a href="#top" data-scroll="top" class="divider">
+            <div aria-hidden="true" class="divider__icon icon icon--waypoint"></div>
+            <div class="divider__label">Back to top</div>
+        </a>
+    </template>
+</section>

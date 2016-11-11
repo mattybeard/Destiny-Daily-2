@@ -6,10 +6,9 @@ using DestinyDailyDAL;
 
 namespace DestinyDaily2.Models
 {
-    public class NightfallWeeklyModel
+    public class NightfallDataModel
     {
         public DateTime ThisDate { get; set; }
         public Nightfall ThisNightfall { get; set; }
-        public WeeklyHeroic ThisWeekly { get; set; }
     }
 }

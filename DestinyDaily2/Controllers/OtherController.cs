@@ -11,13 +11,13 @@ namespace DestinyDaily2.Controllers
     public class OtherController : Controller
     {
         private VendorManager vendorManager { get; set; }
-        private DateTime TodayDate => DateTime.Now.AddHours(-10.0);
+        private DateTime TodayDate => DateTime.Now.AddHours(-9.0);
 
         private DateTime WeeklyDate
         {
             get
             {
-                var today = DateTime.Now.AddHours(-10.0);
+                var today = DateTime.Now.AddHours(-9.0);
                 while (today.DayOfWeek != DayOfWeek.Tuesday)
                 {
                     today = today.AddDays(-1);

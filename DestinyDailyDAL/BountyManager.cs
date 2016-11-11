@@ -23,7 +23,14 @@ namespace DestinyDailyDAL
 
             return bounties;
         }
-        
+
+        public List<BountyDay> GetBounties(DateTime date, int tryCount, string type)
+        {
+            var bounties = db.BountyDays.Where(d => d.year == date.Year && d.month == date.Month && d.day == date.Day).ToList();
+          
+            return bounties.Where(c => c.vendor == type).ToList();
+        }
+
         public void CreateBounties(DateTime date, Vendors vendor = Vendors.All)
         {
             var vendorInformation = DestinyDailyApiManager.BungieApi.GetAdvisors();
@@ -40,6 +47,12 @@ namespace DestinyDailyDAL
             {
                 var bounties = vendorInformation.Response.data.activities.dailycrucible.bountyHashes.ToArray();
                 CreateVendorBounties(bounties, date, Vendors.Crucible);
+            }
+
+            if (vendor == Vendors.All || vendor == Vendors.Variks)
+            {
+                var bounties = vendorInformation.Response.data.activities.elderchallenge.bountyHashes.ToArray();
+                CreateVendorBounties(bounties, date, Vendors.Variks);
             }
 
             //TODO: Try Iron Banner BUT from the old Vendor endpoint as not currently exposed.

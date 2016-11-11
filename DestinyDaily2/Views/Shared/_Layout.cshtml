@@ -1,47 +1,89 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en" class="no-js" @Html.Raw(ViewBag.HtmlTagOverride)>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Destiny Daily</title>
-    @Styles.Render("~/Content/css")
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+    <meta name="description" content="The one website you need to visit to see all Daily and Weekly Destiny activities without even having to log in">
+    <link rel="canonical" href="undefined://destiny-daily.com/index">
+    <title>Destiny Daily – All Daily and Weekly activities in one place</title>
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="/assets/css/index.css?v=1.0.4"><!--<![endif]-->
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="/assets/css/index-ie8.css?v=1.0.4"><![endif]-->
     @Scripts.Render("~/bundles/modernizr")
+    <!--[if lte IE 8]>
+    <script src="/assets/js/lib/vendor/html5shiv.js?v=1.0.4"></script><![endif]-->
+    <link rel="shortcut icon" href="/assets/img/meta/favicon.ico?v=1.0.4">
+    <meta name="theme-color" content="#7d6d70">
+    <meta name="apple-mobile-web-app-title" content="Destiny Daily">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/img/meta/apple-touch-icon-precomposed-76x76.png?v=1.0.4">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/img/meta/apple-touch-icon-precomposed-120x120.png?v=1.0.4">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/img/meta/apple-touch-icon-precomposed-152x152.png?v=1.0.4">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/assets/img/meta/apple-touch-icon-precomposed-180x180.png?v=1.0.4">
+    <meta name="application-name" content="Destiny Daily">
+    <meta name="msapplication-TileImage" content="/assets/img/meta/microsoft-pinned-tile-image-144x144.png?v=1.0.4">
+    <meta name="msapplication-TileColor" content="#7d6d70">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Destiny Daily", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <a id="top"><span class="is-vhidden">Top of page</span></a>
+    <div class="a11y-navigation"><a href="#content">Jump to Main content</a><a href="#navigation">Jump to Primary navigation</a></div>
+    <header role="banner" class="main-header">
+        <div class="main-header__background"></div>
+        <div class="main-header__container">
+            <div class="content-center content-center--gutter">
+                <div class="grid grid--gutterless">
+                    <div class="grid__item main-header__logo">
+                        <h1><a href="/" class="site-title">Destiny Daily</a></h1>
+                    </div>
+                    <div class="grid__item main-header__navigation">
+                        <input id="toggle" type="checkbox" class="mobile-navigation-toggle">
+                        <label for="toggle" class="mobile-navigation-button">Menu</label>
+                        <div id="navigation" role="navigation" aria-label="Primary navigation" class="main-navigation">
+                            <div class="content-center">
+                                <nav>
+                                    <h2 class="is-vhidden">Primary navigation</h2>
+                                    <ul>
+                                        <li><a href="@Url.Action("Index", "Daily")" data-scroll="daily">Daily</a></li>
+                                        <li><a href="@Url.Action("Nightfall", "Weekly")" data-scroll="nightfall">Nightfall</a></li>
+                                        <li><a href="@Url.Action("Weekly", "Weekly")" data-scroll="weekly">Weekly</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Bounties", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Daily", "Index", "Daily")</li>
-                    <li>@Html.ActionLink("Nightfall", "Index", "Nightfall")</li>
-                    <li>@Html.ActionLink("Xur", "Index", "Xur")</li>
-                    <li>@Html.ActionLink("Prison Of Elders", "Index", "Prison")</li>
-                    <li>@Html.ActionLink("Additional", "Index", "Other")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+            <div class="heading heading--primary">
+                <h1 class="heading__title">Destiny's daily events</h1>
+                <div class="heading__content">
+                    <p>A quick glance at today's challenges within Destiny for those who can't play right now.</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
+    </header>
+    <main id="content" role="main">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Destiny Daily</p>
-            <p>All content is property of Bungie and not of Destiny Daily.</p>
-        </footer>
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    </main>
+    <footer role="contentinfo" class="main-footer">
+        <div class="content-center content-center--gutter">
+            <div class="grid grid--bottomed">
+                <div class="grid__item tablet-one-half">
+                    <p>&copy; 2016 Destiny Daily</p>
+                    <p><small>Destiny is a registered trademark of Bungie.</small><br><small>All information used is the property of Bungie.</small></p>
+                </div>
+                <div class="grid__item tablet-one-half">
+                    <div class="credit">
+                        <a href="https://avaclanche.uk/" class="credit__link" target="_blank">
+                            <div aria-hidden="true" class="credit__logo icon icon--avalanche-uk"></div>
+                            <div class="credit__details"><small>Proudly brought to you by</small><br><small>the Guardians at Avalanche UK</small></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="/assets/js/build/index.js?v=1.0.4" async defer></script>
+    <script src="https://pagead2.googlesyndication.com/pub-config/r20160913/ca-pub-5655051109573002.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

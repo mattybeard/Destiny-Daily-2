@@ -1,13 +1,80 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@model dynamic
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
+    <meta name="description" content="Sorry, this page could not be found">
+    <link rel="canonical" href="https://destiny-daily.benedfit.com/404">
+    <title>Page not found | Destiny Daily</title>
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="/assets/css/index.css?v=1.0.4"><!--<![endif]-->
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="/assets/css/index-ie8.css?v=1.0.4"><![endif]-->
+    @Scripts.Render("~/bundles/modernizr")
+    <!--[if lte IE 8]>
+    <script src="/assets/js/lib/vendor/html5shiv.js?v=1.0.4"></script><![endif]-->
+    <link rel="shortcut icon" href="/assets/img/meta/favicon.ico?v=1.0.4">
+    <meta name="theme-color" content="#7d6d70">
+    <meta name="apple-mobile-web-app-title" content="Destiny Daily">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/img/meta/apple-touch-icon-precomposed-76x76.png?v=1.0.4">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/img/meta/apple-touch-icon-precomposed-120x120.png?v=1.0.4">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/img/meta/apple-touch-icon-precomposed-152x152.png?v=1.0.4">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/assets/img/meta/apple-touch-icon-precomposed-180x180.png?v=1.0.4">
+    <meta name="application-name" content="Destiny Daily">
+    <meta name="msapplication-TileImage" content="/assets/img/meta/microsoft-pinned-tile-image-144x144.png?v=1.0.4">
+    <meta name="msapplication-TileColor" content="#7d6d70">
 </head>
-<body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>An error occurred while processing your request.</h2>
-    </hgroup>
+<body class="has-no-background">
+    <a id="top"><span class="is-vhidden">Top of page</span></a>
+    <div class="a11y-navigation"><a href="#content">Jump to Main content</a><a href="#navigation">Jump to Primary navigation</a></div>
+    <header role="banner" class="main-header">
+        <div class="main-header__background"></div>
+        <div class="main-header__container">
+            <div class="content-center content-center--gutter">
+                <div class="grid grid--gutterless">
+                    <div class="grid__item main-header__logo">
+                        <h1><a href="/" class="site-title">Destiny Daily</a></h1>
+                    </div>
+                    <div class="grid__item main-header__navigation">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main id="content" role="main">
+        <div class="content-center content-center--gutter content-center--centered"><a href="/" title="Return to the homepage"><img src="/assets/img/structure/darkness.png?v=1.0.4" alt=""></a></div>
+        <a href="/" class="heading heading--primary">
+            <h1 class="heading__title">Page not found</h1>
+            <div class="heading__content">
+                <p>The Darkness has consumed the page you were looking for</p>
+                <p>Return to the homepage</p>
+            </div>
+        </a>
+    </main>
+    <footer role="contentinfo" class="main-footer">
+        <div class="content-center content-center--gutter">
+            <div class="grid grid--bottomed">
+                <div class="grid__item tablet-one-half">
+                    <p>&copy; 2016 Destiny Daily</p>
+                    <p><small>Destiny is a registered trademark of Bungie.</small><br><small>All information used is the property of Bungie.</small></p>
+                </div>
+                <div class="grid__item tablet-one-half">
+                    <div class="credit">
+                        <a href="https://avaclanche.uk/" class="credit__link">
+                            <div aria-hidden="true" class="credit__logo icon icon--avalanche-uk"></div>
+                            <div class="credit__details"><small>Proudly brought to you by</small><br><small>the Guardians at Avalanche UK</small></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="/assets/js/build/index.js?v=1.0.4" async defer></script>
 </body>
 </html>

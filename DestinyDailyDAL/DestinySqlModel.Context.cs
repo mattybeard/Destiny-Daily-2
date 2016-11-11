@@ -54,5 +54,6 @@ namespace DestinyDailyDAL
         public virtual DbSet<MaterialExchange> MaterialExchanges { get; set; }
         public virtual DbSet<RaidChallenge> RaidChallenges { get; set; }
         public virtual DbSet<RaidChallengeDay> RaidChallengeDays { get; set; }
+        public virtual DbSet<CrucibleWeeklyDay> CrucibleWeeklyDays { get; set; }
     }
 }
