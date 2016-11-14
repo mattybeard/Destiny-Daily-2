@@ -105,7 +105,7 @@
                             @foreach (var missionReward in Model.ThisWeekly.Rewards.Where(c => c.InventoryItem.name != "(Weekly Bonus Remaining: 3)"))
                             {
                                 <li title="@missionReward.InventoryItem.name" class="reward">
-                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net{missionReward.InventoryItem.icon}")" alt="" class="reward__image"/>
+                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net{missionReward.InventoryItem.icon}")" alt="Reward Icon" class="reward__image"/>
                                     <div class="reward__details">
                                         <div class="reward__title">@missionReward.InventoryItem.name</div>
                                     </div>
@@ -143,7 +143,7 @@
                                 @foreach (var bounty in Model.WeeklyCrucible.Bounties)
                                 {
                                     <li class="bounty">
-                                        <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="" class="bounty__image" />
+                                        <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Reward Icon" class="bounty__image" />
                                         <div class="bounty__details">
                                             <div class="bounty__title">@bounty.InventoryItem.name</div>
                                             <div class="bounty__description">@bounty.InventoryItem.desc</div>
@@ -228,7 +228,7 @@
                                 @foreach (var bounty in Model.EldersChallenge.Bounties)
                                 {
                                     <li class="bounty">
-                                        <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="" class="bounty__image" />
+                                        <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Reward Icon" class="bounty__image" />
                                         <div class="bounty__details">
                                             <div class="bounty__title">@bounty.InventoryItem.name</div>
                                             <div class="bounty__description">@bounty.InventoryItem.desc</div>
