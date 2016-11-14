@@ -59,7 +59,7 @@
                                     @foreach (var reward in Model.DailyRewards)
                                     {
                                         <li title="@($"{reward.Item.name} ({reward.Quantity})")" class="reward">
-                                            <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net{reward.Item.icon}")" alt="" class="reward__image" />
+                                            <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net{reward.Item.icon}")" alt="Reward Icon" class="reward__image" />
                                             <div class="reward__details">
                                                 <div class="reward__title">@($"{reward.Item.name} ({reward.Quantity})")</div>
                                             </div>
@@ -101,7 +101,7 @@
                                             foreach (var reward in Model.DailyCrucibleRewards)
                                             {
                                                 <li title="Legendary Marks x 15" class="reward">
-                                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net{reward.Item.icon}")" alt="" class="reward__image" />
+                                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net{reward.Item.icon}")" alt="Reward Icon" class="reward__image" />
                                                     <div class="reward__details">
                                                         <div class="reward__title">@($"{reward.Item.name} ({reward.Quantity})")</div>
                                                     </div>
@@ -153,7 +153,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="grid__item one-half tablet-one-half">
+                            <div class="grid__item fablet-one-half tablet-one-half">
                                 <div class="activity__extra">
                                     <h3 class="activity__subheading">Crucible</h3>
                                     <ul>

@@ -230,6 +230,7 @@
     <Content Include="Assets\font\pavanam\regular.woff" />
     <Content Include="Assets\font\pavanam\regular.woff2" />
     <Content Include="Assets\js\build\index.js.map" />
+    <None Include="Properties\PublishProfiles\DestinyDaily.pubxml" />
     <None Include="Properties\PublishProfiles\DestinyDailyBeta.pubxml" />
     <None Include="Properties\PublishProfiles\FTP Beta.pubxml" />
     <Content Include="Scripts\index.js.map" />
