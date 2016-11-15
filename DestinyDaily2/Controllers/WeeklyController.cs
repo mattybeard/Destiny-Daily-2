@@ -36,31 +36,11 @@ namespace DestinyDaily2.Controllers
             vendorManager = new VendorManager();
             prisonManager = new PrisonManager();
         }
-
-        public ActionResult Nightfall(bool noLayout = false)
+        
+        public ActionResult Index(bool noLayout = false)
         {
-            var nf = NfManager.GetNightFall(StandardDate);
             var weekly = NfManager.GetWeekly(StandardDate);
-
-            var model = new NightfallDataModel()
-            {
-                ThisDate = StandardDate,
-                ThisNightfall = nf
-            };
-
-            //ViewBag.HtmlTagOverride = @"data-redirect=""/#nightfall""";
-
-            if (noLayout)
-                return View("NightfallIndex", model);
-            else
-                return View("NightfallDetails", model);
-        }
-
-        public ActionResult Weekly(bool noLayout = false)
-        {
-            var nf = NfManager.GetNightFall(StandardDate);
-            var weekly = NfManager.GetWeekly(StandardDate);
-            var materialExchanges = vendorManager.GetMaterialExchange(StandardDate);
+            //var materialExchanges = vendorManager.GetMaterialExchange(StandardDate);
             var raidChallenges = vendorManager.GetRaidChallenges(StandardDate);
             var challengeElders = prisonManager.GetDetailedChallenge(StandardDate);
             var weeklyCrucible = NfManager.GetDetailedCrucibleWeekly(StandardDate);
@@ -74,12 +54,13 @@ namespace DestinyDaily2.Controllers
                 WeeklyCrucible = weeklyCrucible
             };
 
-            //ViewBag.HtmlTagOverride = @"data-redirect=""/#nightfall""";
-
             if (noLayout)
-                return View("WeeklyIndex", model);
+                return View("PartialIndex", model);
             else
-                return View("WeeklyDetails", model);
+            {
+                ViewBag.HtmlTagOverride = @"data-redirect=""/#weekly""";
+                return View("Index", model);
+            }
         }
     }
 }

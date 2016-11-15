@@ -167,6 +167,7 @@
     <Compile Include="Controllers\DailyController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NightFallController.cs" />
     <Compile Include="Controllers\WeeklyController.cs" />
     <Compile Include="Controllers\OtherController.cs" />
     <Compile Include="Global.asax.cs">
@@ -214,7 +215,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\index.css" />
     <Content Include="Assets\img\structure\main-header.jpg" />
-    <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -263,13 +263,13 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Daily\Index.cshtml" />
-    <Content Include="Views\Weekly\NightfallIndex.cshtml" />
+    <Content Include="Views\NightFall\PartialIndex.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Other\Index.cshtml" />
-    <Content Include="Views\Weekly\NightfallDetails.cshtml" />
+    <Content Include="Views\NightFall\Index.cshtml" />
     <Content Include="Views\Daily\Details.cshtml" />
-    <Content Include="Views\Weekly\WeeklyIndex.cshtml" />
-    <Content Include="Views\Weekly\WeeklyDetails.cshtml" />
+    <Content Include="Views\Weekly\PartialIndex.cshtml" />
+    <Content Include="Views\Weekly\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
