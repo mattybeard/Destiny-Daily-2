@@ -190,7 +190,7 @@
     <Content Include="Assets\img\meta\apple-touch-icon-precomposed-76x76.png" />
     <Content Include="Assets\img\meta\favicon-16.png" />
     <Content Include="Assets\img\meta\favicon-32.png" />
-    <Content Include="Assets\img\meta\favicon.ico" />
+    <Content Include="favicon.ico" />
     <Content Include="Assets\img\meta\meta-icon-1000x1000.jpg" />
     <Content Include="Assets\img\meta\microsoft-pinned-tile-image-144x144.png" />
     <Content Include="Assets\img\sprite\generated\icon-sprite.png" />
