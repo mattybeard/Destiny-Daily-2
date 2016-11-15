@@ -37,7 +37,6 @@ namespace DestinyDaily2.Controllers
             {
                 MaterialExchanges = vendorManager.GetMaterialExchange(WeeklyDate),
                 RaidChallenges = vendorManager.GetRaidChallenges(WeeklyDate)
-
             };
 
             return View(model);

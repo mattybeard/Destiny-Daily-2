@@ -105,9 +105,28 @@ namespace DestinyDailyDAL
 
         private void CreateRaidChallenges(DateTime standardDate)
         {
-            var vendorInformation = DestinyDailyApiManager.BungieApi.GetAdvisors();
-            if (vendorInformation.ErrorCode > 1)
-                return;
+            foreach (var raid in new string[] { "Kings Fall", "Wrath of the Machine" })
+            {
+                int newRaidId;
+                var lastRaid = db.RaidChallengeDays.Where(c => c.Challenge.raidname == raid).OrderBy(a => a.id).First();
+                var possibleRaids = db.RaidChallenges.Where(c => c.raidname == raid).OrderBy(a => a.id);
+
+                if (lastRaid.Challenge.id == possibleRaids.Max(c => c.id))
+                    newRaidId = possibleRaids.Min(c => c.id);
+                else
+                    newRaidId = lastRaid.Challenge.id + 1;
+
+                var newChallenge = new RaidChallengeDay()
+                {
+                    raidchallengeid = newRaidId,
+                    day = standardDate.Day,
+                    month = standardDate.Month,
+                    year = standardDate.Year
+                };
+
+                db.RaidChallengeDays.Add(newChallenge);
+            }
+            db.SaveChanges();
         }
     }
 }
