@@ -262,12 +262,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Daily\Index.cshtml" />
+    <Content Include="Views\Daily\PartialIndex.cshtml" />
     <Content Include="Views\NightFall\PartialIndex.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Other\Index.cshtml" />
     <Content Include="Views\NightFall\Index.cshtml" />
-    <Content Include="Views\Daily\Details.cshtml" />
+    <Content Include="Views\Daily\Index.cshtml" />
     <Content Include="Views\Weekly\PartialIndex.cshtml" />
     <Content Include="Views\Weekly\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml">
