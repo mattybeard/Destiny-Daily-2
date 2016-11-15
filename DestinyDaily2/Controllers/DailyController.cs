@@ -40,10 +40,13 @@ namespace DestinyDaily2.Controllers
 
             dailyStructure.DisplayDate = StandardDate;
 
-            if(noLayout)
-                return View("Index", dailyStructure);
+            if (noLayout)
+                return View("PartialIndex", dailyStructure);
             else
-                return View("Details",dailyStructure);
+            {
+                ViewBag.HtmlTagOverride = @"data-redirect=""/#daily""";
+                return View("Index", dailyStructure);
+            }
         }
     }
 } 
