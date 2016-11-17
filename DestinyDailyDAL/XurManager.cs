@@ -9,26 +9,65 @@ namespace DestinyDailyDAL
     public class XurManager
     {
         private DestinySqlEntities db { get; set; }
+        private DateTime StandardDate
+        {
+            get
+            {
+                var today = DateTime.Now.AddHours(-9.0);
+                while (today.DayOfWeek != DayOfWeek.Tuesday)
+                {
+                    today = today.AddDays(-1);
+                }
+
+                return today;
+            }
+        }
+        public bool InTower
+        {
+            get
+            {
+                if (StandardDate.DayOfWeek == DayOfWeek.Friday || StandardDate.DayOfWeek == DayOfWeek.Saturday)
+                    return true;
+
+                return false;
+            }
+        }
 
         public XurManager()
         {
-            db = new DestinySqlEntities();
+            var db = new DestinySqlEntities();
         }
 
-        public List<XurDay> GetItems(DateTime standardDate)
+        public List<XurDay> GetCurrentItems()
         {
-            var items = db.XurDays.Where(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year).ToList();
+            if(!InTower)
+                return new List<XurDay>();
+
+            var items = db.XurDays.Where(d => d.day == StandardDate.Day && d.month == StandardDate.Month && d.year == StandardDate.Year).ToList();
             if (!items.Any())
             {
-                CreateItems(standardDate);
-                var updatedItems = db.XurDays.Where(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year).ToList();
+                CreateItems();
+                var updatedItems = db.XurDays.Where(d => d.day == StandardDate.Day && d.month == StandardDate.Month && d.year == StandardDate.Year).ToList();
                 return updatedItems;
             }
 
             return items;
         }
 
-        private void CreateItems(DateTime standardDate)
+        public bool IsActive()
+        {
+            if (!InTower)
+                return false;
+
+            return HasCurrentItems();
+        }
+
+        private bool HasCurrentItems()
+        {
+            return GetCurrentItems().Any();
+        }
+
+        private void CreateItems()
         {
             var vendorInformation = DestinyDailyApiManager.BungieApi.GetOldAdvisors();
             if (vendorInformation.ErrorCode > 1)
@@ -44,9 +83,9 @@ namespace DestinyDailyDAL
                     {
                         var entry = new XurDay()
                         {
-                            day = standardDate.Day,
-                            month = standardDate.Month,
-                            year = standardDate.Year,
+                            day = StandardDate.Day,
+                            month = StandardDate.Month,
+                            year = StandardDate.Year,
                             gearid = item.item.itemHash,
                             group = group
                         };

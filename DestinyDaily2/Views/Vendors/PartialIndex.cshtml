@@ -1,0 +1,153 @@
+﻿@model DestinyDaily2.Models.VendorContentModel
+
+@{
+    Layout = null;
+}
+
+<a id="vendors"><span class="is-vhidden">Vendors</span></a>
+<section class="js-homepage-section">
+    <div class="content-center content-center--gutter">
+        <a href="/vendors" class="heading">
+            <h2 class="heading__title">Vendors</h2>
+        </a>
+    </div>
+    <template class="js-homepage-section-template">
+        <div class="heading">
+            <h1 class="heading__title">Vendors</h1>
+        </div>
+        @if (!Model.XurInTower)
+        {
+            <div class="activity activity--vendor--xur">
+                <a id="xur" class="activity__anchor"></a>
+                <div class="activity__header">
+                    <div class="content-center content-center--gutter">
+                        <div aria-hidden="true" class="activity__icon">
+                            <div class="icon icon--vendor--xur"></div>
+                        </div>
+                        <div class="activity__details">
+                            <h2 class="activity__type">Xûr</h2>
+                            <p class="activity__name">Agent of the Nine</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="activity__image"></div>
+                <div class="activity__extras">
+                    <div class="content-center content-center--gutter">
+                        <div class="grid grid--gutterless">
+                            <div class="grid__item">
+                                <div class="activity__information">
+                                    <p>Xûr isn't around yet, he's gathering his supplies ready for his visit this weekend. Check back here between Friday and Saturday and see what he has.</p>
+                                    <p><a href="https://twitter.com/destinydaily7" target="_blank" class="button">Alternatively follow us on Twitter and we'll notify you</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div data-featured='1' class="activity activity--vendor--xur activity--featured js-homepage-featured">
+                <a id="xur" class="activity__anchor"></a>
+                <div class="activity__header">
+                    <div class="content-center content-center--gutter">
+                        <div aria-hidden="true" class="activity__icon">
+                            <div class="icon icon--vendor--xur"></div>
+                        </div>
+                        <div class="activity__details">
+                            <h2 class="activity__type">Xûr</h2>
+                            <p class="activity__name">Agent of the Nine</p>
+                            <p class="activity__level">Limited time event</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="activity__image"></div>
+                <div class="activity__extras">
+                    <div class="content-center content-center--gutter">
+                        <div class="grid grid--gutterless">
+                            <div class="grid__item">
+                                <div class="activity__extra">
+                                    <h3 class="activity__subheading">Inventory</h3>
+                                    <div class="grid grid--gutterless">
+                                        <div class="grid__item one-half tablet-one-quarter">
+                                            <div class="gear">
+                                                <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/1d707a10c8b1a64eb4183800dfb74c26.jpg" width="96" height="96" alt="Twilight Garrison preview" class="gear__image"/>
+                                                <div class="gear__details">
+                                                    <div class="gear__title">Twilight Garrison</div>
+                                                    <div class="gear__description">Chest Armor</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid__item one-half tablet-one-quarter">
+                                            <div class="gear">
+                                                <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/e0893d273530eba7f0cd37e11a461cf8.jpg" width="96" height="96" alt="Fr0st-EE5 preview" class="gear__image"/>
+                                                <div class="gear__details">
+                                                    <div class="gear__title">Fr0st-EE5</div>
+                                                    <div class="gear__description">Leg Armor</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid__item one-half tablet-one-quarter">
+                                            <div class="gear">
+                                                <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/51019cde47738f13801725caed9fd43e.jpg" width="96" height="96" alt="Apotheosis Veil preview" class="gear__image"/>
+                                                <div class="gear__details">
+                                                    <div class="gear__title">Apotheosis Veil</div>
+                                                    <div class="gear__description">Helmet</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid__item one-half tablet-one-quarter">
+                                            <div class="gear">
+                                                <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/d01ebf87be344b30e308c5d3cbea4683.jpg" width="96" height="96" alt="Monte Carlo preview" class="gear__image"/>
+                                                <div class="gear__details">
+                                                    <div class="gear__title">Monte Carlo</div>
+                                                    <div class="gear__description">Auto Rifle</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid__item one-half tablet-one-quarter">
+                                            <div class="gear">
+                                                <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/231aa5a20819c7ea9a4799b68575fbef.jpg" width="96" height="96" alt="Legacy Engram preview" class="gear__image"/>
+                                                <div class="gear__details">
+                                                    <div class="gear__title">Legacy Engram</div>
+                                                    <div class="gear__description"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid__item one-half tablet-one-quarter">
+                                            <div class="gear">
+                                                <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/654c29edae227a845f4164e8e2595ab2.jpg" width="96" height="96" alt="Prototype preview" class="gear__image"/>
+                                                <div class="gear__details">
+                                                    <div class="gear__title">Prototype</div>
+                                                    <div class="gear__description">Weapon Ornament</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid__item one-half tablet-one-quarter">
+                                            <div class="gear">
+                                                <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/a8a297b3ad44a252b0152a5f7af1acb8.jpg" width="96" height="96" alt="The Wolves Remember preview" class="gear__image"/>
+                                                <div class="gear__details">
+                                                    <div class="gear__title">The Wolves Remember</div>
+                                                    <div class="gear__description">Weapon Ornament</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        
+        <div class="advert js-advert">
+            <div class="content-center content-center--gutter"><ins data-ad-client="ca-pub-5655051109573002" data-ad-slot="2916154772" data-ad-format="auto" class="adsbygoogle"></ins></div>
+        </div>
+        <a href="#top" data-scroll="top" class="divider">
+            <div aria-hidden="true" class="divider__icon icon icon--waypoint"></div>
+            <div class="divider__label">Back to top</div>
+        </a>
+    </template>
+</section>

@@ -12,17 +12,16 @@ namespace DestinyDaily2.Controllers
 {
     public class HomeController : Controller
     {
-        private BountyManager BountyManager { get; set; }
-        private DateTime StandardDate => DateTime.Now.AddHours(-9.0);
+        private XurManager xurManager { get; set; }
 
         public HomeController()
         {
-            BountyManager = new BountyManager();
+            xurManager = new XurManager();
         }
 
         public ActionResult Index()
         {
-            return View();
+            return View(xurManager.IsActive());
         }
     }
 }
