@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1">
     <meta name="description" content="The one website you need to visit to see all Daily and Weekly Destiny activities without even having to log in">
-    @*<link rel="canonical" href="undefined://destiny-daily.com/index">*@
+    <link rel="canonical" href="undefined://destiny-daily.com/index">
     <title>Destiny Daily – All Daily and Weekly activities in one place</title>
     <!--[if gt IE 8]><!-->
     <link rel="stylesheet" href="/assets/css/index.css?v=1.0.4"><!--<![endif]-->
@@ -13,15 +13,15 @@
     @Scripts.Render("~/bundles/modernizr")
     <!--[if lte IE 8]>
     <script src="/assets/js/lib/vendor/html5shiv.js?v=1.0.4"></script><![endif]-->
-    <link rel="shortcut icon" href="/assets/img/meta/favicon.ico?v=1.0.4">
+    <link rel="icon" type="image/png" href="/assets/img/meta/favicon-32x32.png?v=1.0.5" sizes="32x32"><!--[if IE]><link rel='shortcut icon' type='image/x-icon' href=versionPath('/favicon.ico'))<![endif]-->
+    <link rel="icon" type="image/png" href="/assets/img/meta/android-chrome-192x192.png?v=1.0.5" sizes="192x192">
     <meta name="theme-color" content="#7d6d70">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/assets/img/meta/safari-pinned-tab.svg?v=1.0.5" color="#7d6d70">
     <meta name="apple-mobile-web-app-title" content="Destiny Daily">
-    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/img/meta/apple-touch-icon-precomposed-76x76.png?v=1.0.4">
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/img/meta/apple-touch-icon-precomposed-120x120.png?v=1.0.4">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/img/meta/apple-touch-icon-precomposed-152x152.png?v=1.0.4">
-    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/assets/img/meta/apple-touch-icon-precomposed-180x180.png?v=1.0.4">
+    <link rel="apple-touch-icon" href="/assets/img/meta/apple-touch-icon.png?v=1.0.5" sizes="180x180">
     <meta name="application-name" content="Destiny Daily">
-    <meta name="msapplication-TileImage" content="/assets/img/meta/microsoft-pinned-tile-image-144x144.png?v=1.0.4">
+    <meta name="msapplication-TileImage" content="/assets/img/meta/mstile-144x144.png?v=1.0.5">
     <meta name="msapplication-TileColor" content="#7d6d70">
     <script>
     (function (i, s, o, g, r, a, m) {
@@ -58,6 +58,7 @@
                                         <li><a href="@Url.Action("Index", "Daily")" data-scroll="daily">Daily</a></li>
                                         <li><a href="@Url.Action("Index", "NightFall")" data-scroll="nightfall">Nightfall</a></li>
                                         <li><a href="@Url.Action("Index", "Weekly")" data-scroll="weekly">Weekly</a></li>
+                                        <li><a href="@Url.Action("Index", "Vendors")" data-scroll="vendors">Vendors</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -78,6 +79,16 @@
     </main>
     <footer role="contentinfo" class="main-footer">
         <div class="content-center content-center--gutter">
+            <div class="support">
+                <div class="support__details">
+                    <p>If you found this website useful, please consider giving a small donation to support us and help us continue to make it even better</p>
+                </div>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="support__action">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="B2FAME29SU97Q">
+                    <input type="submit" name="submit" title="Donate with PayPal - The safer, easier way to pay online!" value="Donate" class="button"><img src="https://www.paypal.com/en_GB/i/scr/pixel.gif" alt="" width="1" height="1">
+                </form>
+            </div>
             <div class="grid grid--bottomed">
                 <div class="grid__item tablet-one-half">
                     <p>&copy; 2016 Destiny Daily</p>
@@ -85,7 +96,7 @@
                 </div>
                 <div class="grid__item tablet-one-half">
                     <div class="credit">
-                        <a href="https://avaclanche.uk/" class="credit__link" target="_blank">
+                        <a href="https://avaclanche.uk/" target="_blank" class="credit__link">
                             <div aria-hidden="true" class="credit__logo icon icon--avalanche-uk"></div>
                             <div class="credit__details"><small>Proudly brought to you by</small><br><small>the Guardians at Avalanche UK</small></div>
                         </a>

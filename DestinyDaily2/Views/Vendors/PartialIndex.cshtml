@@ -1,0 +1,114 @@
+﻿@using System.Web.ModelBinding
+@model DestinyDaily2.Models.VendorContentModel
+
+@{
+    Layout = null;
+}
+
+<a id="vendors"><span class="is-vhidden">Vendors</span></a>
+<section class="js-homepage-section">
+    <div class="content-center content-center--gutter">
+        <a href="/vendors" class="heading">
+            <h2 class="heading__title">Vendors</h2>
+        </a>
+    </div>
+    <template class="js-homepage-section-template">
+        <div class="heading">
+            <h1 class="heading__title">Vendors</h1>
+        </div>
+        @if (Model.XurInTower)
+        {
+            <div data-featured='1' class="activity activity--vendor--xur activity--featured js-homepage-featured">
+                <a id="xur" class="activity__anchor"></a>
+                <div class="activity__header">
+                    <div class="content-center content-center--gutter">
+                        <div aria-hidden="true" class="activity__icon">
+                            <div class="icon icon--vendor--xur"></div>
+                        </div>
+                        <div class="activity__details">
+                            <h2 class="activity__type">Xûr</h2>
+                            <p class="activity__name">Agent of the Nine</p>
+                            <p class="activity__level">Limited time event</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="activity__image"></div>
+                <div class="activity__extras">
+                    <div class="content-center content-center--gutter">
+                        <div class="grid grid--gutterless">
+                            <div class="grid__item">
+                                <div class="activity__information">
+                                    @if (Model.XurLocation == null)
+                                    {
+                                        <p>Xûr has arrived.</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Xûr has arrived and can be be found @Model.XurLocation.xurlocation.name.</p>
+                                    }
+                                </div>
+                            </div>
+                            <div class="grid__item">
+                                <div class="activity__extra">
+                                    <h3 class="activity__subheading">Inventory</h3>
+                                    <div class="grid grid--gutterless">
+                                        @foreach (var xurItem in Model.XurSales.Where(c => c.group > 2))
+                                        {
+                                            <div class="grid__item one-half tablet-one-quarter">
+                                                <div class="gear">
+                                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{xurItem.InventoryItem.icon}")" width="96" height="96" alt="Twilight Garrison preview" class="gear__image"/>
+                                                    <div class="gear__details">
+                                                        <div class="gear__title">@xurItem.InventoryItem.name</div>
+                                                        <div class="gear__description">@xurItem.InventoryItem.type</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="activity activity--vendor--xur">
+                <a id="xur" class="activity__anchor"></a>
+                <div class="activity__header">
+                    <div class="content-center content-center--gutter">
+                        <div aria-hidden="true" class="activity__icon">
+                            <div class="icon icon--vendor--xur"></div>
+                        </div>
+                        <div class="activity__details">
+                            <h2 class="activity__type">Xûr</h2>
+                            <p class="activity__name">Agent of the Nine</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="activity__image"></div>
+                <div class="activity__extras">
+                    <div class="content-center content-center--gutter">
+                        <div class="grid grid--gutterless">
+                            <div class="grid__item">
+                                <div class="activity__information">
+                                    <p>Xûr isn't around yet, he's gathering his supplies ready for his visit this weekend. Check back here between Friday and Saturday and see what he has.</p>
+                                    <p><a href="https://twitter.com/destinydaily7" target="_blank" class="button">Alternatively follow us on Twitter and we'll notify you</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="advert js-advert">
+            <div class="content-center content-center--gutter"><ins data-ad-client="ca-pub-5655051109573002" data-ad-slot="2916154772" data-ad-format="auto" class="adsbygoogle"></ins></div>
+        </div>
+        <a href="#top" data-scroll="top" class="divider">
+            <div aria-hidden="true" class="divider__icon icon icon--waypoint"></div>
+            <div class="divider__label">Back to top</div>
+        </a>
+    </template>
+</section>

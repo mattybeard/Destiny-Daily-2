@@ -166,17 +166,21 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DailyController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FeaturedEventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NightFallController.cs" />
+    <Compile Include="Controllers\VendorsController.cs" />
     <Compile Include="Controllers\WeeklyController.cs" />
     <Compile Include="Controllers\OtherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BountyEditModel.cs" />
+    <Compile Include="Models\FeaturedEventsDataModel.cs" />
     <Compile Include="Models\HeroicDailyModel.cs" />
     <Compile Include="Models\MiscModel.cs" />
     <Compile Include="Models\NightfallDataModel.cs" />
+    <Compile Include="Models\VendorContentModel.cs" />
     <Compile Include="Models\WeeklyDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -184,13 +188,44 @@
     <Content Include="Assets\css\index-ie8.css" />
     <Content Include="Assets\css\index.css" />
     <Content Include="Assets\font\pavanam\regular.svg" />
+    <Content Include="Assets\img\meta\android-chrome-144x144.png" />
+    <Content Include="Assets\img\meta\android-chrome-192x192.png" />
+    <Content Include="Assets\img\meta\android-chrome-256x256.png" />
+    <Content Include="Assets\img\meta\android-chrome-36x36.png" />
+    <Content Include="Assets\img\meta\android-chrome-384x384.png" />
+    <Content Include="Assets\img\meta\android-chrome-48x48.png" />
+    <Content Include="Assets\img\meta\android-chrome-512x512.png" />
+    <Content Include="Assets\img\meta\android-chrome-72x72.png" />
+    <Content Include="Assets\img\meta\android-chrome-96x96.png" />
+    <Content Include="Assets\img\meta\apple-touch-icon-114x114.png" />
+    <Content Include="Assets\img\meta\apple-touch-icon-120x120.png" />
+    <Content Include="Assets\img\meta\apple-touch-icon-144x144.png" />
+    <Content Include="Assets\img\meta\apple-touch-icon-152x152.png" />
+    <Content Include="Assets\img\meta\apple-touch-icon-180x180.png" />
+    <Content Include="Assets\img\meta\apple-touch-icon-57x57.png" />
+    <Content Include="Assets\img\meta\apple-touch-icon-60x60.png" />
+    <Content Include="Assets\img\meta\apple-touch-icon-72x72.png" />
+    <Content Include="Assets\img\meta\apple-touch-icon-76x76.png" />
     <Content Include="Assets\img\meta\apple-touch-icon-precomposed-120x120.png" />
     <Content Include="Assets\img\meta\apple-touch-icon-precomposed-152x152.png" />
     <Content Include="Assets\img\meta\apple-touch-icon-precomposed-180x180.png" />
     <Content Include="Assets\img\meta\apple-touch-icon-precomposed-76x76.png" />
+    <Content Include="Assets\img\meta\apple-touch-icon.png" />
     <Content Include="Assets\img\meta\favicon-16.png" />
+    <Content Include="Assets\img\meta\favicon-16x16.png" />
     <Content Include="Assets\img\meta\favicon-32.png" />
+    <Content Include="Assets\img\meta\favicon-32x32.png" />
     <Content Include="Assets\img\meta\favicon.ico" />
+    <Content Include="Assets\img\meta\meta-icon-1000x1000.png" />
+    <Content Include="Assets\img\meta\mstile-144x144.png" />
+    <Content Include="Assets\img\meta\mstile-150x150.png" />
+    <Content Include="Assets\img\meta\mstile-310x150.png" />
+    <Content Include="Assets\img\meta\mstile-310x310.png" />
+    <Content Include="Assets\img\meta\mstile-70x70.png" />
+    <Content Include="Assets\img\meta\safari-pinned-tab.svg" />
+    <Content Include="Assets\img\structure\activity\trials-of-osiris.jpg" />
+    <Content Include="Assets\img\structure\activity\vendor--xur.jpg" />
+    <Content Include="favicon.ico" />
     <Content Include="Assets\img\meta\meta-icon-1000x1000.jpg" />
     <Content Include="Assets\img\meta\microsoft-pinned-tile-image-144x144.png" />
     <Content Include="Assets\img\sprite\generated\icon-sprite.png" />
@@ -230,6 +265,8 @@
     <Content Include="Assets\font\pavanam\regular.woff" />
     <Content Include="Assets\font\pavanam\regular.woff2" />
     <Content Include="Assets\js\build\index.js.map" />
+    <Content Include="manifest.json" />
+    <Content Include="Assets\img\meta\.DS_Store" />
     <None Include="Properties\PublishProfiles\DestinyDaily.pubxml" />
     <None Include="Properties\PublishProfiles\DestinyDailyBeta.pubxml" />
     <None Include="Properties\PublishProfiles\FTP Beta.pubxml" />
@@ -273,6 +310,10 @@
     <Content Include="Views\Shared\Error.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Vendors\PartialIndex.cshtml" />
+    <Content Include="Views\Vendors\Index.cshtml" />
+    <Content Include="Views\FeaturedEvents\PartialIndex.cshtml" />
+    <Content Include="Views\FeaturedEvents\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -165,6 +165,12 @@
     <Compile Include="XurDay.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="XurLocation.cs">
+      <DependentUpon>DestinySqlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="XurLocationDay.cs">
+      <DependentUpon>DestinySqlModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="XurManager.cs" />
   </ItemGroup>
   <ItemGroup>
