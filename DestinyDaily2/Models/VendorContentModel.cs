@@ -10,5 +10,6 @@ namespace DestinyDaily2.Models
     {
         public List<XurDay> XurSales { get; set; }
         public bool XurInTower { get; set; }
+        public XurLocationDay XurLocation { get; set; }
     }
 }

@@ -9,12 +9,13 @@ namespace DestinyDailyDAL
     public class XurManager
     {
         private DestinySqlEntities db { get; set; }
-        private DateTime StandardDate
+        private DateTime TodayDate => DateTime.Now.AddHours(-9.0);
+        private DateTime XurDate
         {
             get
             {
                 var today = DateTime.Now.AddHours(-9.0);
-                while (today.DayOfWeek != DayOfWeek.Tuesday)
+                while (today.DayOfWeek != DayOfWeek.Friday)
                 {
                     today = today.AddDays(-1);
                 }
@@ -26,7 +27,7 @@ namespace DestinyDailyDAL
         {
             get
             {
-                if (StandardDate.DayOfWeek == DayOfWeek.Friday || StandardDate.DayOfWeek == DayOfWeek.Saturday)
+                if (TodayDate.DayOfWeek == DayOfWeek.Friday || TodayDate.DayOfWeek == DayOfWeek.Saturday)
                     return true;
 
                 return false;
@@ -35,7 +36,7 @@ namespace DestinyDailyDAL
 
         public XurManager()
         {
-            var db = new DestinySqlEntities();
+            db = new DestinySqlEntities();
         }
 
         public List<XurDay> GetCurrentItems()
@@ -43,11 +44,11 @@ namespace DestinyDailyDAL
             if(!InTower)
                 return new List<XurDay>();
 
-            var items = db.XurDays.Where(d => d.day == StandardDate.Day && d.month == StandardDate.Month && d.year == StandardDate.Year).ToList();
+            var items = db.XurDays.Where(d => d.day == XurDate.Day && d.month == XurDate.Month && d.year == XurDate.Year).ToList();
             if (!items.Any())
             {
                 CreateItems();
-                var updatedItems = db.XurDays.Where(d => d.day == StandardDate.Day && d.month == StandardDate.Month && d.year == StandardDate.Year).ToList();
+                var updatedItems = db.XurDays.Where(d => d.day == XurDate.Day && d.month == XurDate.Month && d.year == XurDate.Year).ToList();
                 return updatedItems;
             }
 
@@ -83,9 +84,9 @@ namespace DestinyDailyDAL
                     {
                         var entry = new XurDay()
                         {
-                            day = StandardDate.Day,
-                            month = StandardDate.Month,
-                            year = StandardDate.Year,
+                            day = XurDate.Day,
+                            month = XurDate.Month,
+                            year = XurDate.Year,
                             gearid = item.item.itemHash,
                             group = group
                         };
@@ -96,6 +97,13 @@ namespace DestinyDailyDAL
                 }
                 db.SaveChanges();
             }
+        }
+
+        public XurLocationDay GetCurrentLocation()
+        {
+            var location = db.XurLocationDays.FirstOrDefault(d => d.day == XurDate.Day && d.month == XurDate.Month && d.year == XurDate.Year);
+
+            return location;
         }
     }
 }

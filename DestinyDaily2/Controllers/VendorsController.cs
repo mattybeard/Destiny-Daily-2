@@ -24,7 +24,8 @@ namespace DestinyDaily2.Controllers
             var model = new VendorContentModel()
             {
                 XurInTower = xurManager.InTower,
-                XurSales = xurManager.GetCurrentItems()
+                XurSales = xurManager.GetCurrentItems(),
+                XurLocation = xurManager.GetCurrentLocation()
             };
 
             if (noLayout)

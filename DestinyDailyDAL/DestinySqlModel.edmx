@@ -285,6 +285,24 @@
           <Property Name="month" Type="int" Nullable="false" />
           <Property Name="year" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="xurlocation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+          <Property Name="image" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="xurlocationday">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="xurlocationid" Type="int" Nullable="false" />
+          <Property Name="day" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="Act_Nightfall">
           <End Role="manifestactivities" Type="Self.manifestactivities" Multiplicity="0..1" />
           <End Role="nightfall" Type="Self.nightfall" Multiplicity="*" />
@@ -426,6 +444,18 @@
             </Principal>
             <Dependent Role="xurday">
               <PropertyRef Name="gearid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LocationId">
+          <End Role="xurlocation" Type="Self.xurlocation" Multiplicity="1" />
+          <End Role="xurlocationday" Type="Self.xurlocationday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="xurlocation">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="xurlocationday">
+              <PropertyRef Name="xurlocationid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -688,6 +718,8 @@
           <EntitySet Name="weeklyheroicmissionrewards" EntityType="Self.weeklyheroicmissionrewards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="weeklyheroicmodifiers" EntityType="Self.weeklyheroicmodifiers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="xurday" EntityType="Self.xurday" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="xurlocation" EntityType="Self.xurlocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="xurlocationday" EntityType="Self.xurlocationday" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="Act_Nightfall" Association="Self.Act_Nightfall">
             <End Role="manifestactivities" EntitySet="manifestactivities" />
             <End Role="nightfall" EntitySet="nightfall" />
@@ -735,6 +767,10 @@
           <AssociationSet Name="FK_InventoryItemId" Association="Self.FK_InventoryItemId">
             <End Role="inventoryitem" EntitySet="inventoryitem" />
             <End Role="xurday" EntitySet="xurday" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LocationId" Association="Self.FK_LocationId">
+            <End Role="xurlocation" EntitySet="xurlocation" />
+            <End Role="xurlocationday" EntitySet="xurlocationday" />
           </AssociationSet>
           <AssociationSet Name="FK_ManifestReward" Association="Self.FK_ManifestReward">
             <End Role="manifestactivities" EntitySet="manifestactivities" />
@@ -1271,6 +1307,12 @@
             <End Role="ManifestActivity" EntitySet="ManifestActivities" />
             <End Role="crucibleweeklyday" EntitySet="CrucibleWeeklyDays" />
           </AssociationSet>
+          <EntitySet Name="XurLocations" EntityType="DestinySqlModel.XurLocation" />
+          <EntitySet Name="XurLocationDays" EntityType="DestinySqlModel.XurLocationDay" />
+          <AssociationSet Name="FK_LocationId" Association="DestinySqlModel.FK_LocationId">
+            <End Role="xurlocation" EntitySet="XurLocations" />
+            <End Role="xurlocationday" EntitySet="XurLocationDays" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_BountyDay_ManAct">
           <End Type="DestinySqlModel.InventoryItem" Role="InventoryItem" Multiplicity="1" />
@@ -1687,6 +1729,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="XurLocation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="xurlocationdays" Relationship="DestinySqlModel.FK_LocationId" FromRole="xurlocation" ToRole="xurlocationday" />
+        </EntityType>
+        <EntityType Name="XurLocationDay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="xurlocationid" Type="Int32" Nullable="false" />
+          <Property Name="day" Type="Int32" Nullable="false" />
+          <Property Name="month" Type="Int32" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="xurlocation" Relationship="DestinySqlModel.FK_LocationId" FromRole="xurlocationday" ToRole="xurlocation" />
+        </EntityType>
+        <Association Name="FK_LocationId">
+          <End Type="DestinySqlModel.XurLocation" Role="xurlocation" Multiplicity="1" />
+          <End Type="DestinySqlModel.XurLocationDay" Role="xurlocationday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="xurlocation">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="xurlocationday">
+              <PropertyRef Name="xurlocationid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1999,6 +2073,26 @@
                 <ScalarProperty Name="month" ColumnName="month" />
                 <ScalarProperty Name="day" ColumnName="day" />
                 <ScalarProperty Name="activityid" ColumnName="activityid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XurLocations">
+            <EntityTypeMapping TypeName="DestinySqlModel.XurLocation">
+              <MappingFragment StoreEntitySet="xurlocation">
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XurLocationDays">
+            <EntityTypeMapping TypeName="DestinySqlModel.XurLocationDay">
+              <MappingFragment StoreEntitySet="xurlocationday">
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="xurlocationid" ColumnName="xurlocationid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
