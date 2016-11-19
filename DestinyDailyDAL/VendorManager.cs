@@ -128,5 +128,10 @@ namespace DestinyDailyDAL
             }
             db.SaveChanges();
         }
+
+        public List<InventoryItem> GetMaterialDetails()
+        {
+            return db.InventoryItems.Where(i => i.type == "material" && (i.name == "Hadium Flake" || i.name == "Helium Filaments" || i.name == "Spinmetal" || i.name == "Spirit Bloom" || i.name == "Relic Iron" || i.name == "Wormspore")).ToList();
+        }
     }
 }
