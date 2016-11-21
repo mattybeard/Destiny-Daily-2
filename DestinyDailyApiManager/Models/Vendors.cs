@@ -15,6 +15,7 @@ namespace DestinyDailyApiManager.Models
         Arcite,
         Petra,
         Xur,
-        Variks
+        Variks,
+        Trials
     }
 }

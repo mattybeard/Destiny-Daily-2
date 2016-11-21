@@ -57,5 +57,6 @@ namespace DestinyDailyDAL
         public virtual DbSet<CrucibleWeeklyDay> CrucibleWeeklyDays { get; set; }
         public virtual DbSet<XurLocation> XurLocations { get; set; }
         public virtual DbSet<XurLocationDay> XurLocationDays { get; set; }
+        public virtual DbSet<TrialsMapDay> TrialsMapDays { get; set; }
     }
 }

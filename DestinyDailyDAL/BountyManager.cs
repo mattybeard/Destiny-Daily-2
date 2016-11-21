@@ -55,6 +55,12 @@ namespace DestinyDailyDAL
                 CreateVendorBounties(bounties, date, Vendors.Variks);
             }
 
+            if (vendor == Vendors.All || vendor == Vendors.Trials)
+            {
+                var bounties = vendorInformation.Response.data.activities.trials.bountyHashes.ToArray();
+                CreateVendorBounties(bounties, date, Vendors.Trials);
+            }
+
             //TODO: Try Iron Banner BUT from the old Vendor endpoint as not currently exposed.
         }
 

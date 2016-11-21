@@ -248,6 +248,17 @@
           <Property Name="description" Type="nvarchar" MaxLength="255" />
           <Property Name="icon" Type="nvarchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="trialsmapday">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="map" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="mapimage" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="day" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="weeklyheroic">
           <Key>
             <PropertyRef Name="id" />
@@ -714,6 +725,7 @@
           <EntitySet Name="raidchallenge" EntityType="Self.raidchallenge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="raidchallengeday" EntityType="Self.raidchallengeday" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="scoremodifier" EntityType="Self.scoremodifier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="trialsmapday" EntityType="Self.trialsmapday" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="weeklyheroic" EntityType="Self.weeklyheroic" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="weeklyheroicmissionrewards" EntityType="Self.weeklyheroicmissionrewards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="weeklyheroicmodifiers" EntityType="Self.weeklyheroicmodifiers" Schema="dbo" store:Type="Tables" />
@@ -1313,6 +1325,7 @@
             <End Role="xurlocation" EntitySet="XurLocations" />
             <End Role="xurlocationday" EntitySet="XurLocationDays" />
           </AssociationSet>
+          <EntitySet Name="TrialsMapDays" EntityType="DestinySqlModel.TrialsMapDay" />
         </EntityContainer>
         <Association Name="FK_BountyDay_ManAct">
           <End Type="DestinySqlModel.InventoryItem" Role="InventoryItem" Multiplicity="1" />
@@ -1761,6 +1774,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TrialsMapDay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="map" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="day" Type="Int32" Nullable="false" />
+          <Property Name="month" Type="Int32" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <Property Name="mapimage" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2093,6 +2117,18 @@
                 <ScalarProperty Name="month" ColumnName="month" />
                 <ScalarProperty Name="day" ColumnName="day" />
                 <ScalarProperty Name="xurlocationid" ColumnName="xurlocationid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrialsMapDays">
+            <EntityTypeMapping TypeName="DestinySqlModel.TrialsMapDay">
+              <MappingFragment StoreEntitySet="trialsmapday">
+                <ScalarProperty Name="mapimage" ColumnName="mapimage" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="map" ColumnName="map" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
