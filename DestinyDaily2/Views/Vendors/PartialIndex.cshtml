@@ -31,6 +31,10 @@
         {
             materialItem = details.First(m => m.name == "Spinmetal");
         }
+        else if (materialValue == "Spirit Bloom Donation")
+        {
+            materialItem = details.First(m => m.name == "Spirit Bloom");
+        }
         else
         {
             materialItem = details.First(m => m.name == "Hadium Flake");
@@ -53,7 +57,7 @@
         </div>
         @if(Model.XurInTower)
             {
-            <div data - featured = '1' class="activity activity--vendor--xur activity--featured js-homepage-featured">
+            <div data-featured = '1' class="activity activity--vendor--xur activity--featured js-homepage-featured">
                 <a id = "xur" class="activity__anchor"></a>
                 <div class="activity__header">
                     <div class="content-center content-center--gutter">
@@ -73,8 +77,8 @@
                         <div class="grid grid--gutterless">
                             <div class="grid__item">
                                 <div class="activity__information">
-                                    @if(Model.XurLocation == null)
-            {
+                                    @if (Model.XurLocation == null)
+                                    {
                                         <p> Xûr has arrived.</p>
                                     }
                                     else
@@ -235,6 +239,81 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (Model.TrialsDetails != null)
+        {
+            <div data-featured='2' class="activity activity--trials-of-osiris activity--featured js-homepage-featured">
+                <a id="trials" class="activity__anchor"></a>
+                <div class="activity__header">
+                    <div class="content-center content-center--gutter">
+                        <div aria-hidden="true" class="activity__icon">
+                            <div class="icon icon--trials-of-osiris"></div>
+                        </div>
+                        <div class="activity__details">
+                            <h2 class="activity__type">Trials of Osiris</h2>
+                            <p class="activity__name">@Model.TrialsDetails.map</p>
+                            <p class="activity__level">Limited time event</p>
+                            <p class="is-vhidden">Osiris seeks the strongest Guardians to stem the tide of the Darkness.</p>
+                        </div>
+                    </div>
+                </div>
+                <div data-external-background-image="data-external-background-image" data-external-src="@($"https://www.bungie.net{Model.TrialsDetails.mapimage}")" class="activity__image"></div>
+                <div class="activity__extras">
+                    <div class="content-center content-center--gutter">
+                        <div class="grid grid--gutterless">
+                            <div class="grid__item">
+                                <div class="activity__extra">
+                                    <h3 class="activity__subheading">Bounties</h3>
+                                    <ul>
+                                        <li class="bounty bounty--narrow">
+                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/c98dc78c99e99fea852417e7e496e324.jpg" width="96" height="96" alt="Bounties icon" class="bounty__image" />
+                                            <div class="bounty__details">
+                                                <div class="bounty__title">Teamwork</div>
+                                                <div class="bounty__description">Defeat 5 opposing Guardians while both your teammates are alive.</div>
+                                            </div>
+                                        </li>
+                                        <li class="bounty bounty--narrow">
+                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/c98dc78c99e99fea852417e7e496e324.jpg" width="96" height="96" alt="Bounties icon" class="bounty__image" />
+                                            <div class="bounty__details">
+                                                <div class="bounty__title">Trials Journeyman</div>
+                                                <div class="bounty__description">Win 3 individual rounds in the Trials of Osiris.</div>
+                                            </div>
+                                        </li>
+                                        <li class="bounty bounty--narrow">
+                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/c98dc78c99e99fea852417e7e496e324.jpg" width="96" height="96" alt="Bounties icon" class="bounty__image" />
+                                            <div class="bounty__details">
+                                                <div class="bounty__title">As One</div>
+                                                <div class="bounty__description">Defeat 3 opposing Guardians while near at least one of your teammates.</div>
+                                            </div>
+                                        </li>
+                                        <li class="bounty bounty--narrow">
+                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/c98dc78c99e99fea852417e7e496e324.jpg" width="96" height="96" alt="Bounties icon" class="bounty__image" />
+                                            <div class="bounty__details">
+                                                <div class="bounty__title">Physician</div>
+                                                <div class="bounty__description">Revive 5 teammates in the Trials of Osiris.</div>
+                                            </div>
+                                        </li>
+                                        <li class="bounty bounty--narrow">
+                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/c98dc78c99e99fea852417e7e496e324.jpg" width="96" height="96" alt="Bounties icon" class="bounty__image" />
+                                            <div class="bounty__details">
+                                                <div class="bounty__title">Valor's Reward</div>
+                                                <div class="bounty__description">Earn 75 points in Trials by round wins (+3), losses (+1), and ties (+1). As a Trials Fireteam, defeat 3 opposing Guardians without anyone in your Fireteam dying.</div>
+                                            </div>
+                                        </li>
+                                        <li class="bounty bounty--narrow">
+                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/c98dc78c99e99fea852417e7e496e324.jpg" width="96" height="96" alt="Bounties icon" class="bounty__image" />
+                                            <div class="bounty__details">
+                                                <div class="bounty__title">His Eye Upon You</div>
+                                                <div class="bounty__description">Win Trials rounds and defeat opposing Guardians. Fireteam members share progress. This bounty may be completed daily.</div>
+                                            </div>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>

@@ -13,5 +13,6 @@ namespace DestinyDaily2.Models
         public XurLocationDay XurLocation { get; set; }
         public List<MaterialExchange> MaterialExchanges { get; set; }
         public List<InventoryItem> MaterialDetail { get; set; }
+        public TrialsMapDay TrialsDetails { get; set; }
     }
 }

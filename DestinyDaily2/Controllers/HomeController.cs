@@ -13,15 +13,19 @@ namespace DestinyDaily2.Controllers
     public class HomeController : Controller
     {
         private XurManager xurManager { get; set; }
+        private TrialsManager trialsManager { get; set; }
 
         public HomeController()
         {
             xurManager = new XurManager();
+            trialsManager = new TrialsManager();
         }
 
         public ActionResult Index()
         {
-            return View(xurManager.IsActive());
+            var active = xurManager.IsActive() || trialsManager.GetCurrentMap() != null;
+            
+            return View(active);
         }
     }
 }

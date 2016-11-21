@@ -225,6 +225,7 @@
     <Content Include="Assets\img\meta\safari-pinned-tab.svg" />
     <Content Include="Assets\img\structure\activity\trials-of-osiris.jpg" />
     <Content Include="Assets\img\structure\activity\vendor--xur.jpg" />
+    <Content Include="Assets\img\structure\activity\vendor.jpg" />
     <Content Include="Assets\img\structure\vendor\arach-jalaal.png" />
     <Content Include="Assets\img\structure\vendor\eris-morn.png" />
     <Content Include="Assets\img\structure\vendor\executor-hideo.png" />

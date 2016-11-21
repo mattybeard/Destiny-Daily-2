@@ -11,7 +11,8 @@ namespace DestinyDaily2.Controllers
     public class VendorsController : Controller
     {
         private VendorManager vendorManager { get; set; }
-        private XurManager xurManager { get; set; }
+        private XurManager xurManager { get; set; }    
+        private TrialsManager trialsManager { get; set; }
         private DateTime StandardDate
         {
             get
@@ -30,6 +31,7 @@ namespace DestinyDaily2.Controllers
         {
             vendorManager = new VendorManager();
             xurManager = new XurManager();
+            trialsManager = new TrialsManager();
         }
 
         public ActionResult Index(bool noLayout = false)
@@ -40,7 +42,8 @@ namespace DestinyDaily2.Controllers
                 XurSales = xurManager.GetCurrentItems(),
                 XurLocation = xurManager.GetCurrentLocation(),
                 MaterialExchanges = vendorManager.GetMaterialExchange(StandardDate),
-                MaterialDetail = vendorManager.GetMaterialDetails()
+                MaterialDetail = vendorManager.GetMaterialDetails(),
+                TrialsDetails = trialsManager.GetCurrentMap()
             };
 
             if (noLayout)

@@ -152,6 +152,10 @@
     <Compile Include="ScoreModifier.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TrialsManager.cs" />
+    <Compile Include="TrialsMapDay.cs">
+      <DependentUpon>DestinySqlModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="VendorManager.cs" />
     <Compile Include="WeeklyHeroic.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>

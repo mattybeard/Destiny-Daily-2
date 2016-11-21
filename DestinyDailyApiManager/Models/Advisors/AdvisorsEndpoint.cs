@@ -31,6 +31,8 @@ namespace DestinyDailyApiManager.Models.Advisors
         public string status { get; set; }
         public List<string> tips { get; set; }
         public List<string> recruitmentIds { get; set; }
+        public string flavor { get; set; }
+        public long playlistHash { get; set; }
     }
 
     public class RewardItem
@@ -79,6 +81,9 @@ namespace DestinyDailyApiManager.Models.Advisors
     public class Extended
     {
         public List<Round> rounds { get; set; }
+        public ScoreCard scoreCard { get; set; }
+        public List<object> winRewardDetails { get; set; }
+        public int highestWinRank { get; set; }
     }
 
     public class ActivityTier
@@ -199,31 +204,6 @@ namespace DestinyDailyApiManager.Models.Advisors
         public Extended3 extended { get; set; }
     }
 
-    public class Status2
-    {
-        public string expirationDate { get; set; }
-        public string startDate { get; set; }
-        public bool expirationKnown { get; set; }
-        public bool active { get; set; }
-    }
-
-    public class Display3
-    {
-        public int categoryHash { get; set; }
-        public string icon { get; set; }
-        public string image { get; set; }
-        public string flavor { get; set; }
-        public string advisorTypeCategory { get; set; }
-        public long activityHash { get; set; }
-        public long playlistHash { get; set; }
-        public long destinationHash { get; set; }
-        public long placeHash { get; set; }
-        public string about { get; set; }
-        public string status { get; set; }
-        public List<string> tips { get; set; }
-        public List<string> recruitmentIds { get; set; }
-    }
-
     public class ScoreCard
     {
         public bool hasTicket { get; set; }
@@ -232,22 +212,15 @@ namespace DestinyDailyApiManager.Models.Advisors
         public int wins { get; set; }
         public int losses { get; set; }
     }
-
-    public class Extended4
-    {
-        public ScoreCard scoreCard { get; set; }
-        public List<object> winRewardDetails { get; set; }
-        public int highestWinRank { get; set; }
-    }
-
+    
     public class Trials
     {
         public string identifier { get; set; }
-        public Status2 status { get; set; }
-        public Display3 display { get; set; }
+        public Status status { get; set; }
+        public Display display { get; set; }
         public int vendorHash { get; set; }
-        public List<object> bountyHashes { get; set; }
-        public Extended4 extended { get; set; }
+        public List<long> bountyHashes { get; set; }
+        public Extended extended { get; set; }
     }
 
     public class Status3
@@ -747,14 +720,6 @@ namespace DestinyDailyApiManager.Models.Advisors
         public Extended7 extended { get; set; }
     }
 
-    public class Status10
-    {
-        public string expirationDate { get; set; }
-        public string startDate { get; set; }
-        public bool expirationKnown { get; set; }
-        public bool active { get; set; }
-    }
-
     public class Display11
     {
         public long categoryHash { get; set; }
@@ -806,20 +771,12 @@ namespace DestinyDailyApiManager.Models.Advisors
     public class Dailychapter
     {
         public string identifier { get; set; }
-        public Status10 status { get; set; }
+        public Status status { get; set; }
         public Display11 display { get; set; }
         public long vendorHash { get; set; }
         public long progressionHash { get; set; }
         public List<long> bountyHashes { get; set; }
         public List<ActivityTier9> activityTiers { get; set; }
-    }
-
-    public class Status11
-    {
-        public string expirationDate { get; set; }
-        public string startDate { get; set; }
-        public bool expirationKnown { get; set; }
-        public bool active { get; set; }
     }
 
     public class Display12
@@ -858,18 +815,12 @@ namespace DestinyDailyApiManager.Models.Advisors
     public class Dailycrucible
     {
         public string identifier { get; set; }
-        public Status11 status { get; set; }
+        public Status status { get; set; }
         public Display12 display { get; set; }
         public long vendorHash { get; set; }
         public int progressionHash { get; set; }
         public List<long> bountyHashes { get; set; }
         public List<ActivityTier10> activityTiers { get; set; }
-    }
-
-    public class Status12
-    {
-        public bool expirationKnown { get; set; }
-        public bool active { get; set; }
     }
 
     public class Display13
@@ -926,7 +877,7 @@ namespace DestinyDailyApiManager.Models.Advisors
     public class PrisonOfEldersPlaylist
     {
         public string identifier { get; set; }
-        public Status12 status { get; set; }
+        public Status status { get; set; }
         public Display13 display { get; set; }
         public int vendorHash { get; set; }
         public List<ActivityTier11> activityTiers { get; set; }
