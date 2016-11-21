@@ -171,7 +171,6 @@
     <Compile Include="Controllers\NightFallController.cs" />
     <Compile Include="Controllers\VendorsController.cs" />
     <Compile Include="Controllers\WeeklyController.cs" />
-    <Compile Include="Controllers\OtherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -307,7 +306,6 @@
     <Content Include="Views\Daily\PartialIndex.cshtml" />
     <Content Include="Views\NightFall\PartialIndex.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
-    <Content Include="Views\Other\Index.cshtml" />
     <Content Include="Views\NightFall\Index.cshtml" />
     <Content Include="Views\Daily\Index.cshtml" />
     <Content Include="Views\Weekly\PartialIndex.cshtml" />
@@ -321,10 +319,11 @@
     <Content Include="Views\FeaturedEvents\Index.cshtml" />
     <Content Include="Views\Shared\Partials\Head.cshtml" />
     <Content Include="Views\Shared\Partials\Footer.cshtml" />
+    <Content Include="Views\Shared\Partials\BackToTop.cshtml" />
+    <Content Include="Views\Shared\Partials\GoogleAd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Error\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
