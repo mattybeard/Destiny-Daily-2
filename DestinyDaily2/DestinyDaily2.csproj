@@ -319,6 +319,8 @@
     <Content Include="Views\Vendors\Index.cshtml" />
     <Content Include="Views\FeaturedEvents\PartialIndex.cshtml" />
     <Content Include="Views\FeaturedEvents\Index.cshtml" />
+    <Content Include="Views\Shared\Partials\Head.cshtml" />
+    <Content Include="Views\Shared\Partials\Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
