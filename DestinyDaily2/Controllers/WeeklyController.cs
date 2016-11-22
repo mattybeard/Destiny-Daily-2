@@ -40,7 +40,6 @@ namespace DestinyDaily2.Controllers
         public ActionResult Index(bool noLayout = false)
         {
             var weekly = NfManager.GetWeekly(StandardDate);
-            //var materialExchanges = vendorManager.GetMaterialExchange(StandardDate);
             var raidChallenges = vendorManager.GetRaidChallenges(StandardDate);
             var challengeElders = prisonManager.GetDetailedChallenge(StandardDate);
             var weeklyCrucible = NfManager.GetDetailedCrucibleWeekly(StandardDate);
