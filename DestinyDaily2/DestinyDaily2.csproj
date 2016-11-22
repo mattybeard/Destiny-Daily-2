@@ -205,16 +205,9 @@
     <Content Include="Assets\img\meta\apple-touch-icon-60x60.png" />
     <Content Include="Assets\img\meta\apple-touch-icon-72x72.png" />
     <Content Include="Assets\img\meta\apple-touch-icon-76x76.png" />
-    <Content Include="Assets\img\meta\apple-touch-icon-precomposed-120x120.png" />
-    <Content Include="Assets\img\meta\apple-touch-icon-precomposed-152x152.png" />
-    <Content Include="Assets\img\meta\apple-touch-icon-precomposed-180x180.png" />
-    <Content Include="Assets\img\meta\apple-touch-icon-precomposed-76x76.png" />
     <Content Include="Assets\img\meta\apple-touch-icon.png" />
-    <Content Include="Assets\img\meta\favicon-16.png" />
     <Content Include="Assets\img\meta\favicon-16x16.png" />
-    <Content Include="Assets\img\meta\favicon-32.png" />
     <Content Include="Assets\img\meta\favicon-32x32.png" />
-    <Content Include="Assets\img\meta\favicon.ico" />
     <Content Include="Assets\img\meta\meta-icon-1000x1000.png" />
     <Content Include="Assets\img\meta\mstile-144x144.png" />
     <Content Include="Assets\img\meta\mstile-150x150.png" />
@@ -231,7 +224,6 @@
     <Content Include="Assets\img\structure\vendor\lakshmi-2.png" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\img\meta\meta-icon-1000x1000.jpg" />
-    <Content Include="Assets\img\meta\microsoft-pinned-tile-image-144x144.png" />
     <Content Include="Assets\img\sprite\generated\icon-sprite.png" />
     <Content Include="Assets\img\sprite\generated\icon-sprite.svg" />
     <Content Include="Assets\img\structure\activity\challenge-of-elders.jpg" />
