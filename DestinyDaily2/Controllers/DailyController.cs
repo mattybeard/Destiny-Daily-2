@@ -9,9 +9,9 @@ namespace DestinyDaily2.Controllers
 {
     public class DailyController : Controller
     {
-        private DailyManager DailyManager { get; set; }
-        private BountyManager BountyManager { get; set; }
-        private DateTime StandardDate => DateTime.Now.AddHours(-9.0);
+        private DailyManager DailyManager { get; }
+        private BountyManager BountyManager { get; }
+        private DateTime StandardDate => DateTime.Now.AddHours(-9.0).AddMinutes(2);
         public DailyController()
         {
             DailyManager = new DailyManager();

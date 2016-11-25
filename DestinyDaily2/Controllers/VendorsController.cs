@@ -10,14 +10,14 @@ namespace DestinyDaily2.Controllers
 {
     public class VendorsController : Controller
     {
-        private VendorManager vendorManager { get; set; }
-        private XurManager xurManager { get; set; }    
-        private TrialsManager trialsManager { get; set; }
+        private VendorManager vendorManager { get; }
+        private XurManager xurManager { get; }    
+        private TrialsManager trialsManager { get; }
         private DateTime StandardDate
         {
             get
             {
-                var today = DateTime.Now.AddHours(-9.0);
+                var today = DateTime.Now.AddHours(-9.0).AddMinutes(2);
                 while (today.DayOfWeek != DayOfWeek.Tuesday)
                 {
                     today = today.AddDays(-1);

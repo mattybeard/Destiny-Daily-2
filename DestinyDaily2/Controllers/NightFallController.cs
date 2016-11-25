@@ -16,7 +16,7 @@ namespace DestinyDaily2.Controllers
         {
             get
             {
-                var today = DateTime.Now.AddHours(-9.0);
+                var today = DateTime.Now.AddHours(-9.0).AddMinutes(2);
                 while (today.DayOfWeek != DayOfWeek.Tuesday)
                 {
                     today = today.AddDays(-1);

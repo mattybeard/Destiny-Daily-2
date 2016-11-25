@@ -12,8 +12,8 @@ namespace DestinyDaily2.Controllers
 {
     public class HomeController : Controller
     {
-        private XurManager xurManager { get; set; }
-        private TrialsManager trialsManager { get; set; }
+        private XurManager xurManager { get; }
+        private TrialsManager trialsManager { get; }
 
         public HomeController()
         {

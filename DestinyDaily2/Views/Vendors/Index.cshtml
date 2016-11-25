@@ -1,2 +1,240 @@
-﻿@model DestinyDaily2.Models.VendorContentModel
+﻿@using DestinyDailyDAL
+@using InventoryItem = DestinyDailyDAL.InventoryItem
+@model DestinyDaily2.Models.VendorContentModel
 
+@functions {
+
+    public static string DisplayIcon(string vendor, List<MaterialExchange> exchanges, List<InventoryItem> details)
+    {
+        var materialValue = exchanges.First(m => m.vendor == vendor).material;
+        DestinyDailyDAL.InventoryItem materialItem;
+        if (materialValue == "Helium Filament Donation")
+        {
+            materialItem = details.First(m => m.name == "Helium Filaments");
+        }
+        else if (materialValue == "Relic Iron Donation")
+        {
+            materialItem = details.First(m => m.name == "Relic Iron");
+        }
+        else if (materialValue == "Wormspore Donation")
+        {
+            materialItem = details.First(m => m.name == "Wormspore");
+        }
+        else if (materialValue == "Spinmetal Donation")
+        {
+            materialItem = details.First(m => m.name == "Spinmetal");
+        }
+        else if (materialValue == "Spirit Bloom Donation")
+        {
+            materialItem = details.First(m => m.name == "Spirit Bloom");
+        }
+        else
+        {
+            materialItem = details.First(m => m.name == "Hadium Flake");
+        }
+
+        return materialItem.icon;
+    }
+}
+<div class="heading">
+    <h1 class="heading__title">Vendors</h1>
+</div>
+@if (Model.XurInTower)
+{
+    <!-- Display this section when Xur is in the tower-->
+    <div data-featured='1' class="activity activity--vendor--xur activity--featured js-homepage-featured">
+        <a id="xur" class="activity__anchor"></a>
+        <div class="activity__header">
+            <div class="content-center content-center--gutter">
+                <div aria-hidden="true" class="activity__icon">
+                    <div class="icon icon--vendor--xur"></div>
+                </div>
+                <div class="activity__details">
+                    <h2 class="activity__type">Xûr</h2>
+                    <p class="activity__name">Agent of the Nine</p>
+                    <p class="activity__level">Limited time event</p>
+                </div>
+            </div>
+        </div>
+        <div class="activity__image"></div>
+        <div class="activity__extras">
+            <div class="content-center content-center--gutter">
+                <div class="grid grid--gutterless">
+                    <div class="grid__item">
+                        <div class="activity__information">
+                            @if (Model.XurLocation == null)
+                            {
+                                <p> Xûr has arrived.</p>
+                            }
+                            else
+                            {
+                                <p>Xûr has arrived and can be be found @Model.XurLocation.xurlocation.name.</p>
+                            }
+                        </div>
+                    </div>
+                    <div class="grid__item">
+                        <div class="activity__extra">
+                            <h3 class="activity__subheading">Inventory</h3>
+                            <div class="grid grid--gutterless">
+                                @foreach (var xurItem in Model.XurSales.Where(c => c.group > 2))
+                                {
+                                    <div class="grid__item one-half tablet-one-quarter">
+                                        <div class="gear">
+                                            <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{xurItem.InventoryItem.icon}")" width="96" height="96" alt="Twilight Garrison preview" class="gear__image"/>
+                                            <div class="gear__details">
+                                                <div class="gear__title">@xurItem.InventoryItem.name</div>
+                                                <div class="gear__description">@xurItem.InventoryItem.type</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <!-- Display this section when Xur is not in the tower-->
+    <div class="activity activity--vendor--xur">
+        <a id="xur" class="activity__anchor"></a>
+        <div class="activity__header">
+            <div class="content-center content-center--gutter">
+                <div aria-hidden="true" class="activity__icon">
+                    <div class="icon icon--vendor--xur"></div>
+                </div>
+                <div class="activity__details">
+                    <h2 class="activity__type">Xûr</h2>
+                    <p class="activity__name">Agent of the Nine</p>
+                </div>
+            </div>
+        </div>
+        <div class="activity__image"></div>
+        <div class="activity__extras">
+            <div class="content-center content-center--gutter">
+                <div class="grid grid--gutterless">
+                    <div class="grid__item">
+                        <div class="activity__information">
+                            <p>Xûr isn't around yet, he's gathering his supplies ready for his visit this weekend. Check back here between Friday and Saturday and see what he has.</p>
+                            <p><a href="https://twitter.com/destinydaily7" target="_blank" class="button">Alternatively follow us on Twitter and we'll notify you</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@if (Model.MaterialExchanges.Any())
+{
+    <div class="activity activity--vendor">
+        <a id="material-exchange" class="activity__anchor"></a>
+        <div class="activity__header">
+            <div class="content-center content-center--gutter">
+                <div aria-hidden="true" class="activity__icon">
+                    <div class="icon icon--vendor"></div>
+                </div>
+                <div class="activity__details">
+                    <h2 class="activity__type">Material Exchange</h2>
+                </div>
+            </div>
+        </div>
+        <div class="activity__image"></div>
+        <div class="activity__extras">
+            <div class="content-center content-center--gutter">
+                <div class="grid grid--gutterless">
+                    <div class="grid__item">
+                        <div class="activity__materials">
+                            <div class="grid">
+                                <div class="grid__item tablet-one-half">
+                                    <h3 class="activity__subheading">Crota's Bane</h3>
+                                    <div class="vendor">
+                                        <div class="grid grid--bottomed">
+                                            <div class="grid__item one-half">
+                                                <div class="vendor__image"><img src="/assets/img/structure/vendor/eris-morn.png?v=1.0.7" width="350" height="280" alt="Eris Morn"/>
+                                                </div>
+                                            </div>
+                                            <div class="grid__item grid__item--reversed one-half">
+                                                <div class="gear">
+                                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{DisplayIcon("Eris Morn", Model.MaterialExchanges, Model.MaterialDetail)}")" width="96" height="96" alt="Material preview" class="gear__image" />
+                                                    <div class="gear__details">
+                                                        <div class="gear__title">@Model.MaterialExchanges.First(m => m.vendor == "Eris Morn").material</div>
+                                                        <div class="gear__description"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid__item tablet-one-half">
+                                    <h3 class="activity__subheading">Dead Orbit</h3>
+                                    <div class="vendor">
+                                        <div class="grid grid--bottomed">
+                                            <div class="grid__item one-half">
+                                                <div class="vendor__image"><img src="/assets/img/structure/vendor/arach-jalaal.png?v=1.0.7" width="350" height="280" alt="Arach Jalaal"/>
+                                                </div>
+                                            </div>
+                                            <div class="grid__item grid__item--reversed one-half">
+                                                <div class="gear">
+                                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{DisplayIcon("Dead Orbit", Model.MaterialExchanges, Model.MaterialDetail)}")" width="96" height="96" alt="Material preview" class="gear__image" />
+                                                    <div class="gear__details">
+                                                        <div class="gear__title">@Model.MaterialExchanges.First(m => m.vendor == "Dead Orbit").material</div>
+                                                        <div class="gear__description"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid__item tablet-one-half">
+                                    <h3 class="activity__subheading">Future War Cult</h3>
+                                    <div class="vendor">
+                                        <div class="grid grid--bottomed">
+                                            <div class="grid__item one-half">
+                                                <div class="vendor__image"><img src="/assets/img/structure/vendor/lakshmi-2.png?v=1.0.7" width="350" height="280" alt="Lakshmi-2"/>
+                                                </div>
+                                            </div>
+                                            <div class="grid__item grid__item--reversed one-half">
+                                                <div class="gear">
+                                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{DisplayIcon("Future War Cult", Model.MaterialExchanges, Model.MaterialDetail)}")" width="96" height="96" alt="Material preview" class="gear__image" />
+                                                    <div class="gear__details">
+                                                        <div class="gear__title">@Model.MaterialExchanges.First(m => m.vendor == "Future War Cult").material</div>
+                                                        <div class="gear__description"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid__item tablet-one-half">
+                                    <h3 class="activity__subheading">New Monarchy</h3>
+                                    <div class="vendor">
+                                        <div class="grid grid--bottomed">
+                                            <div class="grid__item one-half">
+                                                <div class="vendor__image"><img src="/assets/img/structure/vendor/executor-hideo.png?v=1.0.7" width="350" height="280" alt="Executor Hideo"/>
+                                                </div>
+                                            </div>
+                                            <div class="grid__item grid__item--reversed one-half">
+                                                <div class="gear">
+                                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{DisplayIcon("New Monarchy", Model.MaterialExchanges, Model.MaterialDetail)}")" width="96" height="96" alt="Material preview" class="gear__image" />
+                                                    <div class="gear__details">
+                                                        <div class="gear__title">@Model.MaterialExchanges.First(m => m.vendor == "New Monarchy").material</div>
+                                                        <div class="gear__description"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@Html.Partial("Partials/BackToTop")

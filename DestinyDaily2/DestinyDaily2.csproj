@@ -171,7 +171,6 @@
     <Compile Include="Controllers\NightFallController.cs" />
     <Compile Include="Controllers\VendorsController.cs" />
     <Compile Include="Controllers\WeeklyController.cs" />
-    <Compile Include="Controllers\OtherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -206,16 +205,9 @@
     <Content Include="Assets\img\meta\apple-touch-icon-60x60.png" />
     <Content Include="Assets\img\meta\apple-touch-icon-72x72.png" />
     <Content Include="Assets\img\meta\apple-touch-icon-76x76.png" />
-    <Content Include="Assets\img\meta\apple-touch-icon-precomposed-120x120.png" />
-    <Content Include="Assets\img\meta\apple-touch-icon-precomposed-152x152.png" />
-    <Content Include="Assets\img\meta\apple-touch-icon-precomposed-180x180.png" />
-    <Content Include="Assets\img\meta\apple-touch-icon-precomposed-76x76.png" />
     <Content Include="Assets\img\meta\apple-touch-icon.png" />
-    <Content Include="Assets\img\meta\favicon-16.png" />
     <Content Include="Assets\img\meta\favicon-16x16.png" />
-    <Content Include="Assets\img\meta\favicon-32.png" />
     <Content Include="Assets\img\meta\favicon-32x32.png" />
-    <Content Include="Assets\img\meta\favicon.ico" />
     <Content Include="Assets\img\meta\meta-icon-1000x1000.png" />
     <Content Include="Assets\img\meta\mstile-144x144.png" />
     <Content Include="Assets\img\meta\mstile-150x150.png" />
@@ -232,7 +224,6 @@
     <Content Include="Assets\img\structure\vendor\lakshmi-2.png" />
     <Content Include="favicon.ico" />
     <Content Include="Assets\img\meta\meta-icon-1000x1000.jpg" />
-    <Content Include="Assets\img\meta\microsoft-pinned-tile-image-144x144.png" />
     <Content Include="Assets\img\sprite\generated\icon-sprite.png" />
     <Content Include="Assets\img\sprite\generated\icon-sprite.svg" />
     <Content Include="Assets\img\structure\activity\challenge-of-elders.jpg" />
@@ -307,7 +298,6 @@
     <Content Include="Views\Daily\PartialIndex.cshtml" />
     <Content Include="Views\NightFall\PartialIndex.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
-    <Content Include="Views\Other\Index.cshtml" />
     <Content Include="Views\NightFall\Index.cshtml" />
     <Content Include="Views\Daily\Index.cshtml" />
     <Content Include="Views\Weekly\PartialIndex.cshtml" />
@@ -319,10 +309,13 @@
     <Content Include="Views\Vendors\Index.cshtml" />
     <Content Include="Views\FeaturedEvents\PartialIndex.cshtml" />
     <Content Include="Views\FeaturedEvents\Index.cshtml" />
+    <Content Include="Views\Shared\Partials\Head.cshtml" />
+    <Content Include="Views\Shared\Partials\Footer.cshtml" />
+    <Content Include="Views\Shared\Partials\BackToTop.cshtml" />
+    <Content Include="Views\Shared\Partials\GoogleAd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Error\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

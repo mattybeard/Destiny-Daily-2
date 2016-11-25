@@ -10,15 +10,15 @@ namespace DestinyDaily2.Controllers
 {
     public class WeeklyController : Controller
     {
-        private VendorManager vendorManager { get; set; }
+        private VendorManager vendorManager { get; }
         private PrisonManager prisonManager { get; }
-        private DateTime TodayDate => DateTime.Now.AddHours(-9.0);
+        private DateTime TodayDate => DateTime.Now.AddHours(-9.0).AddMinutes(2);
 
         private DateTime StandardDate
         {
             get
             {
-                var today = DateTime.Now.AddHours(-9.0);
+                var today = DateTime.Now.AddHours(-9.0).AddMinutes(2);
                 while (today.DayOfWeek != DayOfWeek.Tuesday)
                 {
                     today = today.AddDays(-1);
@@ -40,7 +40,6 @@ namespace DestinyDaily2.Controllers
         public ActionResult Index(bool noLayout = false)
         {
             var weekly = NfManager.GetWeekly(StandardDate);
-            //var materialExchanges = vendorManager.GetMaterialExchange(StandardDate);
             var raidChallenges = vendorManager.GetRaidChallenges(StandardDate);
             var challengeElders = prisonManager.GetDetailedChallenge(StandardDate);
             var weeklyCrucible = NfManager.GetDetailedCrucibleWeekly(StandardDate);

@@ -9,8 +9,8 @@ namespace DestinyDailyDAL
 {
     public class BountyManager
     {
-        private DestinySqlEntities db { get; set; }
-
+        private DestinySqlEntities db { get; }
+       
         public BountyManager()
         {
             db = new DestinySqlEntities();
@@ -49,7 +49,7 @@ namespace DestinyDailyDAL
                 CreateVendorBounties(bounties, date, Vendors.Crucible);
             }
 
-            if (vendor == Vendors.All || vendor == Vendors.Variks)
+            if (vendor == Vendors.All || vendor == Vendors.Variks || IsResetDate(date))
             {
                 var bounties = vendorInformation.Response.data.activities.elderchallenge.bountyHashes.ToArray();
                 CreateVendorBounties(bounties, date, Vendors.Variks);
@@ -79,6 +79,11 @@ namespace DestinyDailyDAL
                 db.BountyDays.Add(bountyDay);
             }
             db.SaveChanges();
+        }
+
+        private bool IsResetDate(DateTime date)
+        {
+            return date.DayOfWeek == DayOfWeek.Tuesday;
         }
 
         public IEnumerable<InventoryItem> GetPossibleBounties()
