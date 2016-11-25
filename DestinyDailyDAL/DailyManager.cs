@@ -35,7 +35,14 @@ namespace DestinyDailyDAL
             if (vendorInformation.ErrorCode > 1)
                 return;
 
+            var previousDailyDate = date.AddDays(-1);
+            var previousDaily = db.HeroicDailyDays.FirstOrDefault(d => d.day == previousDailyDate.Day && d.month == previousDailyDate.Month && d.year == previousDailyDate.Year);
             var dailyHash = vendorInformation.Response.data.activities.dailychapter.activityTiers[0].activityHash;
+
+            // Make sure it's different, otherwise play ignore.
+            if (previousDaily != null && previousDaily.missionid == dailyHash)
+                return;
+
             var activity = db.ManifestActivities.FirstOrDefault(m => m.id == dailyHash);
             if (activity != null)
             {
