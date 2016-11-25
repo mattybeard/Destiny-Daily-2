@@ -71,7 +71,14 @@ namespace DestinyDailyDAL
             if (vendorInformation.ErrorCode > 1)
                 return;
 
+            var previousDate = date.AddDays(-7);
+            var previous = db.Nightfalls.FirstOrDefault(d => d.day == previousDate.Day && d.month == previousDate.Month && d.year == previousDate.Year);
             var activityHash = vendorInformation.Response.data.activities.nightfall.activityTiers[0].activityHash;
+
+            // Make sure it's different, otherwise play ignore.
+            if (previous != null && previous.missionid == activityHash)
+                return;
+
             var activity = db.ManifestActivities.FirstOrDefault(m => m.id == activityHash);
             if (activity != null)
             {
@@ -148,6 +155,9 @@ namespace DestinyDailyDAL
         {
             var vendorInformation = DestinyDailyApiManager.BungieApi.GetAdvisors();
             if (vendorInformation.ErrorCode > 1)
+                return;
+
+            if (date <= vendorInformation.Response.data.activities.heroicstrike.status.expirationDate.Date.AddDays(-1))
                 return;
 
             var activityHash = vendorInformation.Response.data.activities.heroicstrike.activityTiers[0].activityHash;
