@@ -70,6 +70,8 @@
         <EntityTypeShape EntityType="DestinySqlModel.XurLocationDay" Width="1.5" PointX="23.875" PointY="1.375" />
         <AssociationConnector Association="DestinySqlModel.FK_LocationId" />
         <EntityTypeShape EntityType="DestinySqlModel.TrialsMapDay" Width="1.5" PointX="7.375" PointY="3.75" />
+        <EntityTypeShape EntityType="DestinySqlModel.RewardsDay" Width="1.5" PointX="6.375" PointY="16.75" />
+        <AssociationConnector Association="DestinySqlModel.FK_EewardsDay_ManAct" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -13,6 +13,7 @@ namespace DestinyDaily2.Controllers
         private VendorManager vendorManager { get; }
         private XurManager xurManager { get; }    
         private TrialsManager trialsManager { get; }
+        private BountyManager bountyManager { get; }
         private DateTime StandardDate
         {
             get
@@ -32,6 +33,7 @@ namespace DestinyDaily2.Controllers
             vendorManager = new VendorManager();
             xurManager = new XurManager();
             trialsManager = new TrialsManager();
+            bountyManager = new BountyManager();
         }
 
         public ActionResult Index(bool noLayout = false)
@@ -43,7 +45,9 @@ namespace DestinyDaily2.Controllers
                 XurLocation = xurManager.GetCurrentLocation(),
                 MaterialExchanges = vendorManager.GetMaterialExchange(StandardDate),
                 MaterialDetail = vendorManager.GetMaterialDetails(),
-                TrialsDetails = trialsManager.GetCurrentMap()
+                TrialsDetails = trialsManager.GetCurrentMap(),
+                IronLordBounties = bountyManager.GetBounties(StandardDate,1,"Shiro"),
+                IronLordArtifacts = bountyManager.GetRewards(StandardDate, 1, "Tyra")
             };
 
             if (noLayout)

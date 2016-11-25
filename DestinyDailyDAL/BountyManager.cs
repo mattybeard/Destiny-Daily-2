@@ -31,6 +31,13 @@ namespace DestinyDailyDAL
             return bounties.Where(c => c.vendor == type).ToList();
         }
 
+        public List<RewardsDay> GetRewards(DateTime date, int tryCount, string type)
+        {
+            var rewards = db.RewardsDays.Where(d => d.year == date.Year && d.month == date.Month && d.day == date.Day).ToList();
+
+            return rewards.Where(c => c.vendor == type).ToList();
+        }
+
         public void CreateBounties(DateTime date, Vendors vendor = Vendors.All)
         {
             var vendorInformation = DestinyDailyApiManager.BungieApi.GetAdvisors();
@@ -49,7 +56,7 @@ namespace DestinyDailyDAL
                 CreateVendorBounties(bounties, date, Vendors.Crucible);
             }
 
-            if (vendor == Vendors.All || vendor == Vendors.Variks || IsResetDate(date))
+            if ((vendor == Vendors.All || vendor == Vendors.Variks ) && IsResetDate(date))
             {
                 var bounties = vendorInformation.Response.data.activities.elderchallenge.bountyHashes.ToArray();
                 CreateVendorBounties(bounties, date, Vendors.Variks);
@@ -61,7 +68,50 @@ namespace DestinyDailyDAL
                 CreateVendorBounties(bounties, date, Vendors.Trials);
             }
 
-            //TODO: Try Iron Banner BUT from the old Vendor endpoint as not currently exposed.
+            if ((vendor == Vendors.All || vendor == Vendors.Shiro) && IsResetDate(date))
+            {
+                // Manually get Shiro from old endpoint
+                var oldEndpoint = DestinyDailyApiManager.BungieApi.GetVendorMetaData("2190824860");
+                if (oldEndpoint != null)
+                {
+                    var bountiesCategory = oldEndpoint.Response.data.vendor.saleItemCategories.FirstOrDefault(c => c.categoryTitle == "Iron Lord Bounties");
+
+                    if (bountiesCategory != null)
+                    {
+                        var bounties = bountiesCategory.saleItems.Select(c => c.item.itemHash).ToArray();
+                        CreateVendorBounties(bounties, date, Vendors.Shiro);
+                    }
+                }
+
+                oldEndpoint = DestinyDailyApiManager.BungieApi.GetVendorMetaData("2190824863");
+                if (oldEndpoint != null)
+                {
+                    var artifactCategory = oldEndpoint.Response.data.vendor.saleItemCategories.FirstOrDefault(c => c.categoryTitle == "Iron Lord Artifacts");
+
+                    if (artifactCategory != null)
+                    {
+                        var items = artifactCategory.saleItems.Select(c => c.item.itemHash).ToArray();
+                        CreateVendorRewards(items, date, Vendors.Tyra);
+                    }
+                }
+            }
+        }
+
+        private void CreateVendorRewards(long[] hashes, DateTime date, Vendors vendor)
+        {
+            foreach (var hash in hashes)
+            {
+                var bountyDay = new RewardsDay()
+                {
+                    itemid = hash,
+                    day = date.Day,
+                    month = date.Month,
+                    year = date.Year,
+                    vendor = vendor.ToString()
+                };
+                db.RewardsDays.Add(bountyDay);
+            }
+            db.SaveChanges();
         }
 
         public void CreateVendorBounties(long[] hashes, DateTime date, Vendors vendor)

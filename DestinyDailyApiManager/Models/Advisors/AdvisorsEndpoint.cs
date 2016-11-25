@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DestinyDailyApiManager.Models.Manifest.Activity;
+
 // ReSharper disable InconsistentNaming
 
 namespace DestinyDailyApiManager.Models.Advisors
@@ -19,7 +21,7 @@ namespace DestinyDailyApiManager.Models.Advisors
 
     public class Display
     {
-        public int categoryHash { get; set; }
+        public long categoryHash { get; set; }
         public string icon { get; set; }
         public string image { get; set; }
         public string advisorTypeCategory { get; set; }
@@ -34,18 +36,6 @@ namespace DestinyDailyApiManager.Models.Advisors
         public string flavor { get; set; }
         public long playlistHash { get; set; }
     }
-
-    public class RewardItem
-    {
-        public long itemHash { get; set; }
-        public int value { get; set; }
-    }
-
-    public class Reward
-    {
-        public List<RewardItem> rewardItems { get; set; }
-    }
-
     public class ActivityData
     {
         public long activityHash { get; set; }
@@ -57,13 +47,6 @@ namespace DestinyDailyApiManager.Models.Advisors
         public int displayLevel { get; set; }
         public int recommendedLight { get; set; }
         public int difficultyTier { get; set; }
-    }
-
-    public class Skull
-    {
-        public string displayName { get; set; }
-        public string description { get; set; }
-        public string icon { get; set; }
     }
 
     public class SkullCategory

@@ -239,6 +239,17 @@
           <Property Name="month" Type="int" Nullable="false" />
           <Property Name="year" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="rewardsday">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="itemid" Type="bigint" Nullable="false" />
+          <Property Name="day" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+          <Property Name="vendor" Type="nvarchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="scoremodifier">
           <Key>
             <PropertyRef Name="id" />
@@ -431,6 +442,18 @@
             </Principal>
             <Dependent Role="challengeofeldersscoremodifiers">
               <PropertyRef Name="challengeofeldersid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EewardsDay_ManAct">
+          <End Role="inventoryitem" Type="Self.inventoryitem" Multiplicity="1" />
+          <End Role="rewardsday" Type="Self.rewardsday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="inventoryitem">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="rewardsday">
+              <PropertyRef Name="itemid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -724,6 +747,7 @@
           <EntitySet Name="race" EntityType="Self.race" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="raidchallenge" EntityType="Self.raidchallenge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="raidchallengeday" EntityType="Self.raidchallengeday" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rewardsday" EntityType="Self.rewardsday" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="scoremodifier" EntityType="Self.scoremodifier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="trialsmapday" EntityType="Self.trialsmapday" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="weeklyheroic" EntityType="Self.weeklyheroic" Schema="dbo" store:Type="Tables" />
@@ -771,6 +795,10 @@
           <AssociationSet Name="FK_COESM_ScoreM" Association="Self.FK_COESM_ScoreM">
             <End Role="challengeofelders" EntitySet="challengeofelders" />
             <End Role="challengeofeldersscoremodifiers" EntitySet="challengeofeldersscoremodifiers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EewardsDay_ManAct" Association="Self.FK_EewardsDay_ManAct">
+            <End Role="inventoryitem" EntitySet="inventoryitem" />
+            <End Role="rewardsday" EntitySet="rewardsday" />
           </AssociationSet>
           <AssociationSet Name="FK_HeroicDaily_ManAct" Association="Self.FK_HeroicDaily_ManAct">
             <End Role="manifestactivities" EntitySet="manifestactivities" />
@@ -972,6 +1000,7 @@
           <NavigationProperty Name="XurDays" Relationship="DestinySqlModel.FK_InventoryItemId" FromRole="InventoryItem" ToRole="XurDay" />
           <NavigationProperty Name="WeeklyHeroicMissionRewards" Relationship="DestinySqlModel.FK_weeklyheroicereward_reward" FromRole="InventoryItem" ToRole="WeeklyHeroicMissionReward" />
           <NavigationProperty Name="NightfallMissionRewards" Relationship="DestinySqlModel.n_rewardFK" FromRole="InventoryItem" ToRole="NightfallMissionReward" />
+          <NavigationProperty Name="rewardsdays" Relationship="DestinySqlModel.FK_EewardsDay_ManAct" FromRole="InventoryItem" ToRole="rewardsday" />
         </EntityType>
         <EntityType Name="ManifestActivity">
           <Key>
@@ -1326,6 +1355,11 @@
             <End Role="xurlocationday" EntitySet="XurLocationDays" />
           </AssociationSet>
           <EntitySet Name="TrialsMapDays" EntityType="DestinySqlModel.TrialsMapDay" />
+          <EntitySet Name="RewardsDays" EntityType="DestinySqlModel.RewardsDay" />
+          <AssociationSet Name="FK_EewardsDay_ManAct" Association="DestinySqlModel.FK_EewardsDay_ManAct">
+            <End Role="InventoryItem" EntitySet="InventoryItems" />
+            <End Role="rewardsday" EntitySet="RewardsDays" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_BountyDay_ManAct">
           <End Type="DestinySqlModel.InventoryItem" Role="InventoryItem" Multiplicity="1" />
@@ -1785,6 +1819,30 @@
           <Property Name="year" Type="Int32" Nullable="false" />
           <Property Name="mapimage" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="RewardsDay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="itemid" Type="Int64" Nullable="false" />
+          <Property Name="day" Type="Int32" Nullable="false" />
+          <Property Name="month" Type="Int32" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <Property Name="vendor" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="inventoryitem" Relationship="DestinySqlModel.FK_EewardsDay_ManAct" FromRole="rewardsday" ToRole="InventoryItem" />
+        </EntityType>
+        <Association Name="FK_EewardsDay_ManAct">
+          <End Type="DestinySqlModel.InventoryItem" Role="InventoryItem" Multiplicity="1" />
+          <End Type="DestinySqlModel.RewardsDay" Role="rewardsday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryItem">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="rewardsday">
+              <PropertyRef Name="itemid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2129,6 +2187,18 @@
                 <ScalarProperty Name="month" ColumnName="month" />
                 <ScalarProperty Name="day" ColumnName="day" />
                 <ScalarProperty Name="map" ColumnName="map" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RewardsDays">
+            <EntityTypeMapping TypeName="DestinySqlModel.RewardsDay">
+              <MappingFragment StoreEntitySet="rewardsday">
+                <ScalarProperty Name="vendor" ColumnName="vendor" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="itemid" ColumnName="itemid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

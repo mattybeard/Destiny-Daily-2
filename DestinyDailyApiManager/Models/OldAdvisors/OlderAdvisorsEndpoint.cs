@@ -3,19 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+// ReSharper disable InconsistentNaming
 
 namespace DestinyDailyApiManager.Models.OldAdvisors
 {
-    public class HeroicStrikeRewardIndexes
-    {
-        //public List<int> __invalid_name__3476387771 { get; set; }
-    }
-
-    public class DailyChapterRewardIndexes
-    {
-        //public List<int> __invalid_name__2507671226 { get; set; }
-    }
-
     public class Round
     {
         public object enemyRaceHash { get; set; }
@@ -177,26 +168,13 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
         public string iconPath { get; set; }
     }
 
-    public class Tier2
-    {
-        public long activityHash { get; set; }
-        public bool isCompleted { get; set; }
-        public List<int> activeRewardIndexes { get; set; }
-        public List<int> skullIndexes { get; set; }
-    }
-
     public class HeroicStrike
     {
         public long activityBundleHash { get; set; }
         public string expirationDate { get; set; }
-        public List<Tier2> tiers { get; set; }
+        public List<Tier> tiers { get; set; }
         public string iconPath { get; set; }
         public string image { get; set; }
-    }
-
-    public class ActiveRewardIndexes
-    {
-        //public List<int> __invalid_name__2507671226 { get; set; }
     }
 
     public class DailyChapter
@@ -206,7 +184,6 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
         public bool isCompleted { get; set; }
         public bool isLocked { get; set; }
         public List<long> tierActivityHashes { get; set; }
-        public ActiveRewardIndexes activeRewardIndexes { get; set; }
         public string iconPath { get; set; }
     }
 
@@ -220,55 +197,12 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
         public string image { get; set; }
     }
 
-    public class ArtRegions2
-    {
-    }
-
-    public class Item2
-    {
-        public object itemHash { get; set; }
-        public int bindStatus { get; set; }
-        public bool isEquipped { get; set; }
-        public string itemInstanceId { get; set; }
-        public int itemLevel { get; set; }
-        public int stackSize { get; set; }
-        public int qualityLevel { get; set; }
-        public List<object> stats { get; set; }
-        public bool canEquip { get; set; }
-        public int equipRequiredLevel { get; set; }
-        public int unlockFlagHashRequiredToEquip { get; set; }
-        public int cannotEquipReason { get; set; }
-        public int damageType { get; set; }
-        public int damageTypeHash { get; set; }
-        public int damageTypeNodeIndex { get; set; }
-        public int damageTypeStepIndex { get; set; }
-        public int talentGridHash { get; set; }
-        public List<object> nodes { get; set; }
-        public bool useCustomDyes { get; set; }
-        public ArtRegions2 artRegions { get; set; }
-        public bool isEquipment { get; set; }
-        public bool isGridComplete { get; set; }
-        public List<object> perks { get; set; }
-        public int location { get; set; }
-        public int transferStatus { get; set; }
-        public bool locked { get; set; }
-        public bool lockable { get; set; }
-        public List<object> objectives { get; set; }
-        public int state { get; set; }
-    }
-
-    public class Cost2
-    {
-        public object itemHash { get; set; }
-        public int value { get; set; }
-    }
-
     public class Order
     {
-        public Item2 item { get; set; }
+        public Item item { get; set; }
         public int vendorItemIndex { get; set; }
         public int itemStatus { get; set; }
-        public List<Cost2> costs { get; set; }
+        public List<Cost> costs { get; set; }
         public List<int> requiredUnlockFlags { get; set; }
         public List<object> failureIndexes { get; set; }
     }
@@ -280,25 +214,6 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
         public int maximumValue { get; set; }
     }
 
-    public class PrimaryStat2
-    {
-        public int statHash { get; set; }
-        public int value { get; set; }
-        public int maximumValue { get; set; }
-    }
-
-    public class Progression2
-    {
-        public int dailyProgress { get; set; }
-        public int weeklyProgress { get; set; }
-        public int currentProgress { get; set; }
-        public int level { get; set; }
-        public int step { get; set; }
-        public int progressToNextLevel { get; set; }
-        public int nextLevelAt { get; set; }
-        public long progressionHash { get; set; }
-    }
-
     public class Node
     {
         public bool isActivated { get; set; }
@@ -306,10 +221,6 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
         public int state { get; set; }
         public bool hidden { get; set; }
         public int nodeHash { get; set; }
-    }
-
-    public class ArtRegions3
-    {
     }
 
     public class Objective
@@ -322,47 +233,12 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
         public bool isComplete { get; set; }
     }
 
-    public class Item3
-    {
-        public object itemHash { get; set; }
-        public int bindStatus { get; set; }
-        public bool isEquipped { get; set; }
-        public string itemInstanceId { get; set; }
-        public int itemLevel { get; set; }
-        public int stackSize { get; set; }
-        public int qualityLevel { get; set; }
-        public List<Stat> stats { get; set; }
-        public PrimaryStat2 primaryStat { get; set; }
-        public bool canEquip { get; set; }
-        public int equipRequiredLevel { get; set; }
-        public object unlockFlagHashRequiredToEquip { get; set; }
-        public int cannotEquipReason { get; set; }
-        public int damageType { get; set; }
-        public object damageTypeHash { get; set; }
-        public int damageTypeNodeIndex { get; set; }
-        public int damageTypeStepIndex { get; set; }
-        public Progression2 progression { get; set; }
-        public object talentGridHash { get; set; }
-        public List<Node> nodes { get; set; }
-        public bool useCustomDyes { get; set; }
-        public ArtRegions3 artRegions { get; set; }
-        public bool isEquipment { get; set; }
-        public bool isGridComplete { get; set; }
-        public List<object> perks { get; set; }
-        public int location { get; set; }
-        public int transferStatus { get; set; }
-        public bool locked { get; set; }
-        public bool lockable { get; set; }
-        public List<Objective> objectives { get; set; }
-        public int state { get; set; }
-    }
-
     public class TestWeapon
     {
-        public Item3 item { get; set; }
+        public Item item { get; set; }
         public int vendorItemIndex { get; set; }
         public int itemStatus { get; set; }
-        public List<object> costs { get; set; }
+        public List<long> costs { get; set; }
         public List<object> failureIndexes { get; set; }
     }
 
@@ -391,72 +267,6 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
         public int maxCompletions { get; set; }
     }
 
-    public class ArtRegions4
-    {
-    }
-
-    public class Objective2
-    {
-        public object objectiveHash { get; set; }
-        public int destinationHash { get; set; }
-        public int activityHash { get; set; }
-        public int progress { get; set; }
-        public bool hasProgress { get; set; }
-        public bool isComplete { get; set; }
-    }
-
-    public class Item4
-    {
-        public object itemHash { get; set; }
-        public int bindStatus { get; set; }
-        public bool isEquipped { get; set; }
-        public string itemInstanceId { get; set; }
-        public int itemLevel { get; set; }
-        public int stackSize { get; set; }
-        public int qualityLevel { get; set; }
-        public List<object> stats { get; set; }
-        public bool canEquip { get; set; }
-        public int equipRequiredLevel { get; set; }
-        public int unlockFlagHashRequiredToEquip { get; set; }
-        public int cannotEquipReason { get; set; }
-        public int damageType { get; set; }
-        public int damageTypeHash { get; set; }
-        public int damageTypeNodeIndex { get; set; }
-        public int damageTypeStepIndex { get; set; }
-        public int talentGridHash { get; set; }
-        public List<object> nodes { get; set; }
-        public bool useCustomDyes { get; set; }
-        public ArtRegions4 artRegions { get; set; }
-        public bool isEquipment { get; set; }
-        public bool isGridComplete { get; set; }
-        public List<object> perks { get; set; }
-        public int location { get; set; }
-        public int transferStatus { get; set; }
-        public bool locked { get; set; }
-        public bool lockable { get; set; }
-        public List<Objective2> objectives { get; set; }
-        public int state { get; set; }
-    }
-
-    public class SaleItem2
-    {
-        public Item4 item { get; set; }
-        public int vendorItemIndex { get; set; }
-        public int itemStatus { get; set; }
-        public List<object> costs { get; set; }
-        public List<object> failureIndexes { get; set; }
-    }
-
-    //public class __invalid_type__1527174714
-    //{
-    //    public List<SaleItem2> saleItems { get; set; }
-    //}
-
-    public class AvailableBounties
-    {
-        //public __invalid_type__1527174714 __invalid_name__1527174714 { get; set; }
-    }
-
     public class Data
     {
         public int nightfallActivityHash { get; set; }
@@ -469,8 +279,6 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
         public string dailyCrucibleResetDate { get; set; }
         public List<int> nightfallRewardIndexes { get; set; }
         public List<object> dailyCrucibleRewardIndexes { get; set; }
-        public HeroicStrikeRewardIndexes heroicStrikeRewardIndexes { get; set; }
-        public DailyChapterRewardIndexes dailyChapterRewardIndexes { get; set; }
         public List<Arena> arena { get; set; }
         public Events events { get; set; }
         public Nightfall nightfall { get; set; }
@@ -479,7 +287,6 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
         public DailyCrucible dailyCrucible { get; set; }
         public ArmsDay armsDay { get; set; }
         public List<WeeklyCrucible> weeklyCrucible { get; set; }
-        public AvailableBounties availableBounties { get; set; }
         public Vendor vendor { get; set; }
     }
 

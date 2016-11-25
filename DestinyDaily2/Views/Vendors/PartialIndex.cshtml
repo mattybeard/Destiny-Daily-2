@@ -318,6 +318,72 @@
                 </div>
             </div>
         }
+        @if (Model.IronLordArtifacts.Any() || Model.IronLordBounties.Any())
+        {
+            <div class="activity activity--iron-temple">
+                <a id="iron-temple" class="activity__anchor"></a>
+                <div class="activity__header">
+                    <div class="content-center content-center--gutter">
+                        <div aria-hidden="true" class="activity__icon">
+                            <div class="icon icon--iron-temple"></div>
+                        </div>
+                        <div class="activity__details">
+                            <h2 class="activity__type">Iron Temple</h2>
+                            <p class="activity__name">Felwinter Peak</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="activity__image"></div>
+                <div class="activity__extras">
+                    <div class="content-center content-center--gutter">
+                        <div class="grid grid--gutterless">
+                            <div class="grid__item tablet-one-half">
+                                <div class="activity__extra">
+                                    @if (Model.IronLordArtifacts.Any())
+                                    {
+                                        <h3 class="activity__subheading">Iron Lord Artifacts</h3>
+                                        <div class="grid grid--gutterless">
+                                            @foreach (var artifact in Model.IronLordArtifacts)
+                                            {
+                                                <div class="grid__item fablet-one-half">
+                                                    <div class="gear">
+                                                        <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{artifact.inventoryitem.icon}")" width="96" height="96" alt="Artifact preview" class="gear__image" />
+                                                        <div class="gear__details">
+                                                            <div class="gear__title">@artifact.inventoryitem.name</div>
+                                                            <div class="gear__description">@artifact.inventoryitem.desc</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }                                           
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="grid__item tablet-one-half">
+                                <div class="activity__extra">
+                                    @if (Model.IronLordArtifacts.Any())
+                                    {
+                                        <h3 class="activity__subheading">Iron Lord Bounties</h3>
+                                        <ul>
+                                            @foreach (var bounty in Model.IronLordBounties)
+                                            {
+                                                <li class="bounty">
+                                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Bountyicon" class="bounty__image"/>
+                                                    <div class="bounty__details">
+                                                        <div class="bounty__title">@bounty.InventoryItem.name.Replace("''","'")</div>
+                                                        <div class="bounty__description">@bounty.InventoryItem.desc.Replace("''", "'")</div>
+                                                    </div>
+                                                </li>
+                                            }                                          
+                                        </ul>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
         @Html.Partial("Partials/BackToTop")
     </template>
 </section>
