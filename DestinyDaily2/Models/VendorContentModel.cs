@@ -14,5 +14,7 @@ namespace DestinyDaily2.Models
         public List<MaterialExchange> MaterialExchanges { get; set; }
         public List<InventoryItem> MaterialDetail { get; set; }
         public TrialsMapDay TrialsDetails { get; set; }
+        public List<BountyDay> IronLordBounties { get; set; }
+        public List<RewardsDay> IronLordArtifacts { get; set; }
     }
 }

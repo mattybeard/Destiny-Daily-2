@@ -21,7 +21,7 @@ namespace DestinyDailyApiManager
             return JsonConvert.DeserializeObject<AdvisorsEndpoint>(advisorv2);
         }
 
-        public static DestinyDailyApiManager.Models.OldAdvisors.OlderAdvisorsEndpoint GetOldAdvisors()
+        public static OlderAdvisorsEndpoint GetOldAdvisors()
         {
             var advisorv2 = MakeBungieRequest("Advisors/");
             return JsonConvert.DeserializeObject<DestinyDailyApiManager.Models.OldAdvisors.OlderAdvisorsEndpoint>(advisorv2);

@@ -215,7 +215,11 @@
     <Content Include="Assets\img\meta\mstile-310x310.png" />
     <Content Include="Assets\img\meta\mstile-70x70.png" />
     <Content Include="Assets\img\meta\safari-pinned-tab.svg" />
+    <Content Include="Assets\img\structure\activity\iron-temple.jpg" />
+    <Content Include="Assets\img\structure\activity\srl.jpg" />
     <Content Include="Assets\img\structure\activity\trials-of-osiris.jpg" />
+    <Content Include="Assets\img\structure\activity\vendor--queens-wrath.jpg" />
+    <Content Include="Assets\img\structure\activity\vendor--vanguard-scout.jpg" />
     <Content Include="Assets\img\structure\activity\vendor--xur.jpg" />
     <Content Include="Assets\img\structure\activity\vendor.jpg" />
     <Content Include="Assets\img\structure\vendor\arach-jalaal.png" />

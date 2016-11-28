@@ -16,6 +16,8 @@ namespace DestinyDailyApiManager.Models
         Petra,
         Xur,
         Variks,
-        Trials
+        Trials,
+        Shiro,
+        Tyra
     }
 }

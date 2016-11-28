@@ -21,6 +21,7 @@ namespace DestinyDailyDAL
             this.XurDays = new HashSet<XurDay>();
             this.WeeklyHeroicMissionRewards = new HashSet<WeeklyHeroicMissionReward>();
             this.NightfallMissionRewards = new HashSet<NightfallMissionReward>();
+            this.rewardsdays = new HashSet<RewardsDay>();
         }
     
         public long id { get; set; }
@@ -42,5 +43,7 @@ namespace DestinyDailyDAL
         public virtual ICollection<WeeklyHeroicMissionReward> WeeklyHeroicMissionRewards { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NightfallMissionReward> NightfallMissionRewards { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RewardsDay> rewardsdays { get; set; }
     }
 }

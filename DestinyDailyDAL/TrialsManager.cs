@@ -30,7 +30,7 @@ namespace DestinyDailyDAL
                 if (TodayDate.DayOfWeek == DayOfWeek.Saturday || TodayDate.DayOfWeek == DayOfWeek.Sunday || TodayDate.DayOfWeek == DayOfWeek.Monday)
                     return true;
 
-                if (TodayDate.DayOfWeek == DayOfWeek.Friday && TodayDate.Hour >= 17)
+                if (TodayDate.DayOfWeek == DayOfWeek.Friday && TodayDate.Hour >= 8)
                     return true;
 
                 return false;
