@@ -24,7 +24,7 @@
                     </div>
                     <div class="activity__details">
                         <h2 class="activity__type">Daily Heroic story</h2>
-                        <p>@Model.DailyMission.ManifestActivity.name</p>
+                        <p>@Model.DailyMission.ManifestActivity.name.Replace("''","'")</p>
                         <p class="is-vhidden">@Model.DailyMission.ManifestActivity.desc</p>
                     </div>
                 </div>

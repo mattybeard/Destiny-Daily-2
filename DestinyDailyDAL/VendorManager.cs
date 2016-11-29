@@ -108,8 +108,8 @@ namespace DestinyDailyDAL
             foreach (var raid in new string[] { "Kings Fall", "Wrath of the Machine" })
             {
                 int newRaidId;
-                var lastRaid = db.RaidChallengeDays.Where(c => c.Challenge.raidname == raid).OrderBy(a => a.id).First();
-                var possibleRaids = db.RaidChallenges.Where(c => c.raidname == raid).OrderBy(a => a.id);
+                var lastRaid = db.RaidChallengeDays.Where(c => c.Challenge.raidname == raid).OrderByDescending(a => a.id).First();
+                var possibleRaids = db.RaidChallenges.Where(c => c.raidname == raid).OrderBy(a => a.id).ToList();
 
                 if (lastRaid.Challenge.id == possibleRaids.Max(c => c.id))
                     newRaidId = possibleRaids.Min(c => c.id);
@@ -125,8 +125,8 @@ namespace DestinyDailyDAL
                 };
 
                 db.RaidChallengeDays.Add(newChallenge);
+                db.SaveChanges();
             }
-            db.SaveChanges();
         }
 
         public List<InventoryItem> GetMaterialDetails()

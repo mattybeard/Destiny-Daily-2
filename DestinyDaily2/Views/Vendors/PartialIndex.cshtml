@@ -138,6 +138,155 @@
                 </div>
             </div>
         }
+        @if (Model.SrlBounties.Any() || Model.SrlRewards.Any())
+        {
+            <div data-featured='4' class="activity activity--srl activity--featured js-homepage-featured">
+                <a id="srl" class="activity__anchor"></a>
+                <div class="activity__header">
+                    <div class="content-center content-center--gutter">
+                        <div aria-hidden="true" class="activity__icon">
+                            <div class="icon icon--srl"></div>
+                        </div>
+                        <div class="activity__details">
+                            <h2 class="activity__type">Sparrow Racing League</h2>
+                            <p class="activity__level">Limited time event</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="activity__image"></div>
+                <div class="activity__extras">
+                    <div class="content-center content-center--gutter">
+                        <div class="grid grid--gutterless">
+                            <div class="grid__item tablet-one-half">
+                                <div class="activity__extra">
+                                    <h3 class="activity__subheading">SRL Gear</h3>
+                                    <div class="grid grid--gutterless">
+                                        <div class="grid__item fablet-one-half">
+                                            <div class="gear">
+                                                <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/469ffa1d303810cfc3418161d877bf85.jpg" width="96" height="96" alt="Momentum Gloves preview" class="gear__image" />
+                                                <div class="gear__details">
+                                                    <div class="gear__title">Momentum Gloves</div>
+                                                    <div class="gear__description">Gauntlets</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid__item fablet-one-half">
+                                            <div class="gear">
+                                                <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/5bc76e5b86ffec49a7c7369a8eed02f8.jpg" width="96" height="96" alt="Momentum Boots preview" class="gear__image" />
+                                                <div class="gear__details">
+                                                    <div class="gear__title">Momentum Boots</div>
+                                                    <div class="gear__description">Leg Armor</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid__item fablet-one-half">
+                                            <div class="gear">
+                                                <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/71302fb1b769d74cd60e9e88134298ad.jpg" width="96" height="96" alt="Momentum Defense preview" class="gear__image" />
+                                                <div class="gear__details">
+                                                    <div class="gear__title">Momentum Defense</div>
+                                                    <div class="gear__description">Chest Armor</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid__item fablet-one-half">
+                                            <div class="gear">
+                                                <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/8342750527b38a96b34b55f55782a274.jpg" width="96" height="96" alt="Momentum Guard preview" class="gear__image" />
+                                                <div class="gear__details">
+                                                    <div class="gear__title">Momentum Guard</div>
+                                                    <div class="gear__description">Helmet</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid__item fablet-one-half">
+                                            <div class="gear">
+                                                <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/fbb66796935b26bfdf7c8d54589885ba.jpg" width="96" height="96" alt="Momentum Helmet preview" class="gear__image" />
+                                                <div class="gear__details">
+                                                    <div class="gear__title">Momentum Helmet</div>
+                                                    <div class="gear__description">Helmet</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid__item fablet-one-half">
+                                            <div class="gear">
+                                                <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/60b5568c4e13850f138c1ee4fa6f895a.jpg" width="96" height="96" alt="Momentum Shield preview" class="gear__image" />
+                                                <div class="gear__details">
+                                                    <div class="gear__title">Momentum Shield</div>
+                                                    <div class="gear__description">Helmet</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid__item tablet-one-half">
+                                <div class="activity__extra">
+                                    <h3 class="activity__subheading">Bounties</h3>
+                                    <ul>
+                                        <li class="bounty">
+                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/c05b6f27a77518791c88c330cbac75f2.jpg" width="96" height="96" alt="Bounties icon" class="bounty__image" />
+                                            <div class="bounty__details">
+                                                <div class="bounty__title">SRL: Bugs on the Windshield</div>
+                                                <div class="bounty__description">Kill enemies on the track during any SRL race.</div>
+                                            </div>
+                                        </li>
+                                        <li class="bounty">
+                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/c05b6f27a77518791c88c330cbac75f2.jpg" width="96" height="96" alt="Bounties icon" class="bounty__image" />
+                                            <div class="bounty__details">
+                                                <div class="bounty__title">SRL: Go Big or Go Home</div>
+                                                <div class="bounty__description">Complete 10 other SRL bounties.</div>
+                                            </div>
+                                        </li>
+                                        <li class="bounty">
+                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/c05b6f27a77518791c88c330cbac75f2.jpg" width="96" height="96" alt="Bounties icon" class="bounty__image" />
+                                            <div class="bounty__details">
+                                                <div class="bounty__title">SRL: Martian Monopoly</div>
+                                                <div class="bounty__description">Place in the Top 3 on Mars.</div>
+                                            </div>
+                                        </li>
+                                        <li class="bounty">
+                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/c05b6f27a77518791c88c330cbac75f2.jpg" width="96" height="96" alt="Bounties icon" class="bounty__image" />
+                                            <div class="bounty__details">
+                                                <div class="bounty__title">SRL: Mars Pacesetter</div>
+                                                <div class="bounty__description">Complete an SRL lap on Mars in fewer than two minutes.</div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="activity activity--srl">
+                <a id="srl" class="activity__anchor"></a>
+                <div class="activity__header">
+                    <div class="content-center content-center--gutter">
+                        <div aria-hidden="true" class="activity__icon">
+                            <div class="icon icon--srl"></div>
+                        </div>
+                        <div class="activity__details">
+                            <h2 class="activity__type">Sparrow Racing League</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="activity__image"></div>
+                <div class="activity__extras">
+                    <div class="content-center content-center--gutter">
+                        <div class="grid grid--gutterless">
+                            <div class="grid__item">
+                                <div class="activity__information">
+                                    <p>SRL will be returning with the Winter update. Check back here in the coming weeks to see what bounties and rewards Amanda Holliday has to offer.</p>
+                                    <p><a href="https://twitter.com/destinydaily7" target="_blank" class="button">Alternatively follow us on Twitter and we'll notify you</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
         @if(Model.MaterialExchanges.Any())
         {
             <div class="activity activity--vendor">

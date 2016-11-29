@@ -44,6 +44,9 @@ namespace DestinyDailyDAL
             if (vendorInformation.ErrorCode > 1)
                 return;
 
+            if (date.AddHours(9) < vendorInformation.Response.data.activities.dailychapter.status.startDate)
+                return;
+
             if (vendor == Vendors.All || vendor == Vendors.Vanguard)
             {
                 var bounties = vendorInformation.Response.data.activities.dailychapter.bountyHashes.ToArray();
