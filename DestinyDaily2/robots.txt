@@ -1,2 +1,3 @@
-Sitemap: http://www.destiny-daily.com/sitemap.xml
+Sitemap: https://destiny-daily.avaclanche.uk/sitemap.xml
 User-agent: *
+Disallow: /
