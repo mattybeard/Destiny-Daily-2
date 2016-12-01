@@ -25,11 +25,14 @@
                 </div>
             </div>
         </div>
-        <div class="heading heading--primary">
-            <h1 class="heading__title">Destiny's daily events</h1>
-            <div class="heading__content">
-                <p>A quick glance at today's challenges within Destiny for those who can't play right now.</p>
+        @if (ViewBag.HeaderTitle)
+        {
+            <div class="heading heading--primary">
+                <h1 class="heading__title">@ViewBag.HeaderTitle</h1>
+                <div class="heading__content">
+                    <p>@ViewBag.HeaderContent</p>
+                </div>
             </div>
-        </div>
+        }
     </div>
 </header>
