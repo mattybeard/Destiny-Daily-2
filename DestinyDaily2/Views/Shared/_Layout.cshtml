@@ -1,16 +1,16 @@
 ﻿<!DOCTYPE html>
 <html lang="en" class="no-js" @Html.Raw(ViewBag.HtmlTagOverride)>
-@Html.Partial("Partials/Head")
-<body>
-    <a id="top"><span class="is-vhidden">Top of page</span></a>
-    <div class="a11y-navigation"><a href="#content">Jump to Main content</a><a href="#navigation">Jump to Primary navigation</a></div>
-    @Html.Partial("Partials/Header")
-    <main id="content" role="main">
-        @RenderBody()
-    </main>
-    @Html.Partial("Partials/Footer")
-    <script src="/assets/js/build/index.js?v=1.0.4" async defer></script>
-    <script src="https://pagead2.googlesyndication.com/pub-config/r20160913/ca-pub-5655051109573002.js"></script>
-    @RenderSection("scripts", required: false)
-</body>
+  @Html.Partial("Partials/Head")
+  <body>
+      <a id="top"><span class="is-vhidden">Top of page</span></a>
+      <div class="a11y-navigation"><a href="#content">Jump to Main content</a><a href="#navigation">Jump to Primary navigation</a></div>
+      @Html.Partial("Partials/Header")
+      <main id="content" role="main">
+          @RenderBody()
+      </main>
+      @Html.Partial("Partials/Footer")
+      <script src="/assets/js/build/index.js?v=1.0.4" async defer></script>
+      <script src="https://pagead2.googlesyndication.com/pub-config/r20160913/ca-pub-5655051109573002.js"></script>
+      @RenderSection("scripts", required: false)
+  </body>
 </html>

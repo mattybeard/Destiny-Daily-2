@@ -2,7 +2,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1">
     <meta name="description" content="@ViewBag.MetaDescription">
-    <!--link rel="canonical" href="undefined://destiny-daily.com/index"-->
+    @if (ViewBag.CanonicalUrl)
+    {
+        <link rel="canonical" href="@ViewBag.CanonicalUrl">
+    }
     <title>@ViewBag.MetaTitle</title>
     <!--[if gt IE 8]><!-->
     <link rel="stylesheet" href="/assets/css/index.css?v=1.0.4"><!--<![endif]-->
