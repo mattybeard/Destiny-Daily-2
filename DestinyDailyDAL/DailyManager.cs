@@ -108,6 +108,9 @@ namespace DestinyDailyDAL
             if (vendorInformation.ErrorCode > 1)
                 return;
 
+            if (date.AddHours(9) > vendorInformation.Response.data.activities.dailycrucible.status.expirationDate.Date.AddDays(-1))
+                return;
+
             var dailyHash = vendorInformation.Response.data.activities.dailycrucible.activityTiers[0].activityHash;
             var activity = db.ManifestActivities.FirstOrDefault(m => m.id == dailyHash);
 

@@ -157,7 +157,7 @@ namespace DestinyDailyDAL
             if (vendorInformation.ErrorCode > 1)
                 return;
 
-            if (date <= vendorInformation.Response.data.activities.heroicstrike.status.expirationDate.Date.AddDays(-1))
+            if (date.AddHours(9) < vendorInformation.Response.data.activities.heroicstrike.status.startDate)
                 return;
 
             var activityHash = vendorInformation.Response.data.activities.heroicstrike.activityTiers[0].activityHash;
