@@ -238,7 +238,7 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
         public Item item { get; set; }
         public int vendorItemIndex { get; set; }
         public int itemStatus { get; set; }
-        public List<long> costs { get; set; }
+        //public List<long> costs { get; set; }
         public List<object> failureIndexes { get; set; }
     }
 
@@ -252,7 +252,7 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
         public bool canPlaceOrder { get; set; }
         public List<Order> orders { get; set; }
         public List<TestWeapon> testWeapons { get; set; }
-        public int vendorHash { get; set; }
+        public long vendorHash { get; set; }
     }
 
     public class WeeklyCrucible

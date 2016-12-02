@@ -1,2 +1,2 @@
-Sitemap: https://www.destiny-daily.com/sitemap.xml
+Sitemap: http://www.destiny-daily.com/sitemap.xml
 User-agent: *

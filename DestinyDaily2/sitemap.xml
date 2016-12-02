@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.destiny-daily.com/daily</loc>
+    <loc>http://www.destiny-daily.com/daily</loc>
   </url>
   <url>
-    <loc>https://www.destiny-daily.com/nightfall</loc>
+    <loc>http://www.destiny-daily.com/nightfall</loc>
   </url>
   <url>
-    <loc>https://www.destiny-daily.com/vendors</loc>
+    <loc>http://www.destiny-daily.com/vendors</loc>
   </url>
   <url>
-    <loc>https://www.destiny-daily.com/weekly</loc>
+    <loc>http://www.destiny-daily.com/weekly</loc>
   </url>
 </urlset>
