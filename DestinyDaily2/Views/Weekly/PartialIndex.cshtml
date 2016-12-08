@@ -15,9 +15,72 @@
         </a>
     </div>
     <template class="js-homepage-section-template">
-        <div class="heading">
-            <h1 class="heading__title">This week's events</h1>
-        </div>
+    <div class="heading">
+        <h1 class="heading__title">This week's events</h1>
+    </div>
+        @if (Model.IronBannerBounties.Any())
+        {
+            <!-- Display this section when Iron Banner is active-->
+            <div data-featured='3' class="activity activity--iron-banner activity--featured js-homepage-featured">
+                <a id="iron-banner" class="activity__anchor"></a>
+                <div class="activity__header">
+                    <div class="content-center content-center--gutter">
+                        <div aria-hidden="true" class="activity__icon">
+                            <div class="icon icon--iron-banner"></div>
+                        </div>
+                        <div class="activity__details">
+                            <h2 class="activity__type">Iron Banner</h2>
+                            <p class="activity__name">Control</p>
+                            <p class="activity__level">Limited time event</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="activity__image"></div>
+                <div class="activity__extras">
+                    <div class="content-center content-center--gutter">
+                        <div class="grid grid--gutterless">
+                            <div class="grid__item tablet-one-half">
+                                <div class="activity__extra">
+                                    <h3 class="activity__subheading">Event Rewards</h3>
+                                    <div class="grid grid--gutterless">
+                                        @foreach (var reward in Model.IronBannerRewards)
+                                        {
+                                            <div class="grid__item fablet-one-half">
+                                                <div class="gear">
+                                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{reward.inventoryitem.icon}")" width="96" height="96" alt="@($"{reward.inventoryitem.name} preview")" class="gear__image"/>
+                                                    <div class="gear__details">
+                                                        <div class="gear__title">@reward.inventoryitem.name</div>
+                                                        <div class="gear__description">@reward.inventoryitem.type</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid__item tablet-one-half">
+                                <div class="activity__extra">
+                                    <h3 class="activity__subheading">Bounties</h3>
+                                    <ul>
+                                        @foreach (var bounty in Model.IronBannerBounties)
+                                        {
+                                            <li class="bounty">
+                                                <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Bounties icon" class="bounty__image"/>
+                                                <div class="bounty__details">
+                                                    <div class="bounty__title">@bounty.InventoryItem.name</div>
+                                                    <div class="bounty__description">@bounty.InventoryItem.desc</div>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
         @if (Model.RaidChallenges != null && Model.RaidChallenges.Any())
         {
             var kingsFallChallenge = Model.RaidChallenges.FirstOrDefault(c => c.Challenge.raidname == "Kings Fall");

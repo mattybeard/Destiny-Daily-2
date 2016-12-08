@@ -14,5 +14,7 @@ namespace DestinyDaily2.Models
         public List<RaidChallengeDay> RaidChallenges { get; set; }
         public DetailedChallengeOfElders EldersChallenge { get; set; }
         public DetailedWeeklyCrucible WeeklyCrucible { get; set; }
+        public List<BountyDay> IronBannerBounties { get; set; }
+        public List<RewardsDay> IronBannerRewards { get; set; }
     }
 }

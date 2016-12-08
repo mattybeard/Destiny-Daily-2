@@ -14,16 +14,18 @@ namespace DestinyDaily2.Controllers
     {
         private XurManager xurManager { get; }
         private TrialsManager trialsManager { get; }
+        private BountyManager bountyManager { get; }
 
         public HomeController()
         {
             xurManager = new XurManager();
             trialsManager = new TrialsManager();
+            bountyManager = new BountyManager(); 
         }
 
         public ActionResult Index()
         {
-            var active = xurManager.IsActive() || trialsManager.GetCurrentMap() != null;
+            var active = xurManager.IsActive() || trialsManager.GetCurrentMap() != null || bountyManager.HasIronBannerBounties() ;
             
             return View(active);
         }
