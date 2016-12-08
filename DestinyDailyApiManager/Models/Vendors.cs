@@ -18,6 +18,7 @@ namespace DestinyDailyApiManager.Models
         Variks,
         Trials,
         Shiro,
-        Tyra
+        Tyra,
+        IronBanner
     }
 }

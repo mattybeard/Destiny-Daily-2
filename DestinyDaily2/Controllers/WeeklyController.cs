@@ -12,6 +12,7 @@ namespace DestinyDaily2.Controllers
     {
         private VendorManager vendorManager { get; }
         private PrisonManager prisonManager { get; }
+        private BountyManager bountyManager { get; }
         private DateTime TodayDate => DateTime.Now.AddHours(-9.0).AddMinutes(2);
 
         private DateTime StandardDate
@@ -35,6 +36,7 @@ namespace DestinyDaily2.Controllers
             NfManager = new NightFallManager();
             vendorManager = new VendorManager();
             prisonManager = new PrisonManager();
+            bountyManager = new BountyManager();
         }
         
         public ActionResult Index(bool noLayout = false)
@@ -43,6 +45,8 @@ namespace DestinyDaily2.Controllers
             var raidChallenges = vendorManager.GetRaidChallenges(StandardDate);
             var challengeElders = prisonManager.GetDetailedChallenge(StandardDate);
             var weeklyCrucible = NfManager.GetDetailedCrucibleWeekly(StandardDate);
+            var ironBannerBounties = bountyManager.GetBounties(StandardDate, 1, "IronBanner");
+            var ironBannerRewards = bountyManager.GetRewards(StandardDate, 1, "IronBanner");
 
             var model = new WeeklyDataModel()
             {
@@ -50,7 +54,9 @@ namespace DestinyDaily2.Controllers
                 ThisWeekly = weekly,
                 RaidChallenges = raidChallenges,
                 EldersChallenge = challengeElders,
-                WeeklyCrucible = weeklyCrucible
+                WeeklyCrucible = weeklyCrucible,
+                IronBannerBounties = ironBannerBounties,
+                IronBannerRewards = ironBannerRewards
             };
 
             if (noLayout)

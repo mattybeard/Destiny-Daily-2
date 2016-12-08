@@ -10,7 +10,21 @@ namespace DestinyDailyDAL
     public class BountyManager
     {
         private DestinySqlEntities db { get; }
-       
+
+        private DateTime ThisWeeklyDate
+        {
+            get
+            {
+                var today = DateTime.Now.AddHours(-9.0).AddMinutes(2);
+                while (today.DayOfWeek != DayOfWeek.Tuesday)
+                {
+                    today = today.AddDays(-1);
+                }
+
+                return today;
+            }
+        }
+
         public BountyManager()
         {
             db = new DestinySqlEntities();
@@ -64,6 +78,22 @@ namespace DestinyDailyDAL
                 var bounties = vendorInformation.Response.data.activities.elderchallenge.bountyHashes.ToArray();
                 CreateVendorBounties(bounties, date, Vendors.Variks);
             }
+
+            if ((vendor == Vendors.All || vendor == Vendors.IronBanner) && IsResetDate(date))
+            {
+                var oldEndpoint = DestinyDailyApiManager.BungieApi.GetVendorMetaData("2610555297");
+                if (oldEndpoint != null)
+                {
+                    var bountiesCategory = oldEndpoint.Response.data.vendor.saleItemCategories.FirstOrDefault(c => c.categoryTitle == "Available Bounties");
+
+                    if (bountiesCategory != null)
+                    {
+                        var bounties = bountiesCategory.saleItems.Select(c => c.item.itemHash).ToArray();
+                        CreateVendorBounties(bounties, date, Vendors.IronBanner);
+                    }
+                }
+            }
+
 
             if (vendor == Vendors.All || vendor == Vendors.Trials)
             {
@@ -142,6 +172,13 @@ namespace DestinyDailyDAL
         public IEnumerable<InventoryItem> GetPossibleBounties()
         {
             return db.InventoryItems.Where(i => i.type.Contains("bounty"));
+        }
+
+        public bool HasIronBannerBounties()
+        {
+            var ibBounties = GetBounties(ThisWeeklyDate, 1, "IronBanner");
+
+            return ibBounties.Any();
         }
     }
 }
