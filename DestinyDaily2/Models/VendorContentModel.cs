@@ -8,6 +8,7 @@ namespace DestinyDaily2.Models
 {
     public class VendorContentModel
     {
+        public DateTime ExpiryTime { get; set; }
         public List<XurDay> XurSales { get; set; }
         public bool XurInTower { get; set; }
         public XurLocationDay XurLocation { get; set; }
@@ -16,5 +17,7 @@ namespace DestinyDaily2.Models
         public TrialsMapDay TrialsDetails { get; set; }
         public List<BountyDay> IronLordBounties { get; set; }
         public List<RewardsDay> IronLordArtifacts { get; set; }
+        public List<BountyDay> SrlBounties { get; set; }
+        public List<RewardsDay> SrlRewards { get; set; }
     }
 }

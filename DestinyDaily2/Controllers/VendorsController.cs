@@ -14,6 +14,23 @@ namespace DestinyDaily2.Controllers
         private XurManager xurManager { get; }    
         private TrialsManager trialsManager { get; }
         private BountyManager bountyManager { get; }
+        private static VendorContentModel cache { get; set; }
+
+        private bool CacheExpired
+        {
+            get
+            {
+                if (cache == null)
+                    return true;
+
+                if (cache.ExpiryTime < DateTime.Now)
+                    return true;
+
+                return false;
+            }
+        }
+
+
         private DateTime StandardDate
         {
             get
@@ -38,24 +55,31 @@ namespace DestinyDaily2.Controllers
 
         public ActionResult Index(bool noLayout = false)
         {
-            var model = new VendorContentModel()
+            if (CacheExpired)
             {
-                XurInTower = xurManager.InTower,
-                XurSales = xurManager.GetCurrentItems(),
-                XurLocation = xurManager.GetCurrentLocation(),
-                MaterialExchanges = vendorManager.GetMaterialExchange(StandardDate),
-                MaterialDetail = vendorManager.GetMaterialDetails(),
-                TrialsDetails = trialsManager.GetCurrentMap(),
-                IronLordBounties = bountyManager.GetBounties(StandardDate,1,"Shiro"),
-                IronLordArtifacts = bountyManager.GetRewards(StandardDate, 1, "Tyra")
-            };
+                cache = new VendorContentModel()
+                {
+                    XurInTower = xurManager.InTower,
+                    XurSales = xurManager.GetCurrentItems(),
+                    XurLocation = xurManager.GetCurrentLocation(),
+                    MaterialExchanges = vendorManager.GetMaterialExchange(StandardDate),
+                    MaterialDetail = vendorManager.GetMaterialDetails(),
+                    TrialsDetails = trialsManager.GetCurrentMap(),
+                    IronLordBounties = bountyManager.GetBounties(StandardDate, 1, "Shiro"),
+                    IronLordArtifacts = bountyManager.GetRewards(StandardDate, 1, "Tyra"),
+                    SrlBounties = bountyManager.GetBounties(StandardDate, 1, "SRL"),
+                    SrlRewards = bountyManager.GetRewards(StandardDate, 1, "SRL"),
+
+                    ExpiryTime = DateTime.Now.AddMinutes(30)
+                };
+            }
 
             if (noLayout)
-                return View("PartialIndex", model);
+                return View("PartialIndex", cache);
             else
             {
                 ViewBag.HtmlTagOverride = @"data-redirect=""/#vendors""";
-                return View("Index", model);
+                return View("Index", cache);
             }
         }
     }

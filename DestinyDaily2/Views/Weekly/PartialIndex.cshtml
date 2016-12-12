@@ -72,61 +72,64 @@
                 </div>
             </div>
         }
-        <div class="activity activity--weekly-strike">
-            <div class="activity__header">
-                <div class="content-center content-center--gutter">
-                    <div aria-hidden="true" class="activity__icon">
-                        <div class="icon icon--weekly-strike"></div>
-                    </div>
-                    <div class="activity__details">
-                        <h2 class="activity__type">Weekly Strike playlist</h2>
-                        <p class="activity__name">SIVA Crisis Heroic</p>
-                    </div>
-                </div>
-            </div>
-            <div class="activity__image"></div>
-            <div class="activity__extras">
-                <div class="content-center content-center--gutter">
-                    <div class="grid grid--gutterless">
-                        <div class="grid__item tablet-one-half">
-                            <div class="activity__extra">
-                                <h3 class="activity__subheading is-vhidden">Modifiers</h3>
-                                <ul>
-                                    @foreach (var missionMod in Model.ThisWeekly.Modifiers)
-                                    {
-                                        <li title="@missionMod.Modifier.name" class="skull">
-                                            <div class="skull__icon">
-                                                <div aria-hidden="true" class="@($"icon icon--skull icon--skull--{missionMod.Modifier.name.Replace(" ","-").ToLower()}")"></div>
-                                            </div>
-                                            <div class="skull__details">
-                                                <div class="skull__title">@missionMod.Modifier.name</div>
-                                                <div class="skull__description">@missionMod.Modifier.description</div>
-                                            </div>
-                                        </li>
-                                    }
-                                </ul>
-                            </div>
+        @if (Model.ThisWeekly != null)
+        {
+            <div class="activity activity--weekly-strike">
+                <div class="activity__header">
+                    <div class="content-center content-center--gutter">
+                        <div aria-hidden="true" class="activity__icon">
+                            <div class="icon icon--weekly-strike"></div>
                         </div>
-                        <div class="grid__item tablet-one-half">
-                            <div class="activity__extra">
-                                <h3 class="activity__subheading">Rewards</h3>
-                                <ul>
-                                    @foreach (var missionReward in Model.ThisWeekly.Rewards.Where(c => c.InventoryItem.name != "(Weekly Bonus Remaining: 3)"))
-                                    {
-                                        <li title="@missionReward.InventoryItem.name" class="reward">
-                                            <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net{missionReward.InventoryItem.icon}")" alt="Reward Icon" class="reward__image" />
-                                            <div class="reward__details">
-                                                <div class="reward__title">@missionReward.InventoryItem.name</div>
-                                            </div>
-                                        </li>
-                                    }
-                                </ul>
-                            </div>
+                        <div class="activity__details">
+                            <h2 class="activity__type">Weekly Strike playlist</h2>
+                            <p class="activity__name">SIVA Crisis Heroic</p>
                         </div>
                     </div>
                 </div>
+                <div class="activity__image"></div>
+                <div class="activity__extras">
+                    <div class="content-center content-center--gutter">
+                        <div class="grid grid--gutterless">
+                            <div class="grid__item tablet-one-half">
+                                <div class="activity__extra">
+                                    <h3 class="activity__subheading is-vhidden">Modifiers</h3>
+                                    <ul>
+                                        @foreach (var missionMod in Model.ThisWeekly.Modifiers)
+                                        {
+                                            <li title="@missionMod.Modifier.name" class="skull">
+                                                <div class="skull__icon">
+                                                    <div aria-hidden="true" class="@($"icon icon--skull icon--skull--{missionMod.Modifier.name.Replace(" ", "-").ToLower()}")"></div>
+                                                </div>
+                                                <div class="skull__details">
+                                                    <div class="skull__title">@missionMod.Modifier.name</div>
+                                                    <div class="skull__description">@missionMod.Modifier.description</div>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="grid__item tablet-one-half">
+                                <div class="activity__extra">
+                                    <h3 class="activity__subheading">Rewards</h3>
+                                    <ul>
+                                        @foreach (var missionReward in Model.ThisWeekly.Rewards.Where(c => c.InventoryItem.name != "(Weekly Bonus Remaining: 3)"))
+                                        {
+                                            <li title="@missionReward.InventoryItem.name" class="reward">
+                                                <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net{missionReward.InventoryItem.icon}")" alt="Reward Icon" class="reward__image"/>
+                                                <div class="reward__details">
+                                                    <div class="reward__title">@missionReward.InventoryItem.name</div>
+                                                </div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        }
         @if (Model.WeeklyCrucible != null)
         {
             <div class="activity activity--weekly-crucible">
