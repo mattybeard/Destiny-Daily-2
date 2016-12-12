@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Configuration;
 using System.Web.Mvc;
@@ -21,7 +22,7 @@ namespace DestinyDaily2.Controllers
         public ActionResult Index(bool noLayout = false)
         {
             var daily = DailyManager.GetDaily(StandardDate);
-            var dailyStructure = new HeroicDailyModel() {DailyMission = daily};
+            var dailyStructure = new HeroicDailyModel() {DailyMission = daily, DailyBounties = new List<BountyDay>() };
             if (daily != null)
             {
                 dailyStructure.DailyModifiers = DailyManager.GetModifiers(daily.missionid);
