@@ -4,7 +4,8 @@
         <div class="content-center content-center--gutter">
             <div class="grid grid--gutterless">
                 <div class="grid__item main-header__logo">
-                    <h1><a href="/" class="site-title">Destiny Daily</a></h1>
+                    <h1><a href="/" class="site-title">Destiny Daily</a>
+                    </h1>
                 </div>
                 <div class="grid__item main-header__navigation">
                     <input id="toggle" type="checkbox" class="mobile-navigation-toggle">
@@ -25,7 +26,7 @@
                 </div>
             </div>
         </div>
-        @if (ViewBag.HeaderTitle)
+        @if (ViewBag.HeaderTitle != null)
         {
             <div class="heading heading--primary">
                 <h1 class="heading__title">@ViewBag.HeaderTitle</h1>

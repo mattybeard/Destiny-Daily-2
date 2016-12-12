@@ -2,7 +2,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1">
     <meta name="description" content="@ViewBag.MetaDescription">
-    @if (ViewBag.CanonicalUrl)
+    @if (ViewBag.CanonicalUrl != null)
     {
         <link rel="canonical" href="@ViewBag.CanonicalUrl">
     }
@@ -15,7 +15,7 @@
     <!--[if lte IE 8]>
     <script src="/assets/js/lib/vendor/html5shiv.js?v=1.0.4"></script><![endif]-->
     <link rel="icon" type="image/png" href="/assets/img/meta/favicon-32x32.png?v=1.0.5" sizes="32x32">
-    <!--[if IE]><link rel='shortcut icon' type='image/x-icon' href=versionPath('/favicon.ico'))<![endif]-->
+    <!--[if IE]><link rel='shortcut icon' type='image/x-icon' href=versionPath('/favicon.ico')><![endif]-->
     <link rel="icon" type="image/png" href="/assets/img/meta/android-chrome-192x192.png?v=1.0.5" sizes="192x192">
     <meta name="theme-color" content="#7d6d70">
     <link rel="manifest" href="/manifest.json">
