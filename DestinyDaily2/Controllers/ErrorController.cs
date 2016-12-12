@@ -11,7 +11,7 @@ namespace DestinyDaily2.Controllers
         // GET: Error
         public ActionResult Index()
         {
-            return View("Error");
+           return View("Error");
         }
     }
 }

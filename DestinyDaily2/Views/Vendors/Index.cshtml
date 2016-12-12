@@ -2,6 +2,12 @@
 @using InventoryItem = DestinyDailyDAL.InventoryItem
 @model DestinyDaily2.Models.VendorContentModel
 
+@{
+    ViewBag.MetaTitle = "Vendors | Destiny Daily";
+    ViewBag.MetaDescription = "A quick glance at what Destiny's vendors have to offer for those who can't play right now";
+    ViewBag.CanonicalUrl = "http://www.destiny-daily.com/vendors";
+}
+
 @functions {
 
     public static string DisplayIcon(string vendor, List<MaterialExchange> exchanges, List<InventoryItem> details)
