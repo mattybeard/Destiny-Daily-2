@@ -10,5 +10,6 @@ namespace DestinyDaily2.Models
     {
         public DateTime ThisDate { get; set; }
         public Nightfall ThisNightfall { get; set; }
+        public DateTime ExpiryTime { get; set; }
     }
 }

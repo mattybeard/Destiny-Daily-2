@@ -17,5 +17,6 @@ namespace DestinyDaily2.Models
         public CrucibleDailyDay DailyCrucible { get; set; }
         public List<ManifestRewardModel> DailyCrucibleRewards { get; set; }
         public List<BountyDay> DailyBounties { get; set; }
+        public DateTime ExpiryTime { get; set; }
     }
 }

@@ -11,6 +11,8 @@ namespace DestinyDailyDAL
     {
         private DestinySqlEntities db { get; }
 
+        private DateTime ThisDate => DateTime.Now.AddHours(-9.0).AddMinutes(2);
+
         private DateTime ThisWeeklyDate
         {
             get
@@ -69,14 +71,45 @@ namespace DestinyDailyDAL
 
             if (vendor == Vendors.All || vendor == Vendors.Crucible)
             {
-                var bounties = vendorInformation.Response.data.activities.dailycrucible.bountyHashes.ToArray();
+                var bounties = vendorInformation.Response.data.activities.dailycrucible.bountyHashes.Where(bh => !bh.Equals(1983809889)).ToArray();
                 CreateVendorBounties(bounties, date, Vendors.Crucible);
+            }
+
+
+            if (vendor == Vendors.All || vendor == Vendors.Srl)
+            {
+                var oldEndpoint = DestinyDailyApiManager.BungieApi.GetVendorMetaData("459708109");
+                if (oldEndpoint != null)
+                {
+                    var bountiesCategory = oldEndpoint.Response.data.vendor.saleItemCategories.FirstOrDefault(c => c.categoryTitle == "Available Bounties");
+
+                    if (bountiesCategory != null)
+                    {
+                        var bounties = bountiesCategory.saleItems.Select(c => c.item.itemHash).ToArray();
+                        CreateVendorBounties(bounties, date, Vendors.Srl);
+                    }
+                }
             }
 
             if ((vendor == Vendors.All || vendor == Vendors.Variks ) && IsResetDate(date))
             {
                 var bounties = vendorInformation.Response.data.activities.elderchallenge.bountyHashes.ToArray();
                 CreateVendorBounties(bounties, date, Vendors.Variks);
+            }
+
+            if ((vendor == Vendors.All || vendor == Vendors.Zavala) && IsResetDate(date))
+            {
+                var oldEndpoint = DestinyDailyApiManager.BungieApi.GetVendorMetaData("1990950");
+                if (oldEndpoint != null)
+                {
+                    var bountiesCategory = oldEndpoint.Response.data.vendor.saleItemCategories.FirstOrDefault(c => c.categoryTitle == "Available Bounties");
+
+                    if (bountiesCategory != null)
+                    {
+                        var bounties = bountiesCategory.saleItems.Select(c => c.item.itemHash).ToArray();
+                        CreateVendorBounties(bounties, date, Vendors.Zavala);
+                    }
+                }
             }
 
             if ((vendor == Vendors.All || vendor == Vendors.IronBanner) && IsResetDate(date))
@@ -174,7 +207,7 @@ namespace DestinyDailyDAL
             return db.InventoryItems.Where(i => i.type.Contains("bounty"));
         }
 
-        public bool HasIronBannerBounties()
+        public bool HasLimitedEventBounties()
         {
             var ibBounties = GetBounties(ThisWeeklyDate, 1, "IronBanner");
 

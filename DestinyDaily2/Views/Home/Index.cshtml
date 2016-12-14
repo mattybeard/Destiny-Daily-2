@@ -1,12 +1,8 @@
-﻿@model bool
-@{
+﻿@{
     ViewBag.Title = "";
 }
 
-@if (Model)
-{
-    @Html.Action("Index", "FeaturedEvents", new { noLayout = true })
-}
+@Html.Action("Index", "FeaturedEvents", new { noLayout = true })
 @Html.Action("Index", "Daily", new { noLayout = true })
 @Html.Action("Index", "NightFall", new { noLayout = true })
 @Html.Action("Index", "Weekly", new { noLayout = true })
