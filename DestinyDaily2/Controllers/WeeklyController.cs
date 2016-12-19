@@ -14,6 +14,23 @@ namespace DestinyDaily2.Controllers
         private PrisonManager prisonManager { get; }
         private BountyManager bountyManager { get; }
         private DateTime TodayDate => DateTime.Now.AddHours(-9.0).AddMinutes(2);
+        private WeeklyDataModel cache { get; set; }
+        private bool CacheExpired
+        {
+            get
+            {
+                if (cache == null)
+                    return true;
+
+                if (cache.ExpiryTime < DateTime.Now)
+                    return true;
+
+                if (DateTime.Now.Hour == 9 && cache.ExpiryTime.Hour == 9)
+                    return true;
+
+                return false;
+            }
+        }
 
         private DateTime StandardDate
         {
@@ -41,30 +58,36 @@ namespace DestinyDaily2.Controllers
         
         public ActionResult Index(bool noLayout = false)
         {
-            var weekly = NfManager.GetWeekly(StandardDate);
-            var raidChallenges = vendorManager.GetRaidChallenges(StandardDate);
-            var challengeElders = prisonManager.GetDetailedChallenge(StandardDate);
-            var weeklyCrucible = NfManager.GetDetailedCrucibleWeekly(StandardDate);
-            var ironBannerBounties = bountyManager.GetBounties(StandardDate, 1, "IronBanner");
-            var ironBannerRewards = bountyManager.GetRewards(StandardDate, 1, "IronBanner");
-
-            var model = new WeeklyDataModel()
+            if (CacheExpired)
             {
-                ThisDate = StandardDate,
-                ThisWeekly = weekly,
-                RaidChallenges = raidChallenges,
-                EldersChallenge = challengeElders,
-                WeeklyCrucible = weeklyCrucible,
-                IronBannerBounties = ironBannerBounties,
-                IronBannerRewards = ironBannerRewards
-            };
+                var weekly = NfManager.GetWeekly(StandardDate);
+                var weeklyBounties = bountyManager.GetBounties(StandardDate, 1, "Zavala");
+                var raidChallenges = vendorManager.GetRaidChallenges(StandardDate);
+                var challengeElders = prisonManager.GetDetailedChallenge(StandardDate);
+                var weeklyCrucible = NfManager.GetDetailedCrucibleWeekly(StandardDate);
+                var ironBannerBounties = bountyManager.GetBounties(StandardDate, 1, "IronBanner");
+                var ironBannerRewards = bountyManager.GetRewards(StandardDate, 1, "IronBanner");
+
+                cache = new WeeklyDataModel()
+                {
+                    ThisDate = StandardDate,
+                    ThisWeekly = weekly,
+                    StrikeBounties = weeklyBounties,
+                    RaidChallenges = raidChallenges,
+                    EldersChallenge = challengeElders,
+                    WeeklyCrucible = weeklyCrucible,
+                    IronBannerBounties = ironBannerBounties,
+                    IronBannerRewards = ironBannerRewards,
+                    ExpiryTime = DateTime.Now.AddHours(1)
+                };
+            }
 
             if (noLayout)
-                return View("PartialIndex", model);
+                return View("PartialIndex", cache);
             else
             {
                 ViewBag.HtmlTagOverride = @"data-redirect=""/#weekly""";
-                return View("Index", model);
+                return View("Index", cache);
             }
         }
     }

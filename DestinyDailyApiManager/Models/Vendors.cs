@@ -19,6 +19,8 @@ namespace DestinyDailyApiManager.Models
         Trials,
         Shiro,
         Tyra,
-        IronBanner
+        IronBanner,
+        Zavala,
+        Srl
     }
 }

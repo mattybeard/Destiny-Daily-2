@@ -15,7 +15,6 @@ namespace DestinyDaily2.Controllers
         private TrialsManager trialsManager { get; }
         private BountyManager bountyManager { get; }
         private static VendorContentModel cache { get; set; }
-
         private bool CacheExpired
         {
             get
@@ -26,10 +25,13 @@ namespace DestinyDaily2.Controllers
                 if (cache.ExpiryTime < DateTime.Now)
                     return true;
 
+                if (DateTime.Now.Hour == 9 && cache.ExpiryTime.Hour == 9)
+                    return true;
+
                 return false;
             }
         }
-
+        private DateTime TodayDate => DateTime.Now.AddHours(-9.0).AddMinutes(2);
 
         private DateTime StandardDate
         {
@@ -67,8 +69,8 @@ namespace DestinyDaily2.Controllers
                     TrialsDetails = trialsManager.GetCurrentMap(),
                     IronLordBounties = bountyManager.GetBounties(StandardDate, 1, "Shiro"),
                     IronLordArtifacts = bountyManager.GetRewards(StandardDate, 1, "Tyra"),
-                    SrlBounties = bountyManager.GetBounties(StandardDate, 1, "SRL"),
-                    SrlRewards = bountyManager.GetRewards(StandardDate, 1, "SRL"),
+                    SrlBounties = bountyManager.GetBounties(TodayDate, 1, "Srl"),
+                    SrlRewards = bountyManager.GetRewards(new DateTime(2016,12,13), 1, "Srl"),
 
                     ExpiryTime = DateTime.Now.AddMinutes(30)
                 };

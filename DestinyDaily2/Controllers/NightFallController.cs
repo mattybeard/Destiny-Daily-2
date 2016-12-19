@@ -11,7 +11,23 @@ namespace DestinyDaily2.Controllers
     public class NightFallController : Controller
     {
         public NightFallManager NfManager { get; set; }
+        private NightfallDataModel cache { get; set; }
+        private bool CacheExpired
+        {
+            get
+            {
+                if (cache == null)
+                    return true;
 
+                if (cache.ExpiryTime < DateTime.Now)
+                    return true;
+
+                if (DateTime.Now.Hour == 9 && cache.ExpiryTime.Hour == 9)
+                    return true;
+
+                return false;
+            }
+        }
         private DateTime StandardDate
         {
             get
@@ -33,21 +49,26 @@ namespace DestinyDaily2.Controllers
         
         public ActionResult Index(bool noLayout = false)
         {
-            var nf = NfManager.GetNightFall(StandardDate);
-            var weekly = NfManager.GetWeekly(StandardDate);
-
-            var model = new NightfallDataModel()
+            if (CacheExpired)
             {
-                ThisDate = StandardDate,
-                ThisNightfall = nf
-            };
+
+                var nf = NfManager.GetNightFall(StandardDate);
+                var weekly = NfManager.GetWeekly(StandardDate);
+
+                cache = new NightfallDataModel()
+                {
+                    ThisDate = StandardDate,
+                    ThisNightfall = nf,
+                    ExpiryTime = DateTime.Now.AddHours(1)
+                };
+            }
 
             if (noLayout)
-                return View("PartialIndex", model);
+                return View("PartialIndex", cache);
             else
             {
                 ViewBag.HtmlTagOverride = @"data-redirect=""/#nightfall""";
-                return View("Index", model);
+                return View("Index", cache);
             }
         }
     }
