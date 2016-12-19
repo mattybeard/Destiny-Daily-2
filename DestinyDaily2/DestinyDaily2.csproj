@@ -319,6 +319,7 @@
     <Content Include="Views\Shared\Partials\Footer.cshtml" />
     <Content Include="Views\Shared\Partials\BackToTop.cshtml" />
     <Content Include="Views\Shared\Partials\GoogleAd.cshtml" />
+    <Content Include="Views\Shared\Partials\Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,39 @@
+<header role="banner" class="main-header">
+    <div class="main-header__background"></div>
+    <div class="main-header__container">
+        <div class="content-center content-center--gutter">
+            <div class="grid grid--gutterless">
+                <div class="grid__item main-header__logo">
+                    <h1><a href="/" class="site-title">Destiny Daily</a>
+                    </h1>
+                </div>
+                <div class="grid__item main-header__navigation">
+                    <input id="toggle" type="checkbox" class="mobile-navigation-toggle">
+                    <label for="toggle" class="mobile-navigation-button">Menu</label>
+                    <div id="navigation" role="navigation" aria-label="Primary navigation" class="main-navigation">
+                        <div class="content-center">
+                            <nav>
+                                <h2 class="is-vhidden">Primary navigation</h2>
+                                <ul>
+                                    <li><a href="@Url.Action("Index", "Daily")" data-scroll="daily">Daily</a></li>
+                                    <li><a href="@Url.Action("Index", "NightFall")" data-scroll="nightfall">Nightfall</a></li>
+                                    <li><a href="@Url.Action("Index", "Weekly")" data-scroll="weekly">Weekly</a></li>
+                                    <li><a href="@Url.Action("Index", "Vendors")" data-scroll="vendors">Vendors</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (ViewBag.HeaderTitle != null)
+        {
+            <div class="heading heading--primary">
+                <h1 class="heading__title">@ViewBag.HeaderTitle</h1>
+                <div class="heading__content">
+                    <p>@ViewBag.HeaderContent</p>
+                </div>
+            </div>
+        }
+    </div>
+</header>
