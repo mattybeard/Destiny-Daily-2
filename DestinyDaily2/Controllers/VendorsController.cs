@@ -72,7 +72,8 @@ namespace DestinyDaily2.Controllers
                     SrlBounties = bountyManager.GetBounties(TodayDate, 1, "Srl"),
                     SrlRewards = bountyManager.GetRewards(new DateTime(2016,12,13), 1, "Srl"),
 
-                    ExpiryTime = DateTime.Now.AddMinutes(30)
+                    ExpiryTime = DateTime.Now.AddMinutes(30),
+                    StartTime = DateTime.Now
                 };
             }
 

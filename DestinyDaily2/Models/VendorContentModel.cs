@@ -19,5 +19,6 @@ namespace DestinyDaily2.Models
         public List<RewardsDay> IronLordArtifacts { get; set; }
         public List<BountyDay> SrlBounties { get; set; }
         public List<RewardsDay> SrlRewards { get; set; }
+        public DateTime StartTime { get; set; }
     }
 }

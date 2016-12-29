@@ -11,7 +11,7 @@ namespace DestinyDaily2.Controllers
     public class NightFallController : Controller
     {
         public NightFallManager NfManager { get; set; }
-        private NightfallDataModel cache { get; set; }
+        private static NightfallDataModel cache { get; set; }
         private bool CacheExpired
         {
             get
@@ -59,7 +59,8 @@ namespace DestinyDaily2.Controllers
                 {
                     ThisDate = StandardDate,
                     ThisNightfall = nf,
-                    ExpiryTime = DateTime.Now.AddHours(1)
+                    ExpiryTime = DateTime.Now.AddHours(1),
+                    StartTime = DateTime.Now
                 };
             }
 

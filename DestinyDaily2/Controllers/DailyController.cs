@@ -13,7 +13,7 @@ namespace DestinyDaily2.Controllers
         private DailyManager DailyManager { get; }
         private BountyManager BountyManager { get; }
         private DateTime StandardDate => DateTime.Now.AddHours(-9.0).AddMinutes(2);
-        private HeroicDailyModel cache { get; set; }
+        private static HeroicDailyModel cache { get; set; }
         private bool CacheExpired
         {
             get
@@ -61,6 +61,7 @@ namespace DestinyDaily2.Controllers
 
                 cache.DisplayDate = StandardDate;
                 cache.ExpiryTime = DateTime.Now.AddHours(1);
+                cache.StartTime = DateTime.Now;
             }
 
             if (noLayout)

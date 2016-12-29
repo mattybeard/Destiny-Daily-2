@@ -19,6 +19,6 @@ namespace DestinyDaily2.Models
         public List<BountyDay> IronBannerBounties { get; set; }
         public List<RewardsDay> IronBannerRewards { get; set; }
         public DateTime ExpiryTime { get; set; }
-        
+        public DateTime StartTime { get; set; }
     }
 }

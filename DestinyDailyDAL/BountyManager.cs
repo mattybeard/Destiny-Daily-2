@@ -71,7 +71,7 @@ namespace DestinyDailyDAL
 
             if (vendor == Vendors.All || vendor == Vendors.Crucible)
             {
-                var bounties = vendorInformation.Response.data.activities.dailycrucible.bountyHashes.Where(bh => !bh.Equals(1983809889)).ToArray();
+                var bounties = vendorInformation.Response.data.activities.dailycrucible.bountyHashes.Where(bh => !bh.Equals(1983809889) && !bh.Equals(2751498155)).ToArray();
                 CreateVendorBounties(bounties, date, Vendors.Crucible);
             }
 
