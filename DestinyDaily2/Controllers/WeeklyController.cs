@@ -14,7 +14,7 @@ namespace DestinyDaily2.Controllers
         private PrisonManager prisonManager { get; }
         private BountyManager bountyManager { get; }
         private DateTime TodayDate => DateTime.Now.AddHours(-9.0).AddMinutes(2);
-        private WeeklyDataModel cache { get; set; }
+        private static WeeklyDataModel cache { get; set; }
         private bool CacheExpired
         {
             get
@@ -78,7 +78,8 @@ namespace DestinyDaily2.Controllers
                     WeeklyCrucible = weeklyCrucible,
                     IronBannerBounties = ironBannerBounties,
                     IronBannerRewards = ironBannerRewards,
-                    ExpiryTime = DateTime.Now.AddHours(1)
+                    ExpiryTime = DateTime.Now.AddHours(1),
+                    StartTime = DateTime.Now
                 };
             }
 
