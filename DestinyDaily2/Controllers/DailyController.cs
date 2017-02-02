@@ -46,8 +46,7 @@ namespace DestinyDaily2.Controllers
                 {
                     cache.DailyModifiers = DailyManager.GetModifiers(daily.missionid);
                     cache.DailyRewards = DailyManager.GetRewards(daily.missionid);
-                }
-                ;
+                }                
 
                 var dailyCruc = DailyManager.GetDailyCrucible(StandardDate);
                 if (dailyCruc != null)
