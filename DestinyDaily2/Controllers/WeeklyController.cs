@@ -60,8 +60,9 @@ namespace DestinyDaily2.Controllers
         {
             if (CacheExpired)
             {
+                var featuredRaid = vendorManager.GetFeaturedRaid(StandardDate);
                 var weekly = NfManager.GetWeekly(StandardDate);
-                var weeklyBounties = bountyManager.GetBounties(StandardDate, 1, "Zavala");
+                var weeklyBounties = bountyManager.GetBounties(TodayDate, 1, "Strike");
                 var raidChallenges = vendorManager.GetRaidChallenges(StandardDate);
                 var challengeElders = prisonManager.GetDetailedChallenge(StandardDate);
                 var weeklyCrucible = NfManager.GetDetailedCrucibleWeekly(StandardDate);
@@ -78,6 +79,7 @@ namespace DestinyDaily2.Controllers
                     WeeklyCrucible = weeklyCrucible,
                     IronBannerBounties = ironBannerBounties,
                     IronBannerRewards = ironBannerRewards,
+                    FeaturedRaid = featuredRaid,
                     ExpiryTime = DateTime.Now.AddHours(1),
                     StartTime = DateTime.Now
                 };

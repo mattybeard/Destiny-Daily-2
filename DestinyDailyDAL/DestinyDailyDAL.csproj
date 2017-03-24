@@ -92,6 +92,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DestinySqlModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="FeaturedRaid.cs">
+      <DependentUpon>DestinySqlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FeaturedRaidChallenge.cs">
+      <DependentUpon>DestinySqlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FeaturedRaidDay.cs">
+      <DependentUpon>DestinySqlModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="HeroicDailyDay.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
     </Compile>

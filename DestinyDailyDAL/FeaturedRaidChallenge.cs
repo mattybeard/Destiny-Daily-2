@@ -12,15 +12,12 @@ namespace DestinyDailyDAL
     using System;
     using System.Collections.Generic;
     
-    public partial class RewardsDay
+    public partial class FeaturedRaidChallenge
     {
         public int id { get; set; }
-        public long itemid { get; set; }
-        public int day { get; set; }
-        public int month { get; set; }
-        public int year { get; set; }
-        public string vendor { get; set; }
+        public int featuredraidid { get; set; }
+        public string name { get; set; }
     
-        public virtual InventoryItem inventoryitem { get; set; }
+        public virtual FeaturedRaid featuredraid { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace DestinyDaily2.Models
     {
         public DateTime ThisDate { get; set; }
         public Nightfall ThisNightfall { get; set; }
+        public List<BountyDay> WeeklyStrikeBounties { get; set; }
         public DateTime ExpiryTime { get; set; }
         public DateTime StartTime { get; set; }
     }

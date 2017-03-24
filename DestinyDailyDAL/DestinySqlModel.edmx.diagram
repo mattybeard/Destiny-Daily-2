@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ea03452e088e4bf8904cd12089414cbf" Name="Diagram1" ZoomLevel="25">
+      <Diagram DiagramId="ea03452e088e4bf8904cd12089414cbf" Name="Diagram1" ZoomLevel="47">
         <EntityTypeShape EntityType="DestinySqlModel.BountyDay" Width="1.5" PointX="1.875" PointY="17" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.ChallengeOfElder" Width="1.5" PointX="2.75" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.ChallengeOfEldersModifier" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
@@ -72,6 +72,11 @@
         <EntityTypeShape EntityType="DestinySqlModel.TrialsMapDay" Width="1.5" PointX="7.375" PointY="3.75" />
         <EntityTypeShape EntityType="DestinySqlModel.RewardsDay" Width="1.5" PointX="6.375" PointY="16.75" />
         <AssociationConnector Association="DestinySqlModel.FK_EewardsDay_ManAct" />
+        <EntityTypeShape EntityType="DestinySqlModel.FeaturedRaid" Width="1.5" PointX="15.375" PointY="1.25" />
+        <EntityTypeShape EntityType="DestinySqlModel.FeaturedRaidDay" Width="1.5" PointX="17.625" PointY="0.875" />
+        <AssociationConnector Association="DestinySqlModel.FK_FeauturedRaidDay_FeatRaid" />
+        <EntityTypeShape EntityType="DestinySqlModel.FeaturedRaidChallenge" Width="1.5" PointX="17.625" PointY="4.25" />
+        <AssociationConnector Association="DestinySqlModel.FK_FeaturedRaidChallenge_RaidChal" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

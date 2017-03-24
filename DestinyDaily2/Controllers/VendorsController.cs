@@ -61,6 +61,8 @@ namespace DestinyDaily2.Controllers
             {
                 cache = new VendorContentModel()
                 {
+                    HideSrl = true,
+
                     XurInTower = xurManager.InTower,
                     XurSales = xurManager.GetCurrentItems(),
                     XurLocation = xurManager.GetCurrentLocation(),

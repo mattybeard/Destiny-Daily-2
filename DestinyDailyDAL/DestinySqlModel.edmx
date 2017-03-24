@@ -80,6 +80,33 @@
           <Property Name="month" Type="int" />
           <Property Name="year" Type="int" />
         </EntityType>
+        <EntityType Name="featuredraid">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="imageurl" Type="varchar" MaxLength="1000" />
+          <Property Name="description" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="featuredraidchallenge">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="featuredraidid" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="featuredraidday">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="featuredraidid" Type="int" Nullable="false" />
+          <Property Name="day" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="heroicdailyday">
           <Key>
             <PropertyRef Name="id" />
@@ -457,6 +484,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_FeaturedRaidChallenge_RaidChal">
+          <End Role="featuredraid" Type="Self.featuredraid" Multiplicity="1" />
+          <End Role="featuredraidchallenge" Type="Self.featuredraidchallenge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="featuredraid">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="featuredraidchallenge">
+              <PropertyRef Name="featuredraidid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeauturedRaidDay_FeatRaid">
+          <End Role="featuredraid" Type="Self.featuredraid" Multiplicity="1" />
+          <End Role="featuredraidday" Type="Self.featuredraidday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="featuredraid">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="featuredraidday">
+              <PropertyRef Name="featuredraidid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_HeroicDaily_ManAct">
           <End Role="manifestactivities" Type="Self.manifestactivities" Multiplicity="0..1" />
           <End Role="heroicdailyday" Type="Self.heroicdailyday" Multiplicity="*" />
@@ -730,6 +781,9 @@
           <EntitySet Name="combatant" EntityType="Self.combatant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="crucibledailyday" EntityType="Self.crucibledailyday" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="crucibleweeklyday" EntityType="Self.crucibleweeklyday" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="featuredraid" EntityType="Self.featuredraid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="featuredraidchallenge" EntityType="Self.featuredraidchallenge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="featuredraidday" EntityType="Self.featuredraidday" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="heroicdailyday" EntityType="Self.heroicdailyday" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="inventoryitem" EntityType="Self.inventoryitem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="manifestactivities" EntityType="Self.manifestactivities" Schema="dbo" store:Type="Tables" />
@@ -799,6 +853,14 @@
           <AssociationSet Name="FK_EewardsDay_ManAct" Association="Self.FK_EewardsDay_ManAct">
             <End Role="inventoryitem" EntitySet="inventoryitem" />
             <End Role="rewardsday" EntitySet="rewardsday" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeaturedRaidChallenge_RaidChal" Association="Self.FK_FeaturedRaidChallenge_RaidChal">
+            <End Role="featuredraid" EntitySet="featuredraid" />
+            <End Role="featuredraidchallenge" EntitySet="featuredraidchallenge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeauturedRaidDay_FeatRaid" Association="Self.FK_FeauturedRaidDay_FeatRaid">
+            <End Role="featuredraid" EntitySet="featuredraid" />
+            <End Role="featuredraidday" EntitySet="featuredraidday" />
           </AssociationSet>
           <AssociationSet Name="FK_HeroicDaily_ManAct" Association="Self.FK_HeroicDaily_ManAct">
             <End Role="manifestactivities" EntitySet="manifestactivities" />
@@ -1360,6 +1422,17 @@
             <End Role="InventoryItem" EntitySet="InventoryItems" />
             <End Role="rewardsday" EntitySet="RewardsDays" />
           </AssociationSet>
+          <EntitySet Name="FeaturedRaids" EntityType="DestinySqlModel.FeaturedRaid" />
+          <EntitySet Name="FeaturedRaidDays" EntityType="DestinySqlModel.FeaturedRaidDay" />
+          <AssociationSet Name="FK_FeauturedRaidDay_FeatRaid" Association="DestinySqlModel.FK_FeauturedRaidDay_FeatRaid">
+            <End Role="featuredraid" EntitySet="FeaturedRaids" />
+            <End Role="featuredraidday" EntitySet="FeaturedRaidDays" />
+          </AssociationSet>
+          <EntitySet Name="FeaturedRaidChallenges" EntityType="DestinySqlModel.FeaturedRaidChallenge" />
+          <AssociationSet Name="FK_FeaturedRaidChallenge_RaidChal" Association="DestinySqlModel.FK_FeaturedRaidChallenge_RaidChal">
+            <End Role="FeaturedRaid" EntitySet="FeaturedRaids" />
+            <End Role="featuredraidchallenge" EntitySet="FeaturedRaidChallenges" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_BountyDay_ManAct">
           <End Type="DestinySqlModel.InventoryItem" Role="InventoryItem" Multiplicity="1" />
@@ -1843,6 +1916,61 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="FeaturedRaid">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="featuredraiddays" Relationship="DestinySqlModel.FK_FeauturedRaidDay_FeatRaid" FromRole="featuredraid" ToRole="featuredraidday" />
+          <NavigationProperty Name="featuredraidchallenges" Relationship="DestinySqlModel.FK_FeaturedRaidChallenge_RaidChal" FromRole="FeaturedRaid" ToRole="featuredraidchallenge" />
+          <Property Name="imageurl" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FeaturedRaidDay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="featuredraidid" Type="Int32" Nullable="false" />
+          <Property Name="day" Type="Int32" Nullable="false" />
+          <Property Name="month" Type="Int32" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="featuredraid" Relationship="DestinySqlModel.FK_FeauturedRaidDay_FeatRaid" FromRole="featuredraidday" ToRole="featuredraid" />
+        </EntityType>
+        <Association Name="FK_FeauturedRaidDay_FeatRaid">
+          <End Type="DestinySqlModel.FeaturedRaid" Role="featuredraid" Multiplicity="1" />
+          <End Type="DestinySqlModel.FeaturedRaidDay" Role="featuredraidday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="featuredraid">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="featuredraidday">
+              <PropertyRef Name="featuredraidid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FeaturedRaidChallenge">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="featuredraidid" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="featuredraid" Relationship="DestinySqlModel.FK_FeaturedRaidChallenge_RaidChal" FromRole="featuredraidchallenge" ToRole="FeaturedRaid" />
+        </EntityType>
+        <Association Name="FK_FeaturedRaidChallenge_RaidChal">
+          <End Type="DestinySqlModel.FeaturedRaid" Role="FeaturedRaid" Multiplicity="1" />
+          <End Type="DestinySqlModel.FeaturedRaidChallenge" Role="featuredraidchallenge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeaturedRaid">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="featuredraidchallenge">
+              <PropertyRef Name="featuredraidid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2199,6 +2327,36 @@
                 <ScalarProperty Name="month" ColumnName="month" />
                 <ScalarProperty Name="day" ColumnName="day" />
                 <ScalarProperty Name="itemid" ColumnName="itemid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeaturedRaids">
+            <EntityTypeMapping TypeName="DestinySqlModel.FeaturedRaid">
+              <MappingFragment StoreEntitySet="featuredraid">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="imageurl" ColumnName="imageurl" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeaturedRaidDays">
+            <EntityTypeMapping TypeName="DestinySqlModel.FeaturedRaidDay">
+              <MappingFragment StoreEntitySet="featuredraidday">
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="featuredraidid" ColumnName="featuredraidid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeaturedRaidChallenges">
+            <EntityTypeMapping TypeName="DestinySqlModel.FeaturedRaidChallenge">
+              <MappingFragment StoreEntitySet="featuredraidchallenge">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="featuredraidid" ColumnName="featuredraidid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

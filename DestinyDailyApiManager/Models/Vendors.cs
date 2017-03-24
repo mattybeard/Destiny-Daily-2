@@ -21,6 +21,7 @@ namespace DestinyDailyApiManager.Models
         Tyra,
         IronBanner,
         Zavala,
-        Srl
+        Srl,
+        Strike
     }
 }

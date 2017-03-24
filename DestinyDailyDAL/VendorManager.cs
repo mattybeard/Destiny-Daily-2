@@ -135,5 +135,39 @@ namespace DestinyDailyDAL
         }
 
 
+        public FeaturedRaidDay GetFeaturedRaid(DateTime standardDate)
+        {
+            var featuredRaid = db.FeaturedRaidDays.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+            if (featuredRaid == null)
+            {
+                CreateFeaturedRaid(standardDate);
+                var updatedRaid = db.FeaturedRaidDays.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+                return updatedRaid;
+            }
+
+            return featuredRaid;
+
+
+        }
+
+        private void CreateFeaturedRaid(DateTime standardDate)
+        {
+            var lastRaid = db.FeaturedRaidDays.OrderByDescending(a => a.id).First();
+            var nextRaid = lastRaid.featuredraidid + 1;
+
+            if (lastRaid.featuredraidid == 4)
+                nextRaid = 1;
+
+            var newFeaturedRaid = new FeaturedRaidDay()
+            {
+                featuredraidid = nextRaid,
+                day = standardDate.Day,
+                month = standardDate.Month,
+                year = standardDate.Year
+            };
+
+            db.FeaturedRaidDays.Add(newFeaturedRaid);
+            db.SaveChanges();            
+        }
     }
 }
