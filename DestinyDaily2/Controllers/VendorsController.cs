@@ -31,13 +31,13 @@ namespace DestinyDaily2.Controllers
                 return false;
             }
         }
-        private DateTime TodayDate => DateTime.Now.AddHours(-9.0).AddMinutes(2);
+        private DateTime TodayDate => DateTime.Now.AddHours(-10.0).AddMinutes(2);
 
         private DateTime StandardDate
         {
             get
             {
-                var today = DateTime.Now.AddHours(-9.0).AddMinutes(2);
+                var today = DateTime.Now.AddHours(-10.0).AddMinutes(2);
                 while (today.DayOfWeek != DayOfWeek.Tuesday)
                 {
                     today = today.AddDays(-1);

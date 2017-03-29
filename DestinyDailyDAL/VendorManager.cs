@@ -17,7 +17,7 @@ namespace DestinyDailyDAL
 
         public List<MaterialExchange> GetMaterialExchange(DateTime standardDate)
         {
-            var exchanges = db.MaterialExchanges.Where(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+           var exchanges = db.MaterialExchanges.Where(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
             if (!exchanges.Any())
             {
                 CreateMaterialExchanges(standardDate);
@@ -39,7 +39,7 @@ namespace DestinyDailyDAL
             foreach (var faction in vendorKey)
             {
                 var factionDetails = DestinyDailyApiManager.BungieApi.GetVendorMetaData(faction.Value);
-                var factionItems = factionDetails.Response.data.vendor.saleItemCategories.FirstOrDefault(c => c.categoryTitle == "Material Exchange" || c.categoryTitle == "Crota's Bane Rank 2");
+                var factionItems = factionDetails.Response.data.vendor.saleItemCategories.FirstOrDefault(c => c.categoryTitle == "Material Exchange" || c.categoryTitle == "Crota's Bane Rank 2" || c.categoryTitle == "Materials Exchange");
                 if (factionItems != null)
                 {
                     var customExchange = factionItems.saleItems.FirstOrDefault(c => !hiddenHashes.Contains(c.item.itemHash));

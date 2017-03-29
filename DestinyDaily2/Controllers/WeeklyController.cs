@@ -13,7 +13,7 @@ namespace DestinyDaily2.Controllers
         private VendorManager vendorManager { get; }
         private PrisonManager prisonManager { get; }
         private BountyManager bountyManager { get; }
-        private DateTime TodayDate => DateTime.Now.AddHours(-9.0).AddMinutes(2);
+        private DateTime TodayDate => DateTime.Now.AddHours(-10.0).AddMinutes(2);
         private static WeeklyDataModel cache { get; set; }
         private bool CacheExpired
         {
@@ -36,7 +36,7 @@ namespace DestinyDaily2.Controllers
         {
             get
             {
-                var today = DateTime.Now.AddHours(-9.0).AddMinutes(2);
+                var today = DateTime.Now.AddHours(-10.0).AddMinutes(2);
                 while (today.DayOfWeek != DayOfWeek.Tuesday)
                 {
                     today = today.AddDays(-1);

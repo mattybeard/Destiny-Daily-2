@@ -320,6 +320,7 @@
     <Content Include="Views\Shared\Partials\BackToTop.cshtml" />
     <Content Include="Views\Shared\Partials\GoogleAd.cshtml" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />
+    <Content Include="Views\Shared\Maintenance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

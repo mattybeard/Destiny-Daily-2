@@ -11,13 +11,13 @@ namespace DestinyDailyDAL
     {
         private DestinySqlEntities db { get; }
 
-        private DateTime ThisDate => DateTime.Now.AddHours(-9.0).AddMinutes(2);
+        private DateTime ThisDate => DateTime.Now.AddHours(-10.0).AddMinutes(2);
 
         private DateTime ThisWeeklyDate
         {
             get
             {
-                var today = DateTime.Now.AddHours(-9.0).AddMinutes(2);
+                var today = DateTime.Now.AddHours(-10.0).AddMinutes(2);
                 while (today.DayOfWeek != DayOfWeek.Tuesday)
                 {
                     today = today.AddDays(-1);
@@ -60,8 +60,8 @@ namespace DestinyDailyDAL
             if (vendorInformation.ErrorCode > 1)
                 return;
 
-            if (date.AddHours(9) < vendorInformation.Response.data.activities.dailychapter.status.startDate)
-                return;
+            //if (date.AddHours(9) < vendorInformation.Response.data.activities.dailychapter.status.startDate)
+            //    return;
 
             if (vendor == Vendors.All || vendor == Vendors.Vanguard || vendor == Vendors.Crucible)
             {
@@ -118,7 +118,7 @@ namespace DestinyDailyDAL
             if ((vendor == Vendors.All || vendor == Vendors.Variks ) && IsResetDate(date))
             {
                 var bounties = vendorInformation.Response.data.activities.elderchallenge.bountyHashes.ToArray();
-                CreateVendorBounties(bounties, date, Vendors.Variks);
+                CreateVendorBounties(bounties, ThisWeeklyDate, Vendors.Variks);
             }
 
             if ((vendor == Vendors.All || vendor == Vendors.Zavala) && IsResetDate(date))
@@ -131,7 +131,7 @@ namespace DestinyDailyDAL
                     if (bountiesCategory != null)
                     {
                         var bounties = bountiesCategory.saleItems.Select(c => c.item.itemHash).ToArray();
-                        CreateVendorBounties(bounties, date, Vendors.Zavala);
+                        CreateVendorBounties(bounties, ThisWeeklyDate, Vendors.Zavala);
                     }
                 }
             }
@@ -146,7 +146,7 @@ namespace DestinyDailyDAL
                     if (bountiesCategory != null)
                     {
                         var bounties = bountiesCategory.saleItems.Select(c => c.item.itemHash).ToArray();
-                        CreateVendorBounties(bounties, date, Vendors.IronBanner);
+                        CreateVendorBounties(bounties, ThisWeeklyDate, Vendors.IronBanner);
                     }
                 }
             }
@@ -169,7 +169,7 @@ namespace DestinyDailyDAL
                     if (bountiesCategory != null)
                     {
                         var bounties = bountiesCategory.saleItems.Select(c => c.item.itemHash).ToArray();
-                        CreateVendorBounties(bounties, date, Vendors.Shiro);
+                        CreateVendorBounties(bounties, ThisWeeklyDate, Vendors.Shiro);
                     }
                 }
 
@@ -181,7 +181,7 @@ namespace DestinyDailyDAL
                     if (artifactCategory != null)
                     {
                         var items = artifactCategory.saleItems.Select(c => c.item.itemHash).ToArray();
-                        CreateVendorRewards(items, date, Vendors.Tyra);
+                        CreateVendorRewards(items, ThisWeeklyDate, Vendors.Tyra);
                     }
                 }
             }
