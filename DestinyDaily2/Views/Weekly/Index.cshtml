@@ -1,5 +1,4 @@
 ﻿@model DestinyDaily2.Models.WeeklyDataModel
-
 @{
     ViewBag.MetaTitle = "This week's events | Destiny Daily";
     ViewBag.MetaDescription = "A quick glance at this week's challenges within Destiny for those who can't play right now";
@@ -9,7 +8,83 @@
 <div class="heading">
     <h1 class="heading__title">This week's events</h1>
 </div>
-@if (Model.RaidChallenges != null && Model.RaidChallenges.Any())
+@if (Model.FeaturedRaid != null)
+{
+    <div class="activity activity--raid">
+        <a id="weekly-raid" class="activity__anchor"></a>
+        <div class="activity__header">
+            <div class="content-center content-center--gutter">
+                <div aria-hidden="true" class="activity__icon">
+                    <div class="icon icon--raid"></div>
+                </div>
+                <div class="activity__details">
+                    <h2 class="activity__type">Weekly featured Raid</h2>
+                    <p class="activity__name">@Model.FeaturedRaid.featuredraid.name</p>
+                </div>
+            </div>
+        </div>
+        <div data-external-background-image="data-external-background-image" data-external-src="@($"{Model.FeaturedRaid.featuredraid.imageurl}")" class="activity__image"></div>
+        <div class="activity__extras">
+            <div class="content-center content-center--gutter">
+                <div class="grid grid--gutterless">
+                    <div class="grid__item tablet-one-half">
+                        <div class="activity__extra">
+                            <h3 class="activity__subheading is-vhidden">Modifiers</h3>
+                            <ul>
+                                <li title="Heroic" class="skull">
+                                    <div class="skull__icon">
+                                        <div aria-hidden="true" class="icon icon--skull icon--skull--heroic"></div>
+                                    </div>
+                                    <div class="skull__details">
+                                        <div class="skull__title">Heroic</div>
+                                        <div class="skull__description">Enemies appear in greater numbers and are more aggressive.</div>
+                                    </div>
+                                </li>
+                                @foreach (var challenge in Model.FeaturedRaid.featuredraid.featuredraidchallenges)
+                                {
+                                    <li title="@challenge.name" class="skull">
+                                        <div class="skull__icon">
+                                            <div aria-hidden="true" class="@($"icon icon--skull icon--skull--{challenge.name.ToLower().Replace(" ","-")}")"></div>
+                                        </div>
+                                        <div class="skull__details">
+                                            <div class="skull__title">@challenge.name</div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="grid__item tablet-one-half">
+                        <div class="activity__extra">
+                            <h3 class="activity__subheading">Rewards</h3>
+                            <ul>
+                                <li title="Raid Set Gear" class="reward">
+                                    <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/e19acad46bd4d02a3e6d1a007f3df3bb.jpg" width="30" height="30" alt="Raid Set Gear icon" class="reward__image" />
+                                    <div class="reward__details">
+                                        <div class="reward__title">Raid Set Gear</div>
+                                    </div>
+                                </li>
+                                <li title="Unknown Rewards" class="reward">
+                                    <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/6a7d79fa021d584da0ff02b16f3e738b.jpg" width="30" height="30" alt="Unknown Rewards icon" class="reward__image" />
+                                    <div class="reward__details">
+                                        <div class="reward__title">Unknown Rewards</div>
+                                    </div>
+                                </li>
+                                <li title="Age of Triumph Ornament" class="reward">
+                                    <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/780a88e8cbd43134cb5fa4fe97ca6925.jpg" width="30" height="30" alt="Age of Triumph Ornament icon" class="reward__image" />
+                                    <div class="reward__details">
+                                        <div class="reward__title">Age of Triumph Ornament</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (Model.RaidChallenges != null && Model.RaidChallenges.Any())
 {
     var kingsFallChallenge = Model.RaidChallenges.FirstOrDefault(c => c.Challenge.raidname == "Kings Fall");
     var wrathChallenge = Model.RaidChallenges.FirstOrDefault(c => c.Challenge.raidname == "Wrath of the Machine");
@@ -66,6 +141,7 @@
     </div>
 }
 <div class="activity activity--weekly-strike">
+    <a id="weekly-strike" class="activity__anchor"></a>
     <div class="activity__header">
         <div class="content-center content-center--gutter">
             <div aria-hidden="true" class="activity__icon">
@@ -107,7 +183,7 @@
                             @foreach (var bounty in Model.StrikeBounties)
                             {
                                 <li class="bounty">
-                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Vanguard Elite Bounties icon" class="bounty__image"/>
+                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Vanguard Elite Bounties icon" class="bounty__image" />
                                     <div class="bounty__details">
                                         <div class="bounty__title">@bounty.InventoryItem.name</div>
                                         <div class="bounty__description">@bounty.InventoryItem.desc</div>
@@ -124,7 +200,7 @@
                             @foreach (var missionReward in Model.ThisWeekly.Rewards.Where(c => c.InventoryItem.name != "(Weekly Bonus Remaining: 3)"))
                             {
                                 <li title="@missionReward.InventoryItem.name" class="reward">
-                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net{missionReward.InventoryItem.icon}")" alt="Reward Icon" class="reward__image"/>
+                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net{missionReward.InventoryItem.icon}")" alt="Reward Icon" class="reward__image" />
                                     <div class="reward__details">
                                         <div class="reward__title">@missionReward.InventoryItem.name</div>
                                     </div>
@@ -137,80 +213,65 @@
         </div>
     </div>
 </div>
-<div class="activity activity--weekly-story">
-    <a id="weekly-story" class="activity__anchor"></a>
-    <div class="activity__header">
-        <div class="content-center content-center--gutter">
-            <div aria-hidden="true" class="activity__icon">
-                <div class="icon icon--weekly-story"></div>
-            </div>
-            <div class="activity__details">
-                <h2 class="activity__type">Weekly Story playlist</h2>
-                <p class="activity__name">Mars and Venus</p>
+@if (Model.WeeklyPlaylist != null)
+{
+    <div class="activity activity--weekly-story">
+        <a id="weekly-story" class="activity__anchor"></a>
+        <div class="activity__header">
+            <div class="content-center content-center--gutter">
+                <div aria-hidden="true" class="activity__icon">
+                    <div class="icon icon--weekly-story"></div>
+                </div>
+                <div class="activity__details">
+                    <h2 class="activity__type">Weekly Story playlist</h2>
+                    <p class="activity__name">@Model.WeeklyPlaylist.manifestactivity.name</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="activity__image"></div>
-    <div class="activity__extras">
-        <div class="content-center content-center--gutter">
-            <div class="grid grid--gutterless">
-                <div class="grid__item tablet-one-half">
-                    <div class="activity__extra">
-                        <h3 class="activity__subheading is-vhidden">Modifiers</h3>
-                        <ul>
-                            <li title="Heroic" class="skull">
-                                <div class="skull__icon">
-                                    <div aria-hidden="true" class="icon icon--skull icon--skull--heroic"></div>
-                                </div>
-                                <div class="skull__details">
-                                    <div class="skull__title">Heroic</div>
-                                    <div class="skull__description">Enemies appear in greater numbers and are more aggressive.</div>
-                                </div>
-                            </li>
-                            <li title="Specialist" class="skull">
-                                <div class="skull__icon">
-                                    <div aria-hidden="true" class="icon icon--skull icon--skull--specialist"></div>
-                                </div>
-                                <div class="skull__details">
-                                    <div class="skull__title">Specialist</div>
-                                    <div class="skull__description">Damage of Special Weapons is doubled.</div>
-                                </div>
-                            </li>
-                            <li title="Grounded" class="skull">
-                                <div class="skull__icon">
-                                    <div aria-hidden="true" class="icon icon--skull icon--skull--grounded"></div>
-                                </div>
-                                <div class="skull__details">
-                                    <div class="skull__title">Grounded</div>
-                                    <div class="skull__description">Players take more damage while airborne.</div>
-                                </div>
-                            </li>
-                        </ul>
+        <div class="activity__image"></div>
+        <div class="activity__extras">
+            <div class="content-center content-center--gutter">
+                <div class="grid grid--gutterless">
+                    <div class="grid__item tablet-one-half">
+                        <div class="activity__extra">
+                            <h3 class="activity__subheading is-vhidden">Modifiers</h3>
+                            <ul>
+                                @foreach (var modifier in Model.WeeklyPlaylist.weeklyfeaturedmodifiers)
+                                {
+                                    <li title="@modifier.modifier.name" class="skull">
+                                        <div class="skull__icon">
+                                            <div aria-hidden="true" class="icon icon--skull icon--skull--@modifier.modifier.name.ToLower()"></div>
+                                        </div>
+                                        <div class="skull__details">
+                                            <div class="skull__title">@modifier.modifier.name</div>
+                                            <div class="skull__description">@modifier.modifier.description</div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="grid__item tablet-one-half">
-                    <div class="activity__extra">
-                        <h3 class="activity__subheading">Rewards</h3>
-                        <ul>
-                            <li title="Radiant Treasure x 1" class="reward">
-                                <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/9ea3172dd38590da6265eac49277f93b.jpg" width="30" height="30" alt="Radiant Treasure x 1 icon" class="reward__image" />
-                                <div class="reward__details">
-                                    <div class="reward__title">Radiant Treasure x 1</div>
-                                </div>
-                            </li>
-                            <li title="Legendary Marks x 20" class="reward">
-                                <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/af4d8692f5f1fc5e9276fd29244b42c6.png" width="30" height="30" alt="Legendary Marks x 20 icon" class="reward__image" />
-                                <div class="reward__details">
-                                    <div class="reward__title">Legendary Marks x 20</div>
-                                </div>
-                            </li>
-                        </ul>
+                    <div class="grid__item tablet-one-half">
+                        <div class="activity__extra">
+                            <h3 class="activity__subheading">Rewards</h3>
+                            <ul>
+                                @foreach (var modifier in Model.WeeklyPlaylist.weeklyfeaturedrewards.Where(r => !r.inventoryitem.name.Contains("Weekly Bonus")))
+                                {
+                                    <li title="@modifier.inventoryitem.name" class="reward">
+                                        <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{modifier.inventoryitem.icon}")" width="30" height="30" alt="@modifier.inventoryitem.name icon" class="reward__image" />
+                                        <div class="reward__details">
+                                            <div class="reward__title">@modifier.inventoryitem.name</div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+}
 @if (Model.WeeklyCrucible != null)
 {
     <div class="activity activity--weekly-crucible">
@@ -251,7 +312,7 @@
                             <h3 class="activity__subheading">Rewards</h3>
                             <ul>
                                 <li title="Legendary Marks x 10" class="reward">
-                                    <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/7bf311b416623182e23afe6364eefa64.png" width="30" height="30" alt="Legendary Marks x 10 icon" class="reward__image"/>
+                                    <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/7bf311b416623182e23afe6364eefa64.png" width="30" height="30" alt="Legendary Marks x 10 icon" class="reward__image" />
                                     <div class="reward__details">
                                         <div class="reward__title">Legendary Marks (10)</div>
                                     </div>
