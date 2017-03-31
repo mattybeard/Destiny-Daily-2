@@ -33,7 +33,7 @@ namespace DestinyDaily2.Controllers
         {
             get
             {
-                var today = DateTime.Now.AddHours(-10.0).AddMinutes(2);
+                var today = DateTime.Now.AddHours(-9.0).AddMinutes(5);
                 while (today.DayOfWeek != DayOfWeek.Tuesday)
                 {
                     today = today.AddDays(-1);

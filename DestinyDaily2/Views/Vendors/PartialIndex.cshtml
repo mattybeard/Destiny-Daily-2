@@ -89,7 +89,7 @@
                                 <div class="activity__extra">
                                     <h3 class="activity__subheading">Inventory</h3>
                                     <div class="grid grid--gutterless">
-                                        @foreach(var xurItem in Model.XurSales.Where(c => c.group > 2))
+                                        @foreach(var xurItem in Model.XurSales.Where(c => c.group == 3))
                                         {
                                             <div class="grid__item one-half tablet-one-quarter">
                                                 <div class="gear">

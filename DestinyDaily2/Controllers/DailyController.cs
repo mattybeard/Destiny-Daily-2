@@ -12,7 +12,7 @@ namespace DestinyDaily2.Controllers
     {
         private DailyManager DailyManager { get; }
         private BountyManager BountyManager { get; }
-        private DateTime StandardDate => DateTime.Now.AddHours(-10.0).AddMinutes(2);
+        private DateTime StandardDate => DateTime.Now.AddHours(-9.0).AddMinutes(5);
         private static HeroicDailyModel cache { get; set; }
         private bool CacheExpired
         {

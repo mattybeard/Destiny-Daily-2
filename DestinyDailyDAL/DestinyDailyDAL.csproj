@@ -169,6 +169,15 @@
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
     </Compile>
     <Compile Include="VendorManager.cs" />
+    <Compile Include="WeeklyFeatured.cs">
+      <DependentUpon>DestinySqlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WeeklyFeaturedModifier.cs">
+      <DependentUpon>DestinySqlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WeeklyFeaturedReward.cs">
+      <DependentUpon>DestinySqlModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="WeeklyHeroic.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
     </Compile>

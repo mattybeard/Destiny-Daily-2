@@ -210,5 +210,75 @@ namespace DestinyDailyDAL
                 }
             }
         }
+
+        public WeeklyFeatured GetWeeklyStory(DateTime standardDate)
+        {
+            var weekly = db.WeeklyFeatureds.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+            if (weekly == null)
+            {
+                CreateWeeklyFeatured(standardDate);
+                var updatedWeekly = db.WeeklyFeatureds.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+                return updatedWeekly;
+            }
+
+            return weekly;
+        }
+
+        private void CreateWeeklyFeatured(DateTime date)
+        {
+            var vendorInformation = DestinyDailyApiManager.BungieApi.GetAdvisors();
+            if (vendorInformation.ErrorCode > 1)
+                return;
+
+            var activityHash = vendorInformation.Response.data.activities.weeklystory.activityTiers[0].activityHash;
+            var activity = db.ManifestActivities.FirstOrDefault(m => m.id == activityHash);
+            if (activity != null)
+            {
+                var newEntry = new WeeklyFeatured()
+                {
+                    playlistid = activityHash,
+                    day = date.Day,
+                    month = date.Month,
+                    year = date.Year
+                };
+                db.WeeklyFeatureds.Add(newEntry);
+                db.SaveChanges();
+
+                foreach (var skull in vendorInformation.Response.data.activities.weeklystory.extended.skullCategories.First(m => m.title == "Modifiers").skulls)
+                {
+                    var matchingMod = db.Modifiers.FirstOrDefault(m => m.name == skull.displayName);
+                    if (matchingMod != null)
+                    {
+                        var newMod = new WeeklyFeaturedModifier()
+                        {
+                            modifierid = matchingMod.id,
+                            weeklyfeaturedid = newEntry.id
+                        };
+
+                        db.WeeklyFeaturedModifiers.Add(newMod);
+                    }
+                    db.SaveChanges();
+                }
+
+                foreach (var rewardGroup in vendorInformation.Response.data.activities.weeklystory.activityTiers[0].rewards)
+                {
+                    foreach (var reward in rewardGroup.rewardItems)
+                    {
+                        var matchingReward = db.InventoryItems.FirstOrDefault(r => r.id == reward.itemHash);
+                        if (matchingReward != null)
+                        {
+                            var newReward = new WeeklyFeaturedReward()
+                            {
+                                rewardid = reward.itemHash,
+                                weeklyfeaturedid = newEntry.id
+                            };
+
+                            db.WeeklyFeaturedRewards.Add(newReward);
+                        }
+                    }
+                    db.SaveChanges();
+                }
+            }
+        }
     }
 }

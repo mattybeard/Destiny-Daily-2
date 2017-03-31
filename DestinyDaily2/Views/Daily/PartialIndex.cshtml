@@ -5,6 +5,8 @@
  }
 
 <div style="display: none">Daily - @Model.StartTime</div>
+<div style="display: none">Now - @DateTime.Now</div>
+<div style="display: none">Now - @DateTime.UtcNow</div>
 <a id="daily"><span class="is-vhidden">Today's events</span></a>
 <section class="js-homepage-section">
     <div class="content-center content-center--gutter">
@@ -127,7 +129,7 @@
             </div>
         }
 
-        @if(Model.DailyBounties.Any())
+        @if(Model.DailyBounties != null && Model.DailyBounties.Any())
         { 
         <div class="activity activity--vendor--bounty-tracker">
                 <div class="activity__header">

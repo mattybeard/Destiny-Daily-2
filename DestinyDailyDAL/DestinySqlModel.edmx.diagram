@@ -77,6 +77,14 @@
         <AssociationConnector Association="DestinySqlModel.FK_FeauturedRaidDay_FeatRaid" />
         <EntityTypeShape EntityType="DestinySqlModel.FeaturedRaidChallenge" Width="1.5" PointX="17.625" PointY="4.25" />
         <AssociationConnector Association="DestinySqlModel.FK_FeaturedRaidChallenge_RaidChal" />
+        <EntityTypeShape EntityType="DestinySqlModel.WeeklyFeatured" Width="1.5" PointX="21.125" PointY="5.875" />
+        <EntityTypeShape EntityType="DestinySqlModel.WeeklyFeaturedModifier" Width="1.5" PointX="23.375" PointY="6.5" />
+        <EntityTypeShape EntityType="DestinySqlModel.WeeklyFeaturedReward" Width="1.5" PointX="23.375" PointY="13" />
+        <AssociationConnector Association="DestinySqlModel.n_weeklyfeaturedrewardFK" />
+        <AssociationConnector Association="DestinySqlModel.Act_weeklyfeatured" />
+        <AssociationConnector Association="DestinySqlModel.n_weeklyfeaturedmodifierIX" />
+        <AssociationConnector Association="DestinySqlModel.n_weeklyfeaturedmissionFK" />
+        <AssociationConnector Association="DestinySqlModel.n_weeklyfeaturedmissionIX" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

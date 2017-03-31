@@ -11,13 +11,13 @@ namespace DestinyDailyDAL
     {
         private DestinySqlEntities db { get; }
 
-        private DateTime ThisDate => DateTime.Now.AddHours(-10.0).AddMinutes(2);
+        private DateTime ThisDate => DateTime.Now.AddHours(-9.0).AddMinutes(5);
 
         private DateTime ThisWeeklyDate
         {
             get
             {
-                var today = DateTime.Now.AddHours(-10.0).AddMinutes(2);
+                var today = DateTime.Now.AddHours(-9.0).AddMinutes(5);
                 while (today.DayOfWeek != DayOfWeek.Tuesday)
                 {
                     today = today.AddDays(-1);
