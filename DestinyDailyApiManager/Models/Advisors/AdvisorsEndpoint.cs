@@ -310,6 +310,19 @@ namespace DestinyDailyApiManager.Models.Advisors
         public Ironbanner ironbanner { get; set; }
         public Xur xur { get; set; }
         public Srl srl { get; set; }
+        public Weeklystory weeklystory { get; set; }
+    }
+
+    public class Weeklystory
+    {
+        public string identifier { get; set; }
+        public Status status { get; set; }
+        public Display display { get; set; }
+        public long vendorHash { get; set; }
+        public long progressionHash { get; set; }
+        public List<long> bountyHashes { get; set; }
+        public List<ActivityTier> activityTiers { get; set; }
+        public Extended extended { get; set; }
     }
 
 

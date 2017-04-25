@@ -9,7 +9,7 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
 {
     public class Round
     {
-        public object enemyRaceHash { get; set; }
+        public long enemyRaceHash { get; set; }
         public List<int> skulls { get; set; }
     }
 
@@ -131,7 +131,7 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
 
     public class Event
     {
-        public int eventHash { get; set; }
+        public long eventHash { get; set; }
         public string friendlyIdentifier { get; set; }
         public string eventIdentifier { get; set; }
         public string expirationDate { get; set; }
@@ -161,7 +161,7 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
 
     public class Nightfall
     {
-        public int activityBundleHash { get; set; }
+        public long activityBundleHash { get; set; }
         public long specificActivityHash { get; set; }
         public string expirationDate { get; set; }
         public List<Tier> tiers { get; set; }
@@ -269,7 +269,7 @@ namespace DestinyDailyApiManager.Models.OldAdvisors
 
     public class Data
     {
-        public int nightfallActivityHash { get; set; }
+        public long nightfallActivityHash { get; set; }
         public List<long> heroicStrikeHashes { get; set; }
         public List<long> dailyChapterHashes { get; set; }
         public string nightfallResetDate { get; set; }

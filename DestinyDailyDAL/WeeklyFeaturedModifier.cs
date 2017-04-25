@@ -12,15 +12,13 @@ namespace DestinyDailyDAL
     using System;
     using System.Collections.Generic;
     
-    public partial class RewardsDay
+    public partial class WeeklyFeaturedModifier
     {
         public int id { get; set; }
-        public long itemid { get; set; }
-        public int day { get; set; }
-        public int month { get; set; }
-        public int year { get; set; }
-        public string vendor { get; set; }
+        public Nullable<int> weeklyfeaturedid { get; set; }
+        public Nullable<int> modifierid { get; set; }
     
-        public virtual InventoryItem inventoryitem { get; set; }
+        public virtual Modifier modifier { get; set; }
+        public virtual WeeklyFeatured weeklyfeatured { get; set; }
     }
 }

@@ -1,0 +1,40 @@
+﻿@model dynamic
+@{
+    Layout = null;
+    ViewBag.MetaTitle = "Down for maintenance | Destiny Daily";
+    ViewBag.MetaDescription = "Temporarily down for maintenance";
+}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+@Html.Partial("Partials/Head")
+<body class="has-no-background">
+    <a id="top"><span class="is-vhidden">Top of page</span></a>
+    <div class="a11y-navigation"><a href="#content">Jump to Main content</a><a href="#navigation">Jump to Primary navigation</a></div>
+    <header role="banner" class="main-header">
+        <div class="main-header__background"></div>
+        <div class="main-header__container">
+            <div class="content-center content-center--gutter">
+                <div class="grid grid--gutterless">
+                    <div class="grid__item main-header__logo">
+                        <h1><a href="/" class="site-title">Destiny Daily</a></h1>
+                    </div>
+                    <div class="grid__item main-header__navigation">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main id="content" role="main">
+        <div class="content-center content-center--gutter content-center--centered"><a href="/" title="Return to the homepage"><img src="/assets/img/structure/darkness.png?v=1.0.4" alt="Reward Icon"></a></div>
+        <a href="/" class="heading heading--primary">
+            <h1 class="heading__title">Maintenance</h1>
+            <div class="heading__content">
+                <p>We are currently down for maintenance due to Age Of Triumph.</p>
+                <p>We will back up as soon as we have killed Crota in this weeks featured raid.</p>
+            </div>
+        </a>
+    </main>
+    @Html.Partial("Partials/Footer")
+    <script src="/assets/js/build/index.js?v=1.0.4" async defer></script>
+</body>
+</html>

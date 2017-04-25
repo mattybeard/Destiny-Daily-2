@@ -11,6 +11,7 @@ namespace DestinyDaily2.Controllers
     public class NightFallController : Controller
     {
         public NightFallManager NfManager { get; set; }
+        public BountyManager bountyManager { get; set; }
         private static NightfallDataModel cache { get; set; }
         private bool CacheExpired
         {
@@ -32,7 +33,7 @@ namespace DestinyDaily2.Controllers
         {
             get
             {
-                var today = DateTime.Now.AddHours(-9.0).AddMinutes(2);
+                var today = DateTime.Now.AddHours(-9.0).AddMinutes(5);
                 while (today.DayOfWeek != DayOfWeek.Tuesday)
                 {
                     today = today.AddDays(-1);
@@ -45,6 +46,7 @@ namespace DestinyDaily2.Controllers
         public NightFallController()
         {
             NfManager = new NightFallManager();
+            bountyManager = new BountyManager();
         }
         
         public ActionResult Index(bool noLayout = false)
@@ -53,14 +55,15 @@ namespace DestinyDaily2.Controllers
             {
 
                 var nf = NfManager.GetNightFall(StandardDate);
-                var weekly = NfManager.GetWeekly(StandardDate);
+                var weeklyBounties = bountyManager.GetBounties(StandardDate, 1, "Zavala");
 
                 cache = new NightfallDataModel()
                 {
                     ThisDate = StandardDate,
                     ThisNightfall = nf,
                     ExpiryTime = DateTime.Now.AddHours(1),
-                    StartTime = DateTime.Now
+                    StartTime = DateTime.Now,
+                    WeeklyStrikeBounties = weeklyBounties
                 };
             }
 

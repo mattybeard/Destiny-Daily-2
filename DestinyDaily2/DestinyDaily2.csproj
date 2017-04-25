@@ -222,6 +222,7 @@
     <Content Include="Assets\img\structure\activity\vendor--vanguard-scout.jpg" />
     <Content Include="Assets\img\structure\activity\vendor--xur.jpg" />
     <Content Include="Assets\img\structure\activity\vendor.jpg" />
+    <Content Include="Assets\img\structure\activity\weekly-story.jpg" />
     <Content Include="Assets\img\structure\vendor\arach-jalaal.png" />
     <Content Include="Assets\img\structure\vendor\eris-morn.png" />
     <Content Include="Assets\img\structure\vendor\executor-hideo.png" />
@@ -320,6 +321,7 @@
     <Content Include="Views\Shared\Partials\BackToTop.cshtml" />
     <Content Include="Views\Shared\Partials\GoogleAd.cshtml" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />
+    <Content Include="Views\Shared\Maintenance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

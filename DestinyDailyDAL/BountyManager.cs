@@ -11,13 +11,13 @@ namespace DestinyDailyDAL
     {
         private DestinySqlEntities db { get; }
 
-        private DateTime ThisDate => DateTime.Now.AddHours(-9.0).AddMinutes(2);
+        private DateTime ThisDate => DateTime.Now.AddHours(-9.0).AddMinutes(5);
 
         private DateTime ThisWeeklyDate
         {
             get
             {
-                var today = DateTime.Now.AddHours(-9.0).AddMinutes(2);
+                var today = DateTime.Now.AddHours(-9.0).AddMinutes(5);
                 while (today.DayOfWeek != DayOfWeek.Tuesday)
                 {
                     today = today.AddDays(-1);
@@ -60,27 +60,51 @@ namespace DestinyDailyDAL
             if (vendorInformation.ErrorCode > 1)
                 return;
 
-            if (date.AddHours(9) < vendorInformation.Response.data.activities.dailychapter.status.startDate)
-                return;
+            //if (date.AddHours(9) < vendorInformation.Response.data.activities.dailychapter.status.startDate)
+            //    return;
 
-            if (vendor == Vendors.All || vendor == Vendors.Vanguard)
+            if (vendor == Vendors.All || vendor == Vendors.Vanguard || vendor == Vendors.Crucible)
             {
-                var bounties = vendorInformation.Response.data.activities.dailychapter.bountyHashes.ToArray();
-                CreateVendorBounties(bounties, date, Vendors.Vanguard);
-            }
+                var oldEndpoint = DestinyDailyApiManager.BungieApi.GetVendorMetaData("1527174714");
+                if (oldEndpoint != null && oldEndpoint.ErrorCode <= 1)
+                {
+                    var bountiesCategory = oldEndpoint.Response.data.vendor.saleItemCategories.First(c => c.categoryTitle == "Available Bounties");
+                    var vanguardList = new List<long>();
+                    var crucibleList = new List<long>();
+                    var strikeList = new List<long>();
 
-            if (vendor == Vendors.All || vendor == Vendors.Crucible)
-            {
-                var bounties = vendorInformation.Response.data.activities.dailycrucible.bountyHashes.Where(bh => !bh.Equals(1983809889) && !bh.Equals(2751498155) && !bh.Equals(1128170519)).ToArray();
-                CreateVendorBounties(bounties, date, Vendors.Crucible);
-            }
+                    foreach (var bounty in bountiesCategory.saleItems)
+                    {
+                        var matchingItem = db.InventoryItems.FirstOrDefault(i => i.id == bounty.item.itemHash);
+                        if (matchingItem != null)
+                        {
+                            switch (matchingItem.type)
+                            {
+                                case "Vanguard Elite Bounty":
+                                    strikeList.Add(matchingItem.id);
+                                    break;
 
+                                case "Crucible Bounty":
+                                    crucibleList.Add(matchingItem.id);
+                                    break;
 
-            if (vendor == Vendors.All || vendor == Vendors.Srl)
+                                default:
+                                    vanguardList.Add(matchingItem.id);
+                                    break;
+                            }
+                        }
+                    }
+                    CreateVendorBounties(vanguardList.ToArray(), date, Vendors.Vanguard);
+                    CreateVendorBounties(crucibleList.ToArray(), date, Vendors.Crucible);
+                    CreateVendorBounties(strikeList.ToArray(), date, Vendors.Strike);
+                }
+            }            
+
+           if (vendor == Vendors.All || vendor == Vendors.Srl)
             {
                 var oldEndpoint = DestinyDailyApiManager.BungieApi.GetVendorMetaData("459708109");
-                if (oldEndpoint != null)
-                {
+                if (oldEndpoint != null && oldEndpoint.ErrorCode <= 1)
+                    {
                     var bountiesCategory = oldEndpoint.Response.data.vendor.saleItemCategories.FirstOrDefault(c => c.categoryTitle == "Available Bounties");
 
                     if (bountiesCategory != null)
@@ -94,20 +118,20 @@ namespace DestinyDailyDAL
             if ((vendor == Vendors.All || vendor == Vendors.Variks ) && IsResetDate(date))
             {
                 var bounties = vendorInformation.Response.data.activities.elderchallenge.bountyHashes.ToArray();
-                CreateVendorBounties(bounties, date, Vendors.Variks);
+                CreateVendorBounties(bounties, ThisWeeklyDate, Vendors.Variks);
             }
 
             if ((vendor == Vendors.All || vendor == Vendors.Zavala) && IsResetDate(date))
             {
                 var oldEndpoint = DestinyDailyApiManager.BungieApi.GetVendorMetaData("1990950");
-                if (oldEndpoint != null)
-                {
+                if (oldEndpoint != null && oldEndpoint.ErrorCode <= 1)
+                    {
                     var bountiesCategory = oldEndpoint.Response.data.vendor.saleItemCategories.FirstOrDefault(c => c.categoryTitle == "Available Bounties");
 
                     if (bountiesCategory != null)
                     {
                         var bounties = bountiesCategory.saleItems.Select(c => c.item.itemHash).ToArray();
-                        CreateVendorBounties(bounties, date, Vendors.Zavala);
+                        CreateVendorBounties(bounties, ThisWeeklyDate, Vendors.Zavala);
                     }
                 }
             }
@@ -115,14 +139,14 @@ namespace DestinyDailyDAL
             if ((vendor == Vendors.All || vendor == Vendors.IronBanner) && IsResetDate(date))
             {
                 var oldEndpoint = DestinyDailyApiManager.BungieApi.GetVendorMetaData("2610555297");
-                if (oldEndpoint != null)
+                if (oldEndpoint != null && oldEndpoint.ErrorCode <= 1)
                 {
                     var bountiesCategory = oldEndpoint.Response.data.vendor.saleItemCategories.FirstOrDefault(c => c.categoryTitle == "Available Bounties");
 
                     if (bountiesCategory != null)
                     {
                         var bounties = bountiesCategory.saleItems.Select(c => c.item.itemHash).ToArray();
-                        CreateVendorBounties(bounties, date, Vendors.IronBanner);
+                        CreateVendorBounties(bounties, ThisWeeklyDate, Vendors.IronBanner);
                     }
                 }
             }
@@ -145,7 +169,7 @@ namespace DestinyDailyDAL
                     if (bountiesCategory != null)
                     {
                         var bounties = bountiesCategory.saleItems.Select(c => c.item.itemHash).ToArray();
-                        CreateVendorBounties(bounties, date, Vendors.Shiro);
+                        CreateVendorBounties(bounties, ThisWeeklyDate, Vendors.Shiro);
                     }
                 }
 
@@ -157,7 +181,7 @@ namespace DestinyDailyDAL
                     if (artifactCategory != null)
                     {
                         var items = artifactCategory.saleItems.Select(c => c.item.itemHash).ToArray();
-                        CreateVendorRewards(items, date, Vendors.Tyra);
+                        CreateVendorRewards(items, ThisWeeklyDate, Vendors.Tyra);
                     }
                 }
             }

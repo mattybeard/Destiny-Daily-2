@@ -1,11 +1,9 @@
 ﻿@model DestinyDaily2.Models.NightfallDataModel
-
 @{
     ViewBag.MetaTitle = "This week's Nightfall | Destiny Daily";
     ViewBag.MetaDescription = "A quick glance at Destiny's weekly Nightfall Strike for those who can't play right now";
     ViewBag.CanonicalUrl = "http://www.destiny-daily.com/nightfall";
 }
-
 <div class="heading">
     <h1 class="heading__title">This week's Nightfall</h1>
 </div>
@@ -34,7 +32,7 @@
                             {
                                 <li title="@missionMod.Modifier.name" class="skull">
                                     <div class="skull__icon">
-                                        <div aria-hidden="true" class="@($"icon icon--skull icon--skull--{missionMod.Modifier.name.Replace(" ","-").ToLower()}")"></div>
+                                        <div aria-hidden="true" class="@($"icon icon--skull icon--skull--{missionMod.Modifier.name.Replace(" ", "-").ToLower()}")"></div>
                                     </div>
                                     <div class="skull__details">
                                         <div class="skull__title">@missionMod.Modifier.name</div>
@@ -46,6 +44,23 @@
                     </div>
                 </div>
                 <div class="grid__item tablet-one-half">
+                    <div class="activity__extra">
+                        <h3 class="activity__subheading">Weekly Elite Bounties</h3>
+                        <ul>
+                            @foreach (var bounty in Model.WeeklyStrikeBounties)
+                            {
+                                <li class="bounty">
+                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Weekly Elite Bounties icon" class="bounty__image" />
+                                    <div class="bounty__details">
+                                        <div class="bounty__title">@bounty.InventoryItem.name</div>
+                                        <div class="bounty__description">@bounty.InventoryItem.desc</div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid__item tablet-one-half tablet-push-one-half">
                     <div class="activity__extra">
                         <h3 class="activity__subheading">Rewards</h3>
                         <ul>

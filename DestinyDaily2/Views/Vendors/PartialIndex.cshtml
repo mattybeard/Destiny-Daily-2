@@ -89,7 +89,7 @@
                                 <div class="activity__extra">
                                     <h3 class="activity__subheading">Inventory</h3>
                                     <div class="grid grid--gutterless">
-                                        @foreach(var xurItem in Model.XurSales.Where(c => c.group > 2))
+                                        @foreach(var xurItem in Model.XurSales.Where(c => c.group == 3))
                                         {
                                             <div class="grid__item one-half tablet-one-quarter">
                                                 <div class="gear">
@@ -169,9 +169,9 @@
                                                     </div>
                                                     <div class="grid__item grid__item--reversed one-half">
                                                         <div class="gear">
-                                                            <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{DisplayIcon("Eris Morn", Model.MaterialExchanges, Model.MaterialDetail)}")" width="96" height="96" alt="Material preview" class="gear__image" />
+                                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/7068eb20bc83ddb006dd0f077993235a.jpg" width="96" height="96" alt="Material preview" class="gear__image" />
                                                             <div class="gear__details">
-                                                                <div class="gear__title">@Model.MaterialExchanges.First(m => m.vendor == "Eris Morn").material</div>
+                                                                <div class="gear__title">Wormspore Donation</div>
                                                                 <div class="gear__description"></div>
                                                             </div>
                                                         </div>
@@ -244,97 +244,100 @@
                 </div>
             </div>
         }
-        @if (Model.SrlBounties.Any())
+        @if (!Model.HideSrl)
         {
-            <!-- Display this section when SRL is on-->
-            <div data-featured='4' class="activity activity--srl activity--featured js-homepage-featured">
-                <a id="srl" class="activity__anchor"></a>
-                <div class="activity__header">
-                    <div class="content-center content-center--gutter">
-                        <div aria-hidden="true" class="activity__icon">
-                            <div class="icon icon--srl"></div>
-                        </div>
-                        <div class="activity__details">
-                            <h2 class="activity__type">Sparrow Racing League</h2>
-                            <p class="activity__level">Limited time event</p>
+            if (Model.SrlBounties.Any())
+            {
+                <!-- Display this section when SRL is on-->
+                <div data-featured='4' class="activity activity--srl activity--featured js-homepage-featured">
+                    <a id="srl" class="activity__anchor"></a>
+                    <div class="activity__header">
+                        <div class="content-center content-center--gutter">
+                            <div aria-hidden="true" class="activity__icon">
+                                <div class="icon icon--srl"></div>
+                            </div>
+                            <div class="activity__details">
+                                <h2 class="activity__type">Sparrow Racing League</h2>
+                                <p class="activity__level">Limited time event</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="activity__image"></div>
-                <div class="activity__extras">
-                    <div class="content-center content-center--gutter">
-                        <div class="grid grid--gutterless">
-                            <div class="grid__item tablet-one-half">
-                                <div class="activity__extra">
-                                    <h3 class="activity__subheading">SRL Gear</h3>
-                                    <div class="grid grid--gutterless">
-                                        @foreach (var gear in Model.SrlRewards)
-                                        {
-                                            <div class="grid__item fablet-one-half">
-                                                <div class="gear">
-                                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{gear.inventoryitem.icon}")" width="96" height="96" alt="@gear.inventoryitem.name preview" class="gear__image"/>
-                                                    <div class="gear__details">
-                                                        <div class="gear__title">@gear.inventoryitem.name</div>
-                                                        <div class="gear__description">@gear.inventoryitem.type</div>
+                    <div class="activity__image"></div>
+                    <div class="activity__extras">
+                        <div class="content-center content-center--gutter">
+                            <div class="grid grid--gutterless">
+                                <div class="grid__item tablet-one-half">
+                                    <div class="activity__extra">
+                                        <h3 class="activity__subheading">SRL Gear</h3>
+                                        <div class="grid grid--gutterless">
+                                            @foreach (var gear in Model.SrlRewards)
+                                            {
+                                                <div class="grid__item fablet-one-half">
+                                                    <div class="gear">
+                                                        <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{gear.inventoryitem.icon}")" width="96" height="96" alt="@gear.inventoryitem.name preview" class="gear__image"/>
+                                                        <div class="gear__details">
+                                                            <div class="gear__title">@gear.inventoryitem.name</div>
+                                                            <div class="gear__description">@gear.inventoryitem.type</div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        }                                        
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid__item tablet-one-half">
+                                    <div class="activity__extra">
+                                        <h3 class="activity__subheading">Bounties</h3>
+                                        <ul>
+                                            @foreach (var bounty in Model.SrlBounties)
+                                            {
+                                                <li class="bounty">
+                                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Bounties icon" class="bounty__image"/>
+                                                    <div class="bounty__details">
+                                                        <div class="bounty__title">@bounty.InventoryItem.name</div>
+                                                        <div class="bounty__description">@bounty.InventoryItem.desc</div>
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="grid__item tablet-one-half">
-                                <div class="activity__extra">
-                                    <h3 class="activity__subheading">Bounties</h3>
-                                    <ul>
-                                        @foreach (var bounty in Model.SrlBounties)
-                                        {
-                                            <li class="bounty">
-                                                <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Bounties icon" class="bounty__image"/>
-                                                <div class="bounty__details">
-                                                    <div class="bounty__title">@bounty.InventoryItem.name</div>
-                                                    <div class="bounty__description">@bounty.InventoryItem.desc</div>
-                                                </div>
-                                            </li>
-                                        }                                       
-                                    </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="activity activity--srl">
+                    <a id="srl" class="activity__anchor"></a>
+                    <div class="activity__header">
+                        <div class="content-center content-center--gutter">
+                            <div aria-hidden="true" class="activity__icon">
+                                <div class="icon icon--srl"></div>
+                            </div>
+                            <div class="activity__details">
+                                <h2 class="activity__type">Sparrow Racing League</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="activity__image"></div>
+                    <div class="activity__extras">
+                        <div class="content-center content-center--gutter">
+                            <div class="grid grid--gutterless">
+                                <div class="grid__item">
+                                    <div class="activity__information">
+                                        <p>SRL has now finished - it may be back so keep an eye on your usual Destiny news outlets.</p>
+                                        <p><a href="https://twitter.com/destinydaily7" target="_blank" class="button">Alternatively follow us on Twitter and we'll notify you</a>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
         }
-        else
-        {
-            <div class="activity activity--srl">
-                <a id="srl" class="activity__anchor"></a>
-                <div class="activity__header">
-                    <div class="content-center content-center--gutter">
-                        <div aria-hidden="true" class="activity__icon">
-                            <div class="icon icon--srl"></div>
-                        </div>
-                        <div class="activity__details">
-                            <h2 class="activity__type">Sparrow Racing League</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="activity__image"></div>
-                <div class="activity__extras">
-                    <div class="content-center content-center--gutter">
-                        <div class="grid grid--gutterless">
-                            <div class="grid__item">
-                                <div class="activity__information">
-                                    <p>SRL has now finished - it may be back so keep an eye on your usual Destiny news outlets.</p>
-                                    <p><a href="https://twitter.com/destinydaily7" target="_blank" class="button">Alternatively follow us on Twitter and we'll notify you</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-        
         @if (Model.TrialsDetails != null)
         {
             <div data-featured='2' class="activity activity--trials-of-osiris activity--featured js-homepage-featured">

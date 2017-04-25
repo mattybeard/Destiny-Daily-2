@@ -8,6 +8,7 @@ namespace DestinyDaily2.Models
 {
     public class VendorContentModel
     {
+        public bool HideSrl { get; set; }
         public DateTime ExpiryTime { get; set; }
         public List<XurDay> XurSales { get; set; }
         public bool XurInTower { get; set; }

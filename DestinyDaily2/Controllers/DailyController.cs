@@ -12,7 +12,7 @@ namespace DestinyDaily2.Controllers
     {
         private DailyManager DailyManager { get; }
         private BountyManager BountyManager { get; }
-        private DateTime StandardDate => DateTime.Now.AddHours(-9.0).AddMinutes(2);
+        private DateTime StandardDate => DateTime.Now.AddHours(-9.0).AddMinutes(5);
         private static HeroicDailyModel cache { get; set; }
         private bool CacheExpired
         {
@@ -40,20 +40,21 @@ namespace DestinyDaily2.Controllers
         {
             if (CacheExpired)
             {
-                var daily = DailyManager.GetDaily(StandardDate);
-                cache = new HeroicDailyModel() { DailyMission = daily, DailyBounties = new List<BountyDay>() };
-                if (daily != null)
-                {
-                    cache.DailyModifiers = DailyManager.GetModifiers(daily.missionid);
-                    cache.DailyRewards = DailyManager.GetRewards(daily.missionid);
-                }                
+                cache = new HeroicDailyModel();
+                //var daily = DailyManager.GetDaily(StandardDate);
+                //cache = new HeroicDailyModel() { DailyMission = daily, DailyBounties = new List<BountyDay>() };
+                //if (daily != null)
+                //{
+                //    cache.DailyModifiers = DailyManager.GetModifiers(daily.missionid);
+                //    cache.DailyRewards = DailyManager.GetRewards(daily.missionid);
+                //}                
 
-                var dailyCruc = DailyManager.GetDailyCrucible(StandardDate);
-                if (dailyCruc != null)
-                {
-                    cache.DailyCrucible = dailyCruc;
-                    cache.DailyCrucibleRewards = DailyManager.GetRewards(dailyCruc.activityid);
-                }
+                //var dailyCruc = DailyManager.GetDailyCrucible(StandardDate);
+                //if (dailyCruc != null)
+                //{
+                //    cache.DailyCrucible = dailyCruc;
+                //    cache.DailyCrucibleRewards = DailyManager.GetRewards(dailyCruc.activityid);
+                //}
                 var bounties = BountyManager.GetBounties(StandardDate, 1);
                 if (bounties != null && bounties.Any())
                     cache.DailyBounties = bounties;

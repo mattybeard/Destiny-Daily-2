@@ -9,12 +9,12 @@ namespace DestinyDailyDAL
     public class XurManager
     {
         private DestinySqlEntities db { get; set; }
-        private DateTime TodayDate => DateTime.Now.AddHours(-9.0).AddMinutes(2);
+        private DateTime TodayDate => DateTime.Now.AddHours(-9.0).AddMinutes(5);
         private DateTime XurDate
         {
             get
             {
-                var today = DateTime.Now.AddHours(-9.0).AddMinutes(2);
+                var today = DateTime.Now.AddHours(-9.0).AddMinutes(5);
                 while (today.DayOfWeek != DayOfWeek.Friday)
                 {
                     today = today.AddDays(-1);

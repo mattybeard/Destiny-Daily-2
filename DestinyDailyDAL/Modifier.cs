@@ -21,6 +21,7 @@ namespace DestinyDailyDAL
             this.PrisonOfEldersModifiers = new HashSet<PrisonOfEldersModifier>();
             this.WeeklyHeroicModifiers = new HashSet<WeeklyHeroicModifier>();
             this.NightfallMissionModifiers = new HashSet<NightfallMissionModifier>();
+            this.weeklyfeaturedmodifiers = new HashSet<WeeklyFeaturedModifier>();
         }
     
         public int id { get; set; }
@@ -36,5 +37,7 @@ namespace DestinyDailyDAL
         public virtual ICollection<WeeklyHeroicModifier> WeeklyHeroicModifiers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NightfallMissionModifier> NightfallMissionModifiers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WeeklyFeaturedModifier> weeklyfeaturedmodifiers { get; set; }
     }
 }

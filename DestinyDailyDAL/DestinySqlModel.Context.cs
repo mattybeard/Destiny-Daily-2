@@ -59,5 +59,11 @@ namespace DestinyDailyDAL
         public virtual DbSet<XurLocationDay> XurLocationDays { get; set; }
         public virtual DbSet<TrialsMapDay> TrialsMapDays { get; set; }
         public virtual DbSet<RewardsDay> RewardsDays { get; set; }
+        public virtual DbSet<FeaturedRaid> FeaturedRaids { get; set; }
+        public virtual DbSet<FeaturedRaidDay> FeaturedRaidDays { get; set; }
+        public virtual DbSet<FeaturedRaidChallenge> FeaturedRaidChallenges { get; set; }
+        public virtual DbSet<WeeklyFeatured> WeeklyFeatureds { get; set; }
+        public virtual DbSet<WeeklyFeaturedModifier> WeeklyFeaturedModifiers { get; set; }
+        public virtual DbSet<WeeklyFeaturedReward> WeeklyFeaturedRewards { get; set; }
     }
 }

@@ -80,6 +80,33 @@
           <Property Name="month" Type="int" />
           <Property Name="year" Type="int" />
         </EntityType>
+        <EntityType Name="featuredraid">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="45" Nullable="false" />
+          <Property Name="imageurl" Type="varchar" MaxLength="1000" />
+          <Property Name="description" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="featuredraidchallenge">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="featuredraidid" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="featuredraidday">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="featuredraidid" Type="int" Nullable="false" />
+          <Property Name="day" Type="int" Nullable="false" />
+          <Property Name="month" Type="int" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="heroicdailyday">
           <Key>
             <PropertyRef Name="id" />
@@ -270,6 +297,32 @@
           <Property Name="month" Type="int" Nullable="false" />
           <Property Name="year" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="weeklyfeatured">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="playlistid" Type="bigint" />
+          <Property Name="day" Type="int" />
+          <Property Name="month" Type="int" />
+          <Property Name="year" Type="int" />
+        </EntityType>
+        <EntityType Name="weeklyfeaturedmodifiers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="weeklyfeaturedid" Type="int" />
+          <Property Name="modifierid" Type="int" />
+        </EntityType>
+        <EntityType Name="weeklyfeaturedrewards">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="weeklyfeaturedid" Type="int" />
+          <Property Name="rewardid" Type="bigint" />
+        </EntityType>
         <EntityType Name="weeklyheroic">
           <Key>
             <PropertyRef Name="id" />
@@ -334,6 +387,18 @@
             </Principal>
             <Dependent Role="nightfall">
               <PropertyRef Name="missionid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Act_weeklyfeatured">
+          <End Role="manifestactivities" Type="Self.manifestactivities" Multiplicity="0..1" />
+          <End Role="weeklyfeatured" Type="Self.weeklyfeatured" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="manifestactivities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="weeklyfeatured">
+              <PropertyRef Name="playlistid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -454,6 +519,30 @@
             </Principal>
             <Dependent Role="rewardsday">
               <PropertyRef Name="itemid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeaturedRaidChallenge_RaidChal">
+          <End Role="featuredraid" Type="Self.featuredraid" Multiplicity="1" />
+          <End Role="featuredraidchallenge" Type="Self.featuredraidchallenge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="featuredraid">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="featuredraidchallenge">
+              <PropertyRef Name="featuredraidid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeauturedRaidDay_FeatRaid">
+          <End Role="featuredraid" Type="Self.featuredraid" Multiplicity="1" />
+          <End Role="featuredraidday" Type="Self.featuredraidday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="featuredraid">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="featuredraidday">
+              <PropertyRef Name="featuredraidid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -709,6 +798,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="n_weeklyfeaturedmissionFK">
+          <End Role="weeklyfeatured" Type="Self.weeklyfeatured" Multiplicity="0..1" />
+          <End Role="weeklyfeaturedrewards" Type="Self.weeklyfeaturedrewards" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="weeklyfeatured">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="weeklyfeaturedrewards">
+              <PropertyRef Name="weeklyfeaturedid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="n_weeklyfeaturedmissionIX">
+          <End Role="weeklyfeatured" Type="Self.weeklyfeatured" Multiplicity="0..1" />
+          <End Role="weeklyfeaturedmodifiers" Type="Self.weeklyfeaturedmodifiers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="weeklyfeatured">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="weeklyfeaturedmodifiers">
+              <PropertyRef Name="weeklyfeaturedid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="n_weeklyfeaturedmodifierIX">
+          <End Role="modifier" Type="Self.modifier" Multiplicity="0..1" />
+          <End Role="weeklyfeaturedmodifiers" Type="Self.weeklyfeaturedmodifiers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="modifier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="weeklyfeaturedmodifiers">
+              <PropertyRef Name="modifierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="n_weeklyfeaturedrewardFK">
+          <End Role="inventoryitem" Type="Self.inventoryitem" Multiplicity="0..1" />
+          <End Role="weeklyfeaturedrewards" Type="Self.weeklyfeaturedrewards" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="inventoryitem">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="weeklyfeaturedrewards">
+              <PropertyRef Name="rewardid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="weeklyactivityid_manifestactivities">
           <End Role="manifestactivities" Type="Self.manifestactivities" Multiplicity="0..1" />
           <End Role="crucibleweeklyday" Type="Self.crucibleweeklyday" Multiplicity="*" />
@@ -730,6 +867,9 @@
           <EntitySet Name="combatant" EntityType="Self.combatant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="crucibledailyday" EntityType="Self.crucibledailyday" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="crucibleweeklyday" EntityType="Self.crucibleweeklyday" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="featuredraid" EntityType="Self.featuredraid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="featuredraidchallenge" EntityType="Self.featuredraidchallenge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="featuredraidday" EntityType="Self.featuredraidday" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="heroicdailyday" EntityType="Self.heroicdailyday" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="inventoryitem" EntityType="Self.inventoryitem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="manifestactivities" EntityType="Self.manifestactivities" Schema="dbo" store:Type="Tables" />
@@ -750,6 +890,9 @@
           <EntitySet Name="rewardsday" EntityType="Self.rewardsday" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="scoremodifier" EntityType="Self.scoremodifier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="trialsmapday" EntityType="Self.trialsmapday" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="weeklyfeatured" EntityType="Self.weeklyfeatured" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="weeklyfeaturedmodifiers" EntityType="Self.weeklyfeaturedmodifiers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="weeklyfeaturedrewards" EntityType="Self.weeklyfeaturedrewards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="weeklyheroic" EntityType="Self.weeklyheroic" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="weeklyheroicmissionrewards" EntityType="Self.weeklyheroicmissionrewards" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="weeklyheroicmodifiers" EntityType="Self.weeklyheroicmodifiers" Schema="dbo" store:Type="Tables" />
@@ -759,6 +902,10 @@
           <AssociationSet Name="Act_Nightfall" Association="Self.Act_Nightfall">
             <End Role="manifestactivities" EntitySet="manifestactivities" />
             <End Role="nightfall" EntitySet="nightfall" />
+          </AssociationSet>
+          <AssociationSet Name="Act_weeklyfeatured" Association="Self.Act_weeklyfeatured">
+            <End Role="manifestactivities" EntitySet="manifestactivities" />
+            <End Role="weeklyfeatured" EntitySet="weeklyfeatured" />
           </AssociationSet>
           <AssociationSet Name="activityid_manifestactivities" Association="Self.activityid_manifestactivities">
             <End Role="manifestactivities" EntitySet="manifestactivities" />
@@ -799,6 +946,14 @@
           <AssociationSet Name="FK_EewardsDay_ManAct" Association="Self.FK_EewardsDay_ManAct">
             <End Role="inventoryitem" EntitySet="inventoryitem" />
             <End Role="rewardsday" EntitySet="rewardsday" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeaturedRaidChallenge_RaidChal" Association="Self.FK_FeaturedRaidChallenge_RaidChal">
+            <End Role="featuredraid" EntitySet="featuredraid" />
+            <End Role="featuredraidchallenge" EntitySet="featuredraidchallenge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeauturedRaidDay_FeatRaid" Association="Self.FK_FeauturedRaidDay_FeatRaid">
+            <End Role="featuredraid" EntitySet="featuredraid" />
+            <End Role="featuredraidday" EntitySet="featuredraidday" />
           </AssociationSet>
           <AssociationSet Name="FK_HeroicDaily_ManAct" Association="Self.FK_HeroicDaily_ManAct">
             <End Role="manifestactivities" EntitySet="manifestactivities" />
@@ -883,6 +1038,22 @@
           <AssociationSet Name="n_rewardFK" Association="Self.n_rewardFK">
             <End Role="inventoryitem" EntitySet="inventoryitem" />
             <End Role="nightfallmissionrewards" EntitySet="nightfallmissionrewards" />
+          </AssociationSet>
+          <AssociationSet Name="n_weeklyfeaturedmissionFK" Association="Self.n_weeklyfeaturedmissionFK">
+            <End Role="weeklyfeatured" EntitySet="weeklyfeatured" />
+            <End Role="weeklyfeaturedrewards" EntitySet="weeklyfeaturedrewards" />
+          </AssociationSet>
+          <AssociationSet Name="n_weeklyfeaturedmissionIX" Association="Self.n_weeklyfeaturedmissionIX">
+            <End Role="weeklyfeatured" EntitySet="weeklyfeatured" />
+            <End Role="weeklyfeaturedmodifiers" EntitySet="weeklyfeaturedmodifiers" />
+          </AssociationSet>
+          <AssociationSet Name="n_weeklyfeaturedmodifierIX" Association="Self.n_weeklyfeaturedmodifierIX">
+            <End Role="modifier" EntitySet="modifier" />
+            <End Role="weeklyfeaturedmodifiers" EntitySet="weeklyfeaturedmodifiers" />
+          </AssociationSet>
+          <AssociationSet Name="n_weeklyfeaturedrewardFK" Association="Self.n_weeklyfeaturedrewardFK">
+            <End Role="inventoryitem" EntitySet="inventoryitem" />
+            <End Role="weeklyfeaturedrewards" EntitySet="weeklyfeaturedrewards" />
           </AssociationSet>
           <AssociationSet Name="weeklyactivityid_manifestactivities" Association="Self.weeklyactivityid_manifestactivities">
             <End Role="manifestactivities" EntitySet="manifestactivities" />
@@ -1001,6 +1172,7 @@
           <NavigationProperty Name="WeeklyHeroicMissionRewards" Relationship="DestinySqlModel.FK_weeklyheroicereward_reward" FromRole="InventoryItem" ToRole="WeeklyHeroicMissionReward" />
           <NavigationProperty Name="NightfallMissionRewards" Relationship="DestinySqlModel.n_rewardFK" FromRole="InventoryItem" ToRole="NightfallMissionReward" />
           <NavigationProperty Name="rewardsdays" Relationship="DestinySqlModel.FK_EewardsDay_ManAct" FromRole="InventoryItem" ToRole="rewardsday" />
+          <NavigationProperty Name="weeklyfeaturedrewards" Relationship="DestinySqlModel.n_weeklyfeaturedrewardFK" FromRole="InventoryItem" ToRole="weeklyfeaturedreward" />
         </EntityType>
         <EntityType Name="ManifestActivity">
           <Key>
@@ -1020,6 +1192,7 @@
           <NavigationProperty Name="HeroicDailyDays" Relationship="DestinySqlModel.FK_HeroicDaily_ManAct" FromRole="ManifestActivity" ToRole="HeroicDailyDay" />
           <NavigationProperty Name="WeeklyHeroics" Relationship="DestinySqlModel.FK_WeeklyHeroic_ManAct" FromRole="ManifestActivity" ToRole="WeeklyHeroic" />
           <NavigationProperty Name="crucibleweeklydays" Relationship="DestinySqlModel.weeklyactivityid_manifestactivities" FromRole="ManifestActivity" ToRole="crucibleweeklyday" />
+          <NavigationProperty Name="weeklyfeatureds" Relationship="DestinySqlModel.Act_weeklyfeatured" FromRole="ManifestActivity" ToRole="weeklyfeatured" />
         </EntityType>
         <EntityType Name="ManifestReward">
           <Key>
@@ -1052,6 +1225,7 @@
           <NavigationProperty Name="PrisonOfEldersModifiers" Relationship="DestinySqlModel.FK_POEM_Modifiers" FromRole="Modifier" ToRole="PrisonOfEldersModifier" />
           <NavigationProperty Name="WeeklyHeroicModifiers" Relationship="DestinySqlModel.FK_weeklyheroic_modifier" FromRole="Modifier" ToRole="WeeklyHeroicModifier" />
           <NavigationProperty Name="NightfallMissionModifiers" Relationship="DestinySqlModel.n_modifierIX" FromRole="Modifier" ToRole="NightfallMissionModifier" />
+          <NavigationProperty Name="weeklyfeaturedmodifiers" Relationship="DestinySqlModel.n_weeklyfeaturedmodifierIX" FromRole="Modifier" ToRole="weeklyfeaturedmodifier" />
         </EntityType>
         <EntityType Name="Nightfall">
           <Key>
@@ -1359,6 +1533,40 @@
           <AssociationSet Name="FK_EewardsDay_ManAct" Association="DestinySqlModel.FK_EewardsDay_ManAct">
             <End Role="InventoryItem" EntitySet="InventoryItems" />
             <End Role="rewardsday" EntitySet="RewardsDays" />
+          </AssociationSet>
+          <EntitySet Name="FeaturedRaids" EntityType="DestinySqlModel.FeaturedRaid" />
+          <EntitySet Name="FeaturedRaidDays" EntityType="DestinySqlModel.FeaturedRaidDay" />
+          <AssociationSet Name="FK_FeauturedRaidDay_FeatRaid" Association="DestinySqlModel.FK_FeauturedRaidDay_FeatRaid">
+            <End Role="featuredraid" EntitySet="FeaturedRaids" />
+            <End Role="featuredraidday" EntitySet="FeaturedRaidDays" />
+          </AssociationSet>
+          <EntitySet Name="FeaturedRaidChallenges" EntityType="DestinySqlModel.FeaturedRaidChallenge" />
+          <AssociationSet Name="FK_FeaturedRaidChallenge_RaidChal" Association="DestinySqlModel.FK_FeaturedRaidChallenge_RaidChal">
+            <End Role="FeaturedRaid" EntitySet="FeaturedRaids" />
+            <End Role="featuredraidchallenge" EntitySet="FeaturedRaidChallenges" />
+          </AssociationSet>
+          <EntitySet Name="WeeklyFeatureds" EntityType="DestinySqlModel.WeeklyFeatured" />
+          <EntitySet Name="WeeklyFeaturedModifiers" EntityType="DestinySqlModel.WeeklyFeaturedModifier" />
+          <EntitySet Name="WeeklyFeaturedRewards" EntityType="DestinySqlModel.WeeklyFeaturedReward" />
+          <AssociationSet Name="n_weeklyfeaturedrewardFK" Association="DestinySqlModel.n_weeklyfeaturedrewardFK">
+            <End Role="InventoryItem" EntitySet="InventoryItems" />
+            <End Role="weeklyfeaturedreward" EntitySet="WeeklyFeaturedRewards" />
+          </AssociationSet>
+          <AssociationSet Name="Act_weeklyfeatured" Association="DestinySqlModel.Act_weeklyfeatured">
+            <End Role="ManifestActivity" EntitySet="ManifestActivities" />
+            <End Role="weeklyfeatured" EntitySet="WeeklyFeatureds" />
+          </AssociationSet>
+          <AssociationSet Name="n_weeklyfeaturedmodifierIX" Association="DestinySqlModel.n_weeklyfeaturedmodifierIX">
+            <End Role="Modifier" EntitySet="Modifiers" />
+            <End Role="weeklyfeaturedmodifier" EntitySet="WeeklyFeaturedModifiers" />
+          </AssociationSet>
+          <AssociationSet Name="n_weeklyfeaturedmissionFK" Association="DestinySqlModel.n_weeklyfeaturedmissionFK">
+            <End Role="weeklyfeatured" EntitySet="WeeklyFeatureds" />
+            <End Role="weeklyfeaturedreward" EntitySet="WeeklyFeaturedRewards" />
+          </AssociationSet>
+          <AssociationSet Name="n_weeklyfeaturedmissionIX" Association="DestinySqlModel.n_weeklyfeaturedmissionIX">
+            <End Role="weeklyfeatured" EntitySet="WeeklyFeatureds" />
+            <End Role="weeklyfeaturedmodifier" EntitySet="WeeklyFeaturedModifiers" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="FK_BountyDay_ManAct">
@@ -1843,6 +2051,154 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="FeaturedRaid">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="featuredraiddays" Relationship="DestinySqlModel.FK_FeauturedRaidDay_FeatRaid" FromRole="featuredraid" ToRole="featuredraidday" />
+          <NavigationProperty Name="featuredraidchallenges" Relationship="DestinySqlModel.FK_FeaturedRaidChallenge_RaidChal" FromRole="FeaturedRaid" ToRole="featuredraidchallenge" />
+          <Property Name="imageurl" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FeaturedRaidDay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="featuredraidid" Type="Int32" Nullable="false" />
+          <Property Name="day" Type="Int32" Nullable="false" />
+          <Property Name="month" Type="Int32" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="featuredraid" Relationship="DestinySqlModel.FK_FeauturedRaidDay_FeatRaid" FromRole="featuredraidday" ToRole="featuredraid" />
+        </EntityType>
+        <Association Name="FK_FeauturedRaidDay_FeatRaid">
+          <End Type="DestinySqlModel.FeaturedRaid" Role="featuredraid" Multiplicity="1" />
+          <End Type="DestinySqlModel.FeaturedRaidDay" Role="featuredraidday" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="featuredraid">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="featuredraidday">
+              <PropertyRef Name="featuredraidid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FeaturedRaidChallenge">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="featuredraidid" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="featuredraid" Relationship="DestinySqlModel.FK_FeaturedRaidChallenge_RaidChal" FromRole="featuredraidchallenge" ToRole="FeaturedRaid" />
+        </EntityType>
+        <Association Name="FK_FeaturedRaidChallenge_RaidChal">
+          <End Type="DestinySqlModel.FeaturedRaid" Role="FeaturedRaid" Multiplicity="1" />
+          <End Type="DestinySqlModel.FeaturedRaidChallenge" Role="featuredraidchallenge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeaturedRaid">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="featuredraidchallenge">
+              <PropertyRef Name="featuredraidid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="WeeklyFeatured">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="playlistid" Type="Int64" />
+          <Property Name="day" Type="Int32" />
+          <Property Name="month" Type="Int32" />
+          <Property Name="year" Type="Int32" />
+          <NavigationProperty Name="manifestactivity" Relationship="DestinySqlModel.Act_weeklyfeatured" FromRole="weeklyfeatured" ToRole="ManifestActivity" />
+          <NavigationProperty Name="weeklyfeaturedrewards" Relationship="DestinySqlModel.n_weeklyfeaturedmissionFK" FromRole="weeklyfeatured" ToRole="weeklyfeaturedreward" />
+          <NavigationProperty Name="weeklyfeaturedmodifiers" Relationship="DestinySqlModel.n_weeklyfeaturedmissionIX" FromRole="weeklyfeatured" ToRole="weeklyfeaturedmodifier" />
+        </EntityType>
+        <EntityType Name="WeeklyFeaturedModifier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="weeklyfeaturedid" Type="Int32" />
+          <Property Name="modifierid" Type="Int32" />
+          <NavigationProperty Name="modifier" Relationship="DestinySqlModel.n_weeklyfeaturedmodifierIX" FromRole="weeklyfeaturedmodifier" ToRole="Modifier" />
+          <NavigationProperty Name="weeklyfeatured" Relationship="DestinySqlModel.n_weeklyfeaturedmissionIX" FromRole="weeklyfeaturedmodifier" ToRole="weeklyfeatured" />
+        </EntityType>
+        <EntityType Name="WeeklyFeaturedReward">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="weeklyfeaturedid" Type="Int32" />
+          <Property Name="rewardid" Type="Int64" />
+          <NavigationProperty Name="inventoryitem" Relationship="DestinySqlModel.n_weeklyfeaturedrewardFK" FromRole="weeklyfeaturedreward" ToRole="InventoryItem" />
+          <NavigationProperty Name="weeklyfeatured" Relationship="DestinySqlModel.n_weeklyfeaturedmissionFK" FromRole="weeklyfeaturedreward" ToRole="weeklyfeatured" />
+        </EntityType>
+        <Association Name="n_weeklyfeaturedrewardFK">
+          <End Type="DestinySqlModel.InventoryItem" Role="InventoryItem" Multiplicity="0..1" />
+          <End Type="DestinySqlModel.WeeklyFeaturedReward" Role="weeklyfeaturedreward" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryItem">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="weeklyfeaturedreward">
+              <PropertyRef Name="rewardid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Act_weeklyfeatured">
+          <End Type="DestinySqlModel.ManifestActivity" Role="ManifestActivity" Multiplicity="0..1" />
+          <End Type="DestinySqlModel.WeeklyFeatured" Role="weeklyfeatured" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManifestActivity">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="weeklyfeatured">
+              <PropertyRef Name="playlistid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="n_weeklyfeaturedmodifierIX">
+          <End Type="DestinySqlModel.Modifier" Role="Modifier" Multiplicity="0..1" />
+          <End Type="DestinySqlModel.WeeklyFeaturedModifier" Role="weeklyfeaturedmodifier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modifier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="weeklyfeaturedmodifier">
+              <PropertyRef Name="modifierid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="n_weeklyfeaturedmissionFK">
+          <End Type="DestinySqlModel.WeeklyFeatured" Role="weeklyfeatured" Multiplicity="0..1" />
+          <End Type="DestinySqlModel.WeeklyFeaturedReward" Role="weeklyfeaturedreward" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="weeklyfeatured">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="weeklyfeaturedreward">
+              <PropertyRef Name="weeklyfeaturedid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="n_weeklyfeaturedmissionIX">
+          <End Type="DestinySqlModel.WeeklyFeatured" Role="weeklyfeatured" Multiplicity="0..1" />
+          <End Type="DestinySqlModel.WeeklyFeaturedModifier" Role="weeklyfeaturedmodifier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="weeklyfeatured">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="weeklyfeaturedmodifier">
+              <PropertyRef Name="weeklyfeaturedid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2199,6 +2555,65 @@
                 <ScalarProperty Name="month" ColumnName="month" />
                 <ScalarProperty Name="day" ColumnName="day" />
                 <ScalarProperty Name="itemid" ColumnName="itemid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeaturedRaids">
+            <EntityTypeMapping TypeName="DestinySqlModel.FeaturedRaid">
+              <MappingFragment StoreEntitySet="featuredraid">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="imageurl" ColumnName="imageurl" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeaturedRaidDays">
+            <EntityTypeMapping TypeName="DestinySqlModel.FeaturedRaidDay">
+              <MappingFragment StoreEntitySet="featuredraidday">
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="featuredraidid" ColumnName="featuredraidid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeaturedRaidChallenges">
+            <EntityTypeMapping TypeName="DestinySqlModel.FeaturedRaidChallenge">
+              <MappingFragment StoreEntitySet="featuredraidchallenge">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="featuredraidid" ColumnName="featuredraidid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeeklyFeatureds">
+            <EntityTypeMapping TypeName="DestinySqlModel.WeeklyFeatured">
+              <MappingFragment StoreEntitySet="weeklyfeatured">
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="playlistid" ColumnName="playlistid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeeklyFeaturedModifiers">
+            <EntityTypeMapping TypeName="DestinySqlModel.WeeklyFeaturedModifier">
+              <MappingFragment StoreEntitySet="weeklyfeaturedmodifiers">
+                <ScalarProperty Name="modifierid" ColumnName="modifierid" />
+                <ScalarProperty Name="weeklyfeaturedid" ColumnName="weeklyfeaturedid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeeklyFeaturedRewards">
+            <EntityTypeMapping TypeName="DestinySqlModel.WeeklyFeaturedReward">
+              <MappingFragment StoreEntitySet="weeklyfeaturedrewards">
+                <ScalarProperty Name="rewardid" ColumnName="rewardid" />
+                <ScalarProperty Name="weeklyfeaturedid" ColumnName="weeklyfeaturedid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
