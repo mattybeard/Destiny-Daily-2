@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -77,6 +78,7 @@
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DailyManager.cs" />
+    <Compile Include="DestinyDailyManager.cs" />
     <Compile Include="DestinySqlModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

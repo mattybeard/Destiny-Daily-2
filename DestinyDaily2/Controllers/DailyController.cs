@@ -12,19 +12,18 @@ namespace DestinyDaily2.Controllers
     {
         private DailyManager DailyManager { get; }
         private BountyManager BountyManager { get; }
-        private DateTime StandardDate => DateTime.Now.AddHours(-9.0).AddMinutes(5);
-        private static HeroicDailyModel cache { get; set; }
+        private static HeroicDailyModel Cache { get; set; }
         private bool CacheExpired
         {
             get
             {
-                if (cache == null)
+                if (Cache == null)
                     return true;
 
-                if (cache.ExpiryTime < DateTime.Now)
+                if (Cache.ExpiryTime < DateTime.Now)
                     return true;
 
-                if(DateTime.Now.Hour == 9 && cache.ExpiryTime.Hour == 9)
+                if (Cache.ExpiryTime.Hour < DateTime.Now.Hour)
                     return true;
 
                 return false;
@@ -40,14 +39,16 @@ namespace DestinyDaily2.Controllers
         {
             if (CacheExpired)
             {
-                cache = new HeroicDailyModel();
-                //var daily = DailyManager.GetDaily(StandardDate);
-                //cache = new HeroicDailyModel() { DailyMission = daily, DailyBounties = new List<BountyDay>() };
-                //if (daily != null)
-                //{
-                //    cache.DailyModifiers = DailyManager.GetModifiers(daily.missionid);
-                //    cache.DailyRewards = DailyManager.GetRewards(daily.missionid);
-                //}                
+                Cache = new HeroicDailyModel
+                {
+                    DailyMission = DailyManager.GetDaily()
+                };
+
+                if (Cache.DailyMission != null)
+                {
+                    Cache.DailyModifiers = DailyManager.GetModifiers(Cache.DailyMission.missionid);
+                    Cache.DailyRewards = DailyManager.GetRewards(Cache.DailyMission.missionid);
+                }                
 
                 //var dailyCruc = DailyManager.GetDailyCrucible(StandardDate);
                 //if (dailyCruc != null)
@@ -55,21 +56,22 @@ namespace DestinyDaily2.Controllers
                 //    cache.DailyCrucible = dailyCruc;
                 //    cache.DailyCrucibleRewards = DailyManager.GetRewards(dailyCruc.activityid);
                 //}
-                var bounties = BountyManager.GetBounties(StandardDate, 1);
-                if (bounties != null && bounties.Any())
-                    cache.DailyBounties = bounties;
 
-                cache.DisplayDate = StandardDate;
-                cache.ExpiryTime = DateTime.Now.AddHours(1);
-                cache.StartTime = DateTime.Now;
+                var bounties = BountyManager.GetBounties();
+                if (bounties != null && bounties.Any())
+                    Cache.DailyBounties = bounties;
+
+                Cache.TimeDifferenceTime = DailyManager.TodayDate;
+                Cache.ExpiryTime = DateTime.Now.AddHours(1);
+                Cache.StartTime = DateTime.Now;
             }
 
             if (noLayout)
-                return View("PartialIndex", cache);
+                return View("PartialIndex", Cache);
             else
             {
                 ViewBag.HtmlTagOverride = @"data-redirect=""/#daily""";
-                return View("Index", cache);
+                return View("Index", Cache);
             }
         }
     }

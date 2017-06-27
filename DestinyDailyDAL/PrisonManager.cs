@@ -7,7 +7,7 @@ using DestinyDailyDAL.Models;
 
 namespace DestinyDailyDAL
 {
-    public class PrisonManager
+    public class PrisonManager : DestinyDailyManager
     {
         private DestinySqlEntities db { get; set; }
         private BountyManager bountyManager { get; }
@@ -17,43 +17,47 @@ namespace DestinyDailyDAL
             bountyManager = new BountyManager();
         }
 
-        public List<PrisonOfElder> GetLegacyPrison(DateTime standardDate)
+        public List<PrisonOfElder> GetLegacyPrison()
         {
-            var legacyPoE = db.PrisonOfElders.Where(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year).ToList();
+            return GetLegacyPrison(WeeklyDate);
+        }
+
+        public List<PrisonOfElder> GetLegacyPrison(DateTime date)
+        {
+            var legacyPoE = db.PrisonOfElders.Where(d => d.day == date.Day && d.month == date.Month && d.year == date.Year).ToList();
             if (!legacyPoE.Any())
             {
-                CreateLegacyPrison(standardDate);
-                var updatedLegacyPoE = db.PrisonOfElders.Where(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year).ToList();
+                CreateLegacyPrison(date);
+                var updatedLegacyPoE = db.PrisonOfElders.Where(d => d.day == date.Day && d.month == date.Month && d.year == date.Year).ToList();
                 return updatedLegacyPoE;
             }
 
             return legacyPoE;          
         }
 
-        public DetailedChallengeOfElders GetDetailedChallenge(DateTime standardDate)
+        public DetailedChallengeOfElders GetDetailedChallenge()
+        {
+            return GetDetailedChallenge(WeeklyDate);
+        }
+
+        public DetailedChallengeOfElders GetDetailedChallenge(DateTime date)
         {
             var model = new DetailedChallengeOfElders()
             {
-                Challenge = GetChallengePrison(standardDate),
-                Bounties = GetChallengeBounties(standardDate)
-            };
+                Challenge = GetChallengePrison(date),
+                Bounties = bountyManager.GetWeeklyBounties("Variks")
+        };
 
             return model;
         }
 
-        private List<BountyDay> GetChallengeBounties(DateTime standardDate)
+        public ChallengeOfElder GetChallengePrison(DateTime date)
         {
-            return bountyManager.GetBounties(standardDate, 1, "Variks");
-
-        }
-
-        public ChallengeOfElder GetChallengePrison(DateTime standardDate)
-        {
-            var newPoE = db.ChallengeOfElders.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+            var newPoE = db.ChallengeOfElders.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
             if (newPoE == null)
             {
-                CreateChallengePrison(standardDate);
-                var updatedNewPoE = db.ChallengeOfElders.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+                CreateChallengePrison(date);
+                var updatedNewPoE = db.ChallengeOfElders.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
                 return updatedNewPoE;
             }
 

@@ -11,42 +11,28 @@ namespace DestinyDaily2.Controllers
     public class NightFallController : Controller
     {
         public NightFallManager NfManager { get; set; }
-        public BountyManager bountyManager { get; set; }
-        private static NightfallDataModel cache { get; set; }
+        public BountyManager BountyManager { get; set; }
+        private static NightfallDataModel Cache { get; set; }
         private bool CacheExpired
         {
             get
             {
-                if (cache == null)
+                if (Cache == null)
                     return true;
 
-                if (cache.ExpiryTime < DateTime.Now)
+                if (Cache.ExpiryTime < DateTime.Now)
                     return true;
 
-                if (DateTime.Now.Hour == 9 && cache.ExpiryTime.Hour == 9)
+                if (Cache.ExpiryTime.Hour < DateTime.Now.Hour)
                     return true;
 
                 return false;
             }
         }
-        private DateTime StandardDate
-        {
-            get
-            {
-                var today = DateTime.Now.AddHours(-9.0).AddMinutes(5);
-                while (today.DayOfWeek != DayOfWeek.Tuesday)
-                {
-                    today = today.AddDays(-1);
-                }
-
-                return today;
-            }
-        }
-
         public NightFallController()
         {
             NfManager = new NightFallManager();
-            bountyManager = new BountyManager();
+            BountyManager = new BountyManager();
         }
         
         public ActionResult Index(bool noLayout = false)
@@ -54,12 +40,11 @@ namespace DestinyDaily2.Controllers
             if (CacheExpired)
             {
 
-                var nf = NfManager.GetNightFall(StandardDate);
-                var weeklyBounties = bountyManager.GetBounties(StandardDate, 1, "Zavala");
+                var nf = NfManager.GetNightFall();
+                var weeklyBounties = BountyManager.GetWeeklyBounties("Zavala");
 
-                cache = new NightfallDataModel()
+                Cache = new NightfallDataModel()
                 {
-                    ThisDate = StandardDate,
                     ThisNightfall = nf,
                     ExpiryTime = DateTime.Now.AddHours(1),
                     StartTime = DateTime.Now,
@@ -68,11 +53,11 @@ namespace DestinyDaily2.Controllers
             }
 
             if (noLayout)
-                return View("PartialIndex", cache);
+                return View("PartialIndex", Cache);
             else
             {
                 ViewBag.HtmlTagOverride = @"data-redirect=""/#nightfall""";
-                return View("Index", cache);
+                return View("Index", Cache);
             }
         }
     }

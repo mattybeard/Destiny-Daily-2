@@ -6,23 +6,9 @@ using System.Threading.Tasks;
 
 namespace DestinyDailyDAL
 {
-    public class TrialsManager
+    public class TrialsManager : DestinyDailyManager
     {
         private DestinySqlEntities db { get; set; }
-        private DateTime TodayDate => DateTime.Now.AddHours(-9.0).AddMinutes(5);
-        private DateTime TrialsDate
-        {
-            get
-            {
-                var today = DateTime.Now.AddHours(-9.0).AddMinutes(5);
-                while (today.DayOfWeek != DayOfWeek.Friday)
-                {
-                    today = today.AddDays(-1);
-                }
-
-                return today;
-            }
-        }
         public bool IsActive
         {
             get
@@ -30,7 +16,7 @@ namespace DestinyDailyDAL
                 if (TodayDate.DayOfWeek == DayOfWeek.Saturday || TodayDate.DayOfWeek == DayOfWeek.Sunday || TodayDate.DayOfWeek == DayOfWeek.Monday)
                     return true;
 
-                if (TodayDate.DayOfWeek == DayOfWeek.Friday && TodayDate.Hour >= 8)
+                if (TodayDate.DayOfWeek == DayOfWeek.Friday && TodayDate.Hour >= 17)
                     return true;
 
                 return false;

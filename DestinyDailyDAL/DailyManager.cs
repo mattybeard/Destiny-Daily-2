@@ -7,7 +7,7 @@ using DestinyDailyDAL.Models;
 
 namespace DestinyDailyDAL
 {
-    public class DailyManager
+    public class DailyManager : DestinyDailyManager
     {
         private DestinySqlEntities db { get; set; }
 
@@ -16,13 +16,18 @@ namespace DestinyDailyDAL
             db = new DestinySqlEntities();
         }
 
-        public HeroicDailyDay GetDaily(DateTime standardDate)
+        public HeroicDailyDay GetDaily()
         {
-            var daily = db.HeroicDailyDays.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+            return GetDaily(TodayDate);
+        }
+
+        public HeroicDailyDay GetDaily(DateTime date)
+        {
+            var daily = db.HeroicDailyDays.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
             if (daily == null)
             {
-                CreateDaily(standardDate);
-                var updatedDaily = db.HeroicDailyDays.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+                CreateDaily(date);
+                var updatedDaily = db.HeroicDailyDays.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
                 return updatedDaily;
             }
 
@@ -33,6 +38,9 @@ namespace DestinyDailyDAL
         {
             var vendorInformation = DestinyDailyApiManager.BungieApi.GetAdvisors();
             if (vendorInformation.ErrorCode > 1)
+                return;
+
+            if (vendorInformation.Response.data.activities.dailychapter == null)
                 return;
 
             var previousDailyDate = date.AddDays(-1);
@@ -88,13 +96,18 @@ namespace DestinyDailyDAL
             return manifestRewards;
         }
 
-        public CrucibleDailyDay GetDailyCrucible(DateTime standardDate)
+        public CrucibleDailyDay GetDailyCrucible()
         {
-            var daily = db.CrucibleDailyDays.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+            return GetDailyCrucible(TodayDate);
+        }
+
+        public CrucibleDailyDay GetDailyCrucible(DateTime date)
+        {
+            var daily = db.CrucibleDailyDays.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
             if (daily == null)
             {
-                CreateDailyCrucible(standardDate);
-                var updatedDaily = db.CrucibleDailyDays.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+                CreateDailyCrucible(date);
+                var updatedDaily = db.CrucibleDailyDays.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
                 return updatedDaily;
             }
 

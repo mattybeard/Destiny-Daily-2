@@ -9,8 +9,6 @@ namespace DestinyDaily2.Models
 {
     public class HeroicDailyModel
     {
-        public DateTime DisplayDate { get; set; }
-        public string VisibleDate => DisplayDate.ToString("yyyy-MM-dd");
         public HeroicDailyDay DailyMission { get; set; }
         public List<Modifier> DailyModifiers { get; set; }
         public List<ManifestRewardModel> DailyRewards { get; set; }
@@ -19,5 +17,6 @@ namespace DestinyDaily2.Models
         public List<BountyDay> DailyBounties { get; set; }
         public DateTime ExpiryTime { get; set; }
         public DateTime StartTime { get; set; }
+        public DateTime TimeDifferenceTime { get; set; }
     }
 }
