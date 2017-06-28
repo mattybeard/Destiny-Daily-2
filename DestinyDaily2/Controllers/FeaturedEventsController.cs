@@ -10,14 +10,14 @@ namespace DestinyDaily2.Controllers
 {
     public class FeaturedEventsController : Controller
     {
-        private XurManager xurManager { get; set; }
+        private XurManager XurManager { get; set; }
 
         public ActionResult Index(bool noLayout = false, bool xur = false)
         {
             var model = new FeaturedEventsDataModel();
 
             if (xur)
-                model.XurEvent = xurManager.GetCurrentItems();
+                model.XurEvent = XurManager.GetCurrentItems();
 
             if (noLayout)
                 return View("PartialIndex", model);

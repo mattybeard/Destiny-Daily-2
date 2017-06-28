@@ -10,7 +10,6 @@ namespace DestinyDaily2.Models
 {
     public class WeeklyDataModel
     {
-        public DateTime ThisDate { get; set; }
         public WeeklyHeroic ThisWeekly { get; set; }
         public List<BountyDay> StrikeBounties { get; set; }
         public FeaturedRaidDay FeaturedRaid { get; set; }

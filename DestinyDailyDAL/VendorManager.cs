@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DestinyDailyDAL
 {
-    public class VendorManager
+    public class VendorManager : DestinyDailyManager
     {
         private DestinySqlEntities db { get; set; }
 
@@ -15,13 +15,18 @@ namespace DestinyDailyDAL
             db = new DestinySqlEntities();
         }
 
-        public List<MaterialExchange> GetMaterialExchange(DateTime standardDate)
+        public List<MaterialExchange> GetMaterialExchange()
         {
-           var exchanges = db.MaterialExchanges.Where(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+            return GetMaterialExchange(WeeklyDate);
+        }
+
+        public List<MaterialExchange> GetMaterialExchange(DateTime date)
+        {
+           var exchanges = db.MaterialExchanges.Where(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
             if (!exchanges.Any())
             {
-                CreateMaterialExchanges(standardDate);
-                var updatedExchanges = db.MaterialExchanges.Where(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+                CreateMaterialExchanges(date);
+                var updatedExchanges = db.MaterialExchanges.Where(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
                 return updatedExchanges.ToList();
             }
 
@@ -89,14 +94,18 @@ namespace DestinyDailyDAL
 
             db.MaterialExchanges.Add(materialExchange);
         }
-
-        public List<RaidChallengeDay> GetRaidChallenges(DateTime standardDate)
+        public List<RaidChallengeDay> GetRaidChallenges()
         {
-            var challenges = db.RaidChallengeDays.Where(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+            return GetRaidChallenges(WeeklyDate);
+        }
+
+        public List<RaidChallengeDay> GetRaidChallenges(DateTime date)
+        {
+            var challenges = db.RaidChallengeDays.Where(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
             if (!challenges.Any())
             {
-                CreateRaidChallenges(standardDate);
-                var updatedChallenges = db.RaidChallengeDays.Where(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+                CreateRaidChallenges(date);
+                var updatedChallenges = db.RaidChallengeDays.Where(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
                 return updatedChallenges.ToList();
             }
 
@@ -108,10 +117,10 @@ namespace DestinyDailyDAL
             foreach (var raid in new string[] { "Kings Fall", "Wrath of the Machine" })
             {
                 int newRaidId;
-                var lastRaid = db.RaidChallengeDays.Where(c => c.Challenge.raidname == raid).OrderByDescending(a => a.id).First();
+                var lastRaid = db.RaidChallengeDays.Where(c => c.Challenge.raidname == raid).OrderByDescending(a => a.id).FirstOrDefault();
                 var possibleRaids = db.RaidChallenges.Where(c => c.raidname == raid).OrderBy(a => a.id).ToList();
 
-                if (lastRaid.Challenge.id == possibleRaids.Max(c => c.id))
+                if (lastRaid == null || lastRaid.Challenge.id == possibleRaids.Max(c => c.id))
                     newRaidId = possibleRaids.Min(c => c.id);
                 else
                     newRaidId = lastRaid.Challenge.id + 1;
@@ -134,29 +143,38 @@ namespace DestinyDailyDAL
             return db.InventoryItems.Where(i => i.type == "material" && (i.name == "Hadium Flake" || i.name == "Helium Filaments" || i.name == "Spinmetal" || i.name == "Spirit Bloom" || i.name == "Relic Iron" || i.name == "Wormspore")).ToList();
         }
 
-
-        public FeaturedRaidDay GetFeaturedRaid(DateTime standardDate)
+        public FeaturedRaidDay GetFeaturedRaid()
         {
-            var featuredRaid = db.FeaturedRaidDays.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+            return GetFeaturedRaid(WeeklyDate);
+        }
+
+        public FeaturedRaidDay GetFeaturedRaid(DateTime date)
+        {
+            var featuredRaid = db.FeaturedRaidDays.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
             if (featuredRaid == null)
             {
-                CreateFeaturedRaid(standardDate);
-                var updatedRaid = db.FeaturedRaidDays.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+                CreateFeaturedRaid(date);
+                var updatedRaid = db.FeaturedRaidDays.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
+                if (updatedRaid != null && updatedRaid.featuredraid == null)
+                    updatedRaid.featuredraid = db.FeaturedRaids.FirstOrDefault(fr => fr.id == updatedRaid.featuredraidid);
                 return updatedRaid;
             }
 
+            featuredRaid.featuredraid = db.FeaturedRaids.FirstOrDefault(fr => fr.id == featuredRaid.featuredraidid);
+
             return featuredRaid;
-
-
         }
 
         private void CreateFeaturedRaid(DateTime standardDate)
         {
-            var lastRaid = db.FeaturedRaidDays.OrderByDescending(a => a.id).First();
-            var nextRaid = lastRaid.featuredraidid + 1;
-
-            if (lastRaid.featuredraidid == 4)
+            int nextRaid;
+            var lastRaid = db.FeaturedRaidDays.OrderByDescending(a => a.id).FirstOrDefault();
+            if (lastRaid == null)
                 nextRaid = 1;
+            else if (lastRaid.featuredraidid == 4)
+                nextRaid = 1;
+            else
+                nextRaid = lastRaid.featuredraidid + 1;
 
             var newFeaturedRaid = new FeaturedRaidDay()
             {

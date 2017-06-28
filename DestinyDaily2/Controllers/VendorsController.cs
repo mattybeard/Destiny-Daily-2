@@ -10,69 +10,54 @@ namespace DestinyDaily2.Controllers
 {
     public class VendorsController : Controller
     {
-        private VendorManager vendorManager { get; }
-        private XurManager xurManager { get; }    
-        private TrialsManager trialsManager { get; }
-        private BountyManager bountyManager { get; }
-        private static VendorContentModel cache { get; set; }
+        private VendorManager VendorManager { get; }
+        private XurManager XurManager { get; }    
+        private TrialsManager TrialsManager { get; }
+        private BountyManager BountyManager { get; }
+        private static VendorContentModel Cache { get; set; }
         private bool CacheExpired
         {
             get
             {
-                if (cache == null)
+                if (Cache == null)
                     return true;
 
-                if (cache.ExpiryTime < DateTime.Now)
+                if (Cache.ExpiryTime < DateTime.Now)
                     return true;
 
-                if (DateTime.Now.Hour == 9 && cache.ExpiryTime.Hour == 9)
+                if (Cache.ExpiryTime.Hour < DateTime.Now.Hour)
                     return true;
 
                 return false;
             }
         }
-        private DateTime TodayDate => DateTime.Now.AddHours(-9.0).AddMinutes(5);
-
-        private DateTime StandardDate
-        {
-            get
-            {
-                var today = DateTime.Now.AddHours(-9.0).AddMinutes(5);
-                while (today.DayOfWeek != DayOfWeek.Tuesday)
-                {
-                    today = today.AddDays(-1);
-                }
-
-                return today;
-            }
-        }
-
+        
         public VendorsController()
         {
-            vendorManager = new VendorManager();
-            xurManager = new XurManager();
-            trialsManager = new TrialsManager();
-            bountyManager = new BountyManager();
+            VendorManager = new VendorManager();
+            XurManager = new XurManager();
+            TrialsManager = new TrialsManager();
+            BountyManager = new BountyManager();
         }
 
         public ActionResult Index(bool noLayout = false)
         {
             if (CacheExpired)
             {
-                cache = new VendorContentModel()
+                Cache = new VendorContentModel()
                 {
                     HideSrl = true,
 
-                    XurInTower = xurManager.InTower,
-                    XurSales = xurManager.GetCurrentItems(),
-                    XurLocation = xurManager.GetCurrentLocation(),
-                    MaterialExchanges = vendorManager.GetMaterialExchange(StandardDate),
-                    MaterialDetail = vendorManager.GetMaterialDetails(),
-                    TrialsDetails = trialsManager.GetCurrentMap(),
-                    IronLordBounties = bountyManager.GetBounties(StandardDate, 1, "Shiro"),
-                    IronLordArtifacts = bountyManager.GetRewards(StandardDate, 1, "Tyra"),
-                    SrlBounties = bountyManager.GetBounties(TodayDate, 1, "Srl"),
-                    SrlRewards = bountyManager.GetRewards(new DateTime(2016,12,13), 1, "Srl"),
+                    XurInTower = XurManager.InTower,
+                    XurSales = XurManager.GetCurrentItems(),
+                    XurLocation = XurManager.GetCurrentLocation(),
+                    MaterialExchanges = VendorManager.GetMaterialExchange(),
+                    MaterialDetail = VendorManager.GetMaterialDetails(),
+                    TrialsDetails = TrialsManager.GetCurrentMap(),
+                    IronLordBounties = BountyManager.GetBounties("Shiro"),
+                    IronLordArtifacts = BountyManager.GetRewards("Tyra"),
+                    SrlBounties = BountyManager.GetBounties("Srl"),
+                    SrlRewards = BountyManager.GetRewards(new DateTime(2016,12,13), 1, "Srl"),
 
                     ExpiryTime = DateTime.Now.AddMinutes(30),
                     StartTime = DateTime.Now
@@ -80,11 +65,11 @@ namespace DestinyDaily2.Controllers
             }
 
             if (noLayout)
-                return View("PartialIndex", cache);
+                return View("PartialIndex", Cache);
             else
             {
                 ViewBag.HtmlTagOverride = @"data-redirect=""/#vendors""";
-                return View("Index", cache);
+                return View("Index", Cache);
             }
         }
     }

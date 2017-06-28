@@ -6,7 +6,7 @@
 
 <div style="display: none">Daily - @Model.StartTime</div>
 <div style="display: none">Now - @DateTime.Now</div>
-<div style="display: none">Now - @DateTime.UtcNow</div>
+<div style="display: none">Time Difference Time - @Model.TimeDifferenceTime</div>
 <a id="daily"><span class="is-vhidden">Today's events</span></a>
 <section class="js-homepage-section">
     <div class="content-center content-center--gutter">
@@ -157,7 +157,7 @@
                                             <li class="bounty">
                                                 <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Crucible Bounty Icon" class="bounty__image" />
                                                 <div class="bounty__details">
-                                                    <div class="bounty__title">@bounty.InventoryItem.name</div>
+                                                    <div class="bounty__title">@bounty.InventoryItem.name.Replace("''","'")</div>
                                                     <div class="bounty__description">@bounty.InventoryItem.desc</div>
                                                 </div>
                                             </li>
@@ -174,7 +174,7 @@
                                             <li class="bounty">
                                                 <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Crucible Bounty Icon" class="bounty__image" />
                                                 <div class="bounty__details">
-                                                    <div class="bounty__title">@bounty.InventoryItem.name</div>
+                                                    <div class="bounty__title">@bounty.InventoryItem.name.Replace("''", "'")</div>
                                                     <div class="bounty__description">@bounty.InventoryItem.desc</div>
                                                 </div>
                                             </li>

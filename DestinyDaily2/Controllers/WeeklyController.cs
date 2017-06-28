@@ -10,69 +10,52 @@ namespace DestinyDaily2.Controllers
 {
     public class WeeklyController : Controller
     {
-        private VendorManager vendorManager { get; }
-        private PrisonManager prisonManager { get; }
-        private BountyManager bountyManager { get; }
-        private DateTime TodayDate => DateTime.Now.AddHours(-9.0).AddMinutes(5);
-        private static WeeklyDataModel cache { get; set; }
+        private VendorManager VendorManager { get; }
+        private PrisonManager PrisonManager { get; }
+        private BountyManager BountyManager { get; }
+        private NightFallManager NfManager { get; set; }
+        private static WeeklyDataModel Cache { get; set; }
         private bool CacheExpired
         {
             get
             {
-                if (cache == null)
+                if (Cache == null)
                     return true;
 
-                if (cache.ExpiryTime < DateTime.Now)
+                if (Cache.ExpiryTime < DateTime.Now)
                     return true;
 
-                if (DateTime.Now.Hour == 9 && cache.ExpiryTime.Hour == 9)
+                if (Cache.ExpiryTime.Hour < DateTime.Now.Hour)
                     return true;
 
                 return false;
             }
         }
 
-        private DateTime StandardDate
-        {
-            get
-            {
-                var today = DateTime.Now.AddHours(-9.0).AddMinutes(5);
-                while (today.DayOfWeek != DayOfWeek.Tuesday)
-                {
-                    today = today.AddDays(-1);
-                }
-
-                return today;
-            }
-        }
-
-        private NightFallManager NfManager { get; set; }
-
         public WeeklyController()
         {
             NfManager = new NightFallManager();
-            vendorManager = new VendorManager();
-            prisonManager = new PrisonManager();
-            bountyManager = new BountyManager();
+            VendorManager = new VendorManager();
+            PrisonManager = new PrisonManager();
+            BountyManager = new BountyManager();
         }
         
         public ActionResult Index(bool noLayout = false)
         {
             if (CacheExpired)
             {
-                var featuredRaid = vendorManager.GetFeaturedRaid(StandardDate);
-                var weekly = NfManager.GetWeekly(StandardDate);
-                var weeklyBounties = bountyManager.GetBounties(TodayDate, 1, "Strike");
-                var raidChallenges = vendorManager.GetRaidChallenges(StandardDate);
-                var challengeElders = prisonManager.GetDetailedChallenge(StandardDate);
-                var weeklyCrucible = NfManager.GetDetailedCrucibleWeekly(StandardDate);
-                var ironBannerBounties = bountyManager.GetBounties(StandardDate, 1, "IronBanner");
-                var ironBannerRewards = bountyManager.GetRewards(StandardDate, 1, "IronBanner");
-                var weeklyPlaylist = NfManager.GetWeeklyStory(StandardDate);
+                var featuredRaid = VendorManager.GetFeaturedRaid();
+                var weekly = NfManager.GetWeekly();
+                var weeklyBounties = BountyManager.GetBounties("Strike");
+                var raidChallenges = VendorManager.GetRaidChallenges();
+                var challengeElders = PrisonManager.GetDetailedChallenge();
+                var weeklyCrucible = NfManager.GetDetailedCrucibleWeekly();
+                var ironBannerBounties = BountyManager.GetBounties("IronBanner");
+                var ironBannerRewards = BountyManager.GetRewards("IronBanner");
+                var weeklyPlaylist = NfManager.GetWeeklyStory();
 
-                cache = new WeeklyDataModel()
+                Cache = new WeeklyDataModel()
                 {
-                    ThisDate = StandardDate,
                     ThisWeekly = weekly,
                     StrikeBounties = weeklyBounties,
                     RaidChallenges = raidChallenges,
@@ -88,11 +71,11 @@ namespace DestinyDaily2.Controllers
             }
 
             if (noLayout)
-                return View("PartialIndex", cache);
+                return View("PartialIndex", Cache);
             else
             {
                 ViewBag.HtmlTagOverride = @"data-redirect=""/#weekly""";
-                return View("Index", cache);
+                return View("Index", Cache);
             }
         }
     }

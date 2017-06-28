@@ -7,7 +7,7 @@ using DestinyDailyDAL.Models;
 
 namespace DestinyDailyDAL
 {
-    public class NightFallManager
+    public class NightFallManager : DestinyDailyManager
     {
         private DestinySqlEntities db { get; set; }
 
@@ -16,49 +16,73 @@ namespace DestinyDailyDAL
             db = new DestinySqlEntities();
         }
 
-        public DetailedWeeklyCrucible GetDetailedCrucibleWeekly(DateTime standardDate)
+        public DetailedWeeklyCrucible GetDetailedCrucibleWeekly()
+        {
+            return GetDetailedCrucibleWeekly(WeeklyDate);
+        }
+
+        public DetailedWeeklyCrucible GetDetailedCrucibleWeekly(DateTime date)
         {
             var model = new DetailedWeeklyCrucible()
             {
-                Weekly = GetCrucibleWeekly(standardDate),
-                Bounties = new BountyManager().GetBounties(standardDate, 1, "Shaxx")
+                Weekly = GetCrucibleWeekly(date),
+                Bounties = new BountyManager().GetBounties(date, 1, "Shaxx")
             };
 
             return model;
         }
 
-        public CrucibleWeeklyDay GetCrucibleWeekly(DateTime standardDate)
+        public CrucibleWeeklyDay GetCrucibleWeekly()
         {
-            var weekly = db.CrucibleWeeklyDays.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+            return GetCrucibleWeekly(WeeklyDate);
+        }
+
+        private CrucibleWeeklyDay GetCrucibleWeekly(DateTime date)
+        {
+            var weekly = db.CrucibleWeeklyDays.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
             if (weekly == null)
             {
-                CreateWeeklyCrucible(standardDate);
-                return GetCrucibleWeekly(standardDate);
+                CreateWeeklyCrucible(date);
+                return GetCrucibleWeekly(date);
             }
-
+            weekly.ManifestActivity = db.ManifestActivities.FirstOrDefault(c => c.id == weekly.activityid);
             return weekly;
         }
 
-        public Nightfall GetNightFall(DateTime standardDate)
+        public Nightfall GetNightFall()
         {
-            var nightfall = db.Nightfalls.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+            return GetNightFall(WeeklyDate);
+        }
+
+        public Nightfall GetNightFall(DateTime date)
+        {
+            var nightfall = db.Nightfalls.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
             if (nightfall == null)
             {
-                CreateNightFall(standardDate);
-                var updatedNightfall = db.Nightfalls.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+                CreateNightFall(date);
+                var updatedNightfall = db.Nightfalls.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
+                if(updatedNightfall != null)
+                    updatedNightfall.ManifestActivity = db.ManifestActivities.FirstOrDefault(m => m.id == updatedNightfall.missionid);
+
                 return updatedNightfall;
             }
 
+            nightfall.ManifestActivity = db.ManifestActivities.FirstOrDefault(m => m.id == nightfall.missionid);
             return nightfall;
         }
 
-        public WeeklyHeroic GetWeekly(DateTime standardDate)
+        public WeeklyHeroic GetWeekly()
         {
-            var weekly = db.WeeklyHeroics.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+            return GetWeekly(WeeklyDate);
+        }
+
+        public WeeklyHeroic GetWeekly(DateTime date)
+        {
+            var weekly = db.WeeklyHeroics.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
             if (weekly == null)
             {
-                CreateWeekly(standardDate);
-                var updatedWeekly = db.WeeklyHeroics.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+                CreateWeekly(date);
+                var updatedWeekly = db.WeeklyHeroics.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
                 return updatedWeekly;
             }
 
@@ -211,15 +235,26 @@ namespace DestinyDailyDAL
             }
         }
 
-        public WeeklyFeatured GetWeeklyStory(DateTime standardDate)
+        public WeeklyFeatured GetWeeklyStory()
         {
-            var weekly = db.WeeklyFeatureds.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+            return GetWeeklyStory(WeeklyDate);
+        }
+
+        public WeeklyFeatured GetWeeklyStory(DateTime date)
+        {
+            var weekly = db.WeeklyFeatureds.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
             if (weekly == null)
             {
-                CreateWeeklyFeatured(standardDate);
-                var updatedWeekly = db.WeeklyFeatureds.FirstOrDefault(d => d.day == standardDate.Day && d.month == standardDate.Month && d.year == standardDate.Year);
+                CreateWeeklyFeatured(date);
+                var updatedWeekly = db.WeeklyFeatureds.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
+
+                if(updatedWeekly != null)
+                    updatedWeekly.manifestactivity = db.ManifestActivities.FirstOrDefault(m => m.id == updatedWeekly.playlistid);
+
                 return updatedWeekly;
             }
+
+            weekly.manifestactivity = db.ManifestActivities.FirstOrDefault(m => m.id == weekly.playlistid);
 
             return weekly;
         }

@@ -6,23 +6,9 @@ using System.Threading.Tasks;
 
 namespace DestinyDailyDAL
 {
-    public class XurManager
+    public class XurManager : DestinyDailyManager
     {
         private DestinySqlEntities db { get; set; }
-        private DateTime TodayDate => DateTime.Now.AddHours(-9.0).AddMinutes(5);
-        private DateTime XurDate
-        {
-            get
-            {
-                var today = DateTime.Now.AddHours(-9.0).AddMinutes(5);
-                while (today.DayOfWeek != DayOfWeek.Friday)
-                {
-                    today = today.AddDays(-1);
-                }
-
-                return today;
-            }
-        }
         public bool InTower
         {
             get
@@ -49,6 +35,9 @@ namespace DestinyDailyDAL
             {
                 CreateItems();
                 var updatedItems = db.XurDays.Where(d => d.day == XurDate.Day && d.month == XurDate.Month && d.year == XurDate.Year).ToList();
+                foreach (var item in updatedItems)
+                    item.InventoryItem = db.InventoryItems.FirstOrDefault(i => i.id == item.gearid);
+
                 return updatedItems;
             }
 
