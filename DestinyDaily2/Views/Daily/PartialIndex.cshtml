@@ -157,7 +157,7 @@
                                             <li class="bounty">
                                                 <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Crucible Bounty Icon" class="bounty__image" />
                                                 <div class="bounty__details">
-                                                    <div class="bounty__title">@bounty.InventoryItem.name</div>
+                                                    <div class="bounty__title">@bounty.InventoryItem.name.Replace("''","'")</div>
                                                     <div class="bounty__description">@bounty.InventoryItem.desc</div>
                                                 </div>
                                             </li>
@@ -174,7 +174,7 @@
                                             <li class="bounty">
                                                 <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Crucible Bounty Icon" class="bounty__image" />
                                                 <div class="bounty__details">
-                                                    <div class="bounty__title">@bounty.InventoryItem.name</div>
+                                                    <div class="bounty__title">@bounty.InventoryItem.name.Replace("''", "'")</div>
                                                     <div class="bounty__description">@bounty.InventoryItem.desc</div>
                                                 </div>
                                             </li>
