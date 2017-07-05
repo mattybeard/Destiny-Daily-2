@@ -54,8 +54,8 @@ namespace DestinyDaily2.Controllers
                     MaterialExchanges = VendorManager.GetMaterialExchange(),
                     MaterialDetail = VendorManager.GetMaterialDetails(),
                     TrialsDetails = TrialsManager.GetCurrentMap(),
-                    IronLordBounties = BountyManager.GetBounties("Shiro"),
-                    IronLordArtifacts = BountyManager.GetRewards("Tyra"),
+                    IronLordBounties = BountyManager.GetWeeklyBounties("Shiro"),
+                    IronLordArtifacts = BountyManager.GetWeeklyRewards("Tyra"),
                     SrlBounties = BountyManager.GetBounties("Srl"),
                     SrlRewards = BountyManager.GetRewards(new DateTime(2016,12,13), 1, "Srl"),
 
