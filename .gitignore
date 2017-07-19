@@ -253,4 +253,6 @@ paket-files/
 *.sln.iml
 
 # Configs
-.config
+Web.config
+Web.Debug.config
+Web.Release.config
