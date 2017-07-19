@@ -313,7 +313,17 @@
     <Content Include="Views\Shared\Partials\GoogleAd.cshtml" />
     <Content Include="Views\Shared\Partials\Header.cshtml" />
     <Content Include="Views\Shared\Maintenance.cshtml" />
-  </ItemGroup>
+    <Content Include="Web.config" />
+    <None Include="Web.Base.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+</ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\DestinyDaily\" />
