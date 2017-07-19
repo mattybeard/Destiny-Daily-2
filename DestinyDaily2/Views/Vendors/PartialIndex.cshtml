@@ -53,7 +53,7 @@
         <div class="heading">
             <h1 class="heading__title">Vendors</h1>
         </div>
-        @if(Model.XurInTower)
+        @if(Model.XurInTower && Model.XurSales.Any())
             {
             <div data-featured = '1' class="activity activity--vendor--xur activity--featured js-homepage-featured">
                 <a id = "xur" class="activity__anchor"></a>

@@ -50,8 +50,8 @@ namespace DestinyDaily2.Controllers
                 var raidChallenges = VendorManager.GetRaidChallenges();
                 var challengeElders = PrisonManager.GetDetailedChallenge();
                 var weeklyCrucible = NfManager.GetDetailedCrucibleWeekly();
-                var ironBannerBounties = BountyManager.GetBounties("IronBanner");
-                var ironBannerRewards = BountyManager.GetRewards("IronBanner");
+                var ironBannerBounties = BountyManager.GetWeeklyBounties("IronBanner");
+                var ironBannerRewards = BountyManager.GetWeeklyRewards("IronBanner");
                 var weeklyPlaylist = NfManager.GetWeeklyStory();
 
                 Cache = new WeeklyDataModel()

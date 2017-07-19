@@ -85,6 +85,11 @@ namespace DestinyDailyDAL
             return GetRewards(TodayDate, 1, type);
         }
 
+        public List<RewardsDay> GetWeeklyRewards(string type)
+        {
+            return GetRewards(WeeklyDate, 1, type);
+        }
+
         public List<RewardsDay> GetRewards(DateTime date, int tryCount, string type)
         {
             var rewards = db.RewardsDays.Where(d => d.year == date.Year && d.month == date.Month && d.day == date.Day).ToList();
@@ -194,6 +199,14 @@ namespace DestinyDailyDAL
                     {
                         var bounties = bountiesCategory.saleItems.Select(c => c.item.itemHash).ToArray();
                         CreateVendorBounties(bounties, WeeklyDate, Vendors.IronBanner);
+                    }
+
+                    var rewardsCategory = oldEndpoint.Response.data.vendor.saleItemCategories.FirstOrDefault(c => c.categoryTitle == "Event Rewards");
+
+                    if (rewardsCategory != null)
+                    {
+                        var items = rewardsCategory.saleItems.Select(c => c.item.itemHash).ToArray();
+                        CreateVendorRewards(items, WeeklyDate, Vendors.IronBanner);
                     }
                 }
             }
