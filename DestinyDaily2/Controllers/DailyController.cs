@@ -50,13 +50,6 @@ namespace DestinyDaily2.Controllers
                     Cache.DailyRewards = DailyManager.GetRewards(Cache.DailyMission.missionid);
                 }                
 
-                //var dailyCruc = DailyManager.GetDailyCrucible(StandardDate);
-                //if (dailyCruc != null)
-                //{
-                //    cache.DailyCrucible = dailyCruc;
-                //    cache.DailyCrucibleRewards = DailyManager.GetRewards(dailyCruc.activityid);
-                //}
-
                 var bounties = BountyManager.GetBounties();
                 if (bounties != null && bounties.Any())
                     Cache.DailyBounties = bounties;

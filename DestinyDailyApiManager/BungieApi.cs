@@ -41,7 +41,7 @@ namespace DestinyDailyApiManager
 
         private static string MakeBungieRequest(string url)
         {
-            HttpWebRequest request = (HttpWebRequest) WebRequest.Create(String.Format("https://www.bungie.net/Platform/Destiny/{0}", url.Trim()));
+            HttpWebRequest request = (HttpWebRequest) WebRequest.Create(String.Format("https://www.bungie.net/D1/Platform/Destiny/{0}", url.Trim()));
 
             request.Headers.Add("X-API-Key", @"C95158E80AD34135845C7D6118F2A7B2");
             request.Headers.Add("X-csrf", @"6645961750234506012");
