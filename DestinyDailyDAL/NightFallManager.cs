@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DestinyDailyApiManager.Models.D2.API;
+using DestinyDailyApiManager.Models.D2.Groups;
+using DestinyDailyDAL.Destiny1;
+using DestinyDailyDAL.Destiny2;
+using DestinyDailyDAL.Destiny2.Models;
 using DestinyDailyDAL.Models;
 
 namespace DestinyDailyDAL
@@ -10,10 +15,12 @@ namespace DestinyDailyDAL
     public class NightFallManager : DestinyDailyManager
     {
         private DestinySqlEntities db { get; set; }
+        private DestinyDaily2Entities db2 { get; }
 
         public NightFallManager()
         {
             db = new DestinySqlEntities();
+            db2 = new DestinyDaily2Entities();
         }
 
         public DetailedWeeklyCrucible GetDetailedCrucibleWeekly()
@@ -49,17 +56,152 @@ namespace DestinyDailyDAL
             return weekly;
         }
 
-        public Nightfall GetNightFall()
+        public NightfallManifestModel GetD2NightFall()
         {
-            return GetNightFall(WeeklyDate);
+            return GetD2NightFall(WeeklyDate);
         }
 
-        public Nightfall GetNightFall(DateTime date)
+        public NightfallManifestModel GetD2NightFall(DateTime date)
+        {
+           NightfallManifestGroupModel nightfallManifest = null;
+            var nightfall = db2.D2Nightfalls.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
+            if (nightfall == null)
+            {
+                nightfallManifest = CreateD2NightFall(date, true);
+                nightfall = db2.D2Nightfalls.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
+            }
+
+            if (nightfall != null)
+            {
+                if (nightfallManifest == null)
+                    nightfallManifest = CreateD2NightFall(date, false);
+
+                var model = new NightfallManifestModel
+                {
+                    Hash = nightfall.missionid,
+                    Name = nightfallManifest.Activity.displayProperties.name,
+                    PgcrIcon = nightfallManifest.Activity.pgcrImage,
+                    Modifiers = nightfallManifest.Modifiers.Select(m => new UnclassifiedModifier() { Name = m.displayProperties.name, Description = m.displayProperties.description, Icon = m.displayProperties.icon }).ToList(),
+                    Challenges = nightfallManifest.Challenges.Select(m => new UnclassifiedChallenge() {Name =  m.displayProperties.name, Description = m.displayProperties.description}).ToList(),
+                };
+
+                return model;
+            }
+
+            return null;
+        }
+
+        private NightfallManifestGroupModel CreateD2NightFall(DateTime date, bool createNew)
+        {
+            var nightfallDefinition = new NightfallManifestGroupModel();
+
+            var mileStones = DestinyDailyApiManager.BungieApi.GetMilestones();
+            if (mileStones.ErrorCode > 1)
+                return null;
+
+            var activityManifest = DestinyDailyApiManager.BungieApi.GetPlumbing<Dictionary<long, ActivityDefinition>>("DestinyActivityDefinition");
+            var modifierManifest = DestinyDailyApiManager.BungieApi.GetPlumbing<Dictionary<long, ModifierDefinition>>("DestinyActivityModifierDefinition");
+            var objectiveManifest = DestinyDailyApiManager.BungieApi.GetPlumbing<Dictionary<long, ModifierDefinition>>("DestinyObjectiveDefinition");
+
+            foreach (var milestone in mileStones.Response)
+            {                
+                var milestoneDetails = activityManifest[milestone.Value.availableQuests[0].activity.activityHash];
+                if (milestoneDetails.displayProperties.name.Contains("Nightfall"))
+                {
+                    if (createNew)
+                    {
+                        var newEntry = new D2Nightfall()
+                        {
+                            missionid = milestoneDetails.hash,
+                            day = date.Day,
+                            month = date.Month,
+                            year = date.Year
+                        };
+                        db2.D2Nightfalls.Add(newEntry);
+                        db2.SaveChanges();
+                    }
+
+                    nightfallDefinition.Activity = milestoneDetails;
+
+                    foreach (var modifier in milestone.Value.availableQuests[0].activity.modifierHashes)
+                    {
+                        if (createNew)
+                        {
+                            var modifierEntry = new D2NightfallModifier()
+                            {
+                                modfierid = modifier,
+                                day = date.Day,
+                                month = date.Month,
+                                year = date.Year
+                            };
+                            db2.D2NightfallModifiers.Add(modifierEntry);
+                            db2.SaveChanges();
+                        }
+
+                        var classifiedOverride = db2.ClassifiedOverrides.FirstOrDefault(c => c.id == modifier);
+                        if (classifiedOverride != null)
+                        {
+                            var overrideManifest = new ModifierDefinition()
+                            {
+                                hash = modifier,
+                                displayProperties = new DisplayProperties()
+                                {
+                                    name = classifiedOverride.name,
+                                    description = classifiedOverride.desc
+                                }
+                            };
+                            nightfallDefinition.Modifiers.Add(overrideManifest);
+                        }
+                        else 
+                            nightfallDefinition.Modifiers.Add(modifierManifest[modifier]);
+                    }
+
+                    var tiers = milestone.Value.availableQuests[0].challenges.Select(c => c.activityHash).First();
+                    foreach (var challenge in milestone.Value.availableQuests[0].challenges.Where(c => c.activityHash == tiers))
+                    {
+
+                        if (createNew)
+                        {
+                            var challengeEntry = new D2NightfallChallenge()
+                            {
+                                objectiveid = challenge.objectiveHash,
+                                day = date.Day,
+                                month = date.Month,
+                                year = date.Year
+                            };
+                            db2.D2NightfallChallenges.Add(challengeEntry);
+                            db2.SaveChanges();
+                        }
+
+                        nightfallDefinition.Challenges.Add(objectiveManifest[challenge.objectiveHash]);
+                    }
+
+                    return nightfallDefinition;
+                }
+            }
+            return null;
+        }
+
+        private ActivityDefinition GetActivityDefinition(long? hash)
+        {
+            if (hash == null)
+                return null;
+
+            var getActivityManifest = DestinyDailyApiManager.BungieApi.GetPlumbing<Dictionary<long, ActivityDefinition>>("DestinyActivityDefinition");
+            return getActivityManifest[hash.Value];
+        }
+
+        public Destiny1.Nightfall GetD1NightFall()
+        {
+            return GetD1NightFall(WeeklyDate);
+        }
+
+        public DestinyDailyDAL.Destiny1.Nightfall GetD1NightFall(DateTime date)
         {
             var nightfall = db.Nightfalls.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
             if (nightfall == null)
             {
-                CreateNightFall(date);
+                CreateD1NightFall(date);
                 var updatedNightfall = db.Nightfalls.FirstOrDefault(d => d.day == date.Day && d.month == date.Month && d.year == date.Year);
                 if(updatedNightfall != null)
                     updatedNightfall.ManifestActivity = db.ManifestActivities.FirstOrDefault(m => m.id == updatedNightfall.missionid);
@@ -89,7 +231,7 @@ namespace DestinyDailyDAL
             return weekly;
         }
 
-        private void CreateNightFall(DateTime date)
+        private void CreateD1NightFall(DateTime date)
         {
             var vendorInformation = DestinyDailyApiManager.BungieApi.GetAdvisors();
             if (vendorInformation.ErrorCode > 1)
@@ -106,7 +248,7 @@ namespace DestinyDailyDAL
             var activity = db.ManifestActivities.FirstOrDefault(m => m.id == activityHash);
             if (activity != null)
             {
-                var newEntry = new Nightfall()
+                var newEntry = new Destiny1.Nightfall()
                 {
                     missionid = activityHash,
                     day = date.Day,

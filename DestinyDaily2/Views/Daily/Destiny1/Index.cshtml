@@ -1,0 +1,177 @@
+﻿@model DestinyDaily2.Models.Destiny1.HeroicDailyModel
+@{
+    ViewBag.MetaTitle = "Today's events | Destiny Daily";
+    ViewBag.MetaDescription = "A quick glance at today's challenges within Destiny for those who can't play right now";
+    ViewBag.CanonicalUrl = "http://www.destiny-daily.com/daily";
+}
+
+<div class="heading">
+    <h1 class="heading__title">Today's events</h1>
+</div>
+@if (Model.DailyMission != null)
+{
+    <div class="activity activity--daily-story">
+        <a id="daily-story" class="activity__anchor"></a>
+        <div class="activity__header">
+            <div class="content-center content-center--gutter">
+                <div aria-hidden="true" class="activity__icon">
+                    <div class="icon icon--daily-story"></div>
+                </div>
+                <div class="activity__details">
+                    <h2 class="activity__type">Daily Heroic story</h2>
+                    <p class="activity__name">@Model.DailyMission.ManifestActivity.name</p>
+                    <p class="is-vhidden">@Model.DailyMission.ManifestActivity.desc</p>
+                </div>
+            </div>
+        </div>
+        <div data-external-background-image="data-external-background-image" data-external-src="@($"https://www.bungie.net{Model.DailyMission.ManifestActivity.pgcricon}")" class="activity__image"></div>
+        <div class="activity__extras">
+            <div class="content-center content-center--gutter">
+                <div class="grid grid--gutterless">
+                    <div class="grid__item tablet-one-half">
+                        <div class="activity__extra">
+                            <h3 class="activity__subheading is-vhidden">Modifiers</h3>
+                            <ul>
+                                @foreach (var missionMod in Model.DailyModifiers)
+                                {
+                                    <li title="@missionMod.name" class="skull">
+                                        <div class="skull__icon">
+                                            <div aria-hidden="true" class="icon icon--skull @($"icon--skull--{missionMod.name.Replace(" ", "-").ToLower()}")"></div>
+                                        </div>
+                                        <div class="skull__details">
+                                            <div class="skull__title">@missionMod.name</div>
+                                            <div class="skull__description">@missionMod.description</div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="grid__item tablet-one-half">
+                        <div class="activity__extra">
+                            <h3 class="activity__subheading">Rewards</h3>
+                            <ul>
+                                @if (Model.DailyCrucibleRewards.Any())
+                                {
+                                    foreach (var reward in Model.DailyCrucibleRewards)
+                                    {
+                                        <li title="@reward.Item.name" class="reward">
+                                            <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net{reward.Item.icon}")" alt="Reward Icon" class="reward__image" />
+                                            <div class="reward__details">
+                                                @if (reward.Quantity > 0)
+                                                {
+                                                    <div class="reward__title">@($"{reward.Item.name} ({reward.Quantity})")</div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="reward__title">@($"{reward.Item.name}")</div>
+                                                }
+                                            </div>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@if (Model.DailyCrucible != null)
+{
+    <div class="activity activity--daily-crucible">
+        <a id="daily-crucible" class="activity__anchor"></a>
+        <div class="activity__header">
+            <div class="content-center content-center--gutter">
+                <div aria-hidden="true" class="activity__icon">
+                    <div class="icon icon--daily-crucible"></div>
+                </div>
+                <div class="activity__details">
+                    <h2 class="activity__type">Daily Crucible playlist</h2>
+                    <p class="activity__name">@Model.DailyCrucible.ManifestActivity.name</p>
+                </div>
+            </div>
+        </div>
+        <div class="activity__image"></div>
+        <div class="activity__extras">
+            <div class="content-center content-center--gutter">
+                <div class="grid grid--gutterless">
+                    <div class="grid__item tablet-one-half tablet-push-one-half">
+                        <div class="activity__extra">
+                            <h3 class="activity__subheading">Rewards</h3>
+                            <ul>
+                                @foreach (var reward in Model.DailyCrucibleRewards)
+                                {
+                                    <li title="Legendary Marks x 15" class="reward">
+                                        <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net{reward.Item.icon}")" width="30" height="30" alt="Legendary Marks x 15 icon" class="reward__image" />
+                                        <div class="reward__details">
+                                            <div class="reward__title">@($"{reward.Item.name} ({reward.Quantity})")</div>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="activity activity--vendor--bounty-tracker">
+    <a id="bounties" class="activity__anchor"></a>
+    <div class="activity__header">
+        <div class="content-center content-center--gutter">
+            <div aria-hidden="true" class="activity__icon">
+                <div class="icon icon--vendor--bounty-tracker"></div>
+            </div>
+            <div class="activity__details">
+                <h2 class="activity__type">Daily bounties</h2>
+                <p class="activity__name">Bounty Tracker</p>
+                <p class="is-vhidden">When a Guardian's prowess in the field is required, bounties are posted here.</p>
+            </div>
+        </div>
+    </div>
+    <div class="activity__image"></div>
+    <div class="activity__extras">
+        <div class="content-center content-center--gutter">
+            <div class="grid grid--gutterless">
+                <div class="grid__item fablet-one-half tablet-one-half">
+                    <div class="activity__extra">
+                        <h3 class="activity__subheading">Vanguard</h3>
+                        <ul>
+                            @foreach (var bounty in Model.DailyBounties.Where(c => c.vendor == "Vanguard"))
+                            {
+                                <li class="bounty">
+                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Reward Icon" class="bounty__image" />
+                                    <div class="bounty__details">
+                                        <div class="bounty__title">@bounty.InventoryItem.name</div>
+                                        <div class="bounty__description">@bounty.InventoryItem.desc</div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid__item fablet-one-half tablet-one-half">
+                    <div class="activity__extra">
+                        <h3 class="activity__subheading">Crucible</h3>
+                        <ul>
+                            @foreach (var bounty in Model.DailyBounties.Where(c => c.vendor == "Crucible"))
+                            {
+                                <li class="bounty">
+                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Reward Icon" class="bounty__image" />
+                                    <div class="bounty__details">
+                                        <div class="bounty__title">@bounty.InventoryItem.name</div>
+                                        <div class="bounty__description">@bounty.InventoryItem.desc</div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Partial("Partials/BackToTop")

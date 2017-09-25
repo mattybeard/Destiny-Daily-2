@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DestinyDaily2.Models;
+using DestinyDaily2.Models.Destiny1;
 using DestinyDailyDAL;
 
 namespace DestinyDaily2.Controllers
@@ -12,7 +13,7 @@ namespace DestinyDaily2.Controllers
     {
         private XurManager XurManager { get; set; }
 
-        public ActionResult Index(bool noLayout = false, bool xur = false)
+        public ActionResult Destiny1Index(bool noLayout = false, bool xur = false)
         {
             var model = new FeaturedEventsDataModel();
 
@@ -20,11 +21,11 @@ namespace DestinyDaily2.Controllers
                 model.XurEvent = XurManager.GetCurrentItems();
 
             if (noLayout)
-                return View("PartialIndex", model);
+                return View("Destiny1/PartialIndex", model);
             else
             {
                 //ViewBag.HtmlTagOverride = @"data-redirect=""/#featured""";
-                return View("Index", model);
+                return View("Destiny1/Index", model);
             }
         }
     }

@@ -4,16 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DestinyDailyApiManager.Models;
+using DestinyDailyDAL.Destiny1;
+using DestinyDailyDAL.Destiny2;
 
 namespace DestinyDailyDAL
 {
     public class BountyManager : DestinyDailyManager
     {
         private DestinySqlEntities db { get; }
+        private DestinyDaily2Entities db2 { get; }
         public BountyManager()
         {
             db = new DestinySqlEntities();
+            db2 = new DestinyDaily2Entities();
         }
+
+        public void SampleApiTest()
+        {
+            DestinyDailyApiManager.BungieApi.ApiTest();
+        }
+
         public List<BountyDay> GetBounties()
         {
             return GetBounties(TodayDate, 1);

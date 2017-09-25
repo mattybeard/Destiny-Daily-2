@@ -1,11 +1,10 @@
-@model DestinyDaily2.Models.WeeklyDataModel
+@model bool
 
 @{
     Layout = null;
     ViewBag.Title = "Nightfall";
 }
 
-<div style="display: none">Weekly - @Model.StartTime</div>
 <a id="weekly">
     <span class="is-vhidden">This weeks' events</span>
 </a>
@@ -19,469 +18,60 @@
     <div class="heading">
         <h1 class="heading__title">This week's events</h1>
     </div>
-        @if (Model.IronBannerBounties.Any())
-        {
-            <!-- Display this section when Iron Banner is active-->
-            <div data-featured='3' class="activity activity--iron-banner activity--featured js-homepage-featured">
-                <a id="iron-banner" class="activity__anchor"></a>
-                <div class="activity__header">
-                    <div class="content-center content-center--gutter">
-                        <div aria-hidden="true" class="activity__icon">
-                            <div class="icon icon--iron-banner"></div>
-                        </div>
-                        <div class="activity__details">
-                            <h2 class="activity__type">Iron Banner</h2>
-                            <p class="activity__name">Control</p>
-                            <p class="activity__level">Limited time event</p>
-                        </div>
+        <div class="activity activity--raid">
+            <a id="weekly-raid" class="activity__anchor"></a>
+            <div class="activity__header">
+                <div class="content-center content-center--gutter">
+                    <div aria-hidden="true" class="activity__icon">
+                        <div class="icon icon--raid"></div>
+                    </div>
+                    <div class="activity__details">
+                        <h2 class="activity__type">Weekly Raid</h2>
+                        <p class="activity__name">Leviathan</p>
+                        <p class="is-vhidden">Defy the Cabal Emperor in the Leviathan raid.</p>
                     </div>
                 </div>
-                <div class="activity__image"></div>
-                <div class="activity__extras">
-                    <div class="content-center content-center--gutter">
-                        <div class="grid grid--gutterless">
-                            <div class="grid__item tablet-one-half">
-                                <div class="activity__extra">
-                                    <h3 class="activity__subheading">Event Rewards</h3>
-                                    <div class="grid grid--gutterless">
-                                        @foreach (var reward in Model.IronBannerRewards)
-                                        {
-                                            <div class="grid__item fablet-one-half">
-                                                <div class="gear">
-                                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{reward.inventoryitem.icon}")" width="96" height="96" alt="@($"{reward.inventoryitem.name} preview")" class="gear__image"/>
-                                                    <div class="gear__details">
-                                                        <div class="gear__title">@reward.inventoryitem.name</div>
-                                                        <div class="gear__description">@reward.inventoryitem.type</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        }                                        
-                                    </div>
-                                </div>
+            </div>
+            <div data-external-background-image="data-external-background-image" data-external-src="https://www.bungie.net/img/destiny_content/pgcr/raid_gluttony.jpg" class="activity__image"></div>
+            <div class="activity__extras">
+                <div class="content-center content-center--gutter">
+                    <div class="grid grid--gutterless">
+                        <div class="grid__item tablet-one-half">
+                            <div class="activity__extra">
+                                <h3 class="activity__subheading">Challenges</h3>
+                                <ul>
+                                    <li title="The Proving" class="skull">
+                                        <div class="skull__details">
+                                            <div class="skull__title">The Proving</div>
+                                            <div class="skull__description">Complete every trial Calus has set before you.</div>
+                                        </div>
+                                    </li>
+                                    <li title="The Labyrinth" class="skull">
+                                        <div class="skull__details">
+                                            <div class="skull__title">The Labyrinth</div>
+                                            <div class="skull__description">Loot 3 of Calus's gifts in the underbelly of the Leviathan.</div>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="grid__item tablet-one-half">
-                                <div class="activity__extra">
-                                    <h3 class="activity__subheading">Bounties</h3>
-                                    <ul>
-                                        @foreach (var bounty in Model.IronBannerBounties)
-                                        {
-                                            <li class="bounty">
-                                                <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Bounties icon" class="bounty__image"/>
-                                                <div class="bounty__details">
-                                                    <div class="bounty__title">@bounty.InventoryItem.name</div>
-                                                    <div class="bounty__description">@bounty.InventoryItem.desc</div>
-                                                </div>
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>
+                        </div>
+                        <div class="grid__item tablet-one-half">
+                            <div class="activity__extra">
+                                <h3 class="activity__subheading">Rewards</h3>
+                                <ul>
+                                    <li title="Powerful Gear" class="reward">
+                                        <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny2_content/icons/350c8a864958c0d8af1344fd0cdc37ba.png" width="30" height="30" alt="Powerful Gear icon" class="reward__image" />
+                                        <div class="reward__details">
+                                            <div class="reward__title">Powerful Gear</div>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        }
-
-        @if (Model.FeaturedRaid != null)
-        {
-            <div class="activity activity--raid">
-                <a id="weekly-raid" class="activity__anchor"></a>
-                <div class="activity__header">
-                    <div class="content-center content-center--gutter">
-                        <div aria-hidden="true" class="activity__icon">
-                            <div class="icon icon--raid"></div>
-                        </div>
-                        <div class="activity__details">
-                            <h2 class="activity__type">Weekly featured Raid</h2>
-                            <p class="activity__name">@Model.FeaturedRaid.featuredraid.name</p>
-                            <p class="is-vhidden">@Model.FeaturedRaid.featuredraid.description</p>
-                        </div>
-                    </div>
-                </div>
-                <div data-external-background-image="data-external-background-image" data-external-src="@Model.FeaturedRaid.featuredraid.imageurl" class="activity__image"></div>
-                <div class="activity__extras">
-                    <div class="content-center content-center--gutter">
-                        <div class="grid grid--gutterless">
-                            <div class="grid__item tablet-one-half">
-                                <div class="activity__extra">
-                                    <h3 class="activity__subheading is-vhidden">Modifiers</h3>
-                                    <ul>
-                                        <li title="Heroic" class="skull">
-                                            <div class="skull__icon">
-                                                <div aria-hidden="true" class="icon icon--skull icon--skull--heroic"></div>
-                                            </div>
-                                            <div class="skull__details">
-                                                <div class="skull__title">Heroic</div>
-                                                <div class="skull__description">Enemies appear in greater numbers and are more aggressive.</div>
-                                            </div>
-                                        </li>
-                                        @foreach (var challenge in Model.FeaturedRaid.featuredraid.featuredraidchallenges)
-                                        {
-                                            <li title="@challenge.name" class="skull">
-                                                <div class="skull__icon">
-                                                    <div aria-hidden="true" class="@($"icon icon--skull icon--skull--{challenge.name.ToLower().Replace(" ","-")}")"></div>
-                                                </div>
-                                                <div class="skull__details">
-                                                    <div class="skull__title">@challenge.name</div>
-                                                </div>
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="grid__item tablet-one-half">
-                                <div class="activity__extra">
-                                    <h3 class="activity__subheading">Rewards</h3>
-                                    <ul>
-                                        <li title="Raid Set Gear" class="reward">
-                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/e19acad46bd4d02a3e6d1a007f3df3bb.jpg" width="30" height="30" alt="Raid Set Gear icon" class="reward__image" />
-                                            <div class="reward__details">
-                                                <div class="reward__title">Raid Set Gear</div>
-                                            </div>
-                                        </li>
-                                        <li title="Unknown Rewards" class="reward">
-                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/6a7d79fa021d584da0ff02b16f3e738b.jpg" width="30" height="30" alt="Unknown Rewards icon" class="reward__image" />
-                                            <div class="reward__details">
-                                                <div class="reward__title">Unknown Rewards</div>
-                                            </div>
-                                        </li>
-                                        <li title="Age of Triumph Ornament" class="reward">
-                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/780a88e8cbd43134cb5fa4fe97ca6925.jpg" width="30" height="30" alt="Age of Triumph Ornament icon" class="reward__image" />
-                                            <div class="reward__details">
-                                                <div class="reward__title">Age of Triumph Ornament</div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-        else
-        {
-            if (Model.RaidChallenges != null && Model.RaidChallenges.Any())
-            {
-                var kingsFallChallenge = Model.RaidChallenges.FirstOrDefault(c => c.Challenge.raidname == "Kings Fall");
-                var wrathChallenge = Model.RaidChallenges.FirstOrDefault(c => c.Challenge.raidname == "Wrath of the Machine");
-
-                <div class="activity activity--raid">
-                    <div class="activity__header">
-                        <div class="content-center content-center--gutter">
-                            <div aria-hidden="true" class="activity__icon">
-                                <div class="icon icon--raid"></div>
-                            </div>
-                            <div class="activity__details">
-                                <h2 class="activity__type">Weekly Raid challenges</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="activity__image"></div>
-                    <div class="activity__extras">
-                        <div class="content-center content-center--gutter">
-                            <div class="grid grid--gutterless">
-                                <div class="grid__item tablet-one-half">
-                                    <div class="activity__extra">
-                                        <h3 class="activity__subheading">Wrath of the Machine</h3>
-                                        <ul>
-                                            <li title="@wrathChallenge.Challenge.name" class="skull">
-                                                <div class="skull__icon">
-                                                    <div aria-hidden="true" class="icon icon--skull @($"icon--skull--{wrathChallenge.Challenge.name.Replace(" ", "-").ToLower()}")"></div>
-                                                </div>
-                                                <div class="skull__details">
-                                                    <div class="skull__title">@wrathChallenge.Challenge.name</div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="grid__item tablet-one-half">
-                                    <div class="activity__extra">
-                                        <h3 class="activity__subheading">King's Fall</h3>
-                                        <ul>
-                                            <li title="@kingsFallChallenge.Challenge.name" class="skull">
-                                                <div class="skull__icon">
-                                                    <div aria-hidden="true" class="icon icon--skull @($"icon--skull--{kingsFallChallenge.Challenge.name.Replace(" ", "-").ToLower()}")"></div>
-                                                </div>
-                                                <div class="skull__details">
-                                                    <div class="skull__title">@kingsFallChallenge.Challenge.name</div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        }
-        @if (Model.ThisWeekly != null)
-        {
-            <div class="activity activity--weekly-strike">
-                <div class="activity__header">
-                    <div class="content-center content-center--gutter">
-                        <div aria-hidden="true" class="activity__icon">
-                            <div class="icon icon--weekly-strike"></div>
-                        </div>
-                        <div class="activity__details">
-                            <h2 class="activity__type">Weekly Strike playlist</h2>
-                            <p class="activity__name">SIVA Crisis Heroic</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="activity__image"></div>
-                <div class="activity__extras">
-                    <div class="content-center content-center--gutter">
-                        <div class="grid grid--gutterless">
-                            <div class="grid__item tablet-one-half">
-                                <div class="activity__extra">
-                                    <h3 class="activity__subheading is-vhidden">Modifiers</h3>
-                                    <ul>
-                                        @foreach (var missionMod in Model.ThisWeekly.Modifiers)
-                                        {
-                                            <li title="@missionMod.Modifier.name" class="skull">
-                                                <div class="skull__icon">
-                                                    <div aria-hidden="true" class="@($"icon icon--skull icon--skull--{missionMod.Modifier.name.Replace(" ", "-").ToLower()}")"></div>
-                                                </div>
-                                                <div class="skull__details">
-                                                    <div class="skull__title">@missionMod.Modifier.name</div>
-                                                    <div class="skull__description">@missionMod.Modifier.description</div>
-                                                </div>
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>
-                            </div>
-                            @if (Model.StrikeBounties.Any())
-                            {
-                                <div class="grid__item tablet-one-half">
-                                    <div class="activity__extra">
-                                        <h3 class="activity__subheading">Bounties</h3>
-                                        <ul>
-                                            @foreach (var bounty in Model.StrikeBounties)
-                                            {
-                                                <li class="bounty">
-                                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net{bounty.InventoryItem.icon}")" width="96" height="96" alt="Bounties icon" class="bounty__image"/>
-                                                    <div class="bounty__details">
-                                                        <div class="bounty__title">@bounty.InventoryItem.name</div>
-                                                        <div class="bounty__description">@bounty.InventoryItem.desc</div>
-                                                    </div>
-                                                </li>
-                                            }
-                                        </ul>
-                                    </div>
-                                </div>
-                            }
-                            <div class="grid__item tablet-one-half @(Model.StrikeBounties.Any() ? "tablet-push-one-half" : "")">
-                                <div class="activity__extra">
-                                    <h3 class="activity__subheading">Rewards</h3>
-                                    <ul>
-                                        @foreach (var missionReward in Model.ThisWeekly.Rewards.Where(c => !c.InventoryItem.name.Contains("Weekly Bonus")))
-                                        {
-                                            <li title="@missionReward.InventoryItem.name" class="reward">
-                                                <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net{missionReward.InventoryItem.icon}")" alt="Reward Icon" class="reward__image" />
-                                                <div class="reward__details">
-                                                    <div class="reward__title">@missionReward.InventoryItem.name</div>
-                                                </div>
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-        @if (Model.WeeklyPlaylist!= null)
-        {
-            <div class="activity activity--weekly-story">
-                <a id="weekly-story" class="activity__anchor"></a>
-                <div class="activity__header">
-                    <div class="content-center content-center--gutter">
-                        <div aria-hidden="true" class="activity__icon">
-                            <div class="icon icon--weekly-story"></div>
-                        </div>
-                        <div class="activity__details">
-                            <h2 class="activity__type">Weekly Story playlist</h2>
-                            <p class="activity__name">@Model.WeeklyPlaylist.manifestactivity.name</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="activity__image"></div>
-                <div class="activity__extras">
-                    <div class="content-center content-center--gutter">
-                        <div class="grid grid--gutterless">
-                            <div class="grid__item tablet-one-half">
-                                <div class="activity__extra">
-                                    <h3 class="activity__subheading is-vhidden">Modifiers</h3>
-                                    <ul>
-                                        @foreach (var modifier in Model.WeeklyPlaylist.weeklyfeaturedmodifiers)
-                                        {
-                                            <li title="@modifier.modifier.name" class="skull">
-                                                <div class="skull__icon">
-                                                    <div aria-hidden="true" class="icon icon--skull icon--skull--@modifier.modifier.name.ToLower().Replace(" ","-")"></div>
-                                                </div>
-                                                <div class="skull__details">
-                                                    <div class="skull__title">@modifier.modifier.name</div>
-                                                    <div class="skull__description">@modifier.modifier.description</div>
-                                                </div>
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="grid__item tablet-one-half">
-                                <div class="activity__extra">
-                                    <h3 class="activity__subheading">Rewards</h3>
-                                    <ul>
-                                        @foreach (var modifier in Model.WeeklyPlaylist.weeklyfeaturedrewards.Where(r => !r.inventoryitem.name.Contains("Weekly Bonus")))
-                                        {
-                                            <li title="@modifier.inventoryitem.name" class="reward">
-                                                <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{modifier.inventoryitem.icon}")" width="30" height="30" alt="@modifier.inventoryitem.name icon" class="reward__image" />
-                                                <div class="reward__details">
-                                                    <div class="reward__title">@modifier.inventoryitem.name</div>
-                                                </div>
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-        @if (Model.WeeklyCrucible != null)
-        {
-            <div class="activity activity--weekly-crucible">
-                <div class="activity__header">
-                    <div class="content-center content-center--gutter">
-                        <div aria-hidden="true" class="activity__icon">
-                            <div class="icon icon--weekly-crucible"></div>
-                        </div>
-                        <div class="activity__details">
-                            <h2 class="activity__type">Weekly Crucible playlist</h2>
-                            <p class="activity__name">@Model.WeeklyCrucible.Weekly.ManifestActivity.name</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="activity__image"></div>
-                <div class="activity__extras">
-                    <div class="content-center content-center--gutter">
-                        <div class="grid grid--gutterless">
-                            <div class="grid__item tablet-one-half">
-                                <div class="activity__extra">
-                                    <h3 class="activity__subheading">Lord Shaxx's Weekly bounty</h3>
-                                    <ul>
-
-                                        @foreach (var bounty in Model.WeeklyCrucible.Bounties)
-                                        {
-                                            <li class="bounty">
-                                                <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Reward Icon" class="bounty__image" />
-                                                <div class="bounty__details">
-                                                    <div class="bounty__title">@bounty.InventoryItem.name</div>
-                                                    <div class="bounty__description">@bounty.InventoryItem.desc</div>
-                                                </div>
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="grid__item tablet-one-half">
-                                <div class="activity__extra">
-                                    <h3 class="activity__subheading">Rewards</h3>
-                                    <ul>
-
-                                        <li title="Legendary Marks x 10" class="reward">
-                                            <img data-external-image="data-external-image" data-external-src="http://www.bungie.net/img/destiny_content/items/legendarymark.png" width="30" height="30" alt="Reward Icon" class="reward__image" />
-                                            <div class="reward__details">
-                                                <div class="reward__title">Legendary Marks (10)</div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-
-        @if (Model.EldersChallenge != null)
-        {
-            <div class="activity activity--challenge-of-elders">
-                <div class="activity__header">
-                    <div class="content-center content-center--gutter">
-                        <div aria-hidden="true" class="activity__icon">
-                            <div class="icon icon--challenge-of-elders"></div>
-                        </div>
-                        <div class="activity__details">
-                            <h2 class="activity__type">Challenge of the Elders</h2>
-                            <p class="activity__name">Arena</p>
-                            <p class="activity__level">Level 42</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="activity__image"></div>
-                <div class="activity__extras">
-                    <div class="content-center content-center--gutter">
-                        <div class="grid grid--gutterless">
-                            <div class="grid__item tablet-one-half">
-                                <div class="activity__extra">
-                                    <h3 class="activity__subheading is-vhidden">Modifiers</h3>
-                                    <ul>
-                                        @foreach (var modifier in Model.EldersChallenge.Challenge.Modifiers)
-                                        {
-                                            <li title="@modifier.Modifier.name" class="skull">
-                                                <div class="skull__icon">
-                                                    <div aria-hidden="true" class="icon icon--skull @($"icon--skull--{modifier.Modifier.name.ToLower().Replace(" ", "-")}")"></div>
-                                                </div>
-                                                <div class="skull__details">
-                                                    <div class="skull__title">@modifier.Modifier.name</div>
-                                                    <div class="skull__description">@modifier.Modifier.description</div>
-                                                </div>
-                                            </li>
-                                        }
-                                        @foreach (var modifier in Model.EldersChallenge.Challenge.ScoreModifiers)
-                                        {
-                                            <li title="@modifier.ScoreModifier.name" class="skull">
-                                                <div class="skull__icon">
-                                                    <div class="icon icon--skull @($"icon--skull--{modifier.ScoreModifier.name.ToLower().Replace(" ", "-")}")"></div>
-                                                </div>
-                                                <div class="skull__details">
-                                                    <div class="skull__title">@modifier.ScoreModifier.name</div>
-                                                    <div class="skull__description">@modifier.ScoreModifier.description</div>
-                                                </div>
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="grid__item tablet-one-half">
-                                <div class="activity__extra">
-                                    <h3 class="activity__subheading">House of Judgement Bounties</h3>
-                                    <ul>
-                                        @foreach (var bounty in Model.EldersChallenge.Bounties)
-                                        {
-                                            <li class="bounty">
-                                                <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Reward Icon" class="bounty__image"/>
-                                                <div class="bounty__details">
-                                                    <div class="bounty__title">@bounty.InventoryItem.name</div>
-                                                    <div class="bounty__description">@bounty.InventoryItem.desc</div>
-                                                </div>
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
+        </div>
         @Html.Partial("Partials/BackToTop")
     </template>
 </section>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Common.CommandTrees;
 using System.Data.Entity.Validation;
 using System.Data.SQLite;
 using System.Diagnostics;
@@ -8,7 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using DestinyDailyDAL;
 using DestinyDailyApiManager;
+using DestinyDailyApiManager.Models.D2.Manifest;
 using DestinyDailyApiManager.Models.Manifest.Activity;
+using DestinyDailyDAL.Destiny1;
+using DestinyDailyDAL.Destiny2;
 using Newtonsoft.Json;
 
 namespace DestinyDailyManifestManager
@@ -22,19 +26,30 @@ namespace DestinyDailyManifestManager
             var dbConnection = new SQLiteConnection($"Data Source={args[0]};Version=3;");
             dbConnection.Open();
 
-            var db = new DestinySqlEntities();
+            //var db = new DestinySqlEntities();
 
-            Console.WriteLine("Processing Combatants");
-            ProcessCombantants(dbConnection, db);
+            //Console.WriteLine("Processing Combatants");
+            //ProcessCombantants(dbConnection, db);
 
-            Console.WriteLine("Processing Activities");
-            ProcessManifestActivities(dbConnection, db);
+            //Console.WriteLine("Processing Activities");
+            //ProcessManifestActivities(dbConnection, db);
 
-            Console.WriteLine("Processing Items");
-            ProcessInventoryItems(dbConnection, db);
+            //Console.WriteLine("Processing Items");
+            //ProcessInventoryItems(dbConnection, db);
+
+            var db2 = new DestinyDaily2Entities();
+            Console.WriteLine("Processing Emblems");
+            ProcessInventoryItems(dbConnection, db2, "Emblem");
+
+            Console.WriteLine("Processing Sparrows");
+            ProcessInventoryItems(dbConnection, db2, "Sparrow");
+
+            Console.WriteLine("Processing Ships");
+            ProcessInventoryItems(dbConnection, db2, "Ship");
 
             Console.WriteLine("Finished");
-       }
+            Console.ReadLine();
+        }
 
         private static void ProcessCombantants(SQLiteConnection dbConnection, DestinySqlEntities db)
         {
@@ -83,57 +98,148 @@ namespace DestinyDailyManifestManager
             }
         }
 
-        private static void ProcessInventoryItems(SQLiteConnection dbConnection, DestinySqlEntities db)
+        private static void ProcessInventoryItems(SQLiteConnection dbConnection, DestinyDaily2Entities db, string type)
         {
             var added = 0;
             var existing = 0;
 
             var sql = "SELECT quote(json) FROM DestinyInventoryItemDefinition";
+
+            if (type == "Emblem")
+            {
+                sql = $"{sql} WHERE quote(json) LIKE '%Emblem%';";
+            }
+            else if (type == "Sparrow")
+            {
+                sql = $"{sql} WHERE quote(json) LIKE '%\"itemTypeDisplayName\":\"Vehicle\"%';";
+            }
+            else if (type == "Ship")
+            {
+                sql = $"{sql} WHERE quote(json) LIKE '%\"itemTypeDisplayName\":\"Ship\"%';";
+            }
+
             var command = new SQLiteCommand(sql, dbConnection);
             var reader = command.ExecuteReader();
             while (reader.Read())
             {
                 var jsonStripped = ((string) reader["quote(json)"]).Replace("'{", "{").Replace("}'", "}");
-                var item = JsonConvert.DeserializeObject<DestinyDailyApiManager.Models.Manifest.InventoryItem.InventoryItem>(jsonStripped);
+                var inventoryItem = JsonConvert.DeserializeObject<InventoryItemDefinition>(jsonStripped);
 
-                var mappedItem = db.InventoryItems.FirstOrDefault(c => c.id == item.itemHash);
-                if (mappedItem == null)
+                if (type == "Emblem")
                 {
-                    mappedItem = new InventoryItem()
+                    var mappedItem = db.InventoryEmblems.FirstOrDefault(i => i.id == inventoryItem.hash);
+                    if (mappedItem == null)
                     {
-                        id = item.itemHash,
-                        name = item.itemName,
-                        desc = item.itemDescription,
-                        icon = item.icon,
-                        rarityid = item.tierType,
-                        rarity = item.tierTypeName,
-                        typeid = item.itemType,
-                        type = item.itemTypeName,
-                        quality = item.qualityLevel
-                    };
-                    db.InventoryItems.Add(mappedItem);
-                    added++;
+                        mappedItem = new InventoryEmblem()
+                        {
+                            id = inventoryItem.hash,
+                            name = inventoryItem.displayProperties.name.Replace("''","'"),
+                            icon = inventoryItem.displayProperties.icon,
+                            secondaryIcon = inventoryItem.secondaryIcon,
+                            secondaryOverlay = inventoryItem.secondaryOverlay,
+                            secondarySpecial = inventoryItem.secondarySpecial,
+                            screenshot = inventoryItem.screenshot,
+                            rarity = inventoryItem.inventory.tierTypeName
+                        };
 
-                    if (added % 500 == 0)
+                        db.InventoryEmblems.Add(mappedItem);
+                        added++;
+
+                        if (added%500 == 0)
+                        {
+                            Console.WriteLine($"Saving first {added} records");
+                            db.SaveChanges();
+                        }
+                    }
+                    else
                     {
-                        Console.WriteLine($"Saving first {added} records");
-                        db.SaveChanges();
+                        mappedItem.id = inventoryItem.hash;
+                        mappedItem.name = inventoryItem.displayProperties.name.Replace("''", "'");
+                        mappedItem.icon = inventoryItem.displayProperties.icon;
+                        mappedItem.secondaryIcon = inventoryItem.secondaryIcon;
+                        mappedItem.secondaryOverlay = inventoryItem.secondaryOverlay;
+                        mappedItem.secondarySpecial = inventoryItem.secondarySpecial;
+                        mappedItem.screenshot = inventoryItem.screenshot;
+                        mappedItem.rarity = inventoryItem.inventory.tierTypeName;
+
+                        existing++;
                     }
                 }
-                else
-                {
-                    mappedItem.id = item.itemHash;
-                    mappedItem.name = item.itemName;
-                    mappedItem.desc = item.itemDescription;
-                    mappedItem.icon = item.icon;
-                    mappedItem.rarityid = item.tierType;
-                    mappedItem.rarity = item.tierTypeName;
-                    mappedItem.typeid = item.itemType;
-                    mappedItem.type = item.itemTypeName;
-                    mappedItem.quality = item.qualityLevel;
 
-                    existing++;
+                if (type == "Sparrow")
+                {
+                    var mappedItem = db.InventorySparrows.FirstOrDefault(i => i.id == inventoryItem.hash);
+                    if (mappedItem == null)
+                    {
+                        mappedItem = new InventorySparrow()
+                        {
+                            id = inventoryItem.hash,
+                            name = inventoryItem.displayProperties.name.Replace("''", "'"),
+                            description = inventoryItem.displayProperties.description.Replace("''", "'"),
+                            icon = inventoryItem.displayProperties.icon,
+                            screenshot = inventoryItem.screenshot,
+                            rarity = inventoryItem.inventory.tierTypeName
+                        };
+
+                        db.InventorySparrows.Add(mappedItem);
+                        added++;
+
+                        if (added % 500 == 0)
+                        {
+                            Console.WriteLine($"Saving first {added} records");
+                            db.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        mappedItem.id = inventoryItem.hash;
+                        mappedItem.name = inventoryItem.displayProperties.name.Replace("''", "'");
+                        mappedItem.description = inventoryItem.displayProperties.description.Replace("''", "'");
+                        mappedItem.icon = inventoryItem.displayProperties.icon;
+                        mappedItem.screenshot = inventoryItem.screenshot;
+                        mappedItem.rarity = inventoryItem.inventory.tierTypeName;
+
+                        existing++;
+                    }
                 }
+
+                if (type == "Ship")
+                {
+                    var mappedItem = db.InventoryShips.FirstOrDefault(i => i.id == inventoryItem.hash);
+                    if (mappedItem == null)
+                    {
+                        mappedItem = new InventoryShip()
+                        {
+                            id = inventoryItem.hash,
+                            name = inventoryItem.displayProperties.name.Replace("''", "'"),
+                            description = inventoryItem.displayProperties.description.Replace("''", "'"),
+                            icon = inventoryItem.displayProperties.icon,
+                            screenshot = inventoryItem.screenshot,
+                            rarity = inventoryItem.inventory.tierTypeName
+                        };
+
+                        db.InventoryShips.Add(mappedItem);
+                        added++;
+
+                        if (added % 500 == 0)
+                        {
+                            Console.WriteLine($"Saving first {added} records");
+                            db.SaveChanges();
+                        }
+                    }
+                    else
+                    {
+                        mappedItem.id = inventoryItem.hash;
+                        mappedItem.name = inventoryItem.displayProperties.name.Replace("''", "'");
+                        mappedItem.description = inventoryItem.displayProperties.description.Replace("''", "'");
+                        mappedItem.icon = inventoryItem.displayProperties.icon;
+                        mappedItem.screenshot = inventoryItem.screenshot;
+                        mappedItem.rarity = inventoryItem.inventory.tierTypeName;
+
+                        existing++;
+                    }
+                }
+
             }
             try { db.SaveChanges(); }
             catch (DbEntityValidationException dbEx)

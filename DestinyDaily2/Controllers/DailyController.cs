@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Configuration;
 using System.Web.Mvc;
 using DestinyDaily2.Models;
+using DestinyDaily2.Models.Destiny1;
 using DestinyDailyDAL;
 
 namespace DestinyDaily2.Controllers
@@ -12,23 +13,9 @@ namespace DestinyDaily2.Controllers
     {
         private DailyManager DailyManager { get; }
         private BountyManager BountyManager { get; }
-        private static HeroicDailyModel Cache { get; set; }
-        private bool CacheExpired
-        {
-            get
-            {
-                if (Cache == null)
-                    return true;
+        private static HeroicDailyModel Destiny1Cache { get; set; }
+        private static DailyModel Cache { get; set; }
 
-                if (Cache.ExpiryTime < DateTime.Now)
-                    return true;
-
-                if (Cache.ExpiryTime.Hour < DateTime.Now.Hour)
-                    return true;
-
-                return false;
-            }
-        }
         public DailyController()
         {
             DailyManager = new DailyManager();
@@ -37,35 +24,45 @@ namespace DestinyDaily2.Controllers
 
         public ActionResult Index(bool noLayout = false)
         {
-            if (CacheExpired)
+            Cache = new DailyModel();
+            BountyManager.SampleApiTest();
+
+            if (noLayout)
+                return View("PartialIndex", Cache);
+
+            ViewBag.HtmlTagOverride = @"data-redirect=""/#daily""";
+            return View("Index", Cache);
+        }
+
+        public ActionResult Destiny1Index(bool noLayout = false)
+        {
+            if (Destiny1Cache == null || Destiny1Cache.CacheExpired)
             {
-                Cache = new HeroicDailyModel
+                Destiny1Cache = new HeroicDailyModel
                 {
                     DailyMission = DailyManager.GetDaily()
                 };
 
-                if (Cache.DailyMission != null)
+                if (Destiny1Cache.DailyMission != null)
                 {
-                    Cache.DailyModifiers = DailyManager.GetModifiers(Cache.DailyMission.missionid);
-                    Cache.DailyRewards = DailyManager.GetRewards(Cache.DailyMission.missionid);
+                    Destiny1Cache.DailyModifiers = DailyManager.GetModifiers(Destiny1Cache.DailyMission.missionid);
+                    Destiny1Cache.DailyRewards = DailyManager.GetRewards(Destiny1Cache.DailyMission.missionid);
                 }                
 
                 var bounties = BountyManager.GetBounties();
                 if (bounties != null && bounties.Any())
-                    Cache.DailyBounties = bounties;
+                    Destiny1Cache.DailyBounties = bounties;
 
-                Cache.TimeDifferenceTime = DailyManager.TodayDate;
-                Cache.ExpiryTime = DateTime.Now.AddHours(1);
-                Cache.StartTime = DateTime.Now;
+                Destiny1Cache.TimeDifferenceTime = DailyManager.TodayDate;
+                Destiny1Cache.ExpiryTime = DateTime.Now.AddHours(1);
+                Destiny1Cache.StartTime = DateTime.Now;
             }
 
             if (noLayout)
-                return View("PartialIndex", Cache);
-            else
-            {
-                ViewBag.HtmlTagOverride = @"data-redirect=""/#daily""";
-                return View("Index", Cache);
-            }
+                return View("Destiny1/PartialIndex", Destiny1Cache);
+
+            ViewBag.HtmlTagOverride = @"data-redirect=""/#daily""";
+            return View("Destiny1/Index", Cache);
         }
     }
 }

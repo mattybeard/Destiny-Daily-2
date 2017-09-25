@@ -1,0 +1,19 @@
+
+@{
+    ViewBag.MetaTitle = "Destiny Daily - All Daily and Weekly activities in one place";
+    ViewBag.MetaDescription = "The one website you need to visit to see all Daily and Weekly Destiny activities without even having to log in";
+    ViewBag.CanonicalUrl = "http://www.destiny-daily.com/";
+    ViewBag.HeaderTitle = "Destiny's daily events";
+    ViewBag.HeaderContent = "A quick glance at today's challenges within Destiny for those who can't play right now.";
+    ViewBag.DestinyVersion = "d1";
+
+}
+
+<div style="display: none">@DateTime.Now</div>
+
+@Html.Action("Destiny1Index", "FeaturedEvents", new { noLayout = true })
+@Html.Action("Destiny1Index", "Daily", new { noLayout = true })
+@Html.Action("Destiny1Index", "NightFall", new { noLayout = true })
+@Html.Action("Destiny1Index", "Weekly", new { noLayout = true })
+@Html.Action("Destiny1Index", "Vendors", new { noLayout = true })
+

@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en" class="no-js" @Html.Raw(ViewBag.HtmlTagOverride)>
   @Html.Partial("Partials/Head")
-  <body>
+  <body class="@ViewBag.DestinyVersion">
       <a id="top"><span class="is-vhidden">Top of page</span></a>
       <div class="a11y-navigation"><a href="#content">Jump to Main content</a><a href="#navigation">Jump to Primary navigation</a></div>
       @Html.Partial("Partials/Header")

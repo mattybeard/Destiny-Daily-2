@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DestinyDailyDAL.Destiny1;
+using DestinyDailyDAL.Destiny1.Models;
+using DestinyDailyDAL.Destiny2;
 using DestinyDailyDAL.Models;
 
 namespace DestinyDailyDAL

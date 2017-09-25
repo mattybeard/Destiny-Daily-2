@@ -52,151 +52,233 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BountyDay.cs">
+    <Compile Include="Destiny1\BountyDay.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="BountyManager.cs" />
-    <Compile Include="ChallengeOfElder.cs">
+    <Compile Include="Destiny1\ChallengeOfElder.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="ChallengeOfEldersModifier.cs">
+    <Compile Include="Destiny1\ChallengeOfEldersModifier.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="ChallengeOfEldersRound.cs">
+    <Compile Include="Destiny1\ChallengeOfEldersRound.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="ChallengeOfEldersScoreModifier.cs">
+    <Compile Include="Destiny1\ChallengeOfEldersScoreModifier.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Combatant.cs">
+    <Compile Include="Destiny1\Combatant.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="CrucibleDailyDay.cs">
+    <Compile Include="Destiny1\CrucibleDailyDay.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="CrucibleWeeklyDay.cs">
+    <Compile Include="Destiny1\CrucibleWeeklyDay.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="DailyManager.cs" />
+    <Compile Include="Destiny2\ClassifiedOverride.cs">
+      <DependentUpon>Destiny2SqlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Destiny2\D2Nightfall.cs">
+      <DependentUpon>Destiny2SqlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Destiny2\D2NightfallChallenge.cs">
+      <DependentUpon>Destiny2SqlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Destiny2\D2NightfallModifier.cs">
+      <DependentUpon>Destiny2SqlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Destiny2\Destiny2SqlModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Destiny2SqlModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Destiny2\Destiny2SqlModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Destiny2SqlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Destiny2\Destiny2SqlModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Destiny2SqlModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Destiny2\InventoryEmblem.cs">
+      <DependentUpon>Destiny2SqlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Destiny2\InventoryShip.cs">
+      <DependentUpon>Destiny2SqlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Destiny2\InventorySparrow.cs">
+      <DependentUpon>Destiny2SqlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Destiny2\Models\UnclassifiedModifier.cs" />
+    <Compile Include="Destiny2\Models\UnclassifiedChallenge.cs" />
+    <Compile Include="Destiny2\Models\NightfallManifestModel.cs" />
     <Compile Include="DestinyDailyManager.cs" />
-    <Compile Include="DestinySqlModel.Context.cs">
+    <Compile Include="Destiny1\DestinySqlModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DestinySqlModel.Context.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="DestinySqlModel.cs">
+    <Compile Include="Destiny1\DestinySqlModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="DestinySqlModel.Designer.cs">
+    <Compile Include="Destiny1\DestinySqlModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DestinySqlModel.edmx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="FeaturedRaid.cs">
+    <Compile Include="Destiny1\FeaturedRaid.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="FeaturedRaidChallenge.cs">
+    <Compile Include="Destiny1\FeaturedRaidChallenge.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="FeaturedRaidDay.cs">
+    <Compile Include="Destiny1\FeaturedRaidDay.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="HeroicDailyDay.cs">
+    <Compile Include="Destiny1\HeroicDailyDay.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="InventoryItem.cs">
+    <Compile Include="Destiny1\InventoryItem.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="ManifestActivity.cs">
+    <Compile Include="Destiny1\ManifestActivity.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="ManifestReward.cs">
+    <Compile Include="Destiny1\ManifestReward.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="ManifestSkull.cs">
+    <Compile Include="Destiny1\ManifestSkull.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="MaterialExchange.cs">
+    <Compile Include="Destiny1\MaterialExchange.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Models\DetailedChallengeOfElders.cs" />
-    <Compile Include="Models\DetailedWeeklyCrucible.cs" />
-    <Compile Include="Models\ManifestRewardModel.cs" />
-    <Compile Include="Modifier.cs">
+    <Compile Include="Destiny1\Models\DetailedChallengeOfElders.cs" />
+    <Compile Include="Destiny1\Models\DetailedWeeklyCrucible.cs" />
+    <Compile Include="Destiny1\Models\ManifestRewardModel.cs" />
+    <Compile Include="Destiny1\Modifier.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Nightfall.cs">
+    <Compile Include="Destiny1\Nightfall.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="NightFallManager.cs" />
-    <Compile Include="NightfallMissionModifier.cs">
+    <Compile Include="Destiny1\NightfallMissionModifier.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="NightfallMissionReward.cs">
+    <Compile Include="Destiny1\NightfallMissionReward.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="PrisonManager.cs" />
-    <Compile Include="PrisonOfElder.cs">
+    <Compile Include="Destiny1\PrisonOfElder.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="PrisonOfEldersModifier.cs">
+    <Compile Include="Destiny1\PrisonOfEldersModifier.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="PrisonOfEldersRace.cs">
+    <Compile Include="Destiny1\PrisonOfEldersRace.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="PrisonOfEldersRound.cs">
+    <Compile Include="Destiny1\PrisonOfEldersRound.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Race.cs">
+    <Compile Include="Destiny1\Race.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="RaidChallenge.cs">
+    <Compile Include="Destiny1\RaidChallenge.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="RaidChallengeDay.cs">
+    <Compile Include="Destiny1\RaidChallengeDay.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="RewardsDay.cs">
+    <Compile Include="Destiny1\RewardsDay.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="ScoreModifier.cs">
+    <Compile Include="Destiny1\ScoreModifier.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="TrialsManager.cs" />
-    <Compile Include="TrialsMapDay.cs">
+    <Compile Include="Destiny1\TrialsMapDay.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="VendorManager.cs" />
-    <Compile Include="WeeklyFeatured.cs">
+    <Compile Include="Destiny1\WeeklyFeatured.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="WeeklyFeaturedModifier.cs">
+    <Compile Include="Destiny1\WeeklyFeaturedModifier.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="WeeklyFeaturedReward.cs">
+    <Compile Include="Destiny1\WeeklyFeaturedReward.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="WeeklyHeroic.cs">
+    <Compile Include="Destiny1\WeeklyHeroic.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="WeeklyHeroicMissionReward.cs">
+    <Compile Include="Destiny1\WeeklyHeroicMissionReward.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="WeeklyHeroicModifier.cs">
+    <Compile Include="Destiny1\WeeklyHeroicModifier.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="XurDay.cs">
+    <Compile Include="Destiny1\XurDay.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="XurLocation.cs">
+    <Compile Include="Destiny1\XurLocation.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="XurLocationDay.cs">
+    <Compile Include="Destiny1\XurLocationDay.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="XurManager.cs" />
   </ItemGroup>
@@ -204,25 +286,46 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="DestinySqlModel.edmx">
+    <EntityDeploy Include="Destiny1\DestinySqlModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DestinySqlModel.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EntityDeploy>
-    <None Include="DestinySqlModel.edmx.diagram">
+    <EntityDeploy Include="Destiny2\Destiny2SqlModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Destiny2SqlModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Destiny2\Destiny2SqlModel.edmx.diagram">
+      <DependentUpon>Destiny2SqlModel.edmx</DependentUpon>
+    </None>
+    <None Include="Destiny1\DestinySqlModel.edmx.diagram">
       <DependentUpon>DestinySqlModel.edmx</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DestinySqlModel.Context.tt">
+    <Content Include="Destiny2\Destiny2SqlModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Destiny2SqlModel.edmx</DependentUpon>
+      <LastGenOutput>Destiny2SqlModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Destiny2\Destiny2SqlModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Destiny2SqlModel.edmx</DependentUpon>
+      <LastGenOutput>Destiny2SqlModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Destiny1\DestinySqlModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DestinySqlModel.edmx</DependentUpon>
       <LastGenOutput>DestinySqlModel.Context.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="DestinySqlModel.tt">
+    <Content Include="Destiny1\DestinySqlModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DestinySqlModel.edmx</DependentUpon>
       <LastGenOutput>DestinySqlModel.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -35,28 +35,61 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http">
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20505.0\lib\net40\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20505.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BungieApi.cs" />
-    <Compile Include="Models\Advisors\AdvisorsEndpoint.cs" />
-    <Compile Include="Models\Manifest\Activity\ActivityDefinition.cs" />
-    <Compile Include="Models\Manifest\Combatant\Combatant.cs" />
-    <Compile Include="Models\Manifest\InventoryItem\InventoryItem.cs" />
-    <Compile Include="Models\Manifest\Manifest.cs" />
-    <Compile Include="Models\Manifest\Vendor\VendorInformation.cs" />
-    <Compile Include="Models\OldAdvisors\OlderAdvisorsEndpoint.cs" />
+    <Compile Include="BungieApiClient.cs" />
+    <Compile Include="Models\D1\Advisors\AdvisorsEndpoint.cs" />
+    <Compile Include="Models\D1\Manifest\Activity\ActivityDefinition.cs" />
+    <Compile Include="Models\D1\Manifest\Combatant\Combatant.cs" />
+    <Compile Include="Models\D1\Manifest\InventoryItem\InventoryItem.cs" />
+    <Compile Include="Models\D1\Manifest\Manifest.cs" />
+    <Compile Include="Models\D1\Manifest\Vendor\VendorInformation.cs" />
+    <Compile Include="Models\D1\OldAdvisors\OlderAdvisorsEndpoint.cs" />
+    <Compile Include="Models\D2\API\Activity.cs" />
+    <Compile Include="Models\D2\API\ActivityDefinition.cs" />
+    <Compile Include="Models\D2\API\ActivityModifier.cs" />
+    <Compile Include="Models\D2\API\AvailableQuest.cs" />
+    <Compile Include="Models\D2\API\Challenge.cs" />
+    <Compile Include="Models\D2\API\DisplayProperties.cs" />
+    <Compile Include="Models\D2\API\Matchmaking.cs" />
+    <Compile Include="Models\D2\API\Milestone.cs" />
+    <Compile Include="Models\D2\API\MilestoneEndpoint.cs" />
+    <Compile Include="Models\D2\API\ModifierDefinition.cs" />
+    <Compile Include="Models\D2\API\Reward.cs" />
+    <Compile Include="Models\D2\API\RewardItem.cs" />
+    <Compile Include="Models\D2\API\Variant.cs" />
+    <Compile Include="Models\D2\Groups\NightfallManifestGroupModel.cs" />
+    <Compile Include="Models\D2\Manifest\Action.cs" />
+    <Compile Include="Models\D2\Manifest\DisplayProperties.cs" />
+    <Compile Include="Models\D2\Manifest\EquippingBlock.cs" />
+    <Compile Include="Models\D2\Manifest\Inventory.cs" />
+    <Compile Include="Models\D2\Manifest\InventoryItemDefinition.cs" />
+    <Compile Include="Models\D2\Manifest\Stats.cs" />
+    <Compile Include="Models\D2\Manifest\Stats2.cs" />
     <Compile Include="Models\Vendors.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\D1\OAuth\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

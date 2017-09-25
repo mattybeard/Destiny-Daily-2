@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DestinyDaily2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="classifiedoverride">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+          <Property Name="desc" Type="nvarchar" MaxLength="255" />
+          <Property Name="icon" Type="nvarchar" MaxLength="255" />
+          <Property Name="secondaryIcon" Type="nvarchar" MaxLength="255" />
+          <Property Name="secondaryOverlay" Type="nvarchar" MaxLength="255" />
+          <Property Name="secondarySpecial" Type="nvarchar" MaxLength="255" />
+          <Property Name="screenshot" Type="nvarchar" MaxLength="255" />
+          <Property Name="rarity" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="inventoryemblem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+          <Property Name="icon" Type="nvarchar" MaxLength="255" />
+          <Property Name="secondaryIcon" Type="nvarchar" MaxLength="255" />
+          <Property Name="secondaryOverlay" Type="nvarchar" MaxLength="255" />
+          <Property Name="secondarySpecial" Type="nvarchar" MaxLength="255" />
+          <Property Name="screenshot" Type="nvarchar" MaxLength="255" />
+          <Property Name="rarity" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="inventoryship">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="icon" Type="nvarchar" MaxLength="255" />
+          <Property Name="screenshot" Type="nvarchar" MaxLength="255" />
+          <Property Name="rarity" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="inventorysparrow">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="icon" Type="nvarchar" MaxLength="255" />
+          <Property Name="screenshot" Type="nvarchar" MaxLength="255" />
+          <Property Name="rarity" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="nightfall">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="missionid" Type="bigint" />
+          <Property Name="day" Type="int" />
+          <Property Name="month" Type="int" />
+          <Property Name="year" Type="int" />
+        </EntityType>
+        <EntityType Name="nightfallchallenge">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="objectiveid" Type="bigint" />
+          <Property Name="day" Type="int" />
+          <Property Name="month" Type="int" />
+          <Property Name="year" Type="int" />
+        </EntityType>
+        <EntityType Name="nightfallmodifier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="modfierid" Type="bigint" />
+          <Property Name="day" Type="int" />
+          <Property Name="month" Type="int" />
+          <Property Name="year" Type="int" />
+        </EntityType>
+        <EntityContainer Name="DestinyDaily2ModelStoreContainer">
+          <EntitySet Name="classifiedoverride" EntityType="Self.classifiedoverride" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="inventoryemblem" EntityType="Self.inventoryemblem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="inventoryship" EntityType="Self.inventoryship" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="inventorysparrow" EntityType="Self.inventorysparrow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nightfall" EntityType="Self.nightfall" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nightfallchallenge" EntityType="Self.nightfallchallenge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nightfallmodifier" EntityType="Self.nightfallmodifier" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DestinyDaily2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DestinyDaily2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="InventoryEmblems" EntityType="DestinyDaily2Model.InventoryEmblem" />
+          <EntitySet Name="InventorySparrows" EntityType="DestinyDaily2Model.InventorySparrow" />
+          <EntitySet Name="InventoryShips" EntityType="DestinyDaily2Model.InventoryShip" />
+          <EntitySet Name="D2Nightfalls" EntityType="DestinyDaily2Model.D2Nightfall" />
+          <EntitySet Name="D2NightfallModifiers" EntityType="DestinyDaily2Model.D2NightfallModifier" />
+          <EntitySet Name="ClassifiedOverrides" EntityType="DestinyDaily2Model.ClassifiedOverride" />
+          <EntitySet Name="D2NightfallChallenges" EntityType="DestinyDaily2Model.D2NightfallChallenge" />
+        </EntityContainer>
+        <EntityType Name="InventoryEmblem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="icon" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="secondaryIcon" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="secondaryOverlay" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="secondarySpecial" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="screenshot" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="rarity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="InventorySparrow">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="icon" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="screenshot" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="rarity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="InventoryShip">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="icon" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="screenshot" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="rarity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="D2Nightfall">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="missionid" Type="Int64" />
+          <Property Name="day" Type="Int32" />
+          <Property Name="month" Type="Int32" />
+          <Property Name="year" Type="Int32" />
+        </EntityType>
+        <EntityType Name="D2NightfallModifier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="modfierid" Type="Int64" />
+          <Property Name="day" Type="Int32" />
+          <Property Name="month" Type="Int32" />
+          <Property Name="year" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ClassifiedOverride">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="desc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="icon" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="secondaryIcon" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="secondaryOverlay" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="secondarySpecial" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="screenshot" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="rarity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="D2NightfallChallenge">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="objectiveid" Type="Int64" />
+          <Property Name="day" Type="Int32" />
+          <Property Name="month" Type="Int32" />
+          <Property Name="year" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DestinyDaily2ModelStoreContainer" CdmEntityContainer="DestinyDaily2Entities">
+          <EntitySetMapping Name="InventoryEmblems">
+            <EntityTypeMapping TypeName="DestinyDaily2Model.InventoryEmblem">
+              <MappingFragment StoreEntitySet="inventoryemblem">
+                <ScalarProperty Name="rarity" ColumnName="rarity" />
+                <ScalarProperty Name="screenshot" ColumnName="screenshot" />
+                <ScalarProperty Name="secondarySpecial" ColumnName="secondarySpecial" />
+                <ScalarProperty Name="secondaryOverlay" ColumnName="secondaryOverlay" />
+                <ScalarProperty Name="secondaryIcon" ColumnName="secondaryIcon" />
+                <ScalarProperty Name="icon" ColumnName="icon" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventorySparrows">
+            <EntityTypeMapping TypeName="DestinyDaily2Model.InventorySparrow">
+              <MappingFragment StoreEntitySet="inventorysparrow">
+                <ScalarProperty Name="rarity" ColumnName="rarity" />
+                <ScalarProperty Name="screenshot" ColumnName="screenshot" />
+                <ScalarProperty Name="icon" ColumnName="icon" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryShips">
+            <EntityTypeMapping TypeName="DestinyDaily2Model.InventoryShip">
+              <MappingFragment StoreEntitySet="inventoryship">
+                <ScalarProperty Name="rarity" ColumnName="rarity" />
+                <ScalarProperty Name="screenshot" ColumnName="screenshot" />
+                <ScalarProperty Name="icon" ColumnName="icon" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="D2Nightfalls">
+            <EntityTypeMapping TypeName="DestinyDaily2Model.D2Nightfall">
+              <MappingFragment StoreEntitySet="nightfall">
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="missionid" ColumnName="missionid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="D2NightfallModifiers">
+            <EntityTypeMapping TypeName="DestinyDaily2Model.D2NightfallModifier">
+              <MappingFragment StoreEntitySet="nightfallmodifier">
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="modfierid" ColumnName="modfierid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassifiedOverrides">
+            <EntityTypeMapping TypeName="DestinyDaily2Model.ClassifiedOverride">
+              <MappingFragment StoreEntitySet="classifiedoverride">
+                <ScalarProperty Name="rarity" ColumnName="rarity" />
+                <ScalarProperty Name="screenshot" ColumnName="screenshot" />
+                <ScalarProperty Name="secondarySpecial" ColumnName="secondarySpecial" />
+                <ScalarProperty Name="secondaryOverlay" ColumnName="secondaryOverlay" />
+                <ScalarProperty Name="secondaryIcon" ColumnName="secondaryIcon" />
+                <ScalarProperty Name="icon" ColumnName="icon" />
+                <ScalarProperty Name="desc" ColumnName="desc" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="D2NightfallChallenges">
+            <EntityTypeMapping TypeName="DestinyDaily2Model.D2NightfallChallenge">
+              <MappingFragment StoreEntitySet="nightfallchallenge">
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="objectiveid" ColumnName="objectiveid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

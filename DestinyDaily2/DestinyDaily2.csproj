@@ -174,13 +174,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\BountyEditModel.cs" />
-    <Compile Include="Models\FeaturedEventsDataModel.cs" />
-    <Compile Include="Models\HeroicDailyModel.cs" />
-    <Compile Include="Models\MiscModel.cs" />
-    <Compile Include="Models\NightfallDataModel.cs" />
-    <Compile Include="Models\VendorContentModel.cs" />
-    <Compile Include="Models\WeeklyDataModel.cs" />
+    <Compile Include="Models\DailyModel.cs" />
+    <Compile Include="Models\Destiny1\BountyEditModel.cs" />
+    <Compile Include="Models\Destiny1\FeaturedEventsDataModel.cs" />
+    <Compile Include="Models\Destiny1\HeroicDailyModel.cs" />
+    <Compile Include="Models\Destiny1\MiscModel.cs" />
+    <Compile Include="Models\Destiny1\NightfallDataModel.cs" />
+    <Compile Include="Models\Destiny1\VendorContentModel.cs" />
+    <Compile Include="Models\Destiny1\WeeklyDataModel.cs" />
+    <Compile Include="Models\NightfallModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +225,7 @@
     <Content Include="Assets\img\structure\activity\vendor--xur.jpg" />
     <Content Include="Assets\img\structure\activity\vendor.jpg" />
     <Content Include="Assets\img\structure\activity\weekly-story.jpg" />
+    <Content Include="Assets\img\structure\main-header--d2.jpg" />
     <Content Include="Assets\img\structure\vendor\arach-jalaal.png" />
     <Content Include="Assets\img\structure\vendor\eris-morn.png" />
     <Content Include="Assets\img\structure\vendor\executor-hideo.png" />
@@ -314,6 +317,17 @@
     <Content Include="Views\Shared\Partials\Header.cshtml" />
     <Content Include="Views\Shared\Maintenance.cshtml" />
     <Content Include="Web.config" />
+    <Content Include="Views\Daily\Destiny1\Index.cshtml" />
+    <Content Include="Views\Daily\Destiny1\PartialIndex.cshtml" />
+    <Content Include="Views\Home\Destiny1.cshtml" />
+    <Content Include="Views\FeaturedEvents\Destiny1\PartialIndex.cshtml" />
+    <Content Include="Views\FeaturedEvents\Destiny1\Index.cshtml" />
+    <Content Include="Views\NightFall\Destiny1\Index.cshtml" />
+    <Content Include="Views\NightFall\Destiny1\PartialIndex.cshtml" />
+    <Content Include="Views\Weekly\Destiny1\PartialIndex.cshtml" />
+    <Content Include="Views\Weekly\Destiny1\Index.cshtml" />
+    <Content Include="Views\Vendors\Destiny1\Index.cshtml" />
+    <Content Include="Views\Vendors\Destiny1\PartialIndex.cshtml" />
     <None Include="Web.Base.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -323,10 +337,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-</ItemGroup>
+  </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\DestinyDaily\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DestinyDaily2.Models;
+using DestinyDaily2.Models.Destiny1;
 using DestinyDailyDAL;
 
 namespace DestinyDaily2.Controllers
@@ -40,7 +41,7 @@ namespace DestinyDaily2.Controllers
             BountyManager = new BountyManager();
         }
 
-        public ActionResult Index(bool noLayout = false)
+        public ActionResult Destiny1Index(bool noLayout = false)
         {
             if (CacheExpired)
             {
@@ -65,11 +66,11 @@ namespace DestinyDaily2.Controllers
             }
 
             if (noLayout)
-                return View("PartialIndex", Cache);
+                return View("Destiny1/PartialIndex", Cache);
             else
             {
                 ViewBag.HtmlTagOverride = @"data-redirect=""/#vendors""";
-                return View("Index", Cache);
+                return View("Destiny1/Index", Cache);
             }
         }
     }
