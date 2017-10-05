@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ea03452e088e4bf8904cd12089414cbf" Name="Diagram1" ZoomLevel="81">
+      <Diagram DiagramId="ea03452e088e4bf8904cd12089414cbf" Name="Diagram1" ZoomLevel="60">
         <EntityTypeShape EntityType="DestinySqlModel.BountyDay" Width="1.5" PointX="1.875" PointY="17" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.ChallengeOfElder" Width="1.5" PointX="2.75" PointY="0.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.ChallengeOfEldersModifier" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
@@ -30,7 +30,7 @@
         <EntityTypeShape EntityType="DestinySqlModel.WeeklyHeroic" Width="1.5" PointX="15.5" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.WeeklyHeroicMissionReward" Width="1.5" PointX="15.75" PointY="10.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DestinySqlModel.WeeklyHeroicModifier" Width="1.5" PointX="4" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DestinySqlModel.XurDay" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DestinySqlModel.XurD1Day" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="DestinySqlModel.FK_BountyDay_ManAct" />
         <AssociationConnector Association="DestinySqlModel.FK_COE_COER" />
         <AssociationConnector Association="DestinySqlModel.FK_COEM_Mod" />
@@ -67,7 +67,7 @@
         <EntityTypeShape EntityType="DestinySqlModel.CrucibleWeeklyDay" Width="1.5" PointX="21.125" PointY="13" />
         <AssociationConnector Association="DestinySqlModel.weeklyactivityid_manifestactivities" />
         <EntityTypeShape EntityType="DestinySqlModel.XurLocation" Width="1.5" PointX="21.625" PointY="1.625" />
-        <EntityTypeShape EntityType="DestinySqlModel.XurLocationDay" Width="1.5" PointX="23.875" PointY="1.375" />
+        <EntityTypeShape EntityType="DestinySqlModel.XurD1LocationDay" Width="1.5" PointX="23.875" PointY="1.375" />
         <AssociationConnector Association="DestinySqlModel.FK_LocationId" />
         <EntityTypeShape EntityType="DestinySqlModel.TrialsMapDay" Width="1.5" PointX="7.375" PointY="3.75" />
         <EntityTypeShape EntityType="DestinySqlModel.RewardsDay" Width="1.5" PointX="6.375" PointY="16.75" />

@@ -1355,7 +1355,7 @@
           <NavigationProperty Name="Modifier" Relationship="DestinySqlModel.FK_weeklyheroic_modifier" FromRole="WeeklyHeroicModifier" ToRole="Modifier" />
           <NavigationProperty Name="WeeklyHeroic" Relationship="DestinySqlModel.FK_weeklyheroic_mission" FromRole="WeeklyHeroicModifier" ToRole="WeeklyHeroic" />
         </EntityType>
-        <EntityType Name="XurDay">
+        <EntityType Name="XurD1Day">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -1393,7 +1393,7 @@
           <EntitySet Name="WeeklyHeroics" EntityType="DestinySqlModel.WeeklyHeroic" />
           <EntitySet Name="WeeklyHeroicMissionRewards" EntityType="DestinySqlModel.WeeklyHeroicMissionReward" />
           <EntitySet Name="WeeklyHeroicModifiers" EntityType="DestinySqlModel.WeeklyHeroicModifier" />
-          <EntitySet Name="XurDays" EntityType="DestinySqlModel.XurDay" />
+          <EntitySet Name="XurD1Days" EntityType="DestinySqlModel.XurD1Day" />
           <AssociationSet Name="FK_BountyDay_ManAct" Association="DestinySqlModel.FK_BountyDay_ManAct">
             <End Role="InventoryItem" EntitySet="InventoryItems" />
             <End Role="BountyDay" EntitySet="BountyDays" />
@@ -1432,7 +1432,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_InventoryItemId" Association="DestinySqlModel.FK_InventoryItemId">
             <End Role="InventoryItem" EntitySet="InventoryItems" />
-            <End Role="XurDay" EntitySet="XurDays" />
+            <End Role="XurDay" EntitySet="XurD1Days" />
           </AssociationSet>
           <AssociationSet Name="FK_weeklyheroicereward_reward" Association="DestinySqlModel.FK_weeklyheroicereward_reward">
             <End Role="InventoryItem" EntitySet="InventoryItems" />
@@ -1523,10 +1523,10 @@
             <End Role="crucibleweeklyday" EntitySet="CrucibleWeeklyDays" />
           </AssociationSet>
           <EntitySet Name="XurLocations" EntityType="DestinySqlModel.XurLocation" />
-          <EntitySet Name="XurLocationDays" EntityType="DestinySqlModel.XurLocationDay" />
+          <EntitySet Name="XurD1LocationDays" EntityType="DestinySqlModel.XurD1LocationDay" />
           <AssociationSet Name="FK_LocationId" Association="DestinySqlModel.FK_LocationId">
             <End Role="xurlocation" EntitySet="XurLocations" />
-            <End Role="xurlocationday" EntitySet="XurLocationDays" />
+            <End Role="xurlocationday" EntitySet="XurD1LocationDays" />
           </AssociationSet>
           <EntitySet Name="TrialsMapDays" EntityType="DestinySqlModel.TrialsMapDay" />
           <EntitySet Name="RewardsDays" EntityType="DestinySqlModel.RewardsDay" />
@@ -1679,7 +1679,7 @@
         </Association>
         <Association Name="FK_InventoryItemId">
           <End Type="DestinySqlModel.InventoryItem" Role="InventoryItem" Multiplicity="1" />
-          <End Type="DestinySqlModel.XurDay" Role="XurDay" Multiplicity="*" />
+          <End Type="DestinySqlModel.XurD1Day" Role="XurDay" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="InventoryItem">
               <PropertyRef Name="id" />
@@ -1993,7 +1993,7 @@
           <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="xurlocationdays" Relationship="DestinySqlModel.FK_LocationId" FromRole="xurlocation" ToRole="xurlocationday" />
         </EntityType>
-        <EntityType Name="XurLocationDay">
+        <EntityType Name="XurD1LocationDay">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -2006,7 +2006,7 @@
         </EntityType>
         <Association Name="FK_LocationId">
           <End Type="DestinySqlModel.XurLocation" Role="xurlocation" Multiplicity="1" />
-          <End Type="DestinySqlModel.XurLocationDay" Role="xurlocationday" Multiplicity="*" />
+          <End Type="DestinySqlModel.XurD1LocationDay" Role="xurlocationday" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="xurlocation">
               <PropertyRef Name="id" />
@@ -2459,8 +2459,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="XurDays">
-            <EntityTypeMapping TypeName="DestinySqlModel.XurDay">
+          <EntitySetMapping Name="XurD1Days">
+            <EntityTypeMapping TypeName="DestinySqlModel.XurD1Day">
               <MappingFragment StoreEntitySet="xurday">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="gearid" ColumnName="gearid" />
@@ -2524,8 +2524,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="XurLocationDays">
-            <EntityTypeMapping TypeName="DestinySqlModel.XurLocationDay">
+          <EntitySetMapping Name="XurD1LocationDays">
+            <EntityTypeMapping TypeName="DestinySqlModel.XurD1LocationDay">
               <MappingFragment StoreEntitySet="xurlocationday">
                 <ScalarProperty Name="year" ColumnName="year" />
                 <ScalarProperty Name="month" ColumnName="month" />

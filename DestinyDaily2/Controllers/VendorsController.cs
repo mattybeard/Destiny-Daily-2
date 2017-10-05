@@ -15,24 +15,9 @@ namespace DestinyDaily2.Controllers
         private XurManager XurManager { get; }    
         private TrialsManager TrialsManager { get; }
         private BountyManager BountyManager { get; }
-        private static VendorContentModel Cache { get; set; }
-        private bool CacheExpired
-        {
-            get
-            {
-                if (Cache == null)
-                    return true;
-
-                if (Cache.ExpiryTime < DateTime.Now)
-                    return true;
-
-                if (Cache.ExpiryTime.Hour < DateTime.Now.Hour)
-                    return true;
-
-                return false;
-            }
-        }
-        
+        private static VendorContentModel D1Cache { get; set; }
+        private static VendorsModel D2Cache { get; set; }
+       
         public VendorsController()
         {
             VendorManager = new VendorManager();
@@ -41,17 +26,41 @@ namespace DestinyDaily2.Controllers
             BountyManager = new BountyManager();
         }
 
+        public ActionResult Index(bool noLayout = false)
+        {
+            if (D2Cache == null || D2Cache.CacheExpired)
+            {
+                D2Cache = new VendorsModel()
+                {
+                    XurInTower = XurManager.InTower(2),
+                    XurSales = XurManager.GetD2CurrentItems(),
+                    XurLocation = XurManager.GetD2CurrentLocation(),
+
+                    ExpiryTime = DateTime.Now.AddMinutes(30),
+                    StartTime = DateTime.Now
+                };
+            }
+
+            if (noLayout)
+                return View("PartialIndex", D2Cache);
+            else
+            {
+                ViewBag.HtmlTagOverride = @"data-redirect=""/#vendors""";
+                return View("Index", D2Cache);
+            }
+        }
+
         public ActionResult Destiny1Index(bool noLayout = false)
         {
-            if (CacheExpired)
+            if (D1Cache ==  null || D1Cache.CacheExpired)
             {
-                Cache = new VendorContentModel()
+                D1Cache = new VendorContentModel()
                 {
                     HideSrl = true,
 
-                    XurInTower = XurManager.InTower,
-                    XurSales = XurManager.GetCurrentItems(),
-                    XurLocation = XurManager.GetCurrentLocation(),
+                    XurInTower = XurManager.InTower(1),
+                    XurSales = XurManager.GetD1CurrentItems(),
+                    XurLocation = XurManager.GetD1CurrentLocation(),
                     MaterialExchanges = VendorManager.GetMaterialExchange(),
                     MaterialDetail = VendorManager.GetMaterialDetails(),
                     TrialsDetails = TrialsManager.GetCurrentMap(),
@@ -66,11 +75,11 @@ namespace DestinyDaily2.Controllers
             }
 
             if (noLayout)
-                return View("Destiny1/PartialIndex", Cache);
+                return View("Destiny1/PartialIndex", D1Cache);
             else
             {
                 ViewBag.HtmlTagOverride = @"data-redirect=""/#vendors""";
-                return View("Destiny1/Index", Cache);
+                return View("Destiny1/Index", D1Cache);
             }
         }
     }

@@ -12,19 +12,14 @@ namespace DestinyDailyDAL.Destiny1
     using System;
     using System.Collections.Generic;
     
-    public partial class XurLocation
+    public partial class XurD1LocationDay
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public XurLocation()
-        {
-            this.xurlocationdays = new HashSet<XurD1LocationDay>();
-        }
-    
         public int id { get; set; }
-        public string name { get; set; }
-        public string image { get; set; }
+        public int xurlocationid { get; set; }
+        public int day { get; set; }
+        public int month { get; set; }
+        public int year { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<XurD1LocationDay> xurlocationdays { get; set; }
+        public virtual XurLocation xurlocation { get; set; }
     }
 }

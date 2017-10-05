@@ -18,7 +18,7 @@ namespace DestinyDailyDAL.Destiny1
         public InventoryItem()
         {
             this.BountyDays = new HashSet<BountyDay>();
-            this.XurDays = new HashSet<XurDay>();
+            this.XurDays = new HashSet<XurD1Day>();
             this.WeeklyHeroicMissionRewards = new HashSet<WeeklyHeroicMissionReward>();
             this.NightfallMissionRewards = new HashSet<NightfallMissionReward>();
             this.rewardsdays = new HashSet<RewardsDay>();
@@ -39,7 +39,7 @@ namespace DestinyDailyDAL.Destiny1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BountyDay> BountyDays { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<XurDay> XurDays { get; set; }
+        public virtual ICollection<XurD1Day> XurDays { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WeeklyHeroicMissionReward> WeeklyHeroicMissionRewards { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -12,6 +12,8 @@
         <EntityTypeShape EntityType="DestinyDaily2Model.D2NightfallModifier" Width="1.5" PointX="5" PointY="3.75" />
         <EntityTypeShape EntityType="DestinyDaily2Model.ClassifiedOverride" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="DestinyDaily2Model.D2NightfallChallenge" Width="1.5" PointX="6.625" PointY="3.75" />
+        <EntityTypeShape EntityType="DestinyDaily2Model.XurDay" Width="1.5" PointX="10.125" PointY="0.75" />
+        <EntityTypeShape EntityType="DestinyDaily2Model.XurLocationDay" Width="1.5" PointX="11.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

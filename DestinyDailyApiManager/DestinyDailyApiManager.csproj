@@ -67,9 +67,15 @@
     <Compile Include="Models\D2\API\AvailableQuest.cs" />
     <Compile Include="Models\D2\API\Challenge.cs" />
     <Compile Include="Models\D2\API\DisplayProperties.cs" />
+    <Compile Include="Models\D2\API\InventoryItemDefinition.cs" />
+    <Compile Include="Models\D2\API\ItemList.cs" />
     <Compile Include="Models\D2\API\Matchmaking.cs" />
     <Compile Include="Models\D2\API\Milestone.cs" />
     <Compile Include="Models\D2\API\MilestoneEndpoint.cs" />
+    <Compile Include="Models\D2\API\Quality.cs" />
+    <Compile Include="Models\D2\API\Source.cs" />
+    <Compile Include="Models\D2\API\SourceData.cs" />
+    <Compile Include="Models\D2\API\VendorDefinition.cs" />
     <Compile Include="Models\D2\API\ModifierDefinition.cs" />
     <Compile Include="Models\D2\API\Reward.cs" />
     <Compile Include="Models\D2\API\RewardItem.cs" />

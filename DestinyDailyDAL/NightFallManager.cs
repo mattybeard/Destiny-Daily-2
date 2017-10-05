@@ -102,6 +102,7 @@ namespace DestinyDailyDAL
             var activityManifest = DestinyDailyApiManager.BungieApi.GetPlumbing<Dictionary<long, ActivityDefinition>>("DestinyActivityDefinition");
             var modifierManifest = DestinyDailyApiManager.BungieApi.GetPlumbing<Dictionary<long, ModifierDefinition>>("DestinyActivityModifierDefinition");
             var objectiveManifest = DestinyDailyApiManager.BungieApi.GetPlumbing<Dictionary<long, ModifierDefinition>>("DestinyObjectiveDefinition");
+            var vendorManifest = DestinyDailyApiManager.BungieApi.GetPlumbing<Dictionary<long, VendorDefinition>>("DestinyVendorDefinition");
 
             foreach (var milestone in mileStones.Response)
             {                

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DestinyDailyDAL.Destiny1
+namespace DestinyDailyDAL.Destiny2
 {
     using System;
     using System.Collections.Generic;
@@ -15,12 +15,9 @@ namespace DestinyDailyDAL.Destiny1
     public partial class XurDay
     {
         public int id { get; set; }
-        public long gearid { get; set; }
-        public int group { get; set; }
-        public int day { get; set; }
-        public int month { get; set; }
-        public int year { get; set; }
-    
-        public virtual InventoryItem InventoryItem { get; set; }
+        public Nullable<long> itemid { get; set; }
+        public Nullable<int> day { get; set; }
+        public Nullable<int> month { get; set; }
+        public Nullable<int> year { get; set; }
     }
 }

@@ -86,6 +86,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="DailyManager.cs" />
+    <Compile Include="Destiny1\XurD1Day.cs">
+      <DependentUpon>DestinySqlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Destiny1\XurD1LocationDay.cs">
+      <DependentUpon>DestinySqlModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Destiny2\ClassifiedOverride.cs">
       <DependentUpon>Destiny2SqlModel.tt</DependentUpon>
     </Compile>
@@ -125,6 +131,12 @@
     <Compile Include="Destiny2\Models\UnclassifiedModifier.cs" />
     <Compile Include="Destiny2\Models\UnclassifiedChallenge.cs" />
     <Compile Include="Destiny2\Models\NightfallManifestModel.cs" />
+    <Compile Include="Destiny2\XurDay.cs">
+      <DependentUpon>Destiny2SqlModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Destiny2\XurLocationDay.cs">
+      <DependentUpon>Destiny2SqlModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DestinyDailyManager.cs" />
     <Compile Include="Destiny1\DestinySqlModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -268,15 +280,7 @@
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Destiny1\XurDay.cs">
-      <DependentUpon>DestinySqlModel.tt</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
     <Compile Include="Destiny1\XurLocation.cs">
-      <DependentUpon>DestinySqlModel.tt</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Compile>
-    <Compile Include="Destiny1\XurLocationDay.cs">
       <DependentUpon>DestinySqlModel.tt</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>

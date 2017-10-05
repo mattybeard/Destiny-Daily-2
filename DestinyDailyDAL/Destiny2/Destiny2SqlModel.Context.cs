@@ -32,5 +32,7 @@ namespace DestinyDailyDAL.Destiny2
         public virtual DbSet<D2NightfallModifier> D2NightfallModifiers { get; set; }
         public virtual DbSet<ClassifiedOverride> ClassifiedOverrides { get; set; }
         public virtual DbSet<D2NightfallChallenge> D2NightfallChallenges { get; set; }
+        public virtual DbSet<XurDay> XurDays { get; set; }
+        public virtual DbSet<XurLocationDay> XurLocationDays { get; set; }
     }
 }

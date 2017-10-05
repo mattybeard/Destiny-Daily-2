@@ -50,13 +50,13 @@ namespace DestinyDailyDAL.Destiny1
         public virtual DbSet<WeeklyHeroic> WeeklyHeroics { get; set; }
         public virtual DbSet<WeeklyHeroicMissionReward> WeeklyHeroicMissionRewards { get; set; }
         public virtual DbSet<WeeklyHeroicModifier> WeeklyHeroicModifiers { get; set; }
-        public virtual DbSet<XurDay> XurDays { get; set; }
+        public virtual DbSet<XurD1Day> XurD1Days { get; set; }
         public virtual DbSet<MaterialExchange> MaterialExchanges { get; set; }
         public virtual DbSet<RaidChallenge> RaidChallenges { get; set; }
         public virtual DbSet<RaidChallengeDay> RaidChallengeDays { get; set; }
         public virtual DbSet<CrucibleWeeklyDay> CrucibleWeeklyDays { get; set; }
         public virtual DbSet<XurLocation> XurLocations { get; set; }
-        public virtual DbSet<XurLocationDay> XurLocationDays { get; set; }
+        public virtual DbSet<XurD1LocationDay> XurD1LocationDays { get; set; }
         public virtual DbSet<TrialsMapDay> TrialsMapDays { get; set; }
         public virtual DbSet<RewardsDay> RewardsDays { get; set; }
         public virtual DbSet<FeaturedRaid> FeaturedRaids { get; set; }

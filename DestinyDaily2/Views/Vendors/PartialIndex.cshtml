@@ -1,44 +1,7 @@
-﻿@using DestinyDailyDAL
-@using InventoryItem = DestinyDailyDAL.InventoryItem
-@model DestinyDaily2.Models.Destiny1.VendorContentModel
+﻿@model DestinyDaily2.Models.VendorsModel
 
 @{
     Layout = null;
-}
-
-@functions {
-
-    public static string DisplayIcon(string vendor, List<MaterialExchange> exchanges, List<InventoryItem> details)
-    {
-        var materialValue = exchanges.First(m => m.vendor == vendor).material;
-        DestinyDailyDAL.InventoryItem materialItem;
-        if (materialValue == "Helium Filament Donation")
-        {
-            materialItem = details.First(m => m.name == "Helium Filaments");
-        }
-        else if (materialValue == "Relic Iron Donation")
-        {
-            materialItem = details.First(m => m.name == "Relic Iron");
-        }
-        else if (materialValue == "Wormspore Donation")
-        {
-            materialItem = details.First(m => m.name == "Wormspore");
-        }
-        else if (materialValue == "Spinmetal Donation")
-        {
-            materialItem = details.First(m => m.name == "Spinmetal");
-        }
-        else if (materialValue == "Spirit Bloom Donation")
-        {
-            materialItem = details.First(m => m.name == "Spirit Bloom");
-        }
-        else
-        {
-            materialItem = details.First(m => m.name == "Hadium Flake");
-        }
-
-        return materialItem.icon;
-    }
 }
 
 <div style="display: none">Vendors - @Model.StartTime</div>
@@ -53,10 +16,10 @@
         <div class="heading">
             <h1 class="heading__title">Vendors</h1>
         </div>
-        @if(Model.XurInTower && Model.XurSales.Any())
-            {
-            <div data-featured = '1' class="activity activity--vendor--xur activity--featured js-homepage-featured">
-                <a id = "xur" class="activity__anchor"></a>
+        @if (Model.XurInTower && Model.XurSales.Any())
+        {
+            <div data-featured='1' class="activity activity--vendor--xur activity--featured js-homepage-featured">
+                <a id="xur" class="activity__anchor"></a>
                 <div class="activity__header">
                     <div class="content-center content-center--gutter">
                         <div aria-hidden="true" class="activity__icon">
@@ -73,30 +36,26 @@
                 <div class="activity__extras">
                     <div class="content-center content-center--gutter">
                         <div class="grid grid--gutterless">
+                          @if (Model.XurLocation != null)
+                          {
                             <div class="grid__item">
                                 <div class="activity__information">
-                                    @if (Model.XurLocation == null)
-                                    {
-                                        <p> Xûr has arrived.</p>
-                                    }
-                                    else
-                                    {
-                                        <p>Xûr has arrived and can be be found @Model.XurLocation.xurlocation.name.</p>
-                                    }
+                                    <p>Xûr has arrived. You can find him on @Model.XurLocation.location</p>
                                 </div>
                             </div>
+                          }
                             <div class="grid__item">
                                 <div class="activity__extra">
-                                    <h3 class="activity__subheading">Inventory</h3>
+                                    <h3 class="activity__subheading">Exotic Gear</h3>
                                     <div class="grid grid--gutterless">
-                                        @foreach(var xurItem in Model.XurSales.Where(c => c.group == 3))
+                                        @foreach (var item in Model.XurSales)
                                         {
                                             <div class="grid__item one-half tablet-one-quarter">
                                                 <div class="gear">
-                                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{xurItem.InventoryItem.icon}")" width="96" height="96" alt="Twilight Garrison preview" class="gear__image"/>
+                                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{item.displayProperties.icon}")" width="96" height="96" alt="@item.displayProperties.name preview" class="gear__image" />
                                                     <div class="gear__details">
-                                                        <div class="gear__title">@xurItem.InventoryItem.name</div>
-                                                        <div class="gear__description">@xurItem.InventoryItem.type</div>
+                                                        <div class="gear__title">@item.displayProperties.name</div>
+                                                        <div class="gear__description">@item.itemTypeDisplayName</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -112,7 +71,7 @@
         else
         {
             <div class="activity activity--vendor--xur">
-                <a id = "xur" class="activity__anchor"></a>
+                <a id="xur" class="activity__anchor"></a>
                 <div class="activity__header">
                     <div class="content-center content-center--gutter">
                         <div aria-hidden="true" class="activity__icon">
@@ -130,348 +89,8 @@
                         <div class="grid grid--gutterless">
                             <div class="grid__item">
                                 <div class="activity__information">
-                                    <p>Xûr isn't around yet, he's gathering his supplies ready for his visit this weekend.Check back here between Friday and Saturday and see what he has.</p>
-                                    <p><a href = "https://twitter.com/destinydaily7" target= "_blank" class="button">Alternatively follow us on Twitter and we'll notify you</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-        @if (Model.MaterialExchanges.Any())
-        {
-            <div class="activity activity--vendor">
-                <a id="material-exchange" class="activity__anchor"></a>
-                <div class="activity__header">
-                    <div class="content-center content-center--gutter">
-                        <div aria-hidden="true" class="activity__icon">
-                            <div class="icon icon--vendor"></div>
-                        </div>
-                        <div class="activity__details">
-                            <h2 class="activity__type">Material Exchange</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="activity__image"></div>
-                <div class="activity__extras">
-                    <div class="content-center content-center--gutter">
-                        <div class="grid grid--gutterless">
-                            <div class="grid__item">
-                                <div class="activity__materials">
-                                    <div class="grid">
-                                        <div class="grid__item tablet-one-half">
-                                            <h3 class="activity__subheading">Crota's Bane</h3>
-                                            <div class="vendor">
-                                                <div class="grid grid--bottomed">
-                                                    <div class="grid__item one-half">
-                                                        <div class="vendor__image"><img src="/assets/img/structure/vendor/eris-morn.png?v=1.0.7" width="350" height="280" alt="Eris Morn" /></div>
-                                                    </div>
-                                                    <div class="grid__item grid__item--reversed one-half">
-                                                        <div class="gear">
-                                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/7068eb20bc83ddb006dd0f077993235a.jpg" width="96" height="96" alt="Material preview" class="gear__image" />
-                                                            <div class="gear__details">
-                                                                <div class="gear__title">Wormspore Donation</div>
-                                                                <div class="gear__description"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="grid__item tablet-one-half">
-                                            <h3 class="activity__subheading">Dead Orbit</h3>
-                                            <div class="vendor">
-                                                <div class="grid grid--bottomed">
-                                                    <div class="grid__item one-half">
-                                                        <div class="vendor__image"><img src="/assets/img/structure/vendor/arach-jalaal.png?v=1.0.7" width="350" height="280" alt="Arach Jalaal" /></div>
-                                                    </div>
-                                                    <div class="grid__item grid__item--reversed one-half">
-                                                        <div class="gear">
-                                                            <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{DisplayIcon("Dead Orbit", Model.MaterialExchanges, Model.MaterialDetail)}")" width="96" height="96" alt="Material preview" class="gear__image" />
-                                                            <div class="gear__details">
-                                                                <div class="gear__title">@Model.MaterialExchanges.First(m => m.vendor == "Dead Orbit").material</div>
-                                                                <div class="gear__description"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="grid__item tablet-one-half">
-                                            <h3 class="activity__subheading">Future War Cult</h3>
-                                            <div class="vendor">
-                                                <div class="grid grid--bottomed">
-                                                    <div class="grid__item one-half">
-                                                        <div class="vendor__image"><img src="/assets/img/structure/vendor/lakshmi-2.png?v=1.0.7" width="350" height="280" alt="Lakshmi-2" /></div>
-                                                    </div>
-                                                    <div class="grid__item grid__item--reversed one-half">
-                                                        <div class="gear">
-                                                            <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{DisplayIcon("Future War Cult", Model.MaterialExchanges, Model.MaterialDetail)}")" width="96" height="96" alt="Material preview" class="gear__image" />
-                                                            <div class="gear__details">
-                                                                <div class="gear__title">@Model.MaterialExchanges.First(m => m.vendor == "Future War Cult").material</div>
-                                                                <div class="gear__description"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="grid__item tablet-one-half">
-                                            <h3 class="activity__subheading">New Monarchy</h3>
-                                            <div class="vendor">
-                                                <div class="grid grid--bottomed">
-                                                    <div class="grid__item one-half">
-                                                        <div class="vendor__image"><img src="/assets/img/structure/vendor/executor-hideo.png?v=1.0.7" width="350" height="280" alt="Executor Hideo" /></div>
-                                                    </div>
-                                                    <div class="grid__item grid__item--reversed one-half">
-                                                        <div class="gear">
-                                                            <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{DisplayIcon("New Monarchy", Model.MaterialExchanges, Model.MaterialDetail)}")" width="96" height="96" alt="Material preview" class="gear__image" />
-                                                            <div class="gear__details">
-                                                                <div class="gear__title">@Model.MaterialExchanges.First(m => m.vendor == "New Monarchy").material</div>
-                                                                <div class="gear__description"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-        @if (!Model.HideSrl)
-        {
-            if (Model.SrlBounties.Any())
-            {
-                <!-- Display this section when SRL is on-->
-                <div data-featured='4' class="activity activity--srl activity--featured js-homepage-featured">
-                    <a id="srl" class="activity__anchor"></a>
-                    <div class="activity__header">
-                        <div class="content-center content-center--gutter">
-                            <div aria-hidden="true" class="activity__icon">
-                                <div class="icon icon--srl"></div>
-                            </div>
-                            <div class="activity__details">
-                                <h2 class="activity__type">Sparrow Racing League</h2>
-                                <p class="activity__level">Limited time event</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="activity__image"></div>
-                    <div class="activity__extras">
-                        <div class="content-center content-center--gutter">
-                            <div class="grid grid--gutterless">
-                                <div class="grid__item tablet-one-half">
-                                    <div class="activity__extra">
-                                        <h3 class="activity__subheading">SRL Gear</h3>
-                                        <div class="grid grid--gutterless">
-                                            @foreach (var gear in Model.SrlRewards)
-                                            {
-                                                <div class="grid__item fablet-one-half">
-                                                    <div class="gear">
-                                                        <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{gear.inventoryitem.icon}")" width="96" height="96" alt="@gear.inventoryitem.name preview" class="gear__image"/>
-                                                        <div class="gear__details">
-                                                            <div class="gear__title">@gear.inventoryitem.name</div>
-                                                            <div class="gear__description">@gear.inventoryitem.type</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="grid__item tablet-one-half">
-                                    <div class="activity__extra">
-                                        <h3 class="activity__subheading">Bounties</h3>
-                                        <ul>
-                                            @foreach (var bounty in Model.SrlBounties)
-                                            {
-                                                <li class="bounty">
-                                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Bounties icon" class="bounty__image"/>
-                                                    <div class="bounty__details">
-                                                        <div class="bounty__title">@bounty.InventoryItem.name</div>
-                                                        <div class="bounty__description">@bounty.InventoryItem.desc</div>
-                                                    </div>
-                                                </li>
-                                            }
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-            else
-            {
-                <div class="activity activity--srl">
-                    <a id="srl" class="activity__anchor"></a>
-                    <div class="activity__header">
-                        <div class="content-center content-center--gutter">
-                            <div aria-hidden="true" class="activity__icon">
-                                <div class="icon icon--srl"></div>
-                            </div>
-                            <div class="activity__details">
-                                <h2 class="activity__type">Sparrow Racing League</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="activity__image"></div>
-                    <div class="activity__extras">
-                        <div class="content-center content-center--gutter">
-                            <div class="grid grid--gutterless">
-                                <div class="grid__item">
-                                    <div class="activity__information">
-                                        <p>SRL has now finished - it may be back so keep an eye on your usual Destiny news outlets.</p>
-                                        <p><a href="https://twitter.com/destinydaily7" target="_blank" class="button">Alternatively follow us on Twitter and we'll notify you</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        }
-        @if (Model.TrialsDetails != null)
-        {
-            <div data-featured='2' class="activity activity--trials-of-osiris activity--featured js-homepage-featured">
-                <a id="trials" class="activity__anchor"></a>
-                <div class="activity__header">
-                    <div class="content-center content-center--gutter">
-                        <div aria-hidden="true" class="activity__icon">
-                            <div class="icon icon--trials-of-osiris"></div>
-                        </div>
-                        <div class="activity__details">
-                            <h2 class="activity__type">Trials of Osiris</h2>
-                            <p class="activity__name">@Model.TrialsDetails.map</p>
-                            <p class="activity__level">Limited time event</p>
-                            <p class="is-vhidden">Osiris seeks the strongest Guardians to stem the tide of the Darkness.</p>
-                        </div>
-                    </div>
-                </div>
-                <div data-external-background-image="data-external-background-image" data-external-src="@($"https://www.bungie.net{Model.TrialsDetails.mapimage}")" class="activity__image"></div>
-                <div class="activity__extras">
-                    <div class="content-center content-center--gutter">
-                        <div class="grid grid--gutterless">
-                            <div class="grid__item">
-                                <div class="activity__extra">
-                                    <h3 class="activity__subheading">Bounties</h3>
-                                    <ul>
-                                        <li class="bounty bounty--narrow">
-                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/c98dc78c99e99fea852417e7e496e324.jpg" width="96" height="96" alt="Bounties icon" class="bounty__image" />
-                                            <div class="bounty__details">
-                                                <div class="bounty__title">Teamwork</div>
-                                                <div class="bounty__description">Defeat 5 opposing Guardians while both your teammates are alive.</div>
-                                            </div>
-                                        </li>
-                                        <li class="bounty bounty--narrow">
-                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/c98dc78c99e99fea852417e7e496e324.jpg" width="96" height="96" alt="Bounties icon" class="bounty__image" />
-                                            <div class="bounty__details">
-                                                <div class="bounty__title">Trials Journeyman</div>
-                                                <div class="bounty__description">Win 3 individual rounds in the Trials of Osiris.</div>
-                                            </div>
-                                        </li>
-                                        <li class="bounty bounty--narrow">
-                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/c98dc78c99e99fea852417e7e496e324.jpg" width="96" height="96" alt="Bounties icon" class="bounty__image" />
-                                            <div class="bounty__details">
-                                                <div class="bounty__title">As One</div>
-                                                <div class="bounty__description">Defeat 3 opposing Guardians while near at least one of your teammates.</div>
-                                            </div>
-                                        </li>
-                                        <li class="bounty bounty--narrow">
-                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/c98dc78c99e99fea852417e7e496e324.jpg" width="96" height="96" alt="Bounties icon" class="bounty__image" />
-                                            <div class="bounty__details">
-                                                <div class="bounty__title">Physician</div>
-                                                <div class="bounty__description">Revive 5 teammates in the Trials of Osiris.</div>
-                                            </div>
-                                        </li>
-                                        <li class="bounty bounty--narrow">
-                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/c98dc78c99e99fea852417e7e496e324.jpg" width="96" height="96" alt="Bounties icon" class="bounty__image" />
-                                            <div class="bounty__details">
-                                                <div class="bounty__title">Valor's Reward</div>
-                                                <div class="bounty__description">Earn 75 points in Trials by round wins (+3), losses (+1), and ties (+1). As a Trials Fireteam, defeat 3 opposing Guardians without anyone in your Fireteam dying.</div>
-                                            </div>
-                                        </li>
-                                        <li class="bounty bounty--narrow">
-                                            <img data-external-image="data-external-image" data-external-src="https://www.bungie.net/common/destiny_content/icons/c98dc78c99e99fea852417e7e496e324.jpg" width="96" height="96" alt="Bounties icon" class="bounty__image" />
-                                            <div class="bounty__details">
-                                                <div class="bounty__title">His Eye Upon You</div>
-                                                <div class="bounty__description">Win Trials rounds and defeat opposing Guardians. Fireteam members share progress. This bounty may be completed daily.</div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-        @if (Model.IronLordArtifacts.Any() || Model.IronLordBounties.Any())
-        {
-            <div class="activity activity--iron-temple">
-                <a id="iron-temple" class="activity__anchor"></a>
-                <div class="activity__header">
-                    <div class="content-center content-center--gutter">
-                        <div aria-hidden="true" class="activity__icon">
-                            <div class="icon icon--iron-temple"></div>
-                        </div>
-                        <div class="activity__details">
-                            <h2 class="activity__type">Iron Temple</h2>
-                            <p class="activity__name">Felwinter Peak</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="activity__image"></div>
-                <div class="activity__extras">
-                    <div class="content-center content-center--gutter">
-                        <div class="grid grid--gutterless">
-                            <div class="grid__item tablet-one-half">
-                                <div class="activity__extra">
-                                    @if (Model.IronLordArtifacts.Any())
-                                    {
-                                        <h3 class="activity__subheading">Iron Lord Artifacts</h3>
-                                        <div class="grid grid--gutterless">
-                                            @foreach (var artifact in Model.IronLordArtifacts)
-                                            {
-                                                <div class="grid__item fablet-one-half">
-                                                    <div class="gear">
-                                                        <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{artifact.inventoryitem.icon}")" width="96" height="96" alt="Artifact preview" class="gear__image" />
-                                                        <div class="gear__details">
-                                                            <div class="gear__title">@artifact.inventoryitem.name</div>
-                                                            <div class="gear__description">@artifact.inventoryitem.desc</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            }                                           
-                                        </div>
-                                    }
-                                </div>
-                            </div>
-                            <div class="grid__item tablet-one-half">
-                                <div class="activity__extra">
-                                    @if (Model.IronLordBounties.Any())
-                                    {
-                                        <h3 class="activity__subheading">Iron Lord Bounties</h3>
-                                        <ul>
-                                            @foreach (var bounty in Model.IronLordBounties)
-                                            {
-                                                <li class="bounty">
-                                                    <img data-external-image="data-external-image" data-external-src="@($"https://www.bungie.net/{bounty.InventoryItem.icon}")" width="96" height="96" alt="Bountyicon" class="bounty__image"/>
-                                                    <div class="bounty__details">
-                                                        <div class="bounty__title">@bounty.InventoryItem.name.Replace("''","'")</div>
-                                                        <div class="bounty__description">@bounty.InventoryItem.desc.Replace("''", "'")</div>
-                                                    </div>
-                                                </li>
-                                            }                                          
-                                        </ul>
-                                    }
+                                    <p>Xûr isn't around yet, he's gathering his supplies ready for his next visit. Check back here between Friday and the weekly reset and see what he has.</p>
+                                    <p><a href="https://twitter.com/destinydaily7" target="_blank" class="button">Alternatively follow us on Twitter and we'll notify you</a></p>
                                 </div>
                             </div>
                         </div>

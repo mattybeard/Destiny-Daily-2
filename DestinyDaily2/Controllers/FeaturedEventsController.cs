@@ -18,7 +18,7 @@ namespace DestinyDaily2.Controllers
             var model = new FeaturedEventsDataModel();
 
             if (xur)
-                model.XurEvent = XurManager.GetCurrentItems();
+                model.XurEvent = XurManager.GetD1CurrentItems();
 
             if (noLayout)
                 return View("Destiny1/PartialIndex", model);

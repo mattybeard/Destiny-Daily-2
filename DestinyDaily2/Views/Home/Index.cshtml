@@ -10,6 +10,15 @@
 }
 
 <div style="display: none">@DateTime.Now</div>
-
+<div class="prose content-center--centered">
+    <p>Destiny Daily is still in it's early stages, but we wanted to release it as quickly as possible.</p>
+    <p>New features still to come:</p>
+    <p>Raid encounter order</p>
+    <p>Meditations</p>
+    <p>Flashpoint</p>
+    <p>All challenges</p>
+    <p>Treasure maps</p>
+</div>
 @Html.Action("Index", "Nightfall", new { noLayout = true })
+@Html.Action("Index", "Vendors", new { noLayout = true })
 @Html.Action("Index", "Weekly", new { noLayout = true })

@@ -182,6 +182,7 @@
     <Compile Include="Models\Destiny1\NightfallDataModel.cs" />
     <Compile Include="Models\Destiny1\VendorContentModel.cs" />
     <Compile Include="Models\Destiny1\WeeklyDataModel.cs" />
+    <Compile Include="Models\VendorsModel.cs" />
     <Compile Include="Models\NightfallModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -31,6 +31,8 @@
           <Property Name="secondarySpecial" Type="nvarchar" MaxLength="255" />
           <Property Name="screenshot" Type="nvarchar" MaxLength="255" />
           <Property Name="rarity" Type="nvarchar" MaxLength="255" />
+          <Property Name="obtainable" Type="bit" />
+          <Property Name="howto" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="inventoryship">
           <Key>
@@ -84,6 +86,26 @@
           <Property Name="month" Type="int" />
           <Property Name="year" Type="int" />
         </EntityType>
+        <EntityType Name="xurday">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="itemid" Type="bigint" />
+          <Property Name="day" Type="int" />
+          <Property Name="month" Type="int" />
+          <Property Name="year" Type="int" />
+        </EntityType>
+        <EntityType Name="xurlocationday">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="location" Type="nvarchar" MaxLength="50" />
+          <Property Name="day" Type="int" />
+          <Property Name="month" Type="int" />
+          <Property Name="year" Type="int" />
+        </EntityType>
         <EntityContainer Name="DestinyDaily2ModelStoreContainer">
           <EntitySet Name="classifiedoverride" EntityType="Self.classifiedoverride" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="inventoryemblem" EntityType="Self.inventoryemblem" Schema="dbo" store:Type="Tables" />
@@ -92,6 +114,8 @@
           <EntitySet Name="nightfall" EntityType="Self.nightfall" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="nightfallchallenge" EntityType="Self.nightfallchallenge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="nightfallmodifier" EntityType="Self.nightfallmodifier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="xurday" EntityType="Self.xurday" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="xurlocationday" EntityType="Self.xurlocationday" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -105,6 +129,8 @@
           <EntitySet Name="D2NightfallModifiers" EntityType="DestinyDaily2Model.D2NightfallModifier" />
           <EntitySet Name="ClassifiedOverrides" EntityType="DestinyDaily2Model.ClassifiedOverride" />
           <EntitySet Name="D2NightfallChallenges" EntityType="DestinyDaily2Model.D2NightfallChallenge" />
+          <EntitySet Name="XurDays" EntityType="DestinyDaily2Model.XurDay" />
+          <EntitySet Name="XurLocationDays" EntityType="DestinyDaily2Model.XurLocationDay" />
         </EntityContainer>
         <EntityType Name="InventoryEmblem">
           <Key>
@@ -118,6 +144,8 @@
           <Property Name="secondarySpecial" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="screenshot" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="rarity" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="obtainable" Type="Boolean" />
+          <Property Name="howto" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="InventorySparrow">
           <Key>
@@ -185,6 +213,26 @@
           <Property Name="month" Type="Int32" />
           <Property Name="year" Type="Int32" />
         </EntityType>
+        <EntityType Name="XurDay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="itemid" Type="Int64" />
+          <Property Name="day" Type="Int32" />
+          <Property Name="month" Type="Int32" />
+          <Property Name="year" Type="Int32" />
+        </EntityType>
+        <EntityType Name="XurLocationDay">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="day" Type="Int32" />
+          <Property Name="month" Type="Int32" />
+          <Property Name="year" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -194,6 +242,8 @@
           <EntitySetMapping Name="InventoryEmblems">
             <EntityTypeMapping TypeName="DestinyDaily2Model.InventoryEmblem">
               <MappingFragment StoreEntitySet="inventoryemblem">
+                <ScalarProperty Name="howto" ColumnName="howto" />
+                <ScalarProperty Name="obtainable" ColumnName="obtainable" />
                 <ScalarProperty Name="rarity" ColumnName="rarity" />
                 <ScalarProperty Name="screenshot" ColumnName="screenshot" />
                 <ScalarProperty Name="secondarySpecial" ColumnName="secondarySpecial" />
@@ -273,6 +323,28 @@
                 <ScalarProperty Name="month" ColumnName="month" />
                 <ScalarProperty Name="day" ColumnName="day" />
                 <ScalarProperty Name="objectiveid" ColumnName="objectiveid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XurDays">
+            <EntityTypeMapping TypeName="DestinyDaily2Model.XurDay">
+              <MappingFragment StoreEntitySet="xurday">
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="itemid" ColumnName="itemid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XurLocationDays">
+            <EntityTypeMapping TypeName="DestinyDaily2Model.XurLocationDay">
+              <MappingFragment StoreEntitySet="xurlocationday">
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="location" ColumnName="location" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -8,9 +8,9 @@ namespace DestinyDaily2.Models.Destiny1
     {
         public bool HideSrl { get; set; }
         public DateTime ExpiryTime { get; set; }
-        public List<XurDay> XurSales { get; set; }
+        public List<XurD1Day> XurSales { get; set; }
         public bool XurInTower { get; set; }
-        public XurLocationDay XurLocation { get; set; }
+        public XurD1LocationDay XurLocation { get; set; }
         public List<MaterialExchange> MaterialExchanges { get; set; }
         public List<InventoryItem> MaterialDetail { get; set; }
         public TrialsMapDay TrialsDetails { get; set; }
@@ -19,5 +19,18 @@ namespace DestinyDaily2.Models.Destiny1
         public List<BountyDay> SrlBounties { get; set; }
         public List<RewardsDay> SrlRewards { get; set; }
         public DateTime StartTime { get; set; }
+        public bool CacheExpired
+        {
+            get
+            {
+                if (ExpiryTime < DateTime.Now)
+                    return true;
+
+                if (ExpiryTime.Hour < DateTime.Now.Hour)
+                    return true;
+
+                return false;
+            }
+        }
     }
 }
